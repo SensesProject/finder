@@ -63,10 +63,7 @@ h2 {
   font-size: $size-default;
   line-height: 1.2;
   color: $color-darker;
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
-  letter-spacing: $spacing-wider;
-  margin-bottom: $spacing;
+  font-weight: $font-weight-default;
 }
 
 h3 {
@@ -221,13 +218,15 @@ table {
 }
 
 .tag {
+  background-color: #fff;
+  padding: 0.1em 0.3em;
   color: $color-mute;
+  border-radius: $radius-default;
   font-size: $size-smallest;
-  margin: 0 0.5rem 0 0;
+  cursor: pointer;
+  margin-left: $spacing / 4;
 
   &.clickable {
-    background-color: $color-bg-light;
-    padding: 0.2rem 0.5rem;
     border-radius: $radius-default;
 
     &:hover, &:focus {
@@ -236,13 +235,7 @@ table {
     }
 
     &.active {
-      background-color: $color-accent;
       color: $color-invert;
-    }
-
-    &.reset {
-      color: $color-important;
-      background: none;
     }
   }
 }

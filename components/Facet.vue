@@ -1,16 +1,45 @@
 <template>
   <section>
     <header>
-      <h2 :class="{ active: active.length }">{{ title }}</h2>
-      <span v-if="active.length" @click="resetFacet(ki)" class="reset">Reset</span>
+      <section>
+        <h2 :class="{ active: isActive }">{{ title }}</h2>
+        <aside v-if="isActive">
+          <span @click="resetFacet(ki)" class="reset tag clickable">Invert</span>
+          <span @click="resetFacet(ki)" class="reset tag clickable">Reset</span>
+        </aside>
+      </section>
+      <section>
+        <span>{{ number }} options</span>
+        <aside>
+          <span :class="{ active: rank }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+        </aside>
+      </section>
     </header>
     <ul>
       <li
-        v-for="(n, value) in values"
-        :class="{ active: active.indexOf(value) > -1 }">
-        <span @click="setFacet({ key: ki, value: value })">{{ value }}: {{ n }}</span>
-        <span v-if="active.length && active.indexOf(value) === -1" class="include" @click="addFacet({ key: ki, value: value })">Include</span>
-        <span v-if="active.indexOf(value) > -1" class="include" @click="removeFacet({ key: ki, value: value })">Exclude</span>
+        v-for="item in list"
+        :class="{ active: item.isActive }">
+        <svg>
+          <line
+            class="base"
+            x1="0%"
+            y1="90%"
+            x2="100%"
+            y2="90%" />
+          <line
+            x1="0%"
+            y1="90%"
+            :x2="item.percentage + '%'"
+            y2="90%" />
+        </svg>
+        <div
+          @click="setFacet({ key: ki, value: item.label })"
+          class="label">
+          <span>{{ item.label }}</span>
+        </div>
+        <span v-if="isActive && !item.isActive" class="include" @click="addFacet({ key: ki, value: item.label })">Include</span>
+        <span v-if="item.isActive" class="include" @click="removeFacet({ key: ki, value: item.label })">Exclude</span>
+        <span class="counter">{{ item.value }}</span>
       </li>
     </ul>
   </section>
@@ -22,6 +51,12 @@
 
   export default {
     props: ['title', 'values', 'ki'],
+    data: function () {
+      return {
+        rank: false,
+        reverse: true
+      }
+    },
     computed: {
       ...mapState([
         'filter'
@@ -29,6 +64,30 @@
       active () {
         const keys = _.find(this.filter, ['key', this.ki])
         return _.isUndefined(keys) ? [] : keys.values
+      },
+      isActive () {
+        return this.active.length > 0
+      },
+      number () {
+        return _.size(this.values)
+      },
+      range () {
+        console.log(this.values)
+        const values = _.map(this.values, value => { return value })
+        return Math.max(...values)
+      },
+      list () {
+        const list = _.map(this.values, (key, value) => {
+          return {
+            'label': value,
+            'value': key,
+            'isActive': this.active.indexOf(value) > -1,
+            'percentage': 100 / this.range * key
+          }
+        })
+
+        const sorted = _.sortBy(list, this.rank ? 'label' : 'value')
+        return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? _.reverse(sorted) : sorted
       }
     },
     methods: {
@@ -37,18 +96,59 @@
         'setFacet',
         'addFacet',
         'removeFacet'
-      ])
+      ]),
+      sort: function (val) {
+        if (this.rank === val) {
+          this.reverse = !this.reverse
+        } else {
+          this.rank = val
+          this.reverse = true
+        }
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .active {
-    color: #5C9E31;
+  @import "~@/assets/style/variables";
+
+  header {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: $spacing / 4;
+
+    span {
+      font-size: $size-smallest;
+
+      &.spacer {
+        display: inline-block;
+        margin: 0 0.2em;
+      }
+
+      &.active {
+        color: rgb(255, 255, 255);
+      }
+    }
+
+    section {
+      display: flex;
+      justify-content: space-between;
+
+      &:first-child {
+        min-height: 2rem;
+
+      }
+    }
   }
 
   h2 {
     display: inline-block;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: $spacing-wide;
+
+    &.active {
+      color: #94F676;
+      font-weight: bold;
+    }
   }
 
   .reset {
@@ -56,38 +156,106 @@
     cursor: pointer;
   }
 
+  ul {
+    background-color: #272E35;
+    padding: 0.5rem;
+    border: 1px solid darken(#272E35, 2%);
+    border-radius: $radius-default;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    overflow-y: scroll;
+    height: calc(1.5rem * 10);
+
+    .active {
+      color: #94F676;
+    }
+  }
+
+  svg {
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    left: 0;
+    height: 100%;
+
+    line {
+      stroke: #E38A73;
+      stroke-width: 1px;
+
+      &.base {
+        stroke: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
   li {
+    font-size: $size-small;
     display: block;
     cursor: pointer;
-    color: #435B77;
+    color: rgba(255, 255, 255, 0.8);
+    transition-duration: 0.1s;
+    display: flex;
+    height: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    letter-spacing: $spacing-default;
+
+    .label {
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 90%;
+      flex-grow: 1;
+      flex: 3;
+      display: block;
+
+      span {
+        z-index: 10;
+        position: absolute;
+      }
+    }
 
     span {
-      display: inline-block;
+      flex: 1;
+
+      &.counter, &.include {
+        text-align: right;
+      }
+
+      &.counter {
+        flex: 1;
+        font-size: $size-smallest;
+      }
 
       &.include {
-        margin-left: 0.5em;
-        font-size: 0.7em;
+        font-size: $size-smallest;
         opacity: 0;
       }
     }
 
     &:hover {
-      span {
-        color: #222;
-      }
+      // span {
+      //   color: #fff;
+      // }
 
       .include {
         opacity: 1;
-        color: #435B77;
+        color: rgba(255, 255, 255, 0.6);
 
         &:hover {
-          color: #222;
+          color: rgba(255, 255, 255, 1);
         }
       }
     }
 
-    &.active {
+    &.active .label, &.active .counter {
       font-weight: bold;
+    }
+  }
+
+  ul:hover li {
+    color: rgba(255, 255, 255, 0.6);
+
+    &:hover .label, &:hover .counter {
+      color: rgba(255, 255, 255, 1);
     }
   }
 </style>
