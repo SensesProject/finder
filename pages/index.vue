@@ -1,19 +1,24 @@
 <template>
-  <div>
+  <div class="wrapper">
     <nav class="filter">
       <header>
         <h2>Filter</h2>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset Filter</span>
+        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
       </header>
-      <div class="columns columns-gutter">
-        <Facet title="Types" :values="types" ki="type" />
-        <Facet title="Properties" :values="properties" ki="properties" />
+      <div class="columns columns-gutter-narrow">
+        <Facet
+          v-for="option in options"
+          :title="option.label"
+          :values="option.options"
+          :ki="option.key"
+          :key="option.key" />
+<!--         <Facet title="Properties" :values="properties" ki="properties" />
         <Facet title="Values" :values="values.counting" ki="values" />
-        <Facet title="Process" :values="process" ki="process" />
+        <Facet title="Process" :values="process" ki="process" /> -->
       </div>
     </nav>
     <div class="content">
-      <h2>Data</h2>
+      <h2>Data <span v-if="result.length !== data.length">({{ result.length }}/{{ data.length }})</span></h2>
       <Table :data="result" />
     </div>
   </div>
@@ -27,14 +32,16 @@
   export default {
     computed: {
       ...mapState([
-        'filter'
+        'filter',
+        'data'
       ]),
       ...mapGetters([
         'types',
         'properties',
         'values',
         'process',
-        'result'
+        'result',
+        'options'
       ])
     },
     methods: {
@@ -52,12 +59,23 @@
 </script>
 
 <style lang="scss" scoped>
+  .wrapper {
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   h2 {
     display: inline-block;
+    font-weight: bold;
   }
 
   .reset {
     color: #DC3023;
+  }
+
+  .content {
+    overflow: scroll;
   }
 
   .filter {
@@ -69,6 +87,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4550', endColorstr='#282f37',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 1rem;
+
+    h2 {
+      color: rgba(255, 255, 255, 1);
+    }
   }
 
   .content {

@@ -10,7 +10,7 @@
       <tr
         v-for="(row, n) in data">
         <td>{{ n }}</td>
-        <td v-for="key in header">{{ row[key] }}</td>
+        <td v-for="key in header">{{ isArray(row[key]) ? row[key].join(', ') : row[key] }}</td>
       </tr>
     </tbody>
     <tbody v-else>
@@ -22,21 +22,42 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
+  import _ from 'lodash'
 
   export default {
     props: ['data'],
     computed: {
-      ...mapGetters([
+      ...mapState([
         'header'
       ])
+    },
+    methods: {
+      isArray: _.isArray
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/assets/style/variables";
+
+  table {
+    line-height: 1.2;
+    font-size: $size-smallest;
+  }
+
   th {
     text-align: left;
+    padding: 0 0.1em;
+  }
+
+  tr:hover {
+    color: #E38A73;
+  }
+
+  tr td {
+    border-bottom: 1px solid $color-bg-mute;
+    padding: $spacing / 4 0.1em;
   }
 
   .message {

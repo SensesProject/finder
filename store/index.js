@@ -1,440 +1,91 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
+import * as data from '../data/data.json'
 
 Vue.use(Vuex)
 
 const store = () => new Vuex.Store({
   state: {
-    filter: [{
-      'key': 'type',
-      'values': ['medium'],
-      'all': true
+    filter: [],
+    facets: [{
+      'label': 'Technique or Method',
+      'key': 'Technique or Method',
+      'type': 'category'
+    }, {
+      'label': 'Time Duration',
+      'key': 'Time Duration',
+      'type': 'category'
+    }, {
+      'label': 'narrow/ broad participation',
+      'key': 'narrow/ broad participation',
+      'type': 'category'
+    }, {
+      'label': 'Experts',
+      'key': 'Experts',
+      'type': 'category'
+    }, {
+      'label': 'stakeholders',
+      'key': 'stakeholders',
+      'type': 'category'
+    }, {
+      'label': 'group/individual',
+      'key': 'group/individual',
+      'type': 'category'
+    }, {
+      'label': 'can be performed in a 1 day workshop',
+      'key': 'can be performed in a 1 day workshop',
+      'type': 'category'
     }],
-    data: [{
-      'title': 'Robust Decisionmaking',
-      'type': 'long',
-      'properties': ['group', 'broad', 'fundamental uncertainty'],
-      'value': 0,
-      'process': 0.1
-    },
-    {
-      'title': 'Scenarios',
-      'type': 'long',
-      'properties': ['group', 'broad', 'fundamental uncertainty'],
-      'value': 1,
-      'process': 0.2
-    },
-    {
-      'title': 'Story and Simulation',
-      'type': 'long',
-      'properties': ['group', 'broad', 'fundamental uncertainty'],
-      'value': 2,
-      'process': 0.3
-    },
-    {
-      'title': 'Multipattern approach',
-      'type': 'medium',
-      'properties': ['group', 'narrow', 'broad exploration'],
-      'value': 3,
-      'process': 0.4
-    },
-    {
-      'title': 'Normative Forecasting',
-      'type': 'medium',
-      'properties': ['group', 'narrow', 'broad exploration'],
-      'value': 4,
-      'process': 0.1
-    },
-    {
-      'title': 'Morphological Analysis',
-      'type': 'medium',
-      'properties': ['group', 'broad', 'broad exploration'],
-      'value': 0,
-      'process': 0.2
-    },
-    {
-      'title': 'GBN matrix',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 1,
-      'process': 0.3
-    },
-    {
-      'title': 'Field Anomaly Relaxation',
-      'type': 'medium',
-      'properties': ['group', 'broad', 'broad exploration'],
-      'value': 2,
-      'process': 0.4
-    },
-    {
-      'title': 'Anticipatory Action Learning',
-      'type': 'long',
-      'properties': ['group', 'broad', 'broad exploration'],
-      'value': 3,
-      'process': 0.1
-    },
-    {
-      'title': 'Causal Layered Analysis',
-      'type': 'long',
-      'properties': ['group', 'broad', 'broad exploration'],
-      'value': 4,
-      'process': 0.2
-    },
-    {
-      'title': 'Brainstorming',
-      'type': 'short',
-      'properties': ['group', 'broad', 'unaminity'],
-      'value': 0,
-      'process': 0.3
-    },
-    {
-      'title': 'Affinity diagram (card techniques)',
-      'type': 'short',
-      'properties': ['group', 'broad', 'unaminity'],
-      'value': 1,
-      'process': 0.4
-    },
-    {
-      'title': 'Nominal Group Technique (card technique)',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 2,
-      'process': 0.1
-    },
-    {
-      'title': 'Futures Wheel',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 3,
-      'process': 0.2
-    },
-    {
-      'title': 'Scenario discovery cluster analysis',
-      'type': 'medium',
-      'properties': ['individual', 'narrow'],
-      'value': 4,
-      'process': 0.3
-    },
-    {
-      'title': 'Cross over point',
-      'type': 'medium',
-      'properties': ['both', 'narrow', 'fundamental uncertainty'],
-      'value': 0,
-      'process': 0.4
-    },
-    {
-      'title': 'Multicriteria analysis',
-      'type': 'medium',
-      'properties': ['both', 'broad'],
-      'value': 1,
-      'process': 0.1
-    },
-    {
-      'title': 'Pairwise comparison',
-      'type': 'medium',
-      'properties': ['both', 'narrow'],
-      'value': 2,
-      'process': 0.2
-    },
-    {
-      'title': 'STEEP analysis',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 3,
-      'process': 0.3
-    },
-    {
-      'title': 'SWOT Analysis',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 4,
-      'process': 0.4
-    },
-    {
-      'title': 'Environmental Scanning',
-      'type': 'variable',
-      'properties': ['individual'],
-      'value': 0,
-      'process': 0.1
-    },
-    {
-      'title': 'Text Mining',
-      'type': 'variable',
-      'properties': ['individual'],
-      'value': 1,
-      'process': 0.2
-    },
-    {
-      'title': 'Cross-Impact Analysis',
-      'type': 'medium',
-      'properties': ['both', 'narrow', 'probabilities'],
-      'value': 2,
-      'process': 0.3
-    },
-    {
-      'title': 'linked Cross Impact Balance',
-      'type': 'medium',
-      'properties': ['both', 'narrow'],
-      'value': 3,
-      'process': 0.4
-    },
-    {
-      'title': 'Structural Analysis',
-      'type': 'short',
-      'properties': ['group', 'narrow'],
-      'value': 4,
-      'process': 0.1
-    },
-    {
-      'title': 'Cognitive Mapping',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 0,
-      'process': 0.2
-    },
-    {
-      'title': 'Agent Modeling',
-      'type': 'medium',
-      'properties': ['both', 'narrow', 'probabilities'],
-      'value': 1,
-      'process': 0.3
-    },
-    {
-      'title': 'Modeling to Generate Alternatives',
-      'type': 'medium',
-      'properties': ['individual', 'narrow', 'broad exploration'],
-      'value': 2,
-      'process': 0.4
-    },
-    {
-      'title': 'Statistical Modeling',
-      'type': 'medium',
-      'properties': ['individual', 'narrow', 'confidence intervals'],
-      'value': 3,
-      'process': 0.1
-    },
-    {
-      'title': 'Role playing',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 4,
-      'process': 0.2
-    },
-    {
-      'title': 'Simulation-Gaming',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 0,
-      'process': 0.3
-    },
-    {
-      'title': 'Syncon (participatory)',
-      'type': 'long',
-      'properties': ['group', 'broad'],
-      'value': 1,
-      'process': 0.4
-    },
-    {
-      'title': 'Search conference (participatory)',
-      'type': 'medium',
-      'properties': ['group', 'broad'],
-      'value': 2,
-      'process': 0.1
-    },
-    {
-      'title': 'Workshop (participatory)',
-      'type': 'medium',
-      'properties': ['group ', 'broad'],
-      'value': 3,
-      'process': 0.2
-    },
-    {
-      'title': 'Charette (participatory)',
-      'type': 'short',
-      'properties': ['group', 'broad', 'unaminity'],
-      'value': 4,
-      'process': 0.3
-    },
-    {
-      'title': 'Expert panel (participatory)',
-      'type': 'short',
-      'properties': ['group', 'narrow'],
-      'value': 0,
-      'process': 0.4
-    },
-    {
-      'title': 'Focus group (participatory)',
-      'type': 'short',
-      'properties': ['group', 'narrow', 'unaminity'],
-      'value': 1,
-      'process': 0.1
-    },
-    {
-      'title': 'Participatory workshop techniques',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 2,
-      'process': 0.2
-    },
-    {
-      'title': 'Futures Polygon',
-      'type': 'short',
-      'properties': ['group', 'narrow', 'probabilities'],
-      'value': 3,
-      'process': 0.3
-    },
-    {
-      'title': 'Trend Impact Analysis',
-      'type': 'short',
-      'properties': ['group', 'narrow', 'quartilies'],
-      'value': 4,
-      'process': 0.4
-    },
-    {
-      'title': 'In-depth interviews',
-      'type': 'short',
-      'properties': ['one-to-one', 'narrow'],
-      'value': 0,
-      'process': 0.1
-    },
-    {
-      'title': 'Semi-structured interviews',
-      'type': 'short',
-      'properties': ['one-to-one', 'broad'],
-      'value': 1,
-      'process': 0.2
-    },
-    {
-      'title': 'Survey',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 2,
-      'process': 0.3
-    },
-    {
-      'title': 'Delphi Techniques',
-      'type': 'variable',
-      'properties': ['group', 'broad', 'unaminity'],
-      'value': 3,
-      'process': 0.4
-    },
-    {
-      'title': 'Causal Loop diagram',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 4,
-      'process': 0.1
-    },
-    {
-      'title': 'Fuzzy Cognitive Mapping',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 0,
-      'process': 0.2
-    },
-    {
-      'title': 'Group model building',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 1,
-      'process': 0.3
-    },
-    {
-      'title': 'Systems dynamics',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 2,
-      'process': 0.4
-    },
-    {
-      'title': 'Bayesian network',
-      'type': 'medium',
-      'properties': ['both', 'broad'],
-      'value': 3,
-      'process': 0.1
-    },
-    {
-      'title': 'Science and Technology Roadmapping',
-      'type': 'medium',
-      'properties': ['group', 'narrow', 'probabilities'],
-      'value': 4,
-      'process': 0.2
-    },
-    {
-      'title': 'Substitution Analysis/ Fisher-Pry Analysis',
-      'type': 'short',
-      'properties': ['both', 'narrow', 'confidence intervals'],
-      'value': 0,
-      'process': 0.3
-    },
-    {
-      'title': 'Technological Sequence Analysis',
-      'type': 'short',
-      'properties': ['both', 'narrow', 'probabilities'],
-      'value': 1,
-      'process': 0.4
-    },
-    {
-      'title': 'Relevance Trees',
-      'type': 'short',
-      'properties': ['both', 'broad'],
-      'value': 2,
-      'process': 0.1
-    },
-    {
-      'title': 'Heuristic Modeling',
-      'type': 'medium',
-      'properties': ['group', 'broad', 'unaminity'],
-      'value': 3,
-      'process': 0.2
-    },
-    {
-      'title': 'Visioning',
-      'type': 'medium',
-      'properties': ['group', 'broad'],
-      'value': 4,
-      'process': 0.3
-    },
-    {
-      'title': 'Wild Cards',
-      'type': 'medium',
-      'properties': ['group', 'broad', 'fundamental uncertainty'],
-      'value': 0,
-      'process': 0.4
-    },
-    {
-      'title': 'Genius Forecasting',
-      'type': 'short',
-      'properties': ['individual', 'narrow'],
-      'value': 1,
-      'process': 0.1
-    },
-    {
-      'title': 'Multiple Perspective',
-      'type': 'short',
-      'properties': ['group', 'broad'],
-      'value': 2,
-      'process': 0.2
-    },
-    {
-      'title': 'Science fiction',
-      'type': 'variable',
-      'properties': ['group', 'narrow'],
-      'value': 3,
-      'process': 0.3
-    },
-    {
-      'title': 'Groupware (participatory)',
-      'type': 'throughout',
-      'properties': ['group', 'broad'],
-      'value': 4,
-      'process': 0.4
-    }]
+    data,
+    header: [
+      'Name',
+      'Technique or Method',
+      'Type (grouping of techniques)',
+      'Time Duration',
+      'narrow/ broad participation',
+      'Experts',
+      'stakeholders',
+      'group/individual',
+      'can be performed in a 1 day workshop',
+      'in person',
+      'distance/ online',
+      'Backward (normative)',
+      'Forward (explorative)',
+      'Quantitative',
+      'Qualitative',
+      'Translation tools',
+      'reduce ambiguity',
+      'allow ambiguity',
+      'creative',
+      'evidence-based (systematic)',
+      'fundamental, broad exploration, probabilty, statistical',
+      'Under-stand',
+      'Generate ideas',
+      'Integrate ideas into whole',
+      'Consistency',
+      'Decision',
+      'Column',
+      'Analysis',
+      'Syntheis',
+      'creation',
+      'Column2'
+    ]
   },
   getters: {
-    header: state => {
-      return Object.keys(state.data[0])
+    // header: state => {
+    //   return Object.keys(state.data[0])
+    // },
+    options: state => {
+      return state.facets.map(facet => {
+        const { key } = facet
+        const options = _.countBy(_.flatten(state.data.map(item => item[key])))
+        console.log(options)
+        return {
+          ...facet,
+          options
+        }
+      })
     },
     types: state => {
       return _.countBy(state.data.map(item => item['type']))

@@ -154,14 +154,13 @@ figcaption {
 }
 
 table {
-  thead {
-    font-weight: $font-weight-bold;
-    font-size: $size-smaller;
-    letter-spacing: $spacing-wider;
+  tr td, th td {
+    vertical-align: top;
   }
 
-  tbody {
-    font-size: $size-small;
+  thead {
+    font-weight: $font-weight-bold;
+    font-size: $size-smallest;
   }
 }
 
