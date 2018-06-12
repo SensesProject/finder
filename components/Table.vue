@@ -1,23 +1,22 @@
 <template>
   <table>
-    <thead>
+    <!-- <thead>
       <tr>
-        <th>#</th>
         <th
           v-for="key in header"
           :class="{ 'active': activeKey === key }">{{ key }}</th>
       </tr>
-    </thead>
+    </thead> -->
     <tbody v-if="items.length">
       <tr
         v-for="(row, n) in items"
         :class="{ 'hover': row.active }">
-        <td>{{ n + 1 }}</td>
         <td
           v-for="cell in row.cells"
-          :class="{ 'active': activeKey === cell.key }"
+          :class="{ 'active': activeKey === cell.key, clickable: true }"
           @mouseenter="setHover({ key: cell.key, value: cell.label })"
-          @mouseleave="resetHover()">{{ cell.label }}</td>
+          @mouseleave="resetHover()"
+          @click="setFacet({ key: cell.key, value: cell.label })">{{ cell.label }}</td>
       </tr>
     </tbody>
     <tbody v-else>
@@ -73,7 +72,8 @@
     methods: {
       ...mapActions([
         'setHover',
-        'resetHover'
+        'resetHover',
+        'setFacet'
       ])
     }
   }
@@ -85,6 +85,24 @@
   table {
     line-height: 1.2;
     font-size: $size-smallest;
+
+    tr td, tr th {
+      width: calc(220px + #{$spacing / 2});
+      padding-left: $spacing / 4;
+      padding-right: $spacing / 4;
+      overflow: hidden;
+      white-space: nowrap;
+
+      &:first-child {
+        padding-left: 0;
+        width: calc(220px + #{$spacing / 4});
+      }
+
+      &:last-child {
+        padding-right: 0;
+        width: calc(220px + #{$spacing / 4});
+      }
+    }
   }
 
   th {

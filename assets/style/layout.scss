@@ -1,9 +1,9 @@
 body {
-  background-color: $color-bg-dark;
+  background-color: #fff;
 }
 
 .page, .page-header, .page-nav, .page-footer, .columns {
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -24,30 +24,6 @@ body {
 .page {
   flex-direction: column;
   min-height: 100vh;
-}
-
-.page-header, .container, .page-footer {
-  margin: 0 auto 0;
-  width: 98;
-  max-width: 1000px;
-}
-
-@include media-query($on-palm) {
-  .page-header, .container, .page-footer {
-    width: 90vw;
-  }
-}
-
-@include media-query($on-laptop) {
-  .page-header, .container, .page-footer {
-    width: 80vw;
-  }
-}
-
-@include media-query($on-desktop) {
-  .page-header, .container, .page-footer {
-    width: 70vw;
-  }
 }
 
 .page-content {
@@ -92,23 +68,6 @@ body {
   &:last-child {
     border-bottom: 0;
     padding-bottom: 0;
-  }
-}
-
-.topics {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  .columns {
-    max-width: 1200px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-
-    section, figure {
-      max-width: 600px;
-    }
   }
 }
 

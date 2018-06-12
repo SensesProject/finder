@@ -1,5 +1,6 @@
 <template>
   <section
+    class="facet"
     @mouseenter="setHoverKey({ key: ki })"
     @mouseleave="resetHoverKey()">
     <header>
@@ -119,6 +120,10 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
 
+  .facet {
+    width: 220px;
+  }
+
   header {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 0;
@@ -218,6 +223,8 @@
       span {
         z-index: 10;
         position: absolute;
+        overflow: hidden;
+        max-width: 90%;
       }
     }
 

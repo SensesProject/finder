@@ -1,11 +1,12 @@
 <template>
-  <div class="wrapper">
+  <div
+    class="wrapper">
     <nav class="filter">
       <header>
         <h2>Filter</h2>
         <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
       </header>
-      <div class="columns columns-gutter-narrow">
+      <div class="columns columns-gutter-narrow facets">
         <Facet
           v-for="option in options"
           :title="option.label"
@@ -65,6 +66,11 @@
     flex-direction: column;
   }
 
+  .facets {
+    justify-content: flex-start;
+    display: inline-flex;
+  }
+
   h2 {
     display: inline-block;
     font-weight: bold;
@@ -75,7 +81,8 @@
   }
 
   .content {
-    overflow: scroll;
+    // width: 8400px;
+    // overflow: scroll;
   }
 
   .filter {
