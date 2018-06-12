@@ -15,7 +15,9 @@
         <td>{{ n + 1 }}</td>
         <td
           v-for="cell in row.cells"
-          :class="{ 'active': activeKey === cell.key }">{{ cell.label }}</td>
+          :class="{ 'active': activeKey === cell.key }"
+          @mouseenter="setHover({ key: cell.key, value: cell.label })"
+          @mouseleave="resetHover()">{{ cell.label }}</td>
       </tr>
     </tbody>
     <tbody v-else>
@@ -27,7 +29,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
   import _ from 'lodash'
 
   export default {
@@ -67,6 +69,12 @@
           }
         })
       }
+    },
+    methods: {
+      ...mapActions([
+        'setHover',
+        'resetHover'
+      ])
     }
   }
 </script>
