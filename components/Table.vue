@@ -51,7 +51,7 @@
     padding: 0 0.1em;
   }
 
-  tr:hover {
+  tbody tr:hover {
     color: #E38A73;
   }
 
