@@ -243,6 +243,16 @@ const store = () => new Vuex.Store({
         })
       })
       return result
+    },
+    counter: (state, getters) => {
+      const values = state.facets.map(facet => {
+        const { key } = facet
+        const options = _.countBy(_.flatten(getters.result.map(item => item[key])))
+        return [key, options]
+      })
+      const val = _.fromPairs(values)
+      console.log(val)
+      return val
     }
   },
   mutations: {

@@ -34,6 +34,13 @@
             y1="90%"
             :x2="item.percentage + '%'"
             y2="90%" />
+          <line
+            v-if="filter.length"
+            class="filter"
+            x1="0%"
+            y1="90%"
+            :x2="100 / range * (counter[ki][item.label] || 0) + '%'"
+            y2="90%" />
         </svg>
         <div
           @mouseenter="setHover({ key: ki, value: item.label })"
@@ -44,14 +51,14 @@
         </div>
         <span v-if="isActive && !item.isActive" class="include" @click="addFacet({ key: ki, value: item.label })">Include</span>
         <span v-if="item.isActive" class="include" @click="removeFacet({ key: ki, value: item.label })">Exclude</span>
-        <span class="counter">{{ item.value }}</span>
+        <span class="counter"><span v-if="filter.length">{{ counter[ki][item.label] || 0 }}/</span>{{ item.value }}</span>
       </li>
     </ul>
   </section>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
   import _ from 'lodash'
 
   export default {
@@ -65,6 +72,9 @@
     computed: {
       ...mapState([
         'filter'
+      ]),
+      ...mapGetters([
+        'counter'
       ]),
       active () {
         const keys = _.find(this.filter, ['key', this.ki])
@@ -196,6 +206,10 @@
 
       &.base {
         stroke: rgba(255, 255, 255, 0.1);
+      }
+
+      &.filter {
+        stroke: #fff;
       }
     }
   }
