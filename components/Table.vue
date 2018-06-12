@@ -3,7 +3,9 @@
     <thead>
       <tr>
         <th>#</th>
-        <th v-for="key in header">{{ key }}</th>
+        <th
+          v-for="key in header"
+          :class="{ 'active': activeKey === key }">{{ key }}</th>
       </tr>
     </thead>
     <tbody v-if="items.length">
@@ -11,7 +13,9 @@
         v-for="(row, n) in items"
         :class="{ 'hover': row.active }">
         <td>{{ n + 1 }}</td>
-        <td v-for="cell in row.cells">{{ cell }}</td>
+        <td
+          v-for="cell in row.cells"
+          :class="{ 'active': activeKey === cell.key }">{{ cell.label }}</td>
       </tr>
     </tbody>
     <tbody v-else>
@@ -31,16 +35,20 @@
     computed: {
       ...mapState([
         'header',
-        'hover'
+        'hover',
+        'activeKey'
       ]),
       items () {
         return _.map(this.data, item => {
           const cells = _.map(this.header, key => {
-            return _.isArray(item[key]) ? item[key].join(', ') : item[key]
+            return {
+              'label': _.isArray(item[key]) ? item[key].join(', ') : item[key],
+              key
+            }
           })
 
           let active = false
-          console.log(this.hover)
+          // console.log(this.hover)
           if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) {
             if (_.isArray(item[this.hover.key])) {
               if (_.indexOf(item[this.hover.key], this.hover.value) >= 0) {
@@ -74,6 +82,7 @@
   th {
     text-align: left;
     padding: 0 0.1em;
+    vertical-align: top;
   }
 
   tbody tr:hover {
@@ -83,6 +92,14 @@
   tbody tr.hover {
     color: #fff;
     background-color: #E38A73;
+  }
+
+  th.active, td.active {
+    color: #E38A73;
+  }
+
+  tbody tr.hover td.active {
+    color: #fff;
   }
 
   tr td {

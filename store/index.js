@@ -9,6 +9,7 @@ const store = () => new Vuex.Store({
   state: {
     hover: false,
     filter: [],
+    activeKey: 'Time Duration',
     facets: [{
       'label': 'Technique or Method',
       'key': 'Technique or Method',
@@ -169,6 +170,14 @@ const store = () => new Vuex.Store({
     },
     RESET_HOVER (state) {
       state.hover = false
+    },
+    SET_HOVER_KEY (state, { key }) {
+      // console.log('SET_HOVER', key, value)
+      state.activeKey = key
+    },
+    RESET_HOVER_KEY (state) {
+      // console.log('SET_HOVER', key, value)
+      state.activeKey = false
     }
   },
   actions: {
@@ -199,6 +208,14 @@ const store = () => new Vuex.Store({
     resetHover ({ commit }) {
       // console.log('setHover')
       commit('RESET_HOVER')
+    },
+    setHoverKey ({ commit }, { key }) {
+      // console.log('setHover', key, value)
+      commit('SET_HOVER_KEY', { key })
+    },
+    resetHoverKey ({ commit }) {
+      // console.log('setHover')
+      commit('RESET_HOVER_KEY')
     }
   }
 })

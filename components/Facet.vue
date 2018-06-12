@@ -1,5 +1,7 @@
 <template>
-  <section>
+  <section
+    @mouseenter="setHoverKey({ key: ki })"
+    @mouseleave="resetHoverKey()">
     <header>
       <section>
         <h2 :class="{ active: isActive }">{{ title }}</h2>
@@ -98,7 +100,9 @@
         'addFacet',
         'removeFacet',
         'setHover',
-        'resetHover'
+        'resetHover',
+        'setHoverKey',
+        'resetHoverKey'
       ]),
       sort: function (val) {
         if (this.rank === val) {
