@@ -33,6 +33,8 @@
             y2="90%" />
         </svg>
         <div
+          @mouseenter="setHover({ key: ki, value: item.label })"
+          @mouseleave="resetHover()"
           @click="setFacet({ key: ki, value: item.label })"
           class="label">
           <span>{{ item.label }}</span>
@@ -72,7 +74,6 @@
         return _.size(this.values)
       },
       range () {
-        console.log(this.values)
         const values = _.map(this.values, value => { return value })
         return Math.max(...values)
       },
@@ -95,7 +96,9 @@
         'resetFacet',
         'setFacet',
         'addFacet',
-        'removeFacet'
+        'removeFacet',
+        'setHover',
+        'resetHover'
       ]),
       sort: function (val) {
         if (this.rank === val) {
