@@ -13,7 +13,7 @@
       <section>
         <span>{{ number }} options</span>
         <aside>
-          <span :class="{ active: rank }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+          <span :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
         </aside>
       </section>
     </header>
@@ -121,7 +121,7 @@
 
   header {
     color: rgba(255, 255, 255, 0.6);
-    margin-bottom: $spacing / 4;
+    margin-bottom: 0;
 
     span {
       font-size: $size-smallest;
@@ -139,10 +139,10 @@
     section {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       &:first-child {
         min-height: 2rem;
-
       }
     }
   }
@@ -150,7 +150,8 @@
   h2 {
     display: inline-block;
     color: rgba(255, 255, 255, 1);
-    letter-spacing: $spacing-wide;
+    letter-spacing: $spacing-default;
+    line-height: 1em;
 
     &.active {
       color: #94F676;
@@ -195,7 +196,7 @@
   }
 
   li {
-    font-size: $size-small;
+    font-size: $size-smaller;
     display: block;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.8);
