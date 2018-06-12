@@ -9,7 +9,7 @@
     <tbody v-if="data.length">
       <tr
         v-for="(row, n) in data">
-        <td>{{ n }}</td>
+        <td>{{ n + 1 }}</td>
         <td v-for="key in header">{{ isArray(row[key]) ? row[key].join(', ') : row[key] }}</td>
       </tr>
     </tbody>
