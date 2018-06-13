@@ -8,6 +8,7 @@ Vue.use(Vuex)
 const store = () => new Vuex.Store({
   state: {
     optionsFilter: false,
+    sortRemaining: false,
     hover: false,
     filter: [],
     activeKey: 'Time Duration',
@@ -311,6 +312,9 @@ const store = () => new Vuex.Store({
     },
     SET_OPTIONS_FILTER (state, { value }) {
       state.optionsFilter = value
+    },
+    SET_SORT_REMAINING (state, { value }) {
+      state.sortRemaining = value
     }
   },
   actions: {
@@ -353,6 +357,10 @@ const store = () => new Vuex.Store({
     setOptionsFilter ({ commit }, { value }) {
       // console.log('setHover')
       commit('SET_OPTIONS_FILTER', { value })
+    },
+    setSortRemaining ({ commit }, { value }) {
+      // console.log('setHover')
+      commit('SET_SORT_REMAINING', { value })
     }
   }
 })

@@ -4,7 +4,7 @@
     <nav class="filter">
       <header>
         <h2>Filter</h2>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span> <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label>
+        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span> <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label> <input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label>
       </header>
       <div class="columns columns-gutter-narrow facets">
         <Facet
@@ -35,7 +35,8 @@
       ...mapState([
         'filter',
         'data',
-        'optionsFilter'
+        'optionsFilter',
+        'sortRemaining'
       ]),
       ...mapGetters([
         'types',
@@ -50,15 +51,23 @@
           return this.optionsFilter
         },
         set (value) {
-          console.log(value)
           this.setOptionsFilter({ value })
+        }
+      },
+      sortRemainingProp: {
+        get () {
+          return this.sortRemaining
+        },
+        set (value) {
+          this.setSortRemaining({ value })
         }
       }
     },
     methods: {
       ...mapActions([
         'resetFilter',
-        'setOptionsFilter'
+        'setOptionsFilter',
+        'setSortRemaining'
       ])
     },
     directives: {

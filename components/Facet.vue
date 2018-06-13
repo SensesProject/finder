@@ -22,7 +22,7 @@
       <li
         v-for="item in list"
         v-if="!(optionsFilter && filter.length && item.current_value === 0)"
-        :class="{ active: item.isActive }">
+        :class="{ active: item.isActive, empty: item.current_value === 0 }">
         <svg>
           <line
             class="base"
@@ -73,7 +73,8 @@
     computed: {
       ...mapState([
         'filter',
-        'optionsFilter'
+        'optionsFilter',
+        'sortRemaining'
       ]),
       ...mapGetters([
         'counter'
@@ -104,7 +105,8 @@
           }
         })
 
-        const sorted = _.sortBy(list, this.rank ? 'label' : 'value')
+        const sorted = _.sortBy(list, this.rank ? 'label' : (this.sortRemaining ? 'current_value' : 'value'))
+
         return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? _.reverse(sorted) : sorted
       }
     },
@@ -195,6 +197,10 @@
     .active {
       color: #94F676;
     }
+
+    .empty .label span {
+      text-decoration: line-through;
+    }
   }
 
   svg {
@@ -282,6 +288,10 @@
 
   ul:hover li {
     color: rgba(255, 255, 255, 0.6);
+
+    .label span {
+      text-decoration: none !important;
+    }
 
     &:hover .label, &:hover .counter {
       color: rgba(255, 255, 255, 1);
