@@ -168,7 +168,7 @@
     letter-spacing: $spacing-default;
     line-height: 1em;
 
-    &.active {
+    &.active .label {
       color: #94F676;
       font-weight: bold;
     }
@@ -261,10 +261,6 @@
     }
 
     &:hover {
-      // span {
-      //   color: #fff;
-      // }
-
       .include {
         opacity: 1;
         color: rgba(255, 255, 255, 0.6);
@@ -285,6 +281,10 @@
 
     &:hover .label, &:hover .counter {
       color: rgba(255, 255, 255, 1);
+    }
+
+    &.active .label {
+      color: #94F676 !important;
     }
   }
 </style>
