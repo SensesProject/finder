@@ -4,7 +4,15 @@
     <nav class="filter">
       <header>
         <h2>Filter</h2>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span> <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label> <input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label>
+        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
+        <ul class="options">
+          <li>
+            <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label>
+          </li>
+          <li>
+            <input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label>
+          </li>
+        </ul>
       </header>
       <div class="columns columns-gutter-narrow facets">
         <Facet
@@ -80,10 +88,24 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/assets/style/variables";
+
   .wrapper {
     max-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+
+  .options {
+    li {
+      color: #fff;
+      font-size: $size-smallest;
+      margin-right: $spacing / 2;
+
+      input {
+        margin-right: $spacing / 6;
+      }
+    }
   }
 
   .facets {
