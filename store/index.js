@@ -237,11 +237,13 @@ const store = () => new Vuex.Store({
       state.filter.forEach(filta => {
         result = result.filter(item => {
           // console.log(filta.key, item[filta.key], filta.values, _.indexOf(filta.values, item[filta.key]))
+          let retVal = true
           if (_.isArray(item[filta.key])) {
-            return _.intersection(item[filta.key], filta.values).length > 0
+            retVal = _.intersection(item[filta.key], filta.values).length > 0
           } else {
-            return _.indexOf(filta.values, item[filta.key]) > -1
+            retVal = _.indexOf(filta.values, item[filta.key]) > -1
           }
+          return filta.invert ? !retVal : retVal
         })
       })
       return result
@@ -269,7 +271,7 @@ const store = () => new Vuex.Store({
       filter.push({
         'key': key,
         'values': [value],
-        'all': true
+        'invert': false
       })
       state.filter = filter
     },
@@ -278,6 +280,13 @@ const store = () => new Vuex.Store({
       const filter = _.clone(state.filter)
       const facet = _.find(filter, ['key', key])
       facet.values.push(value)
+      state.filter = filter
+    },
+    INVERT_FACET (state, { key }) {
+      // console.log('SET_FACET', key, value)
+      const filter = _.clone(state.filter)
+      const facet = _.find(filter, ['key', key])
+      facet.invert = !facet.invert
       state.filter = filter
     },
     REMOVE_FACET (state, { key, value }) {
@@ -337,6 +346,10 @@ const store = () => new Vuex.Store({
     removeFacet ({ commit }, { key, value }) {
       // console.log('removeFacet', key, value)
       commit('REMOVE_FACET', { key, value })
+    },
+    invertFacet ({ commit }, key) {
+      // console.log('invertFacet', key)
+      commit('INVERT_FACET', { key })
     },
     setHover ({ commit }, { key, value }) {
       // console.log('setHover', key, value)

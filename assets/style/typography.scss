@@ -234,6 +234,7 @@ table {
     }
 
     &.active {
+      background-color: $color-bg-dark;
       color: $color-invert;
     }
   }

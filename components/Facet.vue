@@ -7,7 +7,7 @@
       <section>
         <h2 :class="{ active: isActive }">{{ title }}</h2>
         <aside v-if="isActive">
-          <span @click="resetFacet(ki)" class="reset tag clickable">Invert</span>
+          <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetFacet(ki)" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -83,6 +83,10 @@
         const keys = _.find(this.filter, ['key', this.ki])
         return _.isUndefined(keys) ? [] : keys.values
       },
+      isInvert () {
+        const keys = _.find(this.filter, ['key', this.ki])
+        return _.isUndefined(keys) ? false : keys.invert
+      },
       isActive () {
         return this.active.length > 0
       },
@@ -119,7 +123,8 @@
         'setHover',
         'resetHover',
         'setHoverKey',
-        'resetHoverKey'
+        'resetHoverKey',
+        'invertFacet'
       ]),
       sort: function (val) {
         if (this.rank === val) {
