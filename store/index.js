@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 const store = () => new Vuex.Store({
   state: {
+    optionsFilter: false,
     hover: false,
     filter: [],
     activeKey: 'Time Duration',
@@ -250,9 +251,7 @@ const store = () => new Vuex.Store({
         const options = _.countBy(_.flatten(getters.result.map(item => item[key])))
         return [key, options]
       })
-      const val = _.fromPairs(values)
-      console.log(val)
-      return val
+      return _.fromPairs(values)
     }
   },
   mutations: {
@@ -309,6 +308,9 @@ const store = () => new Vuex.Store({
     RESET_HOVER_KEY (state) {
       // console.log('SET_HOVER', key, value)
       state.activeKey = false
+    },
+    SET_OPTIONS_FILTER (state, { value }) {
+      state.optionsFilter = value
     }
   },
   actions: {
@@ -347,6 +349,10 @@ const store = () => new Vuex.Store({
     resetHoverKey ({ commit }) {
       // console.log('setHover')
       commit('RESET_HOVER_KEY')
+    },
+    setOptionsFilter ({ commit }, { value }) {
+      // console.log('setHover')
+      commit('SET_OPTIONS_FILTER', { value })
     }
   }
 })

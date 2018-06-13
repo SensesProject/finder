@@ -4,7 +4,7 @@
     <nav class="filter">
       <header>
         <h2>Filter</h2>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
+        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span> <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label>
       </header>
       <div class="columns columns-gutter-narrow facets">
         <Facet
@@ -34,7 +34,8 @@
     computed: {
       ...mapState([
         'filter',
-        'data'
+        'data',
+        'optionsFilter'
       ]),
       ...mapGetters([
         'types',
@@ -43,11 +44,21 @@
         'process',
         'result',
         'options'
-      ])
+      ]),
+      optionsFilterProp: {
+        get () {
+          return this.optionsFilter
+        },
+        set (value) {
+          console.log(value)
+          this.setOptionsFilter({ value })
+        }
+      }
     },
     methods: {
       ...mapActions([
-        'resetFilter'
+        'resetFilter',
+        'setOptionsFilter'
       ])
     },
     directives: {

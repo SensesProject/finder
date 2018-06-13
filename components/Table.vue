@@ -117,7 +117,7 @@
 
   tbody tr.hover {
     color: #fff;
-    background-color: #E38A73;
+    background-color: rgba(234, 157, 134, 0.7)
   }
 
   th.active, td.active {

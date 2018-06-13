@@ -21,6 +21,7 @@
     <ul>
       <li
         v-for="item in list"
+        v-if="!(optionsFilter && filter.length && item.current_value === 0)"
         :class="{ active: item.isActive }">
         <svg>
           <line
@@ -51,7 +52,7 @@
         </div>
         <span v-if="isActive && !item.isActive" class="include" @click="addFacet({ key: ki, value: item.label })">Include</span>
         <span v-if="item.isActive" class="include" @click="removeFacet({ key: ki, value: item.label })">Exclude</span>
-        <span class="counter"><span v-if="filter.length">{{ counter[ki][item.label] || 0 }}/</span>{{ item.value }}</span>
+        <span class="counter"><span v-if="filter.length">{{ item.current_value }}/</span>{{ item.value }}</span>
       </li>
     </ul>
   </section>
@@ -71,7 +72,8 @@
     },
     computed: {
       ...mapState([
-        'filter'
+        'filter',
+        'optionsFilter'
       ]),
       ...mapGetters([
         'counter'
@@ -91,10 +93,12 @@
         return Math.max(...values)
       },
       list () {
+        const { ki } = this
         const list = _.map(this.values, (key, value) => {
           return {
             'label': value,
             'value': key,
+            'current_value': this.counter[ki][value] || 0,
             'isActive': this.active.indexOf(value) > -1,
             'percentage': 100 / this.range * key
           }
