@@ -28,7 +28,7 @@
     </nav>
     <div class="content">
       <h2>Data <span v-if="result.length !== data.length">({{ result.length }}/{{ data.length }})</span></h2>
-      <Table :data="result" />
+      <Table />
     </div>
   </div>
 </template>

@@ -28,19 +28,21 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
   import _ from 'lodash'
 
   export default {
-    props: ['data'],
     computed: {
       ...mapState([
         'header',
         'hover',
         'activeKey'
       ]),
+      ...mapGetters([
+        'result'
+      ]),
       items () {
-        return _.map(this.data, item => {
+        return _.map(this.result, item => {
           const cells = _.map(this.header, key => {
             return {
               'label': _.isArray(item[key]) ? item[key].join(', ') : item[key],
