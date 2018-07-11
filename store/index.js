@@ -193,7 +193,8 @@ const store = () => new Vuex.Store({
         range
       }
     },
-    header: state => {
+    visibleHeader: state => {
+      // implement toggle option for columns
       return _.map(state.facets, 'key')
     },
     process: state => {

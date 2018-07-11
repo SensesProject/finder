@@ -38,12 +38,12 @@
         'activeKey'
       ]),
       ...mapGetters([
-        'header',
+        'visibleHeader',
         'result'
       ]),
       items () {
         return _.map(this.result, item => {
-          const cells = _.map(this.header, key => {
+          const cells = _.map(this.visibleHeader, key => {
             return {
               'label': _.isArray(item[key]) ? item[key].join(', ') : item[key],
               key
