@@ -49,7 +49,6 @@
           })
 
           let active = false
-          // console.log(this.hover)
           if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) {
             if (_.isArray(item[this.hover.key])) {
               if (_.indexOf(item[this.hover.key], this.hover.value) >= 0) {
@@ -135,6 +134,6 @@
   }
 
   .message {
-    text-align: center;
+    text-align: left;
   }
 </style>
