@@ -162,45 +162,9 @@ const store = () => new Vuex.Store({
       'key': 'Column2',
       'type': 'category'
     }],
-    data,
-    header: [
-      'Name',
-      'Technique or Method',
-      'Type (grouping of techniques)',
-      'Time Duration',
-      'narrow/ broad participation',
-      'Experts',
-      'stakeholders',
-      'group/individual',
-      'can be performed in a 1 day workshop',
-      'in person',
-      'distance/ online',
-      'Backward (normative)',
-      'Forward (explorative)',
-      'Quantitative',
-      'Qualitative',
-      'Translation tools',
-      'reduce ambiguity',
-      'allow ambiguity',
-      'creative',
-      'evidence-based (systematic)',
-      'fundamental, broad exploration, probabilty, statistical',
-      'Under-stand',
-      'Generate ideas',
-      'Integrate ideas into whole',
-      'Consistency',
-      'Decision',
-      'Column',
-      'Analysis',
-      'Syntheis',
-      'creation',
-      'Column2'
-    ]
+    data
   },
   getters: {
-    // header: state => {
-    //   return Object.keys(state.data[0])
-    // },
     options: state => {
       return state.facets.map(facet => {
         const { key } = facet
@@ -228,6 +192,9 @@ const store = () => new Vuex.Store({
         counting,
         range
       }
+    },
+    header: state => {
+      return _.map(state.facets, 'key')
     },
     process: state => {
       return _.countBy(state.data.map(item => item['process']))

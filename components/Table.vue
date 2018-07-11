@@ -34,11 +34,11 @@
   export default {
     computed: {
       ...mapState([
-        'header',
         'hover',
         'activeKey'
       ]),
       ...mapGetters([
+        'header',
         'result'
       ]),
       items () {
