@@ -43,20 +43,21 @@
       ]),
       items () {
         return _.map(this.result, item => {
+          // For each row: build an array of values based on the visible headers
           const cells = _.map(this.visibleHeader, key => {
             return {
-              'label': _.isArray(item[key]) ? item[key].join(', ') : item[key],
+              'label': _.isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
               key
             }
           })
 
-          let active = false
-          if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) {
-            if (_.isArray(item[this.hover.key])) {
+          let active = false // By default, the cell is not highlighted
+          if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
+            if (_.isArray(item[this.hover.key])) { // If multiple keys are hovered
               if (_.indexOf(item[this.hover.key], this.hover.value) >= 0) {
                 active = true
               }
-            } else {
+            } else { // If a single key is hovered
               if (item[this.hover.key] === this.hover.value) {
                 active = true
               }
