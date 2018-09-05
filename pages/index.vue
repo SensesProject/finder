@@ -3,7 +3,7 @@
     class="wrapper">
     <nav class="filter">
       <header>
-        <h2>Co-Creation techniques</h2>
+        <h2>Co-Creation techniques (<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</h2>
       </header>
       <div class="columns columns-gutter-narrow facets">
         <Options />
@@ -16,7 +16,6 @@
       </div>
     </nav>
     <div class="content">
-      <h2>Items (<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</h2>
       <Table />
     </div>
   </div>
