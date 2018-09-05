@@ -168,19 +168,13 @@ const store = () => new Vuex.Store({
     options: state => {
       return state.facets.map(facet => {
         const { key } = facet
+        // Count all options for that facet (respectively key)
         const options = _.countBy(_.flatten(state.data.map(item => item[key])))
-        // console.log(options)
         return {
           ...facet,
           options
         }
       })
-    },
-    types: state => {
-      return _.countBy(state.data.map(item => item['type']))
-    },
-    properties: state => {
-      return _.countBy(_.flatten(state.data.map(item => item['properties'])))
     },
     values: state => {
       const values = state.data.map(item => item['value'])

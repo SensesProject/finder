@@ -6,12 +6,8 @@
         <h2>Filter</h2>
         <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
         <ul class="options">
-          <li>
-            <input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label>
-          </li>
-          <li>
-            <input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label>
-          </li>
+          <li><input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label></li>
+          <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
         </ul>
       </header>
       <div class="columns columns-gutter-narrow facets">
@@ -21,13 +17,10 @@
           :values="option.options"
           :ki="option.key"
           :key="option.key" />
-<!--         <Facet title="Properties" :values="properties" ki="properties" />
-        <Facet title="Values" :values="values.counting" ki="values" />
-        <Facet title="Process" :values="process" ki="process" /> -->
       </div>
     </nav>
     <div class="content">
-      <h2>Data <span v-if="result.length !== data.length">({{ result.length }}/{{ data.length }})</span></h2>
+      <h2>Data (<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</h2>
       <Table />
     </div>
   </div>
