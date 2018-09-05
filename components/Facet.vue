@@ -214,13 +214,13 @@
   }
 
   li {
-    font-size: $size-smaller;
+    font-size: $size-smallest;
     display: block;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.8);
     transition-duration: 0.1s;
     display: flex;
-    height: 1.5rem;
+    height: 1.3rem;
     overflow: hidden;
     position: relative;
     letter-spacing: $spacing-default;

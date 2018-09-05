@@ -3,7 +3,7 @@
     class="wrapper">
     <nav class="filter">
       <header>
-        <h2>Filter</h2>
+        <h2>Co-Creation techniques</h2>
       </header>
       <div class="columns columns-gutter-narrow facets">
         <Options />
@@ -16,7 +16,7 @@
       </div>
     </nav>
     <div class="content">
-      <h2>Data (<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</h2>
+      <h2>Items (<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</h2>
       <Table />
     </div>
   </div>
@@ -77,6 +77,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4550', endColorstr='#282f37',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 1rem;
+
+    h2 {
+      color: rgba(255, 255, 255, 1);
+    }
   }
 
   .content {
