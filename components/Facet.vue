@@ -5,7 +5,7 @@
     @mouseleave="resetHoverKey()">
     <header>
       <section>
-        <h2 :class="{ active: isActive }">{{ title }}</h2>
+        <h3 :class="{ active: isActive }">{{ title }}</h3>
         <aside v-if="isActive">
           <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetFacet(ki)" class="reset tag clickable">Reset</span>
@@ -141,10 +141,6 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
 
-  .facet {
-    width: 220px;
-  }
-
   header {
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 0;
@@ -170,18 +166,6 @@
       &:first-child {
         min-height: 2rem;
       }
-    }
-  }
-
-  h2 {
-    display: inline-block;
-    color: rgba(255, 255, 255, 1);
-    letter-spacing: $spacing-default;
-    line-height: 1em;
-
-    &.active .label {
-      color: #94F676;
-      font-weight: bold;
     }
   }
 

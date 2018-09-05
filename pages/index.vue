@@ -4,13 +4,9 @@
     <nav class="filter">
       <header>
         <h2>Filter</h2>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
-        <ul class="options">
-          <li><input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label></li>
-          <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
-        </ul>
       </header>
       <div class="columns columns-gutter-narrow facets">
+        <Options />
         <Facet
           v-for="option in options"
           :title="option.label"
@@ -27,55 +23,25 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
   import Facet from '~/components/Facet.vue'
   import Table from '~/components/Table.vue'
+  import Options from '~/components/Options.vue'
 
   export default {
     computed: {
       ...mapState([
-        'filter',
-        'data',
-        'optionsFilter',
-        'sortRemaining'
+        'data'
       ]),
       ...mapGetters([
-        'types',
-        'properties',
-        'values',
-        'process',
         'result',
         'options'
-      ]),
-      optionsFilterProp: {
-        get () {
-          return this.optionsFilter
-        },
-        set (value) {
-          this.setOptionsFilter({ value })
-        }
-      },
-      sortRemainingProp: {
-        get () {
-          return this.sortRemaining
-        },
-        set (value) {
-          this.setSortRemaining({ value })
-        }
-      }
-    },
-    methods: {
-      ...mapActions([
-        'resetFilter',
-        'setOptionsFilter',
-        'setSortRemaining'
       ])
-    },
-    directives: {
     },
     components: {
       Facet,
-      Table
+      Table,
+      Options
     }
   }
 </script>
@@ -89,35 +55,17 @@
     flex-direction: column;
   }
 
-  .options {
-    li {
-      color: #fff;
-      font-size: $size-smallest;
-      margin-right: $spacing / 2;
-
-      input {
-        margin-right: $spacing / 6;
-      }
-    }
-  }
-
   .facets {
     justify-content: flex-start;
     display: inline-flex;
-  }
 
-  h2 {
-    display: inline-block;
-    font-weight: bold;
+    .facet, .options {
+      width: 220px;
+    }
   }
 
   .reset {
     color: #DC3023;
-  }
-
-  .content {
-    // width: 8400px;
-    // overflow: scroll;
   }
 
   .filter {
@@ -129,10 +77,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4550', endColorstr='#282f37',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 1rem;
-
-    h2 {
-      color: rgba(255, 255, 255, 1);
-    }
   }
 
   .content {

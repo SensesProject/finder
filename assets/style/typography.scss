@@ -62,20 +62,23 @@
 h2 {
   font-size: $size-small;
   line-height: 1.2;
-  color: $color-darker;
-  font-weight: $font-weight-default;
+  color: rgba(255, 255, 255, 1);
+  font-weight: $font-weight-bold;
+  display: inline-block;
 }
 
 h3 {
-  font-size: $size-bigger;
+  font-size: $size-small;
   font-weight: $font-weight-default;
-  line-height: 1.3;
-  margin: $spacing / 4 0;
-  max-width: 800px;
-  color: $color-accent;
+  line-height: 1.2;
+  display: inline-block;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: $spacing-default;
+  line-height: 1em;
 
-  &:first-child {
-    margin-top: 0;
+  &.active .label {
+    color: #94F676;
+    font-weight: bold;
   }
 }
 
