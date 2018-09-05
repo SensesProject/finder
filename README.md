@@ -1,5 +1,7 @@
 # Facet Navigation
 
+![Screenshot](screenshot.png)
+
 ## Build Setup
 
 ``` bash
