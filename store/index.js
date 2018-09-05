@@ -15,7 +15,8 @@ const store = () => new Vuex.Store({
     facets: [{
       'label': 'Name',
       'key': 'Name',
-      'type': 'category'
+      'type': 'category',
+      'title': true
     },
     {
       'label': 'Technique or Method',
@@ -166,7 +167,8 @@ const store = () => new Vuex.Store({
   },
   getters: {
     options: state => {
-      return state.facets.map(facet => {
+      const facets = state.facets.filter(facet => !facet.title)
+      return facets.map(facet => {
         const { key } = facet
         // Count all options for that facet (respectively key)
         const options = _.countBy(_.flatten(state.data.map(item => item[key])))
