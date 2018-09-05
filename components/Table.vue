@@ -118,16 +118,16 @@
   }
 
   tbody tr:hover {
-    color: #E38A73;
+    color: $color-violet;
   }
 
   tbody tr.hover {
     color: #fff;
-    background-color: rgba(234, 157, 134, 0.7)
+    background-color: rgba($color-violet, 0.7)
   }
 
   th.active, td.active {
-    color: #E38A73;
+    color: $color-violet;
   }
 
   tbody tr.hover td.active {
