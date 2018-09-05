@@ -65,6 +65,10 @@ h2 {
   color: $color-darker;
   font-weight: $font-weight-bold;
   display: inline-block;
+
+  small {
+    font-weight: $font-weight-default;
+  }
 }
 
 h3 {
