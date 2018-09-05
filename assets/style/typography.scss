@@ -60,8 +60,9 @@
 }
 
 h2 {
-  font-size: $size-small;
-  line-height: 1.2;
+  font-size: $size-big;
+  line-height: 1.2em;
+  margin-bottom: $spacing / 2;
   color: $color-darker;
   font-weight: $font-weight-bold;
   display: inline-block;

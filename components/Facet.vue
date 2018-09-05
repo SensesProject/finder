@@ -175,9 +175,9 @@
   }
 
   ul {
-    background-color: #272E35;
+    background-color: darken($color-violet, 15%);
     padding: 0.5rem;
-    border: 1px solid darken(#272E35, 2%);
+    border: 1px solid darken($color-violet, 18%);
     border-radius: $radius-default;
     box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     overflow-y: scroll;
@@ -200,7 +200,7 @@
     height: 100%;
 
     line {
-      stroke: #E38A73;
+      stroke: $color-green;
       stroke-width: 1px;
 
       &.base {

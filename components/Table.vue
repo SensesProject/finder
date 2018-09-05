@@ -123,11 +123,11 @@
 
   tbody tr.hover {
     color: #fff;
-    background-color: rgba($color-violet, 0.7)
+    background-color: rgba($color-green, 0.7)
   }
 
   th.active, td.active {
-    color: $color-violet;
+    color: darken($color-violet, 10%);
   }
 
   tbody tr.hover td.active {
