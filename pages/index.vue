@@ -60,7 +60,7 @@
     display: inline-flex;
 
     .facet, .options {
-      width: 220px;
+      width: calc(#{$column-width});
     }
   }
 

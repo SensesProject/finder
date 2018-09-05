@@ -39,6 +39,8 @@ $on-palm:          320px !default;
 $on-laptop:        768px !default;
 $on-desktop:       1224px !default;
 
+$column-width:		220px !default;
+
 @mixin media-query($device) {
   @media screen and (min-width: $device) {
     @content;

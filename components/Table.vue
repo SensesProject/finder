@@ -87,9 +87,13 @@
   table {
     line-height: 1.2;
     font-size: $size-smallest;
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
 
     tr td, tr th {
-      width: calc(220px + #{$spacing / 2});
+      display: inline-block;
+      width: calc(#{$column-width} + #{$spacing / 2});
       padding-left: $spacing / 4;
       padding-right: $spacing / 4;
       overflow: hidden;
@@ -97,12 +101,12 @@
 
       &:first-child {
         padding-left: 0;
-        width: calc(220px + #{$spacing / 4});
+        width: calc(#{$column-width} + #{$spacing / 4});
       }
 
       &:last-child {
         padding-right: 0;
-        width: calc(220px + #{$spacing / 4});
+        width: calc(#{$column-width});
       }
     }
   }
