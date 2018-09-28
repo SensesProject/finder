@@ -16,7 +16,7 @@
           :class="{ 'active': activeKey === cell.key, clickable: true }"
           @mouseenter="setHover({ key: cell.key, value: cell.label })"
           @mouseleave="resetHover()"
-          @click="setFacet({ key: cell.key, value: cell.label })">{{ cell.label }}</td>
+          @click="setFacet({ key: cell.key, value: cell.label })">{{ cell.label || '—' }}</td>
       </tr>
     </tbody>
     <tbody v-else>
