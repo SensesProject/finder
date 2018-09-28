@@ -21,7 +21,7 @@
     </tbody>
     <tbody v-else>
       <tr>
-        <td class="message" :colspan="header.length + 1">No item found</td>
+        <td class="message" :colspan="1">No item found</td>
       </tr>
     </tbody>
   </table>
