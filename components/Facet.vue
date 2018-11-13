@@ -145,6 +145,10 @@
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 0;
 
+    h3 {
+      text-transform: capitalize;
+    }
+
     span {
       font-size: $size-smallest;
 
