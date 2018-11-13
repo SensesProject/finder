@@ -92,6 +92,7 @@
     table-layout: fixed;
 
     tr td, tr th {
+      transition: all 0.1s;
       display: inline-block;
       width: calc(#{$column-width} + #{$spacing / 2});
       padding-left: $spacing / 4;
@@ -101,7 +102,8 @@
 
       &:first-child {
         padding-left: 0;
-        width: calc(#{$column-width} + #{$spacing / 4});
+        width: calc(#{$column-width} + #{$spacing / 4} + 1rem);
+        padding-left: 1rem;
       }
 
       &:last-child {
@@ -122,8 +124,8 @@
   }
 
   tbody tr.hover {
-    color: #fff;
-    background-color: rgba($color-green, 0.7)
+    color: #000;
+    background-color: rgba($color-green, 0.4)
   }
 
   th.active, td.active {
@@ -131,7 +133,7 @@
   }
 
   tbody tr.hover td.active {
-    color: #fff;
+    color: #000;
   }
 
   tr td {
