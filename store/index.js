@@ -15,35 +15,38 @@ const store = () => new Vuex.Store({
     data: []
   },
   getters: {
-    options: state => {
+    datum: state => {
+      return _.map(state.data, datum => {
+        return _.fromPairs(_.map(state.facets, facet => {
+          let label
+          const value = datum[facet.key] || '—'
+          if (facet.type === 'category') {
+            label = value.replace(/[_-]/g, ' ')
+          } else if (facet.type === 'number') {
+            label = _.round(value, facet.precision)
+          }
+          const obj = {
+            value,
+            label,
+            hasPopover: !_.isUndefined(facet.hasPopover)
+          }
+          return [facet.key, obj]
+        }))
+      })
+    },
+    options: (state, getters) => {
       const facets = state.facets.filter(facet => !facet.title)
       return facets.map(facet => {
-        const { key, type } = facet
+        const { key } = facet
         // Count all options for that facet (respectively key)
-        const options = _.countBy(_.flatten(state.data.map(item => {
-          if (type === 'category') {
-            return item[key]
-          }
-          if (type === 'number') {
-            return _.round(item[key], facet.precision)
-          }
+        const options = _.countBy(_.flatten(getters.datum.map(item => {
+          return item[key].label
         })))
         return {
           ...facet,
           options
         }
       })
-    },
-    values: state => {
-      const values = state.data.map(item => item['value'])
-      const counting = _.countBy(values)
-      const min = Math.min(...values)
-      const max = Math.max(...values)
-      const range = [min, max]
-      return {
-        counting,
-        range
-      }
     },
     visibleHeader: state => {
       // implement toggle option for columns
@@ -53,15 +56,15 @@ const store = () => new Vuex.Store({
       return _.countBy(state.data.map(item => item['process']))
     },
     result: (state, getters) => {
-      let result = state.data
+      let result = getters.datum
       state.filter.forEach(filta => {
         result = result.filter(item => {
           // console.log(filta.key, item[filta.key], filta.values, _.indexOf(filta.values, item[filta.key]))
           let retVal = true
-          if (_.isArray(item[filta.key])) {
-            retVal = _.intersection(item[filta.key], filta.values).length > 0
+          if (_.isArray(item[filta.key])) { // TODO: Does this ever happen?
+            retVal = _.intersection(item[filta.key].label, filta.values).length > 0
           } else {
-            retVal = _.indexOf(filta.values, item[filta.key]) > -1
+            retVal = _.indexOf(filta.values, item[filta.key].label) > -1
           }
           return filta.invert ? !retVal : retVal
         })
@@ -69,9 +72,10 @@ const store = () => new Vuex.Store({
       return result
     },
     counter: (state, getters) => {
+      console.log('counter', getters.result)
       const values = state.facets.map(facet => {
         const { key } = facet
-        const options = _.countBy(_.flatten(getters.result.map(item => item[key])))
+        const options = _.countBy(_.flatten(getters.result.map(item => item[key].label)))
         return [key, options]
       })
       return _.fromPairs(values)

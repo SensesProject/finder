@@ -15,8 +15,19 @@
           v-for="cell in row.cells"
           :class="{ 'active': activeKey === cell.key, clickable: true }"
           @mouseenter="setHover({ key: cell.key, value: cell.label })"
-          @mouseleave="resetHover()"
-          @click="setFacet({ key: cell.key, value: cell.label })">{{ cell.label || '—' }}</td>
+          @mouseleave="resetHover()">
+          <div>
+            <span class="label">{{ cell.label || '—' }}</span>
+            <section>
+              <i class="option icon-filter" @click="setFacet({ key: cell.key, value: cell.label })" :title="`Filter table by »${cell.label || '—'}«`" />
+              <i
+                class="option icon-popup"
+                @click="setFacet({ key: cell.key, value: cell.label })"
+                :title="`Show more information about »${cell.label || '—'}« in popover`"
+                v-if="cell.hasPopover" />
+            </section>
+          </div>
+        </td>
       </tr>
     </tbody>
     <tbody v-else>
@@ -45,20 +56,23 @@
         return _.map(this.result, item => {
           // For each row: build an array of values based on the visible headers
           const cells = _.map(this.visibleHeader, key => {
-            return {
-              'label': _.isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
-              key
-            }
+            return item[key]
+            // return {
+            //   // 'label': _.isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
+            //   key
+            // }
           })
 
           let active = false // By default, the cell is not highlighted
           if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
             if (_.isArray(item[this.hover.key])) { // If multiple keys are hovered
+              console.log('here')
               if (_.indexOf(item[this.hover.key], this.hover.value) >= 0) {
                 active = true
               }
             } else { // If a single key is hovered
-              if (item[this.hover.key] === this.hover.value) {
+              // console.log(this.hover.value, item[this.hover.key])
+              if (item[this.hover.key].label === this.hover.value) {
                 active = true
               }
             }
@@ -140,6 +154,22 @@
     border-bottom: 1px solid $color-bg-mute;
     padding: $spacing / 8 0.1em;
     white-space: nowrap;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .option {
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      .option {
+        opacity: 1;
+      }
+    }
   }
 
   .message {

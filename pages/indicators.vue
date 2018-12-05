@@ -13,12 +13,14 @@
           'label': 'scenario',
           'key': 'scenario',
           'type': 'category',
-          'title': true
+          'title': true,
+          'hasPopover': true
         },
         {
           'label': 'model',
           'key': 'model',
-          'type': 'category'
+          'type': 'category',
+          'hasPopover': true
         },
         {
           'label': 'category',
@@ -53,7 +55,8 @@
         {
           'label': 'project',
           'key': 'project',
-          'type': 'category'
+          'type': 'category',
+          'hasPopover': true
         }
         // {
         //   'label': 'median warming at peak',
