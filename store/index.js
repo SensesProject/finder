@@ -18,14 +18,16 @@ const store = () => new Vuex.Store({
     datum: state => {
       return _.map(state.data, datum => {
         return _.fromPairs(_.map(state.facets, facet => {
-          let label
+          const key = facet.key
           const value = datum[facet.key] || '—'
+          let label
           if (facet.type === 'category') {
             label = value.replace(/[_-]/g, ' ')
           } else if (facet.type === 'number') {
             label = _.round(value, facet.precision)
           }
           const obj = {
+            key,
             value,
             label,
             hasPopover: !_.isUndefined(facet.hasPopover)
@@ -72,7 +74,6 @@ const store = () => new Vuex.Store({
       return result
     },
     counter: (state, getters) => {
-      console.log('counter', getters.result)
       const values = state.facets.map(facet => {
         const { key } = facet
         const options = _.countBy(_.flatten(getters.result.map(item => item[key].label)))
