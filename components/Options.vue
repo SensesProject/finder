@@ -58,7 +58,7 @@
 
   .options {
     li {
-      color: #fff;
+      color: palette(grey, 10);
       font-size: $size-smallest;
       margin-right: $spacing / 2;
 

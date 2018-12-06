@@ -142,7 +142,7 @@
   @import "~@/assets/style/variables";
 
   header {
-    color: rgba(255, 255, 255, 0.6);
+    color: palette(grey, 60);
     margin-bottom: 0;
 
     h3 {
@@ -158,7 +158,7 @@
       }
 
       &.active {
-        color: rgb(255, 255, 255);
+        color: palette(grey, 10);
       }
     }
 
@@ -174,21 +174,21 @@
   }
 
   .reset {
-    color: #DC3023;
+    color: palette(accent, base);
     cursor: pointer;
   }
 
   ul {
-    background-color: darken($color-violet, 15%);
+    background-color: #fff;
     padding: 0.5rem;
-    border: 1px solid darken($color-violet, 18%);
+    border: 1px solid palette(grey, 80);
     border-radius: $radius-default;
-    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
     height: calc(1.5rem * 10);
 
     .active {
-      color: #94F676;
+      color: $color-green;
     }
 
     .empty .label span {
@@ -208,11 +208,11 @@
       stroke-width: 1px;
 
       &.base {
-        stroke: rgba(255, 255, 255, 0.1);
+        stroke: rgba(0, 0, 0, 0.1);
       }
 
       &.filter {
-        stroke: #fff;
+        stroke: $color-green;
       }
     }
   }
@@ -221,7 +221,7 @@
     font-size: $size-smallest;
     display: block;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.8);
+    color: palette(grey, 20);
     transition-duration: 0.1s;
     display: flex;
     height: 1.3rem;
@@ -280,18 +280,18 @@
   }
 
   ul:hover li {
-    color: rgba(255, 255, 255, 0.6);
+    color: palette(grey, 60);
 
     .label span {
       text-decoration: none !important;
     }
 
     &:hover .label, &:hover .counter {
-      color: rgba(255, 255, 255, 1);
+      color: palette(grey, 0);
     }
 
     &.active .label {
-      color: #94F676 !important;
+      color: $color-green !important;
     }
   }
 </style>
