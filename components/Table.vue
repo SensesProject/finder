@@ -13,15 +13,15 @@
         :class="{ 'hover': row.active }">
         <td
           v-for="cell in row.cells"
-          :class="{ 'active': activeKey === cell.key, clickable: true }"
+          :class="{ 'active': activeKey === cell.key }"
           @mouseenter="setHover({ key: cell.key, value: cell.label })"
           @mouseleave="resetHover()">
           <div>
             <span class="label">{{ cell.label || '—' }}</span>
             <section>
-              <i class="option icon-filter" @click="setFacet({ key: cell.key, value: cell.label })" :title="`Filter table by »${cell.label || '—'}«`" />
+              <i class="option icon-filter clickable" @click="setFacet({ key: cell.key, value: cell.label })" :title="`Filter table by »${cell.label || '—'}«`" />
               <i
-                class="option icon-popup"
+                class="option icon-popup clickable"
                 @click="setFacet({ key: cell.key, value: cell.label })"
                 :title="`Show more information about »${cell.label || '—'}« in popover`"
                 v-if="cell.hasPopover" />
@@ -135,6 +135,10 @@
 
   tbody tr:hover {
     color: $color-violet;
+
+    .option {
+      opacity: 1;
+    }
   }
 
   tbody tr.hover {
@@ -161,13 +165,12 @@
       justify-content: space-between;
 
       .option {
+        color: rgba(0, 0, 0, 0.2);
         opacity: 0;
-      }
-    }
 
-    &:hover {
-      .option {
-        opacity: 1;
+        &:hover {
+          color: rgba(0, 0, 0, 1);
+        }
       }
     }
   }
