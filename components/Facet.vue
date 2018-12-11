@@ -242,6 +242,7 @@
         position: absolute;
         overflow: hidden;
         max-width: 90%;
+        text-overflow: ellipsis;
       }
     }
 

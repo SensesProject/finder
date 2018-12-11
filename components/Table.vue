@@ -164,6 +164,12 @@
       flex-direction: row;
       justify-content: space-between;
 
+      .label {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
       .option {
         color: rgba(0, 0, 0, 0.2);
         opacity: 0;
