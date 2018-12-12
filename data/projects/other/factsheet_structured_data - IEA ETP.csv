@@ -1,0 +1,58 @@
+factsheet,topic,attribute,subattribute,#,value
+IEA ETP,project,,,,Energy Technology Perspectives 2017 - International Energy Agency.
+,guiding questions,preamble,,,"ETP 2017 applies a combination of ""backcasting"" and forecasting over three scenarios from now to 2060. Backcasting lays out plausible pathways to a desired end state. It makes it easier to identify milestones that need to be reached or trends that need to change promptly in order for the end goal to be achieved."
+,,question,,1,Can we achieve 2 dregree and beyond 2 degree targets with already commercially available technologies?
+,,question,,2,What level of policy action and effort does becoming corbon neutral by mid centrury require?
+,,question,,3,What sectors couild play a major role in supporting the energy system transformation?
+,,question,,4,What's the role of hgh efficiency appliances in achieving a low carbon fuiture?
+,,question,,5,What's the role of electrification of the transportation sector in achieving a beyond 2 degree target?
+,results,preamble,,,It shows how the energy sector could become carbon neutral by 2060 if known technology innovations were pushed to the limit. But to do so would require an unprecedented level of policy action and effort from all stakeholders.
+,,insight,,1,"Looking at specific sectors, ETP 2017 finds that buildings could play a major role in supporting the energy system transformation. High-efficiency lighting, cooling and appliances could save nearly three-quarters of today’s global electricity demand between now and 2030 if deployed quickly. Doing so would allow a greater electrification of the energy system that would not add burdens on the system. In the transportation system, electrification also emerges as a major low-carbon pathway."
+,,insight,,2,"The report finds that regardless of the pathway chosen, policies to support energy technology innovation at all stages, from research to full deployment, will be critical to reap energy security, environmental and economic benefits of energy system transformations."
+,,insight,,3,It also suggests that the most important challenge for energy policy makers will be to move away from a siloed perspective towards one that enables systems integration.
+,scenarios,preamble,,,"Scenarios can be classified in four distinct categories: baseline scenarios, CO2 price path scenarios), emission reduction scenarios , and radiative forcing target scenarios."
+,,scenario,name,1,B2DS – keeping warming below 2°C
+,,scenario,description,1,"Beyond 2°C Scenario (B2DS) does not depend on the appearance of unforeseen breakthrough technologies. All technology options introduced in ETP 2017 are already commercially available or at a stage of development that makes commercial-scale deployment possible within the scenario period.1 Costs for many of these technologies are expected to fall over time, making a low-carbon future economically feasible."
+,,scenario,name,2,2DS - ETP 2017 2°C Scenario (data not provided in IAMC 1.5°C Scenario Explorer)
+,,scenario,description,2,"Achieving the ETP 2017 2°C Scenario does not depend on the appearance of unforeseen breakthrough technologies. All technology options introduced in ETP 2017 are already commercially available or at a stage of development that makes commercial-scale deployment possible within the scenario period.1 Costs for many of these technologies are expected to fall over time, making a low-carbon future economically feasible."
+,data sources,source,name,1,IAMC 1.5°C Scenario Explorer
+,,source,link,1,https://data.ene.iiasa.ac.at/iamc-1.5c-explorer/
+,publications,reference,citation,1,"IEA (2017), Energy Technology Perspectives 2017: Catalysing Energy Technology Transformations, IEA, Paris"
+,,reference,type,1,book
+,,reference,doi,1,https://doi.org/10.1787/energy_tech-2017-en
+,,reference,full,1,"OECD/IEA, Energy Technology Perspectives 2017, 2017, Paris, ISBN: 9789264275973 (PDF)"
+,,reference,ris,1,"TY - BOOK
+ AU - International Energy Agency
+ T1 - Energy Technology Perspectives 2017
+ PB - OECD
+ Y1 - 2017/06
+ M3 - https://doi.org/10.1787/energy_tech-2017-en"
+,diagnostics,source,name,1,N/A
+,,source,link,1,N/A
+,models,preamble,,,
+,,model,name,1,IEA ETP https://www.iea.org/etp/etpmodel/
+,,model,version,1,2017
+,year,,,,2017
+,keywords,keyword,,1,2°C
+,,keyword,,2,commercially available technology options
+,,keyword,,3,low-carbon future
+,,keyword,,4,policy action
+,regional coverage,region,,1,World
+,,region,,2,Asian countries except Japan
+,,region,,3,Countries of the Middle East and Africa
+,,region,,4,Latin American countries
+,,region,,5,OECD90 and EU (and EU candidate) countries
+,,region,,6,Countries from the Reforming Ecomonies of the Former Soviet Union
+,,region,,7,OECD countries
+,,region,,8,Non-OECD countries
+,,region,,9,ASEAN region countries
+,,region,,10,European Union (28 member countries)
+,,country,,11,Brazil
+,,country,,12,China
+,,country,,13,South Africa
+,,country,,14,Russia
+,,country,,15,India
+,,country,,16,USA
+,,country,,17,Mexico
+,time horizon,start,,,2010
+,,end,,,2060

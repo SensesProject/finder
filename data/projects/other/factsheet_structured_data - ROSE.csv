@@ -1,0 +1,400 @@
+factsheet,topic,attribute,subattribute,#,value
+ROSE,project,,,,
+,guiding questions,preamble,,,
+,,question,,1,How do assumptions on fossil fuel availability and economic growth affect stabilization pathways for 450 and 550 ppm CO2eq concentrations in 2100?
+,,question,,2,How does a continuation of fragmented low-ambition climate policies until 2030 affect the achievability of the 450 target?
+,,question,,3,How are resource rents of fossil fuels on international markets affected by climate policy?
+,results,preamble,,,
+,,insight,,1,"The influence of economic growth and fossil resource assumptions on climate mitigation pathways is relatively small due to overriding requirements imposed by long-term climate targets. 
+While baseline assumptions can have substantial effects on mitigation costs and carbon prices, we find that the effects of model differences and the stringency of the climate target are larger compared to that of baseline assumptions. 
+We conclude that inherent uncertainties about socio-economic determinants like economic growth and fossil resource availability can be effectively dealt with in the assessment of mitigation pathways. (Kriegler et al. overview)"
+,,insight,,2,"We find that after a deferral of ambitious action the 450 ppm CO2e is only achievable with a radical up-scaling of efforts after target adoption. This has severe effects on transformation pathways and exacerbates the challenges of climate stabilization, in particular for a delay of cooperative action until 2030. Specifically, reaching the target with weak near-term action implies (a) faster and more aggressive transformations of energy systems in the medium term, (b) more stranded investments in fossil-based capacities, (c) higher long-term mitigation costs and carbon prices and (d) stronger transitional economic impacts, rendering the political feasibility of such pathways questionable. (Luderer et al.)"
+,,insight,,3,"Achieving ambitious climate targets will drastically reduce fossil fuel consumption, in particular the consumption of coal. Conventional oil and gas as well as non-conventional oil reserves are still exhausted to a large extent. 
+We find the net present value of fossil fuel rent until 2100 at 30tril.US$ with a large share of oil and a small share of coal. This is reduced by 9 and 12tril.US$ to achieve climate stabilization at 550 and 450 ppm CO2-eq, respectively. 
+This loss is, however, overcompensated by revenues from carbon pricing that are 21 and 32tril.US$, respectively. The overcompensation also holds under variations of energy demand and fossil fuel supply. (Bauer et al.)"
+,scenarios,preamble,,,"Scenarios are differentiated along eight different socio-economic baseline assumptions (Default, Fast Growth, Slow Growth, High Fossil, Low Fossil, Low Oil, High Coal, High Gas). The first 5 of those are run for the baseline and 2 more climate policy assumptions (450 and 550 ppm targets). Additionally, a moderate policy scenario is run, both for the entire 21 st century and with branching off to a 450 (550) target after 2020 or 2030."
+,,scenario,name,1,450 DEF
+,,scenario,description,1,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with default socio-economic assumption."
+,,scenario,name,2,450 FS Gr
+,,scenario,description,2,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of faster economic growth."
+,,scenario,name,3,450 FS Gr SL Con
+,,scenario,description,3,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of faster economic growth but slow income convergence across regions."
+,,scenario,name,4,450 HI Coal
+,,scenario,description,4,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of high coal availability."
+,,scenario,name,5,450 HI Fos
+,,scenario,description,5,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of high fossil fuel availability."
+,,scenario,name,6,450 HI Pop
+,,scenario,description,6,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of fast population growth."
+,,scenario,name,7,450 LO Fos
+,,scenario,description,7,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of low fossil fuel availability."
+,,scenario,name,8,450 LO Oil
+,,scenario,description,8,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of low oil availability."
+,,scenario,name,9,450 SL Gr
+,,scenario,description,9,"Scenario achieving stabilization of GHG concentration at 450 ppm CO2eq, with assumption of slower economic growth."
+,,scenario,name,10,550 DEF
+,,scenario,description,10,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with default socio-economic assumption."
+,,scenario,name,11,550 FS Gr
+,,scenario,description,11,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of faster economic growth."
+,,scenario,name,12,550 FS Gr SL Con
+,,scenario,description,12,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of faster economic growth but slow income convergence across regions."
+,,scenario,name,13,550 HI Coal
+,,scenario,description,13,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of high coal availability."
+,,scenario,name,14,550 HI Fos
+,,scenario,description,14,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of high fossil fuel availability."
+,,scenario,name,15,550 HI Gas
+,,scenario,description,15,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of high gas availability."
+,,scenario,name,16,550 HI Pop
+,,scenario,description,16,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of fast population growth."
+,,scenario,name,17,550 LO Fos
+,,scenario,description,17,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of low fossil fuel availability."
+,,scenario,name,18,550 LO Oil
+,,scenario,description,18,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of low oil availability."
+,,scenario,name,19,550 SL Gr
+,,scenario,description,19,"Scenario achieving stabilization of GHG concentration at 550 ppm CO2eq, with assumption of slower economic growth."
+,,scenario,name,20,BAU DEF
+,,scenario,description,20,"Scenario without climate policy, with default socio-economic assumption."
+,,scenario,name,21,BAU FS Gr
+,,scenario,description,21,"Scenario without climate policy, with assumption of faster economic growth."
+,,scenario,name,22,BAU FS Gr SL Con
+,,scenario,description,22,"Scenario without climate policy, with assumption of faster economic growth but slow income convergence across regions."
+,,scenario,name,23,BAU HI Coal
+,,scenario,description,23,"Scenario without climate policy, with assumption of high coal availability."
+,,scenario,name,24,BAU HI Fos
+,,scenario,description,24,"Scenario without climate policy, with assumption of high fossil fuel availability."
+,,scenario,name,25,BAU HI Gas
+,,scenario,description,25,"Scenario without climate policy, with assumption of high gas availability."
+,,scenario,name,26,BAU HI Pop
+,,scenario,description,26,"Scenario without climate policy, with assumption of fast population growth."
+,,scenario,name,27,BAU LO Fos
+,,scenario,description,27,"Scenario without climate policy, with assumption of low fossil fuel availability."
+,,scenario,name,28,BAU LO Oil
+,,scenario,description,28,"Scenario without climate policy, with assumption of low oil availability."
+,,scenario,name,29,BAU SL Gr
+,,scenario,description,29,"Scenario without climate policy, with assumption of slower economic growth."
+,,scenario,name,30,WEAK-2020 DEF
+,,scenario,description,30,Scenario with weak and fragmented policies until 2020 and unanticipated shift to policies compatible with the 450ppm target thereafter.
+,,scenario,name,31,WEAK-2030 DEF
+,,scenario,description,31,Scenario with weak and fragmented policies until 2030 and unanticipated shift to policies compatible with the 450ppm target thereafter.
+,,scenario,name,32,WEAK-POL DEF
+,,scenario,description,32,Scenario with weak and fragmented policies throughout the 21st century.
+,data sources,source,name,1,AR5 database
+,,source,link,1,https://tntcat.iiasa.ac.at/AR5DB
+,publications,reference,citation,1,Kriegler et al. (2016)
+,,reference,type,1,journal article
+,,reference,doi,1,10.1007/s10584-016-1667-4
+,,reference,full,1,"Kriegler, E., Mouratiadou, I., Luderer, G., Edmonds, J. & Edenhofer, O. Introduction to the RoSE special issue on the impact of economic growth and fossil fuel availability on climate protection. Climatic Change 136, 1–6 (2016)"
+,,reference,ris,1,"
+TY  - JOUR
+TI  - Introduction to the RoSE special issue on the impact of economic growth and fossil fuel availability on climate protection
+AU  - Kriegler, Elmar
+AU  - Mouratiadou, Ioanna
+AU  - Luderer, Gunnar
+AU  - Edmonds, Jae
+AU  - Edenhofer, Ottmar
+T2  - Climatic Change
+DA  - 2016/05//
+PY  - 2016
+DO  - 10.1007/s10584-016-1667-4
+DP  - CrossRef
+VL  - 136
+IS  - 1
+SP  - 1
+EP  - 6
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/10.1007/s10584-016-1667-4
+Y2  - 2017/01/25/10:15:57
+ER  - "
+,,reference,citation,2,Kriegler et al. (2016)
+,,reference,type,2,journal article
+,,reference,doi,2,10.1007/s10584-016-1668-3
+,,reference,full,2,"Kriegler, E. et al. Will economic growth and fossil fuel scarcity help or hinder climate stabilization? Climatic Change 1–16 (2016). doi:10.1007/s10584-016-1668-3 "
+,,reference,ris,2,"TY  - JOUR
+TI  - Will economic growth and fossil fuel scarcity help or hinder climate stabilization?
+AU  - Kriegler, Elmar
+AU  - Mouratiadou, Ioanna
+AU  - Luderer, Gunnar
+AU  - Bauer, Nico
+AU  - Brecha, Robert J.
+AU  - Calvin, Katherine
+AU  - Cian, Enrica De
+AU  - Edmonds, Jae
+AU  - Jiang, Kejun
+AU  - Tavoni, Massimo
+AU  - Edenhofer, Ottmar
+T2  - Climatic Change
+AB  - We investigate the extent to which future energy transformation pathways meeting ambitious climate change mitigation targets depend on assumptions about economic growth and fossil fuel availability. The analysis synthesizes results from the RoSE multi-model study aiming to identify robust and sensitive features of mitigation pathways under these inherently uncertain drivers of energy and emissions developments. Based on an integrated assessment model comparison exercise, we show that economic growth and fossil resource assumptions substantially affect baseline developments, but in no case they lead to the significant greenhouse gas emission reduction that would be needed to achieve long-term climate targets without dedicated climate policy. The influence of economic growth and fossil resource assumptions on climate mitigation pathways is relatively small due to overriding requirements imposed by long-term climate targets. While baseline assumptions can have substantial effects on mitigation costs and carbon prices, we find that the effects of model differences and the stringency of the climate target are larger compared to that of baseline assumptions. We conclude that inherent uncertainties about socio-economic determinants like economic growth and fossil resource availability can be effectively dealt with in the assessment of mitigation pathways.
+DA  - 2016/04/18/
+PY  - 2016
+DO  - 10.1007/s10584-016-1668-3
+DP  - link.springer.com
+SP  - 1
+EP  - 16
+J2  - Climatic Change
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/article/10.1007/s10584-016-1668-3
+Y2  - 2016/04/22/12:04:16
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-016-1668-3.pdf
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-016-1668-3.pdf
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-016-1668-3.pdf
+L2  - http://link.springer.com/article/10.1007/s10584-016-1668-3
+L2  - http://link.springer.com/article/10.1007/s10584-016-1668-3
+L2  - http://link.springer.com/article/10.1007/s10584-016-1668-3
+KW  - Atmospheric Sciences
+KW  - Climate Change/Climate Change Impacts
+ER  - "
+,,reference,citation,3,de Cian et al. (2013)
+,,reference,type,3,journal article
+,,reference,doi,3,10.1007/s10584-013-0902-5
+,,reference,full,3,"Cian, E. D., Sferra, F. & Tavoni, M. The influence of economic growth, population, and fossil fuel scarcity on energy investments. Climatic Change 136, 39–55 (2013)"
+,,reference,ris,3,"TY  - JOUR
+AU  - De Cian, Enrica
+AU  - Sferra, Fabio
+AU  - Tavoni, Massimo
+PY  - 2016
+DA  - 2016/05/01
+TI  - The influence of economic growth, population, and fossil fuel scarcity on energy investments
+JO  - Climatic Change
+SP  - 39
+EP  - 55
+VL  - 136
+IS  - 1
+AB  - This paper examines the dynamics of energy investments and clean energy Research and Development (R&D) using a scenario-based modeling approach. Starting from the global scenarios proposed in the RoSE model ensemble experiment, we analyze the dynamics of investments under different assumptions regarding economic and population growth as well as availability of fossil fuel resources, in the absence of a climate policy. Our analysis indicates that economic growth and the speed of income convergence across countries matters for improvements in energy efficiency, both via dedicated R&D investments but mostly through capital-energy substitution. In contrast, fossil fuel prices, by changing the relative competitiveness of energy sources, create an economic opportunity for radical innovation in the energy sector. Indeed, our results suggest that fossil fuel availability is the key driver of investments in low carbon energy innovation. However, this innovation, by itself, is not sufficient to induce emission reductions compatible with climate stabilization objectives.
+SN  - 1573-1480
+UR  - https://doi.org/10.1007/s10584-013-0902-5
+DO  - 10.1007/s10584-013-0902-5
+ID  - De Cian2016
+ER  - 
+"
+,,reference,citation,4,Calvin et al. (2013)
+,,reference,type,4,journal article 
+,,reference,doi,4,10.1007/s10584-013-0923-0
+,,reference,full,4,"Calvin, K. et al. Implications of uncertain future fossil energy resources on bioenergy use and terrestrial carbon emissions. Climatic Change 136, 57–68 (2013)"
+,,reference,ris,4,"
+TY  - JOUR
+TI  - The effect of African growth on future global energy, emissions, and regional development
+AU  - Calvin, Katherine
+AU  - Pachauri, Shonali
+AU  - Cian, Enrica De
+AU  - Mouratiadou, Ioanna
+T2  - Climatic Change
+DA  - 2013/11/07/
+PY  - 2013
+DO  - 10.1007/s10584-013-0964-4
+DP  - link.springer.com
+SP  - 1
+EP  - 17
+J2  - Climatic Change
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/article/10.1007/s10584-013-0964-4
+Y2  - 2015/09/04/12:51:49
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0964-4.pdf
+L2  - http://link.springer.com/article/10.1007/s10584-013-0964-4
+KW  - Atmospheric Sciences
+KW  - climate change impacts
+ER  - "
+,,reference,citation,5,Bauer et al. (2013)
+,,reference,type,5,journal article 
+,,reference,doi,5,10.1007/s10584-013-0901-6
+,,reference,full,5,"Bauer, N. et al. Global fossil energy markets and climate change mitigation – an analysis with REMIND. Climatic Change 136, 69–82 (2016)."
+,,reference,ris,5,"
+TY  - JOUR
+TI  - Global fossil energy markets and climate change mitigation – an analysis with REMIND
+AU  - Bauer, Nico
+AU  - Mouratiadou, Ioanna
+AU  - Luderer, Gunnar
+AU  - Baumstark, Lavinia
+AU  - Brecha, Robert J.
+AU  - Edenhofer, Ottmar
+AU  - Kriegler, Elmar
+T2  - Climatic Change
+DA  - 2016/05//
+PY  - 2016
+DO  - 10.1007/s10584-013-0901-6
+DP  - CrossRef
+VL  - 136
+IS  - 1
+SP  - 69
+EP  - 82
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/10.1007/s10584-013-0901-6
+Y2  - 2017/01/25/10:05:25
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0901-6.pdf
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0901-6.pdf
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0901-6.pdf
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0901-6.pdf
+L2  - http://link.springer.com/article/10.1007/s10584-013-0901-6
+L2  - http://link.springer.com/article/10.1007/s10584-013-0901-6
+L2  - http://link.springer.com/article/10.1007/s10584-013-0901-6
+L2  - http://link.springer.com/article/10.1007%2Fs10584-013-0901-6
+KW  - Atmospheric Sciences
+KW  - *GES*
+KW  - *published*
+KW  - *RD3*
+KW  - *ERT*
+KW  - Climate Change/Climate Change Impacts
+KW  - *REMIND*
+KW  - climate change impacts
+ER  - 
+"
+,,reference,citation,6,Cherp et al. (2013)
+,,reference,type,6,journal article 
+,,reference,doi,6,10.1007/s10584-013-0950-x
+,,reference,full,6,"Cherp, A., Jewell, J., Vinichenko, V., Bauer, N. & Cian, E. D. Global energy security under different climate policies, GDP growth rates and fossil resource availabilities. Climatic Change 136, 83–94 (2013)"
+,,reference,ris,6,"TY  - JOUR
+AU  - Cherp, Aleh
+AU  - Jewell, Jessica
+AU  - Vinichenko, Vadim
+AU  - Bauer, Nico
+AU  - De Cian, Enrica
+PY  - 2016
+DA  - 2016/05/01
+TI  - Global energy security under different climate policies, GDP growth rates and fossil resource availabilities
+JO  - Climatic Change
+SP  - 83
+EP  - 94
+VL  - 136
+IS  - 1
+AB  - Energy security is one of the main drivers of energy policies. Understanding energy security implications of long-term scenarios is crucial for informed policy making, especially with respect to transformations of energy systems required to stabilize climate change. This paper evaluates energy security under several global energy scenarios, modeled in the REMIND and WITCH integrated assessment models. The paper examines the effects of long-term climate policies on energy security under different assumptions about GDP growth and fossil fuel availability. It uses a systematic energy security assessment framework and a set of global and regional indicators for risks associated with energy trade and resilience associated with diversity of energy options. The analysis shows that climate policies significantly reduce the risks and increase the resilience of energy systems in the first half of the century. Climate policies also make energy supply, energy mix, and energy trade less dependent upon assumptions of fossil resource availability and GDP growth, and thus more predictable than in the baseline scenarios.
+SN  - 1573-1480
+UR  - https://doi.org/10.1007/s10584-013-0950-x
+DO  - 10.1007/s10584-013-0950-x
+ID  - Cherp2016
+ER  - 
+"
+,,reference,citation,7,Chen et al. (2013)
+,,reference,type,7,journal article 
+,,reference,doi,7,10.1007/s10584-013-0937-7
+,,reference,full,7,"Chen, W., Yin, X. & Zhang, H. Towards low carbon development in China: a comparison of national and global models. Climatic Change 1–14 (2013)"
+,,reference,ris,7,"TY  - JOUR
+AU  - Chen, Wenying
+AU  - Yin, Xiang
+AU  - Zhang, Hongjun
+PY  - 2016
+DA  - 2016/05/01
+TI  - Towards low carbon development in China: a comparison of national and global models
+JO  - Climatic Change
+SP  - 95
+EP  - 108
+VL  - 136
+IS  - 1
+AB  - The RoSE (Roadmaps to Sustainable Energy Futures) project provides a coordinated, model-based analysis to manage the transition from carbon intensive to low carbon economies using several global integrated assessment models to explore different GHG stabilization scenarios. China TIMES provides a detailed description of the Chinese energy system that can be used to check the realism of transition scenarios for China against global models. A reference scenario with China’s target of lowering its carbon intensity by 40–45 % by 2020 compared to the 2005 level is considered, and 12 carbon constraint scenarios with different levels of carbon intensity reduction beyond 2020 are simulated by China TIMES. The results of carbon emissions pathways and energy system transitions in different scenarios are analyzed. The results from China TIMES are compared to those for both the reference and carbon policy scenarios (550 ppm CO2eq and 450 ppm CO2eq stabilization targets) for four global models, GCAM, IPAC, REMIND, and WITCH. The differences in decarbonizaton pathways across models are mainly attributed to different model structures and modeling approaches, different reference scenario definitions, different policy targets, differences in model assumptions concerning technology availability and techno-economic characteristics of the technologies, and differences in the estimation of the energy demand response to climate policy. The path towards low carbon development for China includes challenges and opportunities. Substantial efforts may be required to transform the economic development mode, to speed up innovation, R&D, and deployment of advanced low carbon technologies, to strengthen institutions, to advocate low carbon lifestyles, and to enhance international cooperation.
+SN  - 1573-1480
+UR  - https://doi.org/10.1007/s10584-013-0937-7
+DO  - 10.1007/s10584-013-0937-7
+ID  - Chen2016
+ER  - 
+"
+,,reference,citation,8,Calvin et al. (2013)
+,,reference,type,8,journal article 
+,,reference,doi,8,10.1007/s10584-013-0964-4
+,,reference,full,8,"Calvin, K., Pachauri, S., Cian, E. D. & Mouratiadou, I. The effect of African growth on future global energy, emissions, and regional development. Climatic Change 1–17 (2013)"
+,,reference,ris,8,"
+TY  - JOUR
+TI  - The effect of African growth on future global energy, emissions, and regional development
+AU  - Calvin, Katherine
+AU  - Pachauri, Shonali
+AU  - Cian, Enrica De
+AU  - Mouratiadou, Ioanna
+T2  - Climatic Change
+DA  - 2013/11/07/
+PY  - 2013
+DO  - 10.1007/s10584-013-0964-4
+DP  - link.springer.com
+SP  - 1
+EP  - 17
+J2  - Climatic Change
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/article/10.1007/s10584-013-0964-4
+Y2  - 2015/09/04/12:51:49
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0964-4.pdf
+L2  - http://link.springer.com/article/10.1007/s10584-013-0964-4
+KW  - Atmospheric Sciences
+KW  - climate change impacts
+ER  - "
+,,reference,citation,9,Luderer et al. (2013)
+,,reference,type,9,journal article 
+,,reference,doi,9,10.1007/s10584-013-0899-9
+,,reference,full,9,"Luderer, G., Bertram, C., Calvin, K., Cian, E. D. & Kriegler, E. Implications of weak near-term climate policies on long-term mitigation pathways. Climatic Change 136, 127–140 (2016) "
+,,reference,ris,9,"TY  - JOUR
+TI  - Implications of weak near-term climate policies on long-term mitigation pathways
+AU  - Luderer, Gunnar
+AU  - Bertram, Christoph
+AU  - Calvin, Katherine
+AU  - Cian, Enrica De
+AU  - Kriegler, Elmar
+T2  - Climatic Change
+AB  - While the international community has agreed on the long-term target of limiting global warming to no more than 2 °C above pre-industrial levels, only a few concrete climate policies and measures to reduce greenhouse gas (GHG) emissions have been implemented. We use a set of three global integrated assessment models to analyze the implications of current climate policies on long-term mitigation targets. We define a weak-policy baseline scenario, which extrapolates the current policy environment by assuming that the global climate regime remains fragmented and that emission reduction efforts remain unambitious in most of the world’s regions. These scenarios clearly fall short of limiting warming to 2 °C. We investigate the cost and achievability of the stabilization of atmospheric GHG concentrations at 450 ppm CO2e by 2100, if countries follow the weak policy pathway until 2020 or 2030 before pursuing the long-term mitigation target with global cooperative action. We find that after a deferral of ambitious action the 450 ppm CO2e is only achievable with a radical up-scaling of efforts after target adoption. This has severe effects on transformation pathways and exacerbates the challenges of climate stabilization, in particular for a delay of cooperative action until 2030. Specifically, reaching the target with weak near-term action implies (a) faster and more aggressive transformations of energy systems in the medium term, (b) more stranded investments in fossil-based capacities, (c) higher long-term mitigation costs and carbon prices and (d) stronger transitional economic impacts, rendering the political feasibility of such pathways questionable.
+DA  - 2013///
+PY  - 2013
+DO  - 10.1007/s10584-013-0899-9
+DP  - link.springer.com
+SP  - 1
+EP  - 14
+J2  - Climatic Change
+LA  - en
+SN  - 0165-0009, 1573-1480
+UR  - http://link.springer.com/article/10.1007/s10584-013-0899-9
+Y2  - 2013/10/23/12:27:01
+L1  - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0899-9.pdf
+L2  - http://link.springer.com/article/10.1007%2Fs10584-013-0899-9
+KW  - Atmospheric Sciences
+KW  - Climate Change Impacts
+ER  - "
+,,reference,citation,10,Schäfer et al. (2013)
+,,reference,type,10,journal article 
+,,reference,doi,10,10.1007/s10584-014-1293-y
+,,reference,full,10,"Schaefer, A., Kyle, P. & Pietzcker, R. Exploring the use of dynamic linear panel data models for evaluating energy/economy/environment models — an application for the transportation sector. Climatic Change 136, 141–154 (2014). "
+,,reference,ris,10,"TY  - JOUR
+AU  - Schäfer, A.
+AU  - Kyle, P.
+AU  - Pietzcker, R.
+PY  - 2016
+DA  - 2016/05/01
+TI  - Exploring the use of dynamic linear panel data models for evaluating energy/economy/environment models — an application for the transportation sector
+JO  - Climatic Change
+SP  - 141
+EP  - 154
+VL  - 136
+IS  - 1
+AB  - This paper uses the RoSE transportation sector scenarios of the GCAM and REMIND energy-economy-models for the U.S. region to derive and compare these models’ intrinsic elasticities with those resulting from historical trends, estimates from the literature, and across each other. To estimate the model-intrinsic elasticities, we explore the use of dynamic linear panel data models. On the basis of 26 scenarios (panels) between 2010 and 2050, our analysis suggests that nearly all model-intrinsic elasticities with respect to final energy use are roughly comparable to each other, to those observed historically, and to those from other studies. The key difference is these models’ comparatively low intrinsic income elasticity of final energy use. This and other minor differences are interpreted through key assumptions underlying both energy-economy-models.
+SN  - 1573-1480
+UR  - https://doi.org/10.1007/s10584-014-1293-y
+DO  - 10.1007/s10584-014-1293-y
+ID  - Schäfer2016
+ER  - 
+"
+,diagnostics,source,name,1,N/A
+,,source,link,1,N/A
+,models,preamble,,,Three global models participated in the LIMITS study.
+,,model,name,1,GCAM
+,,model,version,1,3.0
+,,model,name,2,REMIND
+,,model,version,2,1.4
+,,model,name,3,WITCH
+,,model,version,3,ROSE
+,year,,,,2013
+,keywords,keyword,,1,Economic Growth
+,,keyword,,2,Fossil fuel availability
+,,keyword,,3,Fragmented policy
+,regional coverage,region,,1,World
+,,region,,2,OECD90
+,,region,,3,Reforming Economies (REF)
+,,region,,4,Asia (ASIA)
+,,region,,5,Middle East and Africa (MAF)
+,,region,,6,Latin America (LAM)
+,,region,,7,Brazil
+,,region,,8,China
+,,region,,9,India
+,,region,,10,EU (EU27)
+,,region,,11,EU15
+,,region,,12,EU12
+,,region,,13,Japan
+,,region,,14,Russia
+,,region,,15,USA
+,time horizon,start,,,2005
+,,end,,,2100

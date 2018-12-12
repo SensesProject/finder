@@ -1,0 +1,160 @@
+factsheet,topic,attribute,subattribute,#,value
+EMF33,project,,,,EMF33 Bioenergy Study
+,guiding questions,preamble,,,Objective: Assessing large-scale global bioenergy deployment for managing climate change.
+,,question,,1,"How is bioenergy used across different IAMs under harmonized variations of climate policies, availability of bioenergy technologies and constraints on biomass supply?"
+,results,preamble,,,
+,,insight,,1,"Imposing a range of increasingly stringent carbon budgets mostly increases bioenergy use. Sector and regional bioenergy allocation varies dramatically mainly due to bioenergy technology options, final energy patterns and availability of alternative options of energy sector de-carbonization."
+,,insight,,2,"Although much bioenergy is used in combination with CCS (BECCS), it is not necessarily the driver of bioenergy use."
+,,insight,,3,The flexibility to use biomass feedstocks in the energy sector makes large-scale bioenergy deployment a robust strategy in mitigation scenarios that is surprisingly insensitive with respect to reduced technology availability.
+,,insight,,4,"However, the impact on achievability of stringent carbon budgets and associated carbon prices is sensitive, if the availably of e.g. BECCS is reduced."
+,scenarios,preamble,,,"scenario naming convention : EMF33_[GHG_tax_or_budget]_[Bioenergy_Technology_availability]
+Carbon budgets are global and cover only cumulative emissions of CO2 from fossil fuel and industry from 2011 to 2100.
+Carbon taxes are uniform across all regions, GHGs and sectors."
+,,scenario,name,1,EMF33_Baseline
+,,scenario,description,1,Baseline scenario without any climate policy in place
+,,scenario,name,2,EMF33_Med2C_full
+,,scenario,description,2,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,3,EMF33_Med2C_cost100
+,,scenario,description,3,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen (100% higher cost)
+ Bioenergy supply limit: None "
+,,scenario,name,4,EMF33_Med2C_limbio
+,,scenario,description,4,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: 100 EJ/yr"
+,,scenario,name,5,EMF33_Med2C_nobeccs
+,,scenario,description,5,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None"
+,,scenario,name,6,EMF33_Med2C_nofuel
+,,scenario,description,6,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: BECCS, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,7,EMF33_Med2C_none
+,,scenario,description,7,"Carbon budget: 1600 Gt CO2 
+Bioenergy technologies: None
+ Bioenergy supply limit: None "
+,,scenario,name,8,EMF33_WB2C_full
+,,scenario,description,8,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,9,EMF33_WB2C_cost100
+,,scenario,description,9,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen (100% higher cost)
+ Bioenergy supply limit: None "
+,,scenario,name,10,EMF33_WB2C_limbio
+,,scenario,description,10,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: 100 EJ/yr"
+,,scenario,name,11,EMF33_WB2C_nobeccs
+,,scenario,description,11,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None"
+,,scenario,name,12,EMF33_WB2C_nofuel
+,,scenario,description,12,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: BECCS, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,13,EMF33_WB2C_none
+,,scenario,description,13,"Carbon budget: 1000 Gt CO2 
+Bioenergy technologies: None
+ Bioenergy supply limit: None "
+,,scenario,name,14,EMF33_tax_hi_full
+,,scenario,description,14,"Carbon tax: starts at 30 $US/tCO2 in 2020 and increase at 5% per year afterwards
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,15,EMF33_tax_hi_none
+,,scenario,description,15,"Carbon tax: starts at 30 $US/tCO2 in 2020 and increase at 5% per year afterwards
+Bioenergy technologies: None
+ Bioenergy supply limit: None "
+,,scenario,name,16,EMF33_tax_lo_full
+,,scenario,description,16,"Carbon tax: starts at 20 $US/tCO2 in 2025/2030 and increase at 3% per year afterwards
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,17,EMF33_tax_lo_none
+,,scenario,description,17,"Carbon tax: starts at 20 $US/tCO2 in 2025/2030 and increase at 3% per year afterwards
+Bioenergy technologies: None
+ Bioenergy supply limit: None "
+,,scenario,name,18,EMF33_1.5C_full
+,,scenario,description,18,"Carbon budget: 400 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: None "
+,,scenario,name,19,EMF33_1.5C_cost100
+,,scenario,description,19,"Carbon budget: 400 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen (100% higher cost)
+ Bioenergy supply limit: None "
+,,scenario,name,20,EMF33_1.5C_limbio
+,,scenario,description,20,"Carbon budget: 400 Gt CO2 
+Bioenergy technologies: BECCS, Cellulosic fuels, Hydrogen
+ Bioenergy supply limit: 100 EJ/yr"
+,,scenario,name,21,EMF33_1.5C_nofuel
+,,scenario,description,21,"Carbon budget: 400 Gt CO2 
+Bioenergy technologies: BECCS, Hydrogen
+ Bioenergy supply limit: None "
+,data sources,source,name,1,EMF33 Scenario Database
+,,source,link,1,https://tntcat.iiasa.ac.at/EMF30BIODB/
+,publications,reference,citation,1,Bauer et al. (2018)
+,,reference,type,1,Journal publication
+,,reference,doi,1,10.1007/s10584-018-2226-y
+,,reference,full,1,"Bauer, N. et al. Global energy sector emission reductions and bioenergy use: overview of the bioenergy demand phase of the EMF-33 model comparison. Climatic Change (2018). "
+,,reference,ris,1,"TY  - JOUR
+AU  - Bauer, Nico
+AU  - Rose, Steven K.
+AU  - Fujimori, Shinichiro
+AU  - van Vuuren, Detlef P.
+AU  - Weyant, John
+AU  - Wise, Marshall
+AU  - Cui, Yiyun
+AU  - Daioglou, Vassilis
+AU  - Gidden, Matthew J.
+AU  - Kato, Etsushi
+AU  - Kitous, Alban
+AU  - Leblanc, Florian
+AU  - Sands, Ronald
+AU  - Sano, Fuminori
+AU  - Strefler, Jessica
+AU  - Tsutsui, Junichi
+AU  - Bibas, Ruben
+AU  - Fricko, Oliver
+AU  - Hasegawa, Tomoko
+AU  - Klein, David
+AU  - Kurosawa, Atsushi
+AU  - Mima, Silvana
+AU  - Muratori, Matteo
+PY  - 2018
+DA  - 2018/07/02
+TI  - Global energy sector emission reductions and bioenergy use: overview of the bioenergy demand phase of the EMF-33 model comparison
+JO  - Climatic Change
+AB  - We present an overview of results from 11 integrated assessment models (IAMs) that participated in the 33rd study of the Stanford Energy Modeling Forum (EMF-33) on the viability of large-scale deployment of bioenergy for achieving long-run climate goals. The study explores future bioenergy use across models under harmonized scenarios for future climate policies, availability of bioenergy technologies, and constraints on biomass supply. This paper provides a more transparent description of IAMs that span a broad range of assumptions regarding model structures, energy sectors, and bioenergy conversion chains. Without emission constraints, we find vastly different CO2 emission and bioenergy deployment patterns across models due to differences in competition with fossil fuels, the possibility to produce large-scale bio-liquids, and the flexibility of energy systems. Imposing increasingly stringent carbon budgets mostly increases bioenergy use. A diverse set of available bioenergy technology portfolios provides flexibility to allocate bioenergy to supply different final energy as well as remove carbon dioxide from the atmosphere by combining bioenergy with carbon capture and sequestration (BECCS). Sector and regional bioenergy allocation varies dramatically across models mainly due to bioenergy technology availability and costs, final energy patterns, and availability of alternative decarbonization options. Although much bioenergy is used in combination with CCS, BECCS is not necessarily the driver of bioenergy use. We find that the flexibility to use biomass feedstocks in different energy sub-sectors makes large-scale bioenergy deployment a robust strategy in mitigation scenarios that is surprisingly insensitive with respect to reduced technology availability. However, the achievability of stringent carbon budgets and associated carbon prices is sensitive. Constraints on biomass feedstock supply increase the carbon price less significantly than excluding BECCS because carbon removals are still realized and valued. Incremental sensitivity tests find that delayed readiness of bioenergy technologies until 2050 is more important than potentially higher investment costs.
+SN  - 1573-1480
+UR  - https://doi.org/10.1007/s10584-018-2226-y
+DO  - 10.1007/s10584-018-2226-y
+ID  - Bauer2018
+ER  - 
+"
+,year,,,,2018
+,keywords,keyword,,1,Large-scale bioenergy
+,,keyword,,2,climate stabilization
+,,keyword,,3,bioenergy technology options
+,,keyword,,4,CCS / BECCS
+,regional coverage,region,,1,World
+,regional coverage,region,,2,Asia
+,regional coverage,region,,3,Latin America
+,regional coverage,region,,4,Middle East and Africa
+,regional coverage,region,,5,OECD90+EU
+,regional coverage,region,,6,Reforming Economies
+,regional coverage,region,,7,"selected G20 countries (Brazil, China, EU, India, Japan, Russia, USA)"
+,time horizon,start,,,2005
+,time horizon,end,,,2100
+,models,preamble,,,EMF33 is a mulit-model study that used 5 global models jointly.
+,models,model,name,1,AIM/CGE
+,models,model,version,1,2.1
+,models,model,name,2,IMAGE
+,models,model,version,2,3.0.2
+,models,model,name,3,MESSAGE-GLOBIOM
+,models,model,version,3,1.0
+,models,model,name,4,POLES
+,models,model,version,4,EMF33
+,models,model,name,5,REMIND-MAgPIE
+,models,model,version,5,1.7-3.0

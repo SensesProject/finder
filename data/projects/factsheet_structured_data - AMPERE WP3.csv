@@ -1,0 +1,224 @@
+factsheet,topic,attribute,subattribute,#,value
+AMPERE WP3,project,,,,
+,guiding questions,preamble,,,"The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP3 specifically focused on fragmented policy regimes and the effects for front-runners.
+"
+,,question,,1,What impacts do fragmented policy regimes (with a coalition of front-runners and staged accession of others) have on achievability of long-term targets and global energy systems?
+,,question,,2,What advantages and disadvantages have the frontrunners and late-comers respectively?
+,,question,,3,How much carbon leakage is caused by fragmented policies?
+,results,preamble,,,This study explores a situation of staged accession to a global climate policy regime from the current situation of regionally fragmented and moderate climate action. The analysis is based on scenarios in which a front runner coalition – the EU or the EU and China – embarks on immediate ambitious climate action while the rest of the world makes a transition to a global climate regime between 2030 and 2050. We assume that the ensuing regime involves strong mitigation efforts but does not require late joiners to compensate for their initially higher emissions.
+,,insight,,1,"Although staged accession can achieve significant reductions of global warming, the resulting climate outcome is unlikely to be consistent with the goal of limiting global warming to 2 degrees. The addition of China to the front runner coalition can reduce pre-2050 excess emissions by 20–30%, increasing the likelihood of staying below2 degrees."
+,,insight,,2,"Not accounting for potential co-benefits, the cost of front runner action is found to be lower for the EU than for China."
+,,insight,,3,Regions that delay their accession to the climate regime face a trade-off between reduced short term costs and higher transitional requirements due to larger carbon lock-ins and more rapidly increasing carbon prices during the accession period.
+,scenarios,preamble,,,"The unique feature about WP3 scenarios are those scenarios with a period of high ambition in front-runner countries (EU or EU and China) and later following of others, as well as ""reconsideration"" scenarios, where front-runners shift back to no climate policy."
+,,scenario,name,1,450
+,,scenario,description,1,The benchmark scenario with optimal harmonized policies to reach stabilization of concentration of CO2e at 450ppm.
+,,scenario,name,2,450P-CE
+,,scenario,description,2,Staged accession scenario with front-runners EU and China (equal price as in 450)
+,,scenario,name,3,450P-EU
+,,scenario,description,3,Staged accession scenario with front-runner EU (equal price as in 450)
+,,scenario,name,4,550
+,,scenario,description,4,The benchmark scenario with optimal harmonized policies to reach stabilization of concentration of CO2e at 550ppm.
+,,scenario,name,5,550P-EU
+,,scenario,description,5,Staged accession scenario with front-runner EU (equal price as in 550)
+,,scenario,name,6,Base
+,,scenario,description,6,No policy baseline
+,,scenario,name,7,Ref
+,,scenario,name,7,Reference policies (based on regional technology targets)
+,,scenario,name,8,CF450
+,,scenario,description,8,"The benchmark scenario with optimal harmonized policies to reach stabilization of concentration of CO2e at 450ppm, without technology targets."
+,,scenario,name,9,CF550
+,,scenario,description,9,"The benchmark scenario with optimal harmonized policies to reach stabilization of concentration of CO2e at 550ppm, without technology targets."
+,,scenario,name,10,RefP-EUback
+,,scenario,description,10,Reconsideration scenario with EU as front-runner but instead of accession sliding back of front-runner ambition to refernce policies.
+,,scenario,name,11,RefP-CEback
+,,scenario,description,11,Reconsideration scenario with EU and China as front-runners but instead of accession sliding back of front-runner ambition to refernce policies.
+,,scenario,name,12,Base-EUback
+,,scenario,description,12,Reconsideration scenario with EU as front-runner but instead of accession sliding back of front-runner ambition to baseline.
+,data sources,source,name,1,AMPERE database 
+,,source,link,1,https://tntcat.iiasa.ac.at/AMPEREDB
+,publications,reference,citation,1,Kriegler et al. (2015)
+,,reference,type,1,journal article
+,,reference,doi,1,10.1016/j.techfore.2013.09.021
+,,reference,full,1,"KRIEGLER et al.. 2015. Making or breaking climate targets: The AMPERE study on staged accession scenarios for climate policy. Technological Forecasting and Social Change, 90, 24-44."
+,,reference,ris,1,"TY - JOUR
+ AU - Kriegler, E.
+ AU - Riahi, K.
+ AU - Bauer, N.
+ AU - Schwanitz, V. J.
+ AU - Petermann, N.
+ AU - Bosetti, V.
+ AU - Marcucci, A.
+ AU - Otto, S.
+ AU - Paroussos, L.
+ AU - Rao, S.
+ AU - Arroyo Currás, T.
+ AU - Ashina, S.
+ AU - Bollen, J.
+ AU - Eom, J.
+ AU - Hamdi-Cherif, M.
+ AU - Longden, T.
+ AU - Kitous, A.
+ AU - Méjean, A.
+ AU - Sano, F.
+ AU - Schaeffer, M.
+ AU - Wada, K.
+ AU - Capros, P.
+ AU - P. van Vuuren, D.
+ AU - Edenhofer, O.
+ DB - Scopus
+ DO - 10.1016/j.techfore.2013.09.021
+ IS - PA
+ M3 - Article
+ N1 - Cited By :74
+ Export Date: 1 October 2018
+ PY - 2015
+ SP - 24-44
+ ST - Making or breaking climate targets: The AMPERE study on staged accession scenarios for climate policy
+ T2 - Technological Forecasting and Social Change
+ TI - Making or breaking climate targets: The AMPERE study on staged accession scenarios for climate policy
+ UR - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84916891763&doi=10.1016%2fj.techfore.2013.09.021&partnerID=40&md5=43e53ddbbf29991950d6119c5c035d77
+ VL - 90
+ ID - 53
+ ER -"
+,,reference,citation,2,Kriegler et al. (2015)
+,,reference,type,2,journal article
+,,reference,doi,2,10.1016/j.techfore.2014.10.012
+,,reference,full,2,"Kriegler E, Riahi K, Bosetti V, Capros P, Petermann N, van Vuuren DP, Weyant JP, & Edenhofer O (2015). Introduction to the AMPERE model intercomparison studies on the economics of climate stabilization. Technological Forecasting and Social Change 90 (Part A): 1-7."
+,,reference,ris,2,"
+TY  - JOUR
+TI  - Introduction to the AMPERE model intercomparison studies on the economics of climate stabilization
+AU  - Kriegler, Elmar
+AU  - Riahi, Keywan
+AU  - Bosetti, Valentina
+AU  - Capros, Pantelis
+AU  - Petermann, Nils
+AU  - van Vuuren, Detlef P.
+AU  - Weyant, John P.
+AU  - Edenhofer, Ottmar
+T2  - Technological Forecasting and Social Change
+DA  - 2015/01//
+PY  - 2015
+DO  - 10.1016/j.techfore.2014.10.012
+DP  - ScienceDirect
+VL  - 90, Part A
+SP  - 1
+EP  - 7
+J2  - Technological Forecasting and Social Change
+SN  - 0040-1625
+UR  - http://www.sciencedirect.com/science/article/pii/S0040162514002984
+Y2  - 2014/12/19/15:41:41
+L1  - http://www.sciencedirect.com/science/article/pii/S0040162514002984/pdfft?md5=091d3f1424713b7abd51eb21bcb3860c&pid=1-s2.0-S0040162514002984-main.pdf
+L2  - http://www.sciencedirect.com/science/article/pii/S0040162514002984
+ER  - 
+
+"
+,,reference,citation,3,Bauer et al. 2015
+,,reference,type,3,journal article
+,,reference,doi,3,10.1016/j.techfore.2013.09.009
+,,reference,full,3,"Bauer, Nico, Valentina Bosetti, Meriem Hamdi-Cherif, Alban Kitous, David McCollum, Aurélie Méjean, Shilpa Rao, et al. 2015. “CO2 Emission Mitigation and Fossil Fuel Markets: Dynamic and International Aspects of Climate Policies.” Technological Forecasting and Social Change 90, Part A: 243–56."
+,,reference,ris,3,"TY - JOUR
+ TI - CO2 emission mitigation and fossil fuel markets: Dynamic and international aspects of climate policies
+ AU - Bauer, Nico
+ AU - Bosetti, Valentina
+ AU - Hamdi-Cherif, Meriem
+ AU - Kitous, Alban
+ AU - McCollum, David
+ AU - Méjean, Aurélie
+ AU - Rao, Shilpa
+ AU - Turton, Hal
+ AU - Paroussos, Leonidas
+ AU - Ashina, Shuichi
+ AU - Calvin, Katherine
+ AU - Wada, Kenichi
+ AU - van Vuuren, Detlef
+ T2 - Technological Forecasting and Social Change
+ AB - This paper explores a multi-model scenario ensemble to assess the impacts of idealized and non-idealized climate change stabilization policies on fossil fuel markets. Under idealized conditions climate policies significantly reduce coal use in the short- and long-term. Reductions in oil and gas use are much smaller, particularly until 2030, but revenues decrease much more because oil and gas prices are higher than coal prices. A first deviation from optimal transition pathways is delayed action that relaxes global emission targets until 2030 in accordance with the Copenhagen pledges. Fossil fuel markets revert back to the no-policy case: though coal use increases strongest, revenue gains are higher for oil and gas. To balance the carbon budget over the 21st century, the long-term reallocation of fossil fuels is significantly larger—twice and more—than the short-term distortion. This amplifying effect results from coal lock-in and inter-fuel substitution effects to balance the full-century carbon budget. The second deviation from the optimal transition pathway relaxes the global participation assumption. The result here is less clear-cut across models, as we find carbon leakage effects ranging from positive to negative because trade and substitution patterns of coal, oil, and gas differ across models. In summary, distortions of fossil fuel markets resulting from relaxed short-term global emission targets are more important and less uncertain than the issue of carbon leakage from early mover action.
+ DA - 2015///
+ PY - 2015
+ DO - 10.1016/j.techfore.2013.09.009
+ DP - ScienceDirect
+ VL - 90, Part A
+ SP - 243
+ EP - 256
+ J2 - Technological Forecasting and Social Change
+ SN - 0040-1625
+ ST - CO2 emission mitigation and fossil fuel markets
+ UR - http://www.sciencedirect.com/science/article/pii/S0040162513002382
+ Y2 - 2014/04/18/15:18:18
+ L1 - http://www.sciencedirect.com/science/article/pii/S0040162513002382/pdfft?md5=57d8a046b450f945b9659776e48a51e9&pid=1-s2.0-S0040162513002382-main.pdf
+ L2 - http://www.sciencedirect.com/science/article/pii/S0040162513002382
+ KW - Carbon leakage
+ KW - Climate change mitigation policies
+ KW - Copenhagen Accord
+ KW - Fossil fuel markets
+ KW - Inter-fuel substitution
+ ER -"
+,,reference,citation,4,Kriegler et al. (2014)
+,,reference,type,4,policy brief
+,,reference,doi,4,
+,,reference,full,4,"Kriegler E, Riahi K, Petermann N, Bosetti V, Capros P, van Vuuren DP, Criqui P, Egenhofer C, et al. (2014). Assessing Pathways toward Ambitious Climate Targets at the Global and European levels: A Synthesis of Results from the AMPERE Project. AMPERE Project , Leipzig, Germany."
+,,reference,ris,4,
+,diagnostics,source,name,1,"Kriegler E, Petermann N, Krey V, et al (2015) Diagnostic indicators for integrated assessment models of climate policy. Technol Forecas Soc Change 90, Part A:45–61."
+,,source,link,1,10.1016/j.techfore.2013.09.020
+,,model,,,"Nine IAM global models took part of the AMPERE project
+ The nine participating intitutions and the respective models:
+  • Institution: 
+  Model: DNE21+
+  • Institution: European Commission Joint Research Centre
+  Model: POLES
+  • Institution: Centre International de Recherche Centre International de Recherche sur l’Environnement et le Développement (CIRED),
+  Model: IMACLIM
+  • Institution: Stanford University, USA
+  Model: MERGE-ETL
+  • Institution: National Institute for Environmental Studies (NIES), Japan
+  Model: AIM/CGE
+  • Institution: Pacific Northwest National Laboratory, Joint Global Change Research Institute at the University of Maryland-College Park (PNNL), United States
+  Model: GCAM
+  • Institution: Netherlands Environmental Assessment Agency (PBL), Netherlands
+  Model: IMAGE
+  • Institution: International Institute for Applied Systems Analysis (IIASA), Austria 
+  Model: MESSAGE
+  • Institution: Potsdam Institute for Climate Impact Research (PIK), Germany
+  Model: REMIND
+  • Institution: Fondazione Eni Enrico Mattei (FEEM), Italy
+  Model: WITCH"
+,,model,name,1,DNE21+
+,,model,version,1,12
+,,model,name,2,GCAM
+,,model,version,2,3
+,,model,name,3,IMACLIM
+,,model,version,3,1.1
+,,model,name,4,IMAGE
+,,model,version,4,2.4
+,,model,name,5,MERGE-ETL
+,,model,version,5,2011
+,,model,name,6,MESSAGE
+,,model,version,6,4
+,,model,name,7,POLES
+,,model,version,7,AMPERE
+,,model,name,8,REMIND
+,,model,version,8,1.5
+,,model,name,9,WITCH
+,,model,version,9,AMPERE+F121C116:F134
+,year,,,,2013
+,keywords,keyword,,1,Staged accession
+,,keyword,,2,front-runner
+,,keyword,,3,carbon leakage
+,,keyword,,4,Fragmented policy
+,regional coverage,region,,1,World
+,,region,,2,OECD90
+,,region,,3,Reforming Economies (REF)
+,,region,,4,Asia (ASIA)
+,,region,,5,Middle East and Africa (MAF)
+,,region,,6,Latin America (LAM)
+,,region,,7,Brazil
+,,region,,8,China
+,,region,,9,India
+,,region,,10,EU (EU27)
+,,region,,11,EU15
+,,region,,12,EU12
+,,region,,13,Japan
+,,region,,14,Russia
+,,region,,15,USA
+,time horizon,start,,,2005
+,,end,,,2100

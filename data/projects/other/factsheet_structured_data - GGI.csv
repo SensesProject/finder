@@ -1,0 +1,99 @@
+factsheet,topic,attribute,subattribute,#,value
+GGI,project,,,,
+,guiding questions,preamble,,,"The main objective of the exercise has been to explore the feasibility and costs of meeting alternative climate stabilization targets under a range of salient long-term uncertainties with a limited set of scenarios. Development pathway uncertainty, which includes alternative demographic, economic, and technological developments that lead to high (A2r), intermediary (B2), or low (B1) emissions of GHGs and hence magnitude of future climate change. Climate stabilization target uncertainty is addressed by systematic model simulations for a range of alternative climate stabilization targets imposed on the no-policy baseline scenarios. Altogether, calculations for 11 stabilization scenarios for eight comparable stabilization levels has been performed.
+"
+,,question,,1,"How will human drivers ranging from the realm of demographics, economics, and technology to social behavior and institutions shape future emissions of greenhouse gases (GHGs)?"
+,,question,,2,Are there ways of “bending down” the curve of ever increasing radiative forcing?
+,,question,,3,"What will be the consequences of radiative forcing change on global, regional, as well as local climates both in terms of changes in magnitude (e.g., warming, precipitation) as well as in nature (most prominently variability and possibilities of extreme events)?"
+,,question,,4,What will be the impacts on natural and human systems of a changing climate?
+,,question,,5,"what are the feasibilities, costs, and benefits (in terms of avoided impacts) of response strategies?"
+,results,preamble,,,"The GGI scenario analysis has illustrated the importance of considering the two most fundamental uncertainties that surround future efforts to mitigate against climate change:
+-    uncertainty of magnitude of future emission levels as described by alternative scenario baselines;
+-    uncertainty that surrounds the ultimate mitigation target (i.e., the stabilization levels).
+Feasibility and costs, as well as the technological options needed to meet alternative climate stabilization goals all, depend critically on these two types of uncertainties."
+,,insight,,1,"From all the variables required to frame the fundamental uncertainties involved in the climate debate, technology emerges as a particularly important area."
+,,insight,,2,An important finding from our sectorial analysis is that the energy and industry sectors will play a central role in achieving the drastic reductions in GHG emissions required for climate stabilization.
+,,insight,,3,"Agriculture and forestry play a less important role in emissions reductions in absolute terms, but nonetheless are indispensable elements of a comprehensive and cost-effective mitigation portfolio. Emissions reductions from agricultural sources are comparatively important only at less stringent stabilization levels. Conversely, the forestry sector gains in importance with the stringency of the target (and thus higher marginal GHG reduction costs)."
+,,insight,,4,"The three top-ranked mitigation options comprise reductions through the additional deployment of biomass, nuclear, and demand-side measures, such as enhanced energy conservation and efficiency improvements."
+,,insight,,5,"Large-scale CCS (beyond forest sink enhancements) portray the classic features of a ‘backstop’ technology. They are deployed on a massive scale only in unfavorable scenario baselines (e.g., the coal-intensive scenario A2r) or in combination with stringent stabilization targets."
+,,insight,,6,"Global macroeconomic costs of climate policies would be relatively modest, especially when compared to the scenario's underlying economic growth assumptions."
+,scenarios,preamble,,,"Scenarios of different (baseline) socio-economic and technological developments, A2r, B1 and B2. Climate stabilization scenarios, which have been imposed on the baselines including very low scenarios that stabilize CO2-eq concentrations at about 450 ppm CO2-eq."
+,,scenario,name,1,Baseline
+,,scenario,description,1,No climate policy baseline.
+,,scenario,name,2,1390 ppmv
+,,scenario,description,2,Limiting greenhaous gas concentrations to 1390 ppmv CO2-eq ()
+,,scenario,name,3,1090 ppmv
+,,scenario,description,3,Limiting greenhaous gas concentrations to 1390 ppmv CO2-eq ()
+,,scenario,name,4,970 ppmv
+,,scenario,description,4,Limiting greenhaous gas concentrations to 970 ppmv CO2-eq ()
+,,scenario,name,5,820 ppmv
+,,scenario,description,5,Limiting greenhaous gas concentrations to 820 ppmv CO2-eq ()
+,,scenario,name,6,670 ppmv
+,,scenario,description,6,Limiting greenhaous gas concentrations to 670 ppmv CO2-eq ()
+,,scenario,name,7,590 ppmv
+,,scenario,description,7,Limiting greenhaous gas concentrations to 590 ppmv CO2-eq ()
+,,scenario,name,8,520 ppmv
+,,scenario,description,8,Limiting greenhaous gas concentrations to 520 ppmv CO2-eq ()
+,,scenario,name,9,480 ppmv
+,,scenario,description,9,Limiting greenhaous gas concentrations to 480 ppmv CO2-eq ()
+,,scenario,name,10,450 ppmv
+,,scenario,description,10,Limiting greenhaous gas concentrations to 450 ppmv CO2-eq ()
+,data sources,source,name,1,GGI Scenario Database
+,,source,link,1,https://tntcat.iiasa.ac.at/GgiDb
+,publications,reference,citation,1,"Riahi K, Nakicenovic N (eds) (2007). Greenhouse Gases - Integrated Assessment, Technological Forecasting and Social Change"
+,,reference,type,1,
+,,reference,doi,1,10.1016/j.techfore.2006.07.009
+,,reference,full,1,"Riahi K, Nakicenovic N (eds) (2007). Greenhouse Gases - Integrated Assessment, Technological Forecasting and Social Change, Special Issue, 74(7): 873-1108, (ISSN 0040-1625)"
+,,reference,ris,1,"TY - JOUR
+ AU - Grübler, Arnulf
+ AU - Nakicenovic, Nebojsa
+ AU - Riahi, Keywan
+ AU - Wagner, Fabian
+ AU - Fischer, Günther
+ AU - Keppo, Ilkka
+ AU - Obersteiner, Michael
+ AU - ONeill, Brian
+ AU - Rao, Shilpa
+ AU - Tubiello, Francesco
+ T1 - Integrated assessment of uncertainties in greenhouse gas emissions and their mitigation: Introduction and overview
+ JO - Technological Forecasting and Social Change
+ Y1 - 2007/09
+ VL - 74
+ IS - 7
+ SP - 873
+ EP - 886"
+,diagnostics,source,name,1,N/A
+,,source,link,1,N/A
+,models,preamble,,,"The largest GGI activity in terms of funding and man-power has been the development of an integrated assessments framework. This involved the development of new models and the interfaces between existing models. Building on the MESSAGE, AEZ/BLS and GAINS frameworks, GGI has sponsored the development of new models of forest growth (OSKAR), of interactions between agriculture and forestry (FASOM), and socio‐economic projections (SEDIM)."
+,,model,name,1,GAINS - GHG and Air Pollution INteractions and Synergies
+,,model,name,2,"MESSAGE - A Systems Engineering Optimization Model for Medium- to Long-Term Energy System Planning, Energy Policy Analysis and Scenario Development"
+,,model,name,3,EU-FASOM - EUropean Forest and Agriculture Simulation and Optimization Model
+,,model,name,4,SEDIM - Simple Economic Demographic Interaction Model
+,,model,name,5,AEZ - The Agro-Ecological Zones (AEZ) approach is a GIS-based modeling framework that combines land evaluation methods with socioeconomic and multiple-criteria analysis to evaluate spatial and dynamic aspects of agriculture.
+,,model,name,6,DIMA - An analytical framework to estimate the joint production of biomass and carbon sequestration from afforestation and reforestation activities
+,,model,name,7,OSKAR - A forest production and management model
+,year,,,,
+,keywords,keyword,,1,Climate change mitigation scenarios
+,,keyword,,2,Energy scenarios
+,,keyword,,3,Integrated assessment
+,,keyword,,4,Greenhouse gases
+,regional coverage,region,,1,World
+,,region,,2,OECD
+,,region,,3,Reforming Economies (REF)
+,,region,,4,Asia (ASIA)
+,,region,,5,"Africa, latin Amerika and Middle East (ALM)"
+,,region,,6,North America (NAM)
+,,region,,7,Western Europe (WEU)
+,,region,,8,Pacific OECD (PAO)
+,,region,,9,Central and Eastern Europe (EEU)
+,,region,,10,Newly independent states of the former Soviet Union (FSU)
+,,region,,11,Centrally planned Asia and China (CPA)
+,,region,,12,South Asia (SAS)
+,,region,,13,Other Pacific Asia (PAS)
+,,region,,14,Middle East and North Africa (MEA)
+,,region,,15,Latin America and the Caribbean (LAM)
+,,region,,16,Sub-Saharan Africa (AFR)
+,,countries,,1,"185 countries, subset of indicators (population and GDPmer)"
+,,grid,,1,0.5 x 0.5 degree rewsolution. Subset of indicators
+,time horizon,start,,,2000
+,,end,,,2100

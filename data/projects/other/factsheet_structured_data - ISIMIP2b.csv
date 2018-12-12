@@ -1,0 +1,123 @@
+factsheet,topic,attribute,subattribute,#,value
+ISIMIP2b,project,,,,
+ISIMIP2b,guiding questions,question,,1,“What are the climate impacts in a 1.5 °C world”
+ISIMIP2b,guiding questions,question,,2,"""What are the climate induced effects at today's 1°C of global warming compared to the effects of historical changes in other direct human influences on Impact indicators?"""
+ISIMIP2b,guding questions,question,,3,"""What are the effects of climate change mitigation measures (e.g. expansion of bioenergy productions) on impact indicators when reducing greenhouse gas emission emissions from a Business as Usual scenario (RCP6.0) to a low emission scenario (RCP2.6)?"""
+ISIMIP2b,results,preamble,,,"This round focuses on the impacts that are to be expected in a world with 1.5 °C, including up to 2°C, global warming. Climate input data are provided for two RCPs, the low emission RCP 2.6 (up to 2300) and business as usual emission scenario RCP 6.0 (up to 2100). For investigation of the pure climate effect, surrogate pre-industrial climate data has been provided in order to investigate the effects of climate change compared to the pre-industrial reference also considered in context of the UN climate negotiations. We consider three different groups of impact simulations: group 1: historical simulations accounting for observed changes in direct human influences (e.g. changes in land use patterns, water management etc.); group 2: future projections assuming fixed present day direct human influences; and group 3: future projections accounting for future projections of direct human influences (changes in population distributions, economic development (SSP2), and land use patterns etc.)."
+ISIMIP2b,results,,,1,"Changes in the occurrence of extreme events (Lange et al., to be re-submitted): ""The effects of climate change on different types of weather-induced disasters have largely been assessed individually. However, it is the joint impact of such events that threatens long-term economic development and leads to human migration, persistence of poverty, and social de-stabilisation. Here we use synchronized climate impact simulation ensembles to quantify historical and future changes in the extent of crop failures, river floods, tropical cyclones, heatwaves, wildfires, and droughts. Results show that climate change from pre-industrial conditions to today’s 1°C global warming has almost tripled the fraction of the global population that is exposed to at least one such event per year whereas historical socioeconomic change alone would have slightly reduced this fraction. Future warming is projected to further increase global exposure approximately linearly up until 4°C. Particularly large increases are projected for low-latitude countries. Our analysis provides policy makers with a quantitative and comprehensive picture of climate change effects on the global population."""
+ISIMIP2b,data sources,source,name,1,ISIMIP 2b database
+ISIMIP2b,data sources,source,link,2,https://esg.pik-potsdam.de/search/isimip/?project=ISIMIP2b
+,models,preamble,,,"Currently there is impact data across seven sectors simulated by 25 impact models. Simulations primarily cover the group 1 and group 2 scenarios but are ongoing and the number of available data sets is still growing. The resulting impact simulations currently cover global water simulations (8), global gridded crop model simulations (3), ecosystem simulations (5). For the first time the provided climate forcing data also allow for the analysis of tropical cyclone damages. Additional impact simulations are expected to cover and are expected to cover impacts on biodiversity, coastal infrastructure, energy, forestry, health, lakes, fisheries and marine ecosystems, and permafrost."
+,,model,name,1,3D-CMCC-CNR-BGC (forestry)
+,,model,version,1,v.5.4
+,,model,name,2,3D-CMCC FEM (forestry)
+,,model,version,2,v.5.3.3-ISIMIP
+,,model,name,3,4C (forestry)
+,,model,version,3,4C 2.1
+,,model,name,4,ALBM (lakes global)
+,,model,version,4,Arctic Lake Biogeochemistry Model v2.0
+,,model,name,5,ANAFORE (forestry)
+,,model,version,5,ANAFORE_PROFOUND
+,,model,name,6,ArcticHYPE (water regional)
+,,model,version,6,N/A
+,,model,name,7,BASFOR (forestry)
+,,model,version,7,N/A
+,,model,name,8,BioScen1.5-MEM-GAM (terrestrial biodiversity)
+,,model,version,8,N/A
+,,model,name,9,BioScen1.5-MEM-RF (terrestrial biodiversity)
+,,model,version,9,N/A
+,,model,name,10,BioScen1.5-SDM-GAM (terrestrial biodiversity)
+,,model,version,10,N/A
+,,model,name,11,CARAIB (biomes)
+,,model,version,11,N/A
+,,model,name,12,CLM4.5 (biomes)
+,,model,version,12,4.5
+,,model,name,13,CLM4.5 (lakes global)
+,,model,version,13,4.5
+,,model,name,14,CLM4.5 (permafrost)
+,,model,version,14,4.5
+,,model,name,15,CLM4.5 (water global)
+,,model,version,15,4.5
+,,model,name,16,CLM5.0 (water global)
+,,model,version,16,CLM5.0
+,,model,name,17,DBH (water global)
+,,model,version,17,N/A
+,,model,name,18,DLEM (Dynamic Land Ecosystem Model) (biomes)
+,,model,version,18,v2.0
+,,model,name,19,ED2 (forestry)
+,,model,version,19,v2.1
+,,model,name,20,ForClim (forestry)
+,,model,version,20,N/A
+,,model,name,21,FORMIND (forestry)
+,,model,version,21,FORMIND 3.1
+,,model,name,22,GEPIC (agriculture)
+,,model,version,22,Core model based on EPIC0810 with unpublished bug fixes and modifications
+,,model,name,23,GO+ (forestry)
+,,model,version,23,19.0 and 26.0
+,,model,name,24,GOTILWA+ (forestry)
+,,model,version,24,4
+,,model,name,25,H08 (water global)
+,,model,version,25,"H08 (Hanasaki et al., 2018)"
+,,model,name,26,HYPE (water regional)
+,,model,version,26,HYPE v 4.5.1
+,,model,name,27,JULES-W1 (formerly JULES_TUC) (water global)
+,,model,version,27,version 4.7
+,,model,name,28,Landscape-DNDC (forestry)
+,,model,version,28,N/A
+,,model,name,29,LPJ-GUESS (biomes)
+,,model,version,29,3.1
+,,model,name,30,LPJ-GUESS (forestry)
+,,model,version,30,3.1
+,,model,name,31,LPJmL (agriculture)
+,,model,version,31,N/A
+,,model,name,32,LPJmL (biomes)
+,,model,version,32,N/A
+,,model,name,33,LPJmL (permafrost)
+,,model,version,33,N/A
+,,model,name,34,LPJmL (water global)
+,,model,version,34,N/A
+,,model,name,35,mHM (water regional)
+,,model,version,35,v. 5.7
+,,model,name,36,MPI-HM (water global)
+,,model,version,36,v1.2
+,,model,name,37,ORCHIDEE (biomes)
+,,model,version,37,rev4080
+,,model,name,38,ORCHIDEE (permafrost)
+,,model,version,38,ORCHIDEE-MICT
+,,model,name,39,ORCHIDEE (water global)
+,,model,version,39,rev4080
+,,model,name,40,PCR-GLOBWB (water global)
+,,model,version,40,version 2
+,,model,name,41,PEPIC (agriculture)
+,,model,version,41,N/A
+,,model,name,42,PREBAS (forestry)
+,,model,version,42,1
+,,model,name,43,SWAT (Blue Nile) (water regional)
+,,model,version,43,N/A
+,,model,name,44,SWIM (Niger) (water regional)
+,,model,version,44,N/A
+,,model,name,45,SWIM-NVE (water regional)
+,,model,version,45,N/A
+,,model,name,46,TRM-Tsukuba (temperature-related mortality health)
+,,model,version,46,N/A
+,,model,name,47,Tropical storm model (tropical storms)
+,,model,version,47,N/A
+,,model,name,48,VEGAS (biomes)
+,,model,version,48,v2.3
+,,model,name,49,VIC (water global)
+,,model,version,49,N/A
+,,model,name,50,VIC-NVE (water regional)
+,,model,version,50,N/A
+,,model,name,51,"VIC (Tagus Blue Nile, Yellow, Lena, Darling, Amazon, MacKenzie) (water regional) VISIT (biomes)"
+,,model,version,51,VISITa
+,,model,name,52,WaterGAP2 (water global)
+,,model,version,52,WaterGAP 2.2c
+ISIMIP2b,publications,reference,link,1,https://www.isimip.org/outcomes/publications
+,publications,reference,citation,1,"Sven N. Willner, Anders Levermann, Fang Zhao, Katja Frieler, ""Adaptation required to preserve future high-end river flood risk at present levels"", Science Advances, Volume 4, Number 1 (2018)"
+,publications,reference,citation,2,"Julien Boulange, Naota Hanasaki, Ted Veldkamp, Jacob Schewe, Hideo Shiogama, ""Magnitude and robustness associated with the climate change impacts on global hydrological variables for transient and stabilized climate states"", Environmental Research Letters, Volume 13, Number 6"
+,publications,reference,citation,3,"Stefan Lange, ""Bias correction of surface downwelling longwave and shortwave radiation for the EWEMBI dataset"", Earth Syst. Dynam., 9, 627-645, 2018 https://doi.org/10.5194/esd-9-627-2018"
+,publications,reference,citation,4,"Frieler, K. et al., ""Assessing the impacts of 1.5  °C global warming – simulation protocol of the Inter-Sectoral Impact Model Intercomparison Project (ISIMIP2b)"", Geosci. Model Dev., 10, 4321-4345, 2017, doi.org/10.5194/gmd-10-4321-2017"
+,year,,,1,2016-2018
+,regional coverage,region,,1,"mostly global, some sectors also have focus regions "
+,time horizon,start,,1,1860
+,,end,,1,2300

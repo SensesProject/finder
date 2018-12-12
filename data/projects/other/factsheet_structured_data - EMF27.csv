@@ -1,0 +1,220 @@
+factsheet,topic,attribute,subattribute,#,value
+EMF 27,project,,,,
+,guiding questions,preamble,,,The EMF27 study presents a first detailed assessments of the energy system transformation requirements for low stabilization in a large ensemble of leading global integrated assessment models.
+,,question,,1,What energy system transformations are required to achieve stabilization of concentrations at 450ppm or 550ppm CO2eq in 2100?
+,,question,,2,How do eight different assumptions on technology availability impact such stabilization scenarios?
+,results,preamble,,,Limiting the atmospheric GHG concentration to 450 or 550 ppm CO2 equivalent by 2100 would require a decarbonization of the global energy system in the 21st century. Technology is a key element of climate mitigation.
+,,insight,,1," Robust characteristics of the energy transformation are increased energy intensity improvements and the electrification of energy end use coupled with a fast decarbonization of the electricity sector. Non-electric energy end use is hardest to decarbonize, particularly in the transport sector. "
+,,insight,,2,"Versatile technologies such as CCS and bioenergy are found to be most important, due in part to their combined ability to produce negative emissions."
+,,insight,,3,The importance of individual low-carbon electricity technologies is more limited due to the many alternatives in the sector.
+,,insight,,4,"The scale of the energy transformation is larger for the 450 ppm than for the 550 ppm CO2e target. As a result, the achievability and the costs of the 450 ppm target are more sensitive to variations in technology availability."
+,scenarios,preamble,,,"Scenarios are differentiated along the policy assumption (prefixes “Base_” for no policy, “550_” for medium ambition stabilization, and “450_” for high ambition stabilization (~well below 2°C)), and along the technology availability assumption (suffixes “_FullTech” for full availability, “LowEI” for reduced Energy intensity, “NoCCS”, “_NucOff” for a nuclear phase-out, “_LimSW” for a limit of solar and wind of maximum 10% of power generation, “_LimBio” for max. 100 EJ bioenergy, “_Conv” for combined LimSW and LimBio, “_EERE” for combined LowEI, NucOff and NoCCS, and “_LimTech” for combined NoCCS, NucOff, LimSW and LimBio"
+,,scenario,name,1,Base-FullTech
+,,scenario,description,1,Counterfactual no-policy scenario with default full technology availability
+,,scenario,name,2,Base-LowEI
+,,scenario,description,2,Counterfactual no-policy scenario with assumption of low energy intensity
+,,scenario,name,3,Base-LimBio
+,,scenario,description,3,Counterfactual no-policy scenario with assumption of limited bio-energy availability (max 100EJ/yr)
+,,scenario,name,4,Base-LimSW
+,,scenario,description,4,Counterfactual no-policy scenario with assumption of limited integration of variable renewables (max 20% of total power generation)
+,,scenario,name,5,Base-nucOff
+,,scenario,description,5,Counterfactual no-policy scenario with assumption of nuclear phase-out (no new investments after 2015)
+,,scenario,name,6,Base-LimTech
+,,scenario,description,6,"Counterfactual no-policy scenario with combined assumption of noCCS, limBio, limSW, nucOff"
+,,scenario,name,7,Base-EERE
+,,scenario,description,7,"Counterfactual no-policy scenario with combined assumption of LowEI, nucOff and noCCS"
+,,scenario,name,8,Base-Conv
+,,scenario,description,8,Counterfactual no-policy scenario with combined assumption of limBio and limSW
+,,scenario,name,9,550-FullTech
+,,scenario,description,9,Scenario with stabilization of CO2eq concentration at 550ppm with default full technology availability
+,,scenario,name,10,550-noCCS
+,,scenario,description,10,Scenario with stabilization of CO2eq concentration at 550ppm with assumption of no CCS
+,,scenario,name,11,550-LowEI
+,,scenario,description,11,Scenario with stabilization of CO2eq concentration at 550ppm with assumption of low energy intensity
+,,scenario,name,12,550-LimBio
+,,scenario,description,12,Scenario with stabilization of CO2eq concentration at 550ppm with assumption of limited bio-energy availability (max 100EJ/yr)
+,,scenario,name,13,550-LimSW
+,,scenario,description,13,Scenario with stabilization of CO2eq concentration at 550ppm with assumption of limited integration of variable renewables (max 20% of total power generation)
+,,scenario,name,14,550-nucOff
+,,scenario,description,14,Scenario with stabilization of CO2eq concentration at 550ppm with assumption of nuclear phase-out (no new investments after 2015)
+,,scenario,name,15,550-LimTech
+,,scenario,description,15,"Scenario with stabilization of CO2eq concentration at 550ppm with combined assumption of noCCS, limBio, limSW, nucOff"
+,,scenario,name,16,550-EERE
+,,scenario,description,16,"Scenario with stabilization of CO2eq concentration at 550ppm with combined assumption of LowEI, nucOff and noCCS"
+,,scenario,name,17,550-Conv
+,,scenario,description,17,Scenario with stabilization of CO2eq concentration at 550ppm with combined assumption of limBio and limSW
+,,scenario,name,18,450-FullTech
+,,scenario,description,18,Scenario with stabilization of CO2eq concentration at 450ppm with default full technology availability
+,,scenario,name,19,450-noCCS
+,,scenario,description,19,Scenario with stabilization of CO2eq concentration at 450ppm with assumption of no CCS
+,,scenario,name,20,450-LowEI
+,,scenario,description,20,Scenario with stabilization of CO2eq concentration at 450ppm with assumption of low energy intensity
+,,scenario,name,21,450-LimBio
+,,scenario,description,21,Scenario with stabilization of CO2eq concentration at 450ppm with assumption of limited bio-energy availability (max 100EJ/yr)
+,,scenario,name,22,450-LimSW
+,,scenario,description,22,Scenario with stabilization of CO2eq concentration at 450ppm with assumption of limited integration of variable renewables (max 20% of total power generation)
+,,scenario,name,23,450-nucOff
+,,scenario,description,23,Scenario with stabilization of CO2eq concentration at 450ppm with assumption of nuclear phase-out (no new investments after 2015)
+,,scenario,name,24,450-LimTech
+,,scenario,description,24,"Scenario with stabilization of CO2eq concentration at 450ppm with combined assumption of noCCS, limBio, limSW, nucOff"
+,,scenario,name,25,450-EERE
+,,scenario,description,25,"Scenario with stabilization of CO2eq concentration at 450ppm with combined assumption of LowEI, nucOff and noCCS"
+,,scenario,name,26,450-Conv
+,,scenario,description,26,Scenario with stabilization of CO2eq concentration at 450ppm with combined assumption of limBio and limSW
+,data sources,source,name,1,AR5 database
+,,source,link,1,https://tntcat.iiasa.ac.at/AR5DB
+,publications,reference,citation,1,Kriegler et al. (2014)
+,,reference,type,1,journal article
+,,reference,doi,1,10.1007/s10584-013-0953-7
+,,reference,full,1,"Kriegler, E. et al. The role of technology for achieving climate policy objectives: overview of the EMF 27 study on global technology and climate policy strategies. Climatic Change 123, 353–367 (2014)."
+,,reference,ris,1,"TY - JOUR
+ TI - The role of technology for achieving climate policy objectives: overview of the EMF 27 study on global technology and climate policy strategies
+ AU - Kriegler, Elmar
+ AU - Weyant, John P.
+ AU - Blanford, Geoffrey J.
+ AU - Krey, Volker
+ AU - Clarke, Leon
+ AU - Edmonds, Jae
+ AU - Fawcett, Allen
+ AU - Luderer, Gunnar
+ AU - Riahi, Keywan
+ AU - Richels, Richard
+ AU - Rose, Steven K.
+ AU - Tavoni, Massimo
+ AU - Vuuren, Detlef P. van
+ T2 - Climatic Change
+ AB - This article presents the synthesis of results from the Stanford Energy Modeling Forum Study 27, an inter-comparison of 18 energy-economy and integrated assessment models. The study investigated the importance of individual mitigation options such as energy intensity improvements, carbon capture and storage (CCS), nuclear power, solar and wind power and bioenergy for climate mitigation. Limiting the atmospheric greenhouse gas concentration to 450 or 550 ppm CO2 equivalent by 2100 would require a decarbonization of the global energy system in the 21st century. Robust characteristics of the energy transformation are increased energy intensity improvements and the electrification of energy end use coupled with a fast decarbonization of the electricity sector. Non-electric energy end use is hardest to decarbonize, particularly in the transport sector. Technology is a key element of climate mitigation. Versatile technologies such as CCS and bioenergy are found to be most important, due in part to their combined ability to produce negative emissions. The importance of individual low-carbon electricity technologies is more limited due to the many alternatives in the sector. The scale of the energy transformation is larger for the 450 ppm than for the 550 ppm CO2e target. As a result, the achievability and the costs of the 450 ppm target are more sensitive to variations in technology availability.
+ DA - 2014///
+ PY - 2014
+ DO - 10.1007/s10584-013-0953-7
+ DP - link.springer.com
+ VL - 123
+ IS - 3-4
+ SP - 353
+ EP - 367
+ J2 - Climatic Change
+ LA - en
+ SN - 0165-0009, 1573-1480
+ ST - The role of technology for achieving climate policy objectives
+ UR - http://link.springer.com/article/10.1007/s10584-013-0953-7
+ Y2 - 2014/03/05/15:40:27
+ L1 - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0953-7.pdf
+ L2 - http://link.springer.com/article/10.1007%2Fs10584-013-0953-7
+ KW - Atmospheric Sciences
+ KW - Climate Change/Climate Change Impacts
+ ER -"
+,,reference,citation,2,Krey et al. (2014)
+,,reference,type,2,journal article
+,,reference,doi,2,10.1007/s10584-013-0947-5
+,,reference,full,2,Krey et al.. 2014. “Getting from Here to There – Energy Technology Transformation Pathways in the EMF27 Scenarios.” Climatic Change 123 (3–4): 369–82.
+,,reference,ris,2,"TY - JOUR
+ TI - Getting from here to there – energy technology transformation pathways in the EMF27 scenarios
+ AU - Krey, Volker
+ AU - Luderer, Gunnar
+ AU - Clarke, Leon
+ AU - Kriegler, Elmar
+ T2 - Climatic Change
+ AB - Based on a large number of energy-economic and integrated assessment models, the Energy Modeling Forum (EMF) 27 study systematically explores the implications of technology cost and availability for feasibility and macroeconomic costs of energy system transformations toward climate stabilization. At the highest level, the technology strategy articulated in all the scenarios in EMF27 includes three elements: decarbonization of energy supply, increasing the use of low-carbon energy carriers in end-use, and reduction of energy use. The way that the scenarios differ is in the degree to which these different elements of strategy are implemented, the timing of those implementations, and the associated macroeconomic costs. The study also discusses the value of individual technologies for achieving climate stabilization. A robust finding is that the unavailability of carbon capture and storage and limited availability of bioenergy have the largest impact on feasibility and macroeconomic costs for stabilizing atmospheric concentrations at low levels, mostly because of their combined ability to remove carbon from the atmosphere. Constraining options in the electric sector such as nuclear power, wind and solar energy in contrast has a much smaller impact on the cost of mitigation.
+ DA - 2014///
+ PY - 2014
+ DO - 10.1007/s10584-013-0947-5
+ DP - link.springer.com
+ VL - 123
+ IS - 3-4
+ SP - 369
+ EP - 382
+ J2 - Climatic Change
+ LA - en
+ SN - 0165-0009, 1573-1480
+ UR - http://link.springer.com/article/10.1007/s10584-013-0947-5
+ Y2 - 2013/12/11/11:22:27
+ L1 - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0947-5.pdf
+ L2 - http://link.springer.com/article/10.1007/s10584-013-0947-5
+ KW - Atmospheric Sciences
+ KW - Climate Change Impacts
+ ER -"
+,,reference,citation,3,Luderer et al. (2014)
+,,reference,type,3,journal article
+,,reference,doi,3,10.1007/s10584-013-0924-z
+,,reference,full,3,"Luderer, G. et al. The role of renewable energy in climate stabilization: results from the EMF27 scenarios. Climatic Change 123, 427–441 (2014)."
+,,reference,ris,3,"TY - JOUR
+ TI - The role of renewable energy in climate stabilization: results from the EMF27 scenarios
+ AU - Luderer, Gunnar
+ AU - Krey, Volker
+ AU - Calvin, Katherine
+ AU - Merrick, James
+ AU - Mima, Silvana
+ AU - Pietzcker, Robert
+ AU - Vliet, Jasper Van
+ AU - Wada, Kenichi
+ T2 - Climatic Change
+ AB - This paper uses the EMF27 scenarios to explore the role of renewable energy (RE) in climate change mitigation. Currently RE supplies almost 20 % of global electricity demand. Almost all EMF27 mitigation scenarios show a strong increase in renewable power production, with a substantial ramp-up of wind and solar power deployment. In many scenarios, renewables are the most important long-term mitigation option for power supply. Wind energy is competitive even without climate policy, whereas the prospects of solar photovoltaics (PV) are highly contingent on the ambitiousness of climate policy. Bioenergy is an important and versatile energy carrier; however—with the exception of low temperature heat—there is less scope for renewables other than biomass for non-electric energy supply. Despite the important role of wind and solar power in climate change mitigation scenarios with full technology availability, limiting their deployment has a relatively small effect on mitigation costs, if nuclear and carbon capture and storage (CCS)—which can serve as substitutes in low-carbon power supply—are available. Limited bioenergy availability in combination with limited wind and solar power by contrast, results in a more substantial increase in mitigation costs. While a number of robust insights emerge, the results on renewable energy deployment levels vary considerably across the models. An in-depth analysis of a subset of EMF27 reveals substantial differences in modeling approaches and parameter assumptions. To a certain degree, differences in model results can be attributed to different assumptions about technology costs, resource potentials and systems integration.
+ DA - 2014///
+ PY - 2014
+ DO - 10.1007/s10584-013-0924-z
+ DP - link.springer.com
+ SP - 1
+ EP - 15
+ J2 - Climatic Change
+ LA - en
+ SN - 0165-0009, 1573-1480
+ ST - The role of renewable energy in climate stabilization
+ UR - http://link.springer.com/article/10.1007/s10584-013-0924-z
+ Y2 - 2013/11/14/10:48:25
+ L1 - http://link.springer.com/content/pdf/10.1007%2Fs10584-013-0924-z.pdf
+ L2 - http://link.springer.com/article/10.1007/s10584-013-0924-z
+ KW - Atmospheric Sciences
+ KW - Climate Change Impacts
+ ER -"
+,diagnostics,source,name,1,N/A
+,,source,link,1,N/A
+,models,preamble,,,The study uses 18 global IAMs.
+,,model,name,1,REMIND
+,,model,version,1,1.5
+,,model,name,2,MESSAGE
+,,model,version,2,V.4
+,,model,name,3,AIM-Enduse
+,,model,version,3,12.1
+,,model,name,4,IMAGE
+,,model,version,4,2.4 EMF22
+,,model,name,5,GCAM
+,,model,version,5,3.0
+,,model,name,6,POLES
+,,model,version,6,EMF27
+,,model,name,7,WITCH
+,,model,version,7,EMF27
+,,model,name,8,FARM
+,,model,version,8,3.0
+,,model,name,9,MERGE
+,,model,version,9,EMF27
+,,model,name,10,Phoenix
+,,model,version,10,2012.4
+,,model,name,11,EC-IAM
+,,model,version,11,2012
+,,model,name,12,TIAM-World
+,,model,version,12,2012.2
+,,model,name,13,IMACLIM
+,,model,version,13,v1.1
+,,model,name,14,BET
+,,model,version,14,1.5
+,,model,name,15,DNE21+
+,,model,version,15,V.11
+,,model,name,16,GRAPE
+,,model,version,16,ver2011
+,,model,name,17,GCAM-IIM
+,,model,version,17,EMF27
+,,model,name,18,ENV-Linkages
+,,model,version,18,WEO2012 calibration
+,year,,,,2014
+,keywords,keyword,,1,energy system transformations
+,,keyword,,2,technology
+,,keyword,,3,climate stabilization
+,,keyword,,4,Optimal pathways
+,regional coverage,region,,1,World
+,,region,,2,Asia
+,,region,,3,Latin America
+,,region,,4,Middle East and Africa
+,,region,,5,OECD90+EU
+,,region,,6,Reforming Economies
+,time horizon,start,,,2005
+,,end,,,2100

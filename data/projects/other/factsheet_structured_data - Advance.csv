@@ -1,0 +1,158 @@
+factsheet,topic,attribute,subattribute,#,value
+Advance,project,,,,
+Advance,guiding questions,preamble,,,"The study aims to contribute the first multi-model assessment of Paris Agreement scenarios, exploring both the emission impacts of NDC until 2030 and strengthening scenarios that achieve the long-term targets of 2 or 1.5°C, with strengthening either after 2020 or 2030"
+Advance,,question,,1,"· What energy system transformations are implied by nationally determined contributions (NDCs) for 2030, and how do they differ from transformations in cost-optimal pathways reaching the Paris Agreements (PA) long-term targets of well-below 2°C and 1.5°C?"
+Advance,,question,,2,"· How much residual emissions occur in different sectors in 2°C and 1.5°C scenarios, and what are the determinants for those?"
+Advance,,question,,3,· What implications does failure to strengthen ambition before 2030 have for individual energy sectors and for achievability of the long-term targets?
+Advance,results,preamble,,,"Aggregate NDC ambition level is not in line with long-term Paris Agreement targets. These targets require full decarbonization of energy system, for which electrification, decarbonization of power supply and increase in low-carbon fuels are required."
+Advance,,insight,,1,"Aggregate NDC ambition level is not in line with long-term Paris Agreement (PA) targets, emissions gap to cost-optimal 2°C and 1.5°C pathways in 2030 already between 9-29 Gt CO2eq."
+Advance,,insight,,2,Higher ambition would only lead to modest increases of mitigation cost (not accounting for avoided damages and co-benefits).
+Advance,,insight,,3,"If countries fail to strengthen ambition before 2030, they lock-in more residual fossil emissions, which leads to a higher overshot of the net emissions budgets implied by the long-term targets, so that more carbon dioxide removal (CDR) is then needed to still meet the targets. On the other hand, failure to strengthen before 2030 also compromises the ability to scale-up negative emission options at tolerable costs."
+Advance,scenarios,preamble,,,"NoPOL (no-policy counterfactual baseline)
+Reference (currently implemented policies, extrapolated ambition levels)
+INDC (currently implemented policies and national targets until 2030)
+INDC2020_1600/1000/400: strengthening of ambition after 2020 in line with long-term target to reach 2°C with 50% likelihood (1600 Gt CO2 2011-2100), 66% likelihood (1000 Gt) or returning to 1.5 by 2100 with 66% likelihood (400)
+INDC2030_1600/1000/400: following NDCs until 2030 without anticipation of strengthening, then unanticipated shift to budget constraint as above
+"
+Advance,,scenario,name,1,NoPOL
+Advance,,scenario,description,1,no-policy counterfactual baseline
+Advance,,scenario,name,2,Reference
+Advance,,scenario,description,2,"currently implemented policies and targets for 2020, extrapolated ambition levels"
+Advance,,scenario,name,3,INDC
+Advance,,scenario,description,3,"currently implemented policies and NDC targets for 2025 and 2030, extrapolated ambition levels"
+Advance,,scenario,name,4,INDC2020_1600
+Advance,,scenario,description,4,unanticipated strengthening of ambition after 2020 in line with long-term target to reach 2°C with 50% likelihood (1600 Gt CO2 2011-2100)
+Advance,,scenario,name,5,INDC2020_1000
+Advance,,scenario,description,5,unanticipated strengthening of ambition after 2020 in line with long-term target to reach 2°C with 66% likelihood (1000 Gt CO2 2011-2100)
+Advance,,scenario,name,6,INDC2020_400
+Advance,,scenario,description,6,unanticipated strengthening of ambition after 2020 in line with long-term target to reach 1.5°C in 2100 with 66% likelihood (400 Gt CO2 2011-2100)
+Advance,,scenario,name,7,INDC2030_1600
+Advance,,scenario,description,7,unanticipated strengthening of ambition after 2030 in line with long-term target to reach 2°C with 50% likelihood (1600 Gt CO2 2011-2100)
+Advance,,scenario,name,8,INDC2030_1000
+Advance,,scenario,description,8,unanticipated strengthening of ambition after 2030 in line with long-term target to reach 2°C with 66% likelihood (1000 Gt CO2 2011-2100)
+Advance,,scenario,name,9,INDC2030_400
+Advance,,scenario,description,9,unanticipated strengthening of ambition after 2020 in line with long-term target to reach 1.5°C in 2100 with 66% likelihood (400 Gt CO2 2011-2100)
+Advance,data sources,source,name,1,ADVANCE database 
+Advance,,source,link,1,https://db1.ene.iiasa.ac.at/ADVANCEDB/
+Advance,,reference,citation,1,Luderer et al. 2018. “Residual Fossil CO 2 Emissions in 1.5–2 °C Pathways.” Nature Climate Change 8 (7): 626–33.
+Advance,,reference,type,1,journal article
+Advance,,reference,doi,1,https://doi.org/10.1038/s41558-018-0198-6
+Advance,,reference,full,1,"Luderer, G. et al. Residual fossil CO2 emissions in 1.5–2 °C pathways. Nature Climate Change 8, 626–633 (2018)."
+Advance,,reference,ris,,"TY - JOUR
+ TI - Residual fossil CO 2 emissions in 1.5–2 °C pathways
+ AU - Luderer, Gunnar
+ AU - Vrontisi, Zoi
+ AU - Bertram, Christoph
+ AU - Edelenbosch, Oreane Y.
+ AU - Pietzcker, Robert C.
+ AU - Rogelj, Joeri
+ AU - Boer, Harmen Sytze De
+ AU - Drouet, Laurent
+ AU - Emmerling, Johannes
+ AU - Fricko, Oliver
+ AU - Fujimori, Shinichiro
+ AU - Havlík, Petr
+ AU - Iyer, Gokul
+ AU - Keramidas, Kimon
+ AU - Kitous, Alban
+ AU - Pehl, Michaja
+ AU - Krey, Volker
+ AU - Riahi, Keywan
+ AU - Saveyn, Bert
+ AU - Tavoni, Massimo
+ AU - Vuuren, Detlef P. Van
+ AU - Kriegler, Elmar
+ T2 - Nature Climate Change
+ AB - Residual CO2 emissions from fossil fuels limit the likelihood of meeting the goals of the Paris Agreement. A sector-level assessment of residual emissions using an ensemble of IAMs indicates that 640–950 GtCO2 removal will be required to constrain warming to 1.5 °C.
+ DA - 2018/07//
+ PY - 2018
+ DO - 10.1038/s41558-018-0198-6
+ DP - www.nature.com
+ VL - 8
+ IS - 7
+ SP - 626
+ EP - 633
+ LA - en
+ SN - 1758-6798
+ UR - https://www.nature.com/articles/s41558-018-0198-6
+ Y2 - 2018/08/23/08:57:07
+ L1 - https://www.nature.com/articles/s41558-018-0198-6.pdf
+ L2 - https://www.nature.com/articles/s41558-018-0198-6
+ ER -"
+Advance,publications,reference,citation,2,Zoi Vrontisi et al 2018 Environ. Res. Lett. 13 044039
+Advance,,reference,type,2,journal article
+Advance,,reference,doi,2,https://doi.org/10.1088/1748-9326/aab53e
+Advance,,reference,full,2,"Vrontisi, Z. et al. Enhancing global climate policy ambition towards a 1.5 °C stabilization: a short-term multi-model assessment. Environ. Res. Lett. 13, 044039 (2018)."
+Advance,,reference,ris,1,"TY - JOUR
+ TI - Enhancing global climate policy ambition towards a 1.5 °C stabilization: a short-term multi-model assessment
+ AU - Vrontisi, Zoi
+ AU - Luderer, Gunnar
+ AU - Saveyn, Bert
+ AU - Keramidas, Kimon
+ AU - Lara, Aleluia Reis
+ AU - Lavinia Baumstark
+ AU - Bertram, Christoph
+ AU - Boer, Harmen Sytze de
+ AU - Drouet, Laurent
+ AU - Fragkiadakis, Kostas
+ AU - Oliver Fricko
+ AU - Fujimori, Shinichiro
+ AU - Guivarch, Celine
+ AU - Kitous, Alban
+ AU - Krey, Volker
+ AU - Kriegler, Elmar
+ AU - Broin, Eoin Ó
+ AU - Paroussos, Leonidas
+ AU - Vuuren, Detlef van
+ T2 - Environmental Research Letters
+ AB - The Paris Agreement is a milestone in international climate policy as it establishes a global mitigation framework towards 2030 and sets the ground for a potential 1.5 °C climate stabilization. To provide useful insights for the 2018 UNFCCC Talanoa facilitative dialogue, we use eight state-of-the-art climate-energy-economy models to assess the effectiveness of the Intended Nationally Determined Contributions (INDCs) in meeting high probability 1.5 and 2 °C stabilization goals. We estimate that the implementation of conditional INDCs in 2030 leaves an emissions gap from least cost 2 °C and 1.5 °C pathways for year 2030 equal to 15.6 (9.0–20.3) and 24.6 (18.5–29.0) GtCO 2 eq respectively. The immediate transition to a more efficient and low-carbon energy system is key to achieving the Paris goals. The decarbonization of the power supply sector delivers half of total CO 2 emission reductions in all scenarios, primarily through high penetration of renewables and energy efficiency improvements. In combination with an increased electrification of final energy demand, low-carbon power supply is the main short-term abatement option. We find that the global macroeconomic cost of mitigation efforts does not reduce the 2020–2030 annual GDP growth rates in any model more than 0.1 percentage points in the INDC or 0.3 and 0.5 in the 2 °C and 1.5 °C scenarios respectively even without accounting for potential co-benefits and avoided climate damages. Accordingly, the median GDP reductions across all models in 2030 are 0.4%, 1.2% and 3.3% of reference GDP for each respective scenario. Costs go up with increasing mitigation efforts but a fragmented action, as implied by the INDCs, results in higher costs per unit of abated emissions. On a regional level, the cost distribution is different across scenarios while fossil fuel exporters see the highest GDP reductions in all INDC, 2 °C and 1.5 °C scenarios.
+ DA - 2018///
+ PY - 2018
+ DO - 10.1088/1748-9326/aab53e
+ DP - Institute of Physics
+ VL - 13
+ IS - 4
+ SP - 044039
+ J2 - Environ. Res. Lett.
+ LA - en
+ SN - 1748-9326
+ ST - Enhancing global climate policy ambition towards a 1.5 °C stabilization
+ UR - http://stacks.iop.org/1748-9326/13/i=4/a=044039
+ Y2 - 2018/10/12/14:52:15
+ L1 - http://iopscience.iop.org/article/10.1088/1748-9326/aab53e/pdf
+ ER -"
+Advance,diagnostics,source,name,1,N/A
+Advance,,source,link,1,N/A
+Advance,models,preamble,,,The ADVANCE study is based on 8 models.
+Advance,,model,name,1,REMIND
+Advance,,model,version,1,1.7
+Advance,,model,name,2,MESSAGE-GLOBIOM
+Advance,,model,version,2,1.0
+Advance,,model,name,3,AIM/CGE
+Advance,,model,version,3,2.0
+Advance,,model,name,4,IMAGE
+Advance,,model,version,4,3.0.1
+Advance,,model,name,5,GCAM
+Advance,,model,version,5,4.2
+Advance,,model,name,6,POLES
+Advance,,model,version,6,ADVANCE
+Advance,,model,name,7,WITCH-GLOBIOM 
+Advance,,model,version,7,4.2
+Advance,,model,name,8,GEM-E3-ICCS
+Advance,,model,version,8,ICCS
+Advance,year,,,,2018
+Advance,keywords,keyword,,1,energy system transformations
+Advance,,keyword,,2,NDCs
+Advance,,keyword,,3,Paris Agreement
+Advance,,keyword,,4,residual emissions
+Advance,,keyword,,5,carbon dioxide removal (CDR)
+Advance,,keyword,,6,carbon lock-in
+Advance,,keyword,,7,electrification
+Advance,regional coverage,region,,1,World
+Advance,,region,,2,Asia
+Advance,,region,,3,Latin America
+Advance,,region,,4,Middle East and Africa
+Advance,,region,,5,OECD90+EU
+Advance,,region,,6,Reforming Economies
+Advance,time horizon,start,,,2005
+Advance,,end,,,2100

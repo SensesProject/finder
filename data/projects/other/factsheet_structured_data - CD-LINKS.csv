@@ -1,0 +1,161 @@
+factsheet,topic,attribute,subattribute,#,value
+CD-LINKS,project,,,,
+CD-LINKS,guiding questions,preamble,,,"The CD-LINKS project is exploring the complex interplay between climate action and development, while simultaneously taking both global and national perspectives and thereby informing the design of complementary climate-development policies."
+CD-LINKS,guiding questions,question,,1,How do national decarbonisation pathways that are collectively consistent with global well-below-2°C pathways look like?
+CD-LINKS,guiding questions,question,,2,"How do these low-carbon development pathways for the seven largest greenhouse gas emitters (China, the USA, the EU, India, Russia, Japan and Brazil) compare to each other and which sectoral mitigation measures are deployed?"
+CD-LINKS,guiding questions,question,,3,How much achieve currently implemented national policies and submitted NDCs on the way to limit temperature change to 1.5 and 2°C and how large is the emissions gap to cost-effective emissions pathways?
+CD-LINKS,guiding questions,question,,4,What are implications of climate policy to achieve the 1.5 and 2°C targets for Sustainable Development Goals (SDGs)?
+CD-LINKS,guiding questions,question,,5,"How can adverse effects of climate policies on non-climate SDGs, e.g. on food security, be avoided?"
+CD-LINKS,guiding questions,question,,6,What are investment needs to limit temperature rise to 1.5 and 2°C and how do these compare to investment needs to achieve a subset of SDGs?
+CD-LINKS,results,preamble,,,"The CD-LINKS scenarios are analyzed from a set of different angles, including consistency of national action with global climate targets, investment needs and sustainable development implicaitons of climate policy consistent with the Paris Agreement. These analyses have been (and are being) published in a series of journal articles, part of which are listed below in relation to the high-level insights. In addition, a full Special Issue with national level analysis in selected G20 countries is currently in preparation."
+CD-LINKS,results,insight,,1,"Roelfsema et al.: Seven G20 countries were assessed. Some seem on track to meet NDC targets with current policies, others display an ambition gap. Their NDCs are not on track with cost-efficient emission pathways which limit warming to well below 2°C. Current policies bring a reduction of 2 to 5.5 GtCO2eq. Additional policies and measures are required to fully implement the NDCs, which would reduce emissions by 7 to 17 GtCO2eq.The emissions gap in 2030 between planned national policies and a well below 2°C trajectory are 9 to 37 Gt. For a 1.5°C trajectory there is a gap of 17 to 43 Gt. "
+CD-LINKS,results,insight,,2,"Kriegler et al.: Although countries differ considerably in the sectoral composition of emission reductions, a robust pattern emerges, with an almost complete decarbonisation of the electricity sector by 2050 that is accompanied by accelerated electrification and a limited reduction of carbon intensity of fuel consumption in the industry, buildings and transport sectors."
+CD-LINKS,results,insight,,3,"Krey et al.: Climate policies to achieve 1.5 and 2C potentially create both synergies and trade-offs with other SDGs, highlighting that integrated policy approaches are needed to ensure multiple SDGs are achieved simultaneously. In particular, dealing with undesirable distributional consequences of climate policies is key to avoid negative impacts on the poor, like ensuring food security and access to modern energy services."
+CD-LINKS,results,insight,,4,McCollum et al.: The Nationally Determined Contributions lack the pronounced reallocation of the investment portfolio needed for transforming the energy system. Charting a course toward ‘well below 2 °C’ instead requires that low-carbon investments overtake fossil investments globally before 2025 and then continue to grow from there. Pursuing the 1.5 °C target demands a marked up-scaling in low-carbon capital beyond that demanded by 2 °C. The investment needs for making progress on certain other SDG targets are small relative to those for energy.
+CD-LINKS,scenarios,preamble,,,"The CD-LINKS project includes consistent global and national low-carbon development pathways that are based on current national policies, Nationally Determined Contributions (NDCs) and the long-term climate goals of the Paris Agreement (1.5 and 2°C). 
+•	No Policy – Baseline scenario without any climate policy in place 
+•	NPi – National Policies implemented scenario includes currently implemented climate, energy and land policies and extrapolates the implied effort beyond the direction of the policies
+•	INDCi – Intended Nationally Determined Contributions (INDC) scenario that implements the first round of INDCs until 2030 and extrapolates the implied effort beyond 2030
+•	NPi2020_1600/1000/400 (global models only) – NPi scenario until 2020 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1600, 1000 and 400 GtCO2 afterwards, corresponding to staying below 2C at >50% and >66% through the 21st century and a chance of >66% below 1.5C in 2100, respectively
+•	INDCi2030_1600/1000/400 (global models only) – INDCi scenario until 2030 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1600, 1000 and 400 GtCO2 afterwards, corresponding to staying below 2C at >50% and >66% through the 21st century and a chance of >66% below 1.5C in 2100, respectively
+•	NPi2020_High/Low/Very Low (national models only) - NPi scenario until 2020 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1600, 1000 and 400 GtCO2 carbon budgets and the national policy debate 
+•	INDCi2030_High/Low/Very Low (national models only) – INDCi scenario until 2030 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1600, 1000 and 400 GtCO2 carbon budgets and the national policy debate"
+CD-LINKS,scenarios,scenario,name,1,NoPolicy
+CD-LINKS,scenarios,scenario,description,1,Baseline scenario without any climate policy in place
+CD-LINKS,scenarios,scenario,name,2,NPi
+CD-LINKS,scenarios,scenario,description,2,"National Policies implemented scenario includes currently implemented climate, energy and land policies and extrapolates the implied effort beyond the direction of the policies"
+CD-LINKS,scenarios,scenario,name,3,INDCi
+CD-LINKS,scenarios,scenario,description,3,Intended Nationally Determined Contributions (INDC) scenario that implements the first round of INDCs until 2030 and extrapolates the implied effort beyond 2030
+CD-LINKS,scenarios,scenario,name,4,NPi2020_1600
+CD-LINKS,scenarios,scenario,description,4,"NPi scenario until 2020 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1600 GtCO2 afterwards, corresponding to staying below 2C at >50% through the 21st century"
+CD-LINKS,scenarios,scenario,name,5,NPi2020_1000
+CD-LINKS,scenarios,scenario,description,5,"NPi scenario until 2020 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1000 GtCO2 afterwards, corresponding to staying below 2C at >66% through the 21st century"
+CD-LINKS,scenarios,scenario,name,6,NPi2020_400
+CD-LINKS,scenarios,scenario,description,6,"NPi scenario until 2020 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 400 GtCO2 afterwards, corresponding to a chance of >66% for staying below 1.5C in 2100"
+CD-LINKS,scenarios,scenario,name,7,INDCi2030_1600
+CD-LINKS,scenarios,scenario,description,7,"INDCi scenario until 2030 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1600 GtCO2 afterwards, corresponding to staying below 2C at >50% through the 21st century"
+CD-LINKS,scenarios,scenario,name,8,INDCi2030_1000
+CD-LINKS,scenarios,scenario,description,8,"INDCi scenario until 2030 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 1600 GtCO2 afterwards, corresponding to staying below 2C at >50% through the 21st century"
+CD-LINKS,scenarios,scenario,name,9,INDCi2030_400
+CD-LINKS,scenarios,scenario,description,9,"INDCi scenario until 2030 with a transition to a globally cost-effective implementation of a carbon budget for the period 2011-2100 of 400 GtCO2 afterwards, corresponding to a chance of >66% to stay below 1.5C in 2100"
+CD-LINKS,scenarios,scenario,name,10,NPi2020_high
+CD-LINKS,scenarios,scenario,description,10,"NPi scenario until 2020 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1600 GtCO2 carbon budgets and the national policy debate "
+CD-LINKS,scenarios,scenario,name,11,NPi2020_low
+CD-LINKS,scenarios,scenario,description,11,"NPi scenario until 2020 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1000 GtCO2 carbon budgets and the national policy debate "
+CD-LINKS,scenarios,scenario,name,12,NPi2020_verylow
+CD-LINKS,scenarios,scenario,description,12,"NPi scenario until 2020 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 400 GtCO2 carbon budgets and the national policy debate "
+CD-LINKS,scenarios,scenario,name,13,INDCi2030_high
+CD-LINKS,scenarios,scenario,description,13,"INDCi scenario until 2030 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1600 GtCO2 carbon budgets and the national policy debate"
+CD-LINKS,scenarios,scenario,name,14,INDCi2030_low
+CD-LINKS,scenarios,scenario,description,14,"INDCi scenario until 2030 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 1000 GtCO2 carbon budgets and the national policy debate"
+CD-LINKS,scenarios,scenario,name,15,INDCi2030_verylow
+CD-LINKS,scenarios,scenario,description,15,"INDCi scenario until 2030 with a transition to an implementation of a carbon budget until 2050 that was derived in a discourse between national and global teams, based on the global 400 GtCO2 carbon budgets and the national policy debate"
+CD-LINKS,data sources,source,name,1,CD-LINKS Scenario Database
+CD-LINKS,data sources,source,link,1,https://db1.ene.iiasa.ac.at/CDLINKSDB
+CD-LINKS,publications,reference,citation,1,McCollum et al. (2018)
+CD-LINKS,publications,reference,type,1,journal article
+CD-LINKS,publications,reference,doi,1,10.1038/s41560-018-0179-z
+CD-LINKS,publications,reference,full,1,"McCollum DL, Zhou W, Bertram C, de Boer H-S, Bosetti V, Busch S, Després J, Drouet L, Emmerling J, Fay M, Fricko O, Fujimori S, Gidden M, Harmsen M, Huppmann D, Iyer G, Krey V, Kriegler E, Nicolas C, Pachauri S, Parkinson S, Poblete-Cazenave M, Rafaj P, Rao N, Rozenberg J, Schmitz A, Schoepp W, van Vuuren D, Riahi K (2018) Energy investment needs for fulfilling the Paris Agreement and achieving the Sustainable Development Goals. Nature Energy 3:589-599."
+CD-LINKS,publications,reference,ris,1,"TY  - JOUR
+AB  - Low-carbon investments are necessary for driving the energy system transformation that is called for by both the Paris Agreement and Sustainable Development Goals. Improving understanding of the scale and nature of these investments under diverging technology and policy futures is therefore of great importance to decision makers. Here, using six global modelling frameworks, we show that the pronounced reallocation of the investment portfolio required to transform the energy system will not be initiated by the current suite of countries’ Nationally Determined Contributions. Charting a course toward ‘well below 2 °C’ instead sees low-carbon investments overtaking fossil investments globally by around 2025 or before and growing thereafter. Pursuing the 1.5 °C target demands a marked upscaling in low-carbon capital beyond that of a 2 °C-consistent future. Actions consistent with an energy transformation would increase the costs of achieving the goals of energy access and food security, but reduce the costs of achieving air-quality goals.
+AU  - McCollum, David L.
+AU  - Zhou, Wenji
+AU  - Bertram, Christoph
+AU  - de Boer, Harmen-Sytze
+AU  - Bosetti, Valentina
+AU  - Busch, Sebastian
+AU  - Després, Jacques
+AU  - Drouet, Laurent
+AU  - Emmerling, Johannes
+AU  - Fay, Marianne
+AU  - Fricko, Oliver
+AU  - Fujimori, Shinichiro
+AU  - Gidden, Matthew
+AU  - Harmsen, Mathijs
+AU  - Huppmann, Daniel
+AU  - Iyer, Gokul
+AU  - Krey, Volker
+AU  - Kriegler, Elmar
+AU  - Nicolas, Claire
+AU  - Pachauri, Shonali
+AU  - Parkinson, Simon
+AU  - Poblete-Cazenave, Miguel
+AU  - Rafaj, Peter
+AU  - Rao, Narasimha
+AU  - Rozenberg, Julie
+AU  - Schmitz, Andreas
+AU  - Schoepp, Wolfgang
+AU  - van Vuuren, Detlef
+AU  - Riahi, Keywan
+DA  - 2018/07/01
+DO  - 10.1038/s41560-018-0179-z
+L1  - https://doi.org/10.1038/s41560-018-0179-z
+IS  - 7
+PY  - 2018
+SN  - 2058-7546
+SP  - 589-599
+ST  - Energy investment needs for fulfilling the Paris Agreement and achieving the Sustainable Development Goals
+T2  - Nature Energy
+TI  - Energy investment needs for fulfilling the Paris Agreement and achieving the Sustainable Development Goals
+UR  - https://doi.org/10.1038/s41560-018-0179-z
+VL  - 3
+ID  - 3
+ER  - 
+"
+CD-LINKS,diagnostics,source,name,1,N/A
+CD-LINKS,diagnostics,source,link,1,N/A
+CD-LINKS,models,preamble,,,CD-LINKS is a multi-model study that uses 11 national and 8 global models jointly.
+CD-LINKS,models,model,name,1,AIM/CGE
+CD-LINKS,models,model,version,1,2.1
+CD-LINKS,models,model,name,2,GCAM-USA
+CD-LINKS,models,model,version,2,CD-LINKS
+CD-LINKS,models,model,name,3,IMAGE
+CD-LINKS,models,model,version,3,3.0.1
+CD-LINKS,models,model,name,4,MESSAGEix-GLOBIOM
+CD-LINKS,models,model,version,4,1.0
+CD-LINKS,models,model,name,5,POLES
+CD-LINKS,models,model,version,5,CD-LINKS
+CD-LINKS,models,model,name,6,REMIND-MAgPIE
+CD-LINKS,models,model,version,6,1.7-3.0
+CD-LINKS,models,model,name,7,WITCH-GLOBIOM
+CD-LINKS,models,model,version,7,4.4
+CD-LINKS,models,model,name,8,GEM-E3
+CD-LINKS,models,model,version,8,
+CD-LINKS,models,model,name,9,COFFEE
+CD-LINKS,models,model,version,9,1.0
+CD-LINKS,models,model,name,10,BLUES
+CD-LINKS,models,model,version,10,
+CD-LINKS,models,model,name,11,China-TIMES
+CD-LINKS,models,model,version,11,
+CD-LINKS,models,model,name,12,IPAC/AIM-technology
+CD-LINKS,models,model,version,12,1.0
+CD-LINKS,models,model,name,13,AIM-Enduse India
+CD-LINKS,models,model,version,13,3.0
+CD-LINKS,models,model,name,14,India MARKAL
+CD-LINKS,models,model,version,14,
+CD-LINKS,models,model,name,15,AIM-Enduse[Japan]
+CD-LINKS,models,model,version,15,
+CD-LINKS,models,model,name,16,DNE21+
+CD-LINKS,models,model,version,16,V.14
+CD-LINKS,models,model,name,17,PRIMES
+CD-LINKS,models,model,version,17,1
+CD-LINKS,models,model,name,18,Russia-TIMES
+CD-LINKS,models,model,version,18,3.2
+CD-LINKS,models,model,name,19,
+CD-LINKS,models,model,version,19,
+CD-LINKS,year,,,,2018
+CD-LINKS,project,,,,CD-LINKS (Linking Climate and Development Policies – Leveraging International Networks and Knowledge Sharing)
+CD-LINKS,keywords,keyword,,1,national
+CD-LINKS,keywords,keyword,,2,Nationally 
+CD-LINKS,keywords,keyword,,3,Sustainable Develpoment Goals
+CD-LINKS,keywords,keyword,,4,co-benefits
+CD-LINKS,keywords,keyword,,5,trade-offs
+CD-LINKS,regional coverage,region,,1,World
+CD-LINKS,regional coverage,region,,2,Asia
+CD-LINKS,regional coverage,region,,3,Latin America
+CD-LINKS,regional coverage,region,,4,Middle East and Africa
+CD-LINKS,regional coverage,region,,5,OECD90+EU
+CD-LINKS,regional coverage,region,,6,Reforming Economies
+CD-LINKS,regional coverage,region,,7,"selected G20 countries (Brazil, China, EU, India, Japan, Russia, USA)"
+CD-LINKS,time horizon,start,,,2010
+CD-LINKS,time horizon,end,,,2100

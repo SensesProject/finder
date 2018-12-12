@@ -12,11 +12,13 @@ const store = () => new Vuex.Store({
     filter: [],
     activeKey: false,
     facets: [],
-    data: []
+    data: [],
+    popover: false
   },
   getters: {
     datum: state => {
       return _.map(state.data, datum => {
+        // Rebuild the data structure. Build an object from the data array
         return _.fromPairs(_.map(state.facets, facet => {
           const key = facet.key
           const value = datum[facet.key] || '—'
@@ -83,6 +85,12 @@ const store = () => new Vuex.Store({
     }
   },
   mutations: {
+    CLOSE_POPOVER (state) {
+      state.popover = false
+    },
+    OPEN_POPOVER (state, key) {
+      state.popover = key
+    },
     RESET_FILTER (state) {
       state.filter = []
     },
@@ -158,6 +166,13 @@ const store = () => new Vuex.Store({
   actions: {
     resetFilter ({ commit }) {
       commit('RESET_FILTER')
+    },
+    closePopover ({ commit }) {
+      commit('CLOSE_POPOVER')
+    },
+    openPopover ({ commit }, key) {
+      // console.log('openPopover', key)
+      commit('OPEN_POPOVER', key)
     },
     resetFacet ({ commit }, key) {
       // console.log('resetFacet')

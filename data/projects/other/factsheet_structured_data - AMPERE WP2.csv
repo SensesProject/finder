@@ -1,0 +1,402 @@
+factsheet,topic,attribute,subattribute,#,value
+AMPERE WP2,project,,,,
+AMPERE WP2,guiding questions,preamble,,,The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP2 of AMPERE specifically focused on “Delayed policy action and path dependency in energy systems”
+AMPERE WP2,guiding questions,question,,1, How do short-term climate policies impact the achievability of long-term climate targets?
+AMPERE WP2,guiding questions,question,,2,What is the role of different technologies and their innovation in meeting long-term climate targets?
+AMPERE WP2,results,preamble,,,Delaying global climate mitigation action until 2030 would require an unprecedented and more costly transformation of the global energy system in the decades that follow.
+AMPERE WP2,results,insight,,1,"Given the limited remaining carbon budget in order to achieve 2°C, a weak short-term policy results in a majority of the compensation for the delayed action to occur over a twenty-year period between 2030 and 2050. The portion of global energy supplied by low-carbon options would need to quadruple in this period, meaning that almost 50% of the global energy supply infrastructure would need replacement. As a result, mitigation costs would rise between 10-40%, relative to a scenario where immediate action is taken."
+AMPERE WP2,results,insight,,2,"Delayed action until 2030 also increases future reliance on specific mitigation options. The longer climate action is delayed, the higher the future dependency on carbon capture and storage (combined with both fossil and biomass) becomes. On the other hand, reducing energy demand by means of increasing energy efficiency contributes towards not only the achievability of the 2°C target, but also results in mitigation cost reductions. Consistently across scenarios, new investments in unabated coal-fired power plants (i.e., without carbon capture and storage, CCS) should be avoided, if ambitious climate goals are to be achieved."
+AMPERE WP2,scenarios,preamble,,,"In order to explore the consequences of near-term pledges, the scenarios consider a combination of different short-term and long-term targets, which divide the century-scale time horizon of the scenarios into two stages. During the first stage up to the year 2030, global emissions are required to follow a trajectory toward a 2030 emission target. After 2030, emissions are constrained further to stay within a cumulative emission budget for the full century (2000–2100) in order to achieve stabilization of greenhouse gas concentrations in the long-term.  So as to explore sensitivity of the results to different demand assumptions, two contrasting scenarios are used. In the reference case, global energy intensity is following broadly historical rates of improvement, leading to an increase in global energy demand by about a factor of two in 2050. The second scenario is a low energy demand case broadly consistent with the lower bound of demand projections in the literature, depicting stringent efficiency measures and behavioral changes to radically limit energy demand. The rate of energy intensity improvement in the low demand scenario is about 50% higher than the historical rate of changeIn addition to sensitivity cases for energy demand, we explore the feasibility of the transformation for a variety of different supply-side portfolios.  In addition to sensitivity cases for energy demand, the feasibility of the transformation for a variety of different supply-side portfolios is explored. These supply-side cases not only focus on possible restrictions for specific technologies that might arise due to political concerns and public perception, but also on implementation barriers or other concerns
+
+AMPERE WP2 consists of 12 mandatory scenarios in addition to three benchmark scenarios.  
+Scenarios differ in terms of:
+1.        Long-term climate policy:
+           •        Baseline (no climate policy)
+           •        450 ppm CO2e (2.0°C)
+           •        550 ppm CO2e (3.4°C)
+2.        Short-term climate policy (until 2030):
+           •        Weak
+           •        Strong
+3.        Technology portfolio:
+           •        Full technology portfolio (default model assumptions)
+           •        Energy intensity (high or low energy demand)
+           •        Carbon Capture and Storage (available or unavailable)
+           •        Nuclear energy (available or unavailable)
+           •        Wind and Solar (advanced or conventional)
+           •        Bioenergy (high or low potential)
+
+Overarching project (benchmark) scenarios:
+•        Baseline, 450ppm and 550ppm scenario + full technology portfolio.
+WP2 Scenarios (12):
+•        Baseline + low energy intensity
+•        Baseline + no nuclear
+•        450ppm and 550ppm + full technology options + once with weak and once with strong short term climate policy
+•        450ppm + low energy intensity + once with weak and once with strong short term climate policy
+•        450ppm + CCS unavailable + once with weak and once with strong short term climate policy
+•        450ppm + nuclear unavailable + once with weak and once with strong short term climate policy
+Optional sensitivity scenarios cover additional variations of technological as well as long and near-term policy assumptions. 
+
+"
+AMPERE WP2,scenarios,scenario,name,1,AMPERE2-Base-FullTech-OPT
+AMPERE WP2,scenarios,scenario,description,1,"Longterm policy: None
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,2,AMPERE2-550-FullTech-OPT
+AMPERE WP2,scenarios,scenario,description,2,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,3,AMPERE2-450-FullTech-OPT
+AMPERE WP2,scenarios,scenario,description,3,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,4,AMPERE2-Base-LowEI-OPT
+AMPERE WP2,scenarios,scenario,description,5,"Longterm policy: None
+ Technology Assumption: Low demand and energy intensity: A combination of stringent efficiency measures and behavioral changes radically limits energy demand, leading to a doubling of the rate of energy intensity improvements compared to the past. The full portfolio of technologies is available on the supply side.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,6,AMPERE2-Base-NucOff-OPT
+AMPERE WP2,scenarios,scenario,description,6,"Longterm policy: None
+ Technology Assumption: No new nuclear: No new investments into nuclear power after 2020; existing plants are fully phased out over their life time.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,7,AMPERE2-550-FullTech-LST
+AMPERE WP2,scenarios,scenario,description,7,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,8,AMPERE2-550-FullTech-HST
+AMPERE WP2,scenarios,scenario,description,8,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: High short-term target: Global emissions follow a low ambition pledge pathway reaching 61 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,9,AMPERE2-450-FullTech-LST
+AMPERE WP2,scenarios,scenario,description,9,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,10,AMPERE2-450-FullTech-HST
+AMPERE WP2,scenarios,scenario,description,10,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Full technology: The full portfolio of technologies is available and may scale up successfully to meet the respective climate targets.
+ Shortterm policy: High short-term target: Global emissions follow a low ambition pledge pathway reaching 61 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,11,AMPERE2-450-LowEI-HST
+AMPERE WP2,scenarios,scenario,description,11,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Low demand and energy intensity: A combination of stringent efficiency measures and behavioral changes radically limits energy demand, leading to a doubling of the rate of energy intensity improvements compared to the past. The full portfolio of technologies is available on the supply side.
+ Shortterm policy: High short-term target: Global emissions follow a low ambition pledge pathway reaching 61 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,12,AMPERE2-450-LowEI-LST
+AMPERE WP2,scenarios,scenario,description,12,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Low demand and energy intensity: A combination of stringent efficiency measures and behavioral changes radically limits energy demand, leading to a doubling of the rate of energy intensity improvements compared to the past. The full portfolio of technologies is available on the supply side.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,13,AMPERE2-450-NucOff-HST
+AMPERE WP2,scenarios,scenario,description,13,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: No new nuclear: No new investments into nuclear power after 2020; existing plants are fully phased out over their life time.
+ Shortterm policy: High short-term target: Global emissions follow a low ambition pledge pathway reaching 61 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,14,AMPERE2-450-NucOff-LST
+AMPERE WP2,scenarios,scenario,description,14,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: No new nuclear: No new investments into nuclear power after 2020; existing plants are fully phased out over their life time.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,15,AMPERE2-450-Conv-OPT
+AMPERE WP2,scenarios,scenario,description,15,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Conventional solutions: Limited solar, wind and biomass potentials, leading to heavy reliance on conventional technologies such as fossil fuels in combination with CCS and/or nuclear.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,16,AMPERE2-450-EERE-OPT
+AMPERE WP2,scenarios,scenario,description,16,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Efficiency and renewables: A low demand case assuming “No CCS” and “no new nuclear”, leading to heavy reliance on renewables and efficiency measures.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,17,AMPERE2-450-LimBio-LST
+AMPERE WP2,scenarios,scenario,description,17,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Limited biomass: Limited potential for biomass (maximum of 100 EJ/year), exploring strategies that would avoid large-scale expansion of bioenergy and thus avoid potential competition over land for food and fiber.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,18,AMPERE2-450-LimBio-OPT
+AMPERE WP2,scenarios,scenario,description,18,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Limited biomass: Limited potential for biomass (maximum of 100 EJ/year), exploring strategies that would avoid large-scale expansion of bioenergy and thus avoid potential competition over land for food and fiber.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,19,AMPERE2-450-LimSW-HST
+AMPERE WP2,scenarios,scenario,description,19,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Limited solar and wind: Limited contribution of solar and wind to 20% of total power generation, reflecting potential implementation barriers of variable renewable energy at high penetration rates.
+ Shortterm policy: High short-term target: Global emissions follow a low ambition pledge pathway reaching 61 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,20,AMPERE2-450-LimSW-LST
+AMPERE WP2,scenarios,scenario,description,20,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Limited solar and wind: Limited contribution of solar and wind to 20% of total power generation, reflecting potential implementation barriers of variable renewable energy at high penetration rates.
+ Shortterm policy: Low short-term target: Global emissions follow a high ambition pledge pathway reaching 53 GtCO2e by 2030."
+AMPERE WP2,scenarios,scenario,name,21,AMPERE2-450-LimSW-OPT
+AMPERE WP2,scenarios,scenario,description,21,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Limited solar and wind: Limited contribution of solar and wind to 20% of total power generation, reflecting potential implementation barriers of variable renewable energy at high penetration rates.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,22,AMPERE2-450-LowEI-OPT
+AMPERE WP2,scenarios,scenario,description,22,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: Low demand and energy intensity: A combination of stringent efficiency measures and behavioral changes radically limits energy demand, leading to a doubling of the rate of energy intensity improvements compared to the past. The full portfolio of technologies is available on the supply side.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,23,AMPERE2-450-NoCCS-OPT
+AMPERE WP2,scenarios,scenario,description,23,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: No CCS: The technology to capture and geologically store carbon dioxide (CCS) never becomes available. This impacts both the potential to implement lower emission options with fossil fuels and the possibility to generate “negative emissions” when combined with bio-energy.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,24,AMPERE2-450-NucOff-OPT
+AMPERE WP2,scenarios,scenario,description,24,"Longterm policy: 450 ppm CO2e (2.0°C)
+ Technology Assumption: No new nuclear: No new investments into nuclear power after 2020; existing plants are fully phased out over their life time.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,25,AMPERE2-550-Conv-OPT
+AMPERE WP2,scenarios,scenario,description,25,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Conventional solutions: Limited solar, wind and biomass potentials, leading to heavy reliance on conventional technologies such as fossil fuels in combination with CCS and/or nuclear.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,26,AMPERE2-550-EERE-OPT
+AMPERE WP2,scenarios,scenario,description,26,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Efficiency and renewables: A low demand case assuming “No CCS” and “no new nuclear”, leading to heavy reliance on renewables and efficiency measures.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,27,AMPERE2-550-LimBio-OPT
+AMPERE WP2,scenarios,scenario,description,27,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Limited biomass: Limited potential for biomass (maximum of 100 EJ/year), exploring strategies that would avoid large-scale expansion of bioenergy and thus avoid potential competition over land for food and fiber.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,28,AMPERE2-550-LimSW-OPT
+AMPERE WP2,scenarios,scenario,description,28,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Limited solar and wind: Limited contribution of solar and wind to 20% of total power generation, reflecting potential implementation barriers of variable renewable energy at high penetration rates.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,29,AMPERE2-550-LowEI-OPT
+AMPERE WP2,scenarios,scenario,description,29,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: Low demand and energy intensity: A combination of stringent efficiency measures and behavioral changes radically limits energy demand, leading to a doubling of the rate of energy intensity improvements compared to the past. The full portfolio of technologies is available on the supply side.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,30,AMPERE2-550-NoCCS-OPT
+AMPERE WP2,scenarios,scenario,description,30,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: No CCS: The technology to capture and geologically store carbon dioxide (CCS) never becomes available. This impacts both the potential to implement lower emission options with fossil fuels and the possibility to generate “negative emissions” when combined with bio-energy.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,31,AMPERE2-550-NucOff-OPT
+AMPERE WP2,scenarios,scenario,description,31,"Longterm policy: 550 ppm CO2e (3.4°C)
+ Technology Assumption: No new nuclear: No new investments into nuclear power after 2020; existing plants are fully phased out over their life time.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,32,AMPERE2-Base-Conv-OPT
+AMPERE WP2,scenarios,scenario,description,32,"Longterm policy: None
+ Technology Assumption: Conventional solutions: Limited solar, wind and biomass potentials, leading to heavy reliance on conventional technologies such as fossil fuels in combination with CCS and/or nuclear.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,33,AMPERE2-Base-EERE-OPT
+AMPERE WP2,scenarios,scenario,description,33,"Longterm policy: None
+ Technology Assumption: Efficiency and renewables: A low demand case assuming “No CCS” and “no new nuclear”, leading to heavy reliance on renewables and efficiency measures.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,34,AMPERE2-Base-LimBio-OPT
+AMPERE WP2,scenarios,scenario,description,34,"Longterm policy: None
+ Technology Assumption: Limited biomass: Limited potential for biomass (maximum of 100 EJ/year), exploring strategies that would avoid large-scale expansion of bioenergy and thus avoid potential competition over land for food and fiber.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,scenarios,scenario,name,35,AMPERE2-Base-LimSW-OPT
+AMPERE WP2,scenarios,scenario,description,35,"Longterm policy: None
+ Technology Assumption: Limited solar and wind: Limited contribution of solar and wind to 20% of total power generation, reflecting potential implementation barriers of variable renewable energy at high penetration rates.
+ Shortterm policy: Optimal policy: Global emissions follow an optimal pathway assuming immediate introduction of climate policies to meet the long-term targets"
+AMPERE WP2,data sources,source,name,1,AMPERE DB
+AMPERE WP2,data sources,source,link,1,http://tntcat.iiasa.ac.at/AMPEREDB/
+AMPERE WP2,publications,reference,citation,1,Riahi et al. (2015)
+AMPERE WP2,publications,reference,type,1,journal article
+AMPERE WP2,publications,reference,doi,1,10.1016/j.techfore.2013.09.016
+AMPERE WP2,publications,reference,full,1,"RIAHI, K., KRIEGLER, E., JOHNSON, N., BERTRAM, C., DEN ELZEN, M., EOM, J., SCHAEFFER, M., EDMONDS, J., ISAAC, M., KREY, V., LONGDEN, T., LUDERER, G., MÉJEAN, A., MCCOLLUM, D. L., MIMA, S., TURTON, H., VAN VUUREN, D. P., WADA, K., BOSETTI, V., CAPROS, P., CRIQUI, P., HAMDI-CHERIF, M., KAINUMA, M. & EDENHOFER, O. 2015. Locked into Copenhagen pledges - Implications of short-term emission targets for the cost and feasibility of long-term climate goals. Technological Forecasting and Social Change, 90, 8-23."
+AMPERE WP2,publications,reference,ris,1,"TY - JOUR
+ AU - Riahi, K.
+ AU - Kriegler, E.
+ AU - Johnson, N.
+ AU - Bertram, C.
+ AU - den Elzen, M.
+ AU - Eom, J.
+ AU - Schaeffer, M.
+ AU - Edmonds, J.
+ AU - Isaac, M.
+ AU - Krey, V.
+ AU - Longden, T.
+ AU - Luderer, G.
+ AU - Méjean, A.
+ AU - McCollum, D. L.
+ AU - Mima, S.
+ AU - Turton, H.
+ AU - van Vuuren, D. P.
+ AU - Wada, K.
+ AU - Bosetti, V.
+ AU - Capros, P.
+ AU - Criqui, P.
+ AU - Hamdi-Cherif, M.
+ AU - Kainuma, M.
+ AU - Edenhofer, O.
+ DB - Scopus
+ DO - 10.1016/j.techfore.2013.09.016
+ IS - PA
+ M3 - Article
+ N1 - Cited By :125
+ Export Date: 1 October 2018
+ PY - 2015
+ SP - 8-23
+ ST - Locked into Copenhagen pledges - Implications of short-term emission targets for the cost and feasibility of long-term climate goals
+ T2 - Technological Forecasting and Social Change
+ TI - Locked into Copenhagen pledges - Implications of short-term emission targets for the cost and feasibility of long-term climate goals
+ UR - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84916923549&doi=10.1016%2fj.techfore.2013.09.016&partnerID=40&md5=e67acc8b2c0c0e400a91a5e54a06a114
+ VL - 90
+ ID - 55
+ ER -"
+AMPERE WP2,publications,reference,citation,2,Kriegler et al. (2015)
+AMPERE WP2,publications,reference,type,2,journal article
+AMPERE WP2,publications,reference,doi,2,10.1016/j.techfore.2014.10.012
+AMPERE WP2,publications,reference,full,2,"KRIEGLER, E., RIAHI, K., BOSETTI, V., CAPROS, P., PETERMANN, N., VAN VUUREN, D. P., WEYANT, J. P. & EDENHOFER, O. 2015. Introduction to the AMPERE model intercomparison studies on the economics of climate stabilization. Technological Forecasting and Social Change, 90, 1-7."
+AMPERE WP2,publications,reference,ris,2,"TY - JOUR
+ AU - Kriegler, E.
+ AU - Riahi, K.
+ AU - Bosetti, V.
+ AU - Capros, P.
+ AU - Petermann, N.
+ AU - van Vuuren, D. P.
+ AU - Weyant, J. P.
+ AU - Edenhofer, O.
+ DB - Scopus
+ DO - 10.1016/j.techfore.2014.10.012
+ IS - PA
+ M3 - Editorial
+ N1 - Cited By :11
+ Export Date: 1 October 2018
+ PY - 2015
+ SP - 1-7
+ ST - Introduction to the AMPERE model intercomparison studies on the economics of climate stabilization
+ T2 - Technological Forecasting and Social Change
+ TI - Introduction to the AMPERE model intercomparison studies on the economics of climate stabilization
+ UR - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84917709384&doi=10.1016%2fj.techfore.2014.10.012&partnerID=40&md5=dfc50b685ae2f7532b6f552060f22107
+ VL - 90
+ ID - 54
+ ER -"
+AMPERE WP2,publications,reference,citation,3,Kriegler et al. (2015)
+AMPERE WP2,publications,reference,type,3,journal article
+AMPERE WP2,publications,reference,doi,3,n/a
+AMPERE WP2,publications,reference,full,3,"Kriegler E, Riahi K, Bosetti V, Capros P, van Vuuren DP, Weyant JP, & Edenhofer O (2015). Special Section: The AMPERE Intermodel Comparison on the Economics of Climate Stabilization. Technological Forecasting and Social Change 90 (Part A): 1-354."
+AMPERE WP2,publications,reference,ris,3,n/a
+AMPERE WP2,publications,reference,citation,4,Bertram et al. (2015)
+AMPERE WP2,publications,reference,type,4,journal article
+AMPERE WP2,publications,reference,doi,4,10.1016/j.techfore.2013.10.001
+AMPERE WP2,publications,reference,full,4,"Bertram et al. 2015. “Carbon Lock-in through Capital Stock Inertia Associated with Weak near-Term Climate Policies.” Technological Forecasting and Social Change 90, Part A: 62–72. https://doi.org/10.1016/j.techfore.2013.10.001."
+AMPERE WP2,publications,reference,ris,4,"TY - JOUR
+ TI - Carbon lock-in through capital stock inertia associated with weak near-term climate policies
+ AU - Bertram, Christoph
+ AU - Johnson, Nils
+ AU - Luderer, Gunnar
+ AU - Riahi, Keywan
+ AU - Isaac, Morna
+ AU - Eom, Jiyong
+ T2 - Technological Forecasting and Social Change
+ DA - 2015///
+ PY - 2015
+ DO - 10.1016/j.techfore.2013.10.001
+ VL - 90, Part A
+ SP - 62
+ EP - 72
+ J2 - Technol. Forecast. Soc. Change
+ SN - 00401625
+ UR - http://www.sciencedirect.com/science/article/pii/S004016251300259X
+ ER -"
+AMPERE WP2,publications,reference,citation,5,Johnson et al. (2015)
+AMPERE WP2,publications,reference,type,5,journal article
+AMPERE WP2,publications,reference,doi,5,10.1016/j.techfore.2014.02.028
+AMPERE WP2,publications,reference,full,5,"JOHNSON, N., KREY, V., MCCOLLUM, D. L., RAO, S., RIAHI, K. & ROGELJ, J. 2015. Stranded on a low-carbon planet: Implications of climate policy for the phase-out of coal-based power plants. Technological Forecasting and Social Change, 90, 89-102."
+AMPERE WP2,publications,reference,ris,5,"TY - JOUR
+ AU - Johnson, N.
+ AU - Krey, V.
+ AU - McCollum, D. L.
+ AU - Rao, S.
+ AU - Riahi, K.
+ AU - Rogelj, J.
+ DB - Scopus
+ DO - 10.1016/j.techfore.2014.02.028
+ IS - PA
+ M3 - Article
+ N1 - Cited By :34
+ Export Date: 1 October 2018
+ PY - 2015
+ SP - 89-102
+ ST - Stranded on a low-carbon planet: Implications of climate policy for the phase-out of coal-based power plants
+ T2 - Technological Forecasting and Social Change
+ TI - Stranded on a low-carbon planet: Implications of climate policy for the phase-out of coal-based power plants
+ UR - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84916939968&doi=10.1016%2fj.techfore.2014.02.028&partnerID=40&md5=310565df917063faea5b8f6c71984aff
+ VL - 90
+ ID - 56
+ ER -"
+AMPERE WP2,publications,reference,citation,6,Eom et al. (2015)
+AMPERE WP2,publications,reference,type,6,journal article
+AMPERE WP2,publications,reference,doi,6,10.1016/j.techfore.2013.09.017
+AMPERE WP2,publications,reference,full,6,"EOM, J., EDMONDS, J., KREY, V., JOHNSON, N., LONGDEN, T., LUDERER, G., RIAHI, K. & VAN VUUREN, D. P. 2015. The impact of near-term climate policy choices on technology and emission transition pathways. Technological Forecasting and Social Change, 90, 73-88."
+AMPERE WP2,publications,reference,ris,6,"TY - JOUR
+ AU - Eom, J.
+ AU - Edmonds, J.
+ AU - Krey, V.
+ AU - Johnson, N.
+ AU - Longden, T.
+ AU - Luderer, G.
+ AU - Riahi, K.
+ AU - Van Vuuren, D. P.
+ DB - Scopus
+ DO - 10.1016/j.techfore.2013.09.017
+ IS - PA
+ M3 - Article
+ N1 - Cited By :35
+ Export Date: 1 October 2018
+ PY - 2015
+ SP - 73-88
+ ST - The impact of near-term climate policy choices on technology and emission transition pathways
+ T2 - Technological Forecasting and Social Change
+ TI - The impact of near-term climate policy choices on technology and emission transition pathways
+ UR - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84916895286&doi=10.1016%2fj.techfore.2013.09.017&partnerID=40&md5=36c1047d84ca55fe5dc0e0799e83fa98
+ VL - 90
+ ID - 57
+ ER -"
+AMPERE WP2,publications,reference,citation,7,Kriegler et al. (2014)
+AMPERE WP2,publications,reference,type,7,policy brief
+AMPERE WP2,publications,reference,doi,7,n/a
+AMPERE WP2,publications,reference,full,7,"Kriegler E, Riahi K, Petermann N, Bosetti V, Capros P, van Vuuren DP, Criqui P, Egenhofer C, et al. (2014). Assessing Pathways toward Ambitious Climate Targets at the Global and European levels: A synthesis of results from the AMPERE project"
+AMPERE WP2,publications,reference,ris,7,n/a
+AMPERE WP2,diagnostics,source,name,1,
+AMPERE WP2,diagnostics,source,link,1,
+AMPERE WP2,models,preamble,,,"Nine IAM global models took part of the AMPERE project
+The nine participating intitutions and the respective models:
+           •        Institution: 
+                     Model: DNE21+
+           •        Institution:  European Commission Joint Research Centre
+                     Model: POLES
+           •        Institution: Centre International de Recherche Centre International de Recherche sur l’Environnement et le Développement (CIRED),
+                     Model: IMACLIM
+           •        Institution: Stanford University, USA
+                     Model: MERGE-ETL
+           •        Institution: National Institute for Environmental Studies (NIES), Japan
+                     Model: AIM/CGE
+           •        Institution: Pacific Northwest National Laboratory, Joint Global Change Research Institute at the University of Maryland-College Park (PNNL), United States
+                     Model: GCAM
+           •        Institution: Netherlands Environmental Assessment Agency (PBL), Netherlands
+                     Model: IMAGE
+           •        Institution: International Institute for Applied Systems Analysis (IIASA), Austria 
+                     Model: MESSAGE
+           •        Institution: Potsdam Institute for Climate Impact Research (PIK), Germany
+                     Model: REMIND
+           •        Institution: Fondazione Eni Enrico Mattei (FEEM), Italy
+                     Model: WITCH"
+AMPERE WP2,models,model,name,1,DNE21+
+AMPERE WP2,models,model,version,1,12
+AMPERE WP2,models,model,name,2,GCAM
+AMPERE WP2,models,model,version,2,3
+AMPERE WP2,models,model,name,3,IMACLIM
+AMPERE WP2,models,model,version,3,1.1
+AMPERE WP2,models,model,name,4,IMAGE
+AMPERE WP2,models,model,version,4,2.4
+AMPERE WP2,models,model,name,5,MERGE-ETL
+AMPERE WP2,models,model,version,5,2011
+AMPERE WP2,models,model,name,6,MESSAGE
+AMPERE WP2,models,model,version,6,4
+AMPERE WP2,models,model,name,7,POLES
+AMPERE WP2,models,model,version,7,AMPERE
+AMPERE WP2,models,model,name,8,REMIND
+AMPERE WP2,models,model,version,8,1.5
+AMPERE WP2,models,model,name,9,WITCH
+AMPERE WP2,models,model,version,9,AMPERE
+AMPERE WP2,year,,,,2013
+AMPERE WP2,project,,,,Assessment of Climate Change Mitigation Pathways and Evaluation of the Robustness of Mitigation Cost Estimates (AMPERE): Work Package 2
+AMPERE WP2,keywords,keyword,,1,Copenhagen pledges
+AMPERE WP2,keywords,keyword,,2,Climate policy
+AMPERE WP2,keywords,keyword,,3,AMPERE
+AMPERE WP2,keywords,keyword,,4,Mitigation
+AMPERE WP2,keywords,keyword,,5,Greenhouse gas emissions
+AMPERE WP2,regional coverage,region,,1,World
+AMPERE WP2,regional coverage,region,,2,OECD90
+AMPERE WP2,regional coverage,region,,3,Reforming Economies (REF)
+AMPERE WP2,regional coverage,region,,4,Asia (ASIA)
+AMPERE WP2,regional coverage,region,,5,Middle East and Africa (MAF)
+AMPERE WP2,regional coverage,region,,6,Latin America (LAM)
+AMPERE WP2,regional coverage,region,,7,Brazil
+AMPERE WP2,regional coverage,region,,8,China 
+AMPERE WP2,regional coverage,region,,9,India
+AMPERE WP2,regional coverage,region,,10,EU (EU27)
+AMPERE WP2,regional coverage,region,,11,EU15
+AMPERE WP2,regional coverage,region,,12,EU12
+AMPERE WP2,regional coverage,region,,13,Japan
+AMPERE WP2,regional coverage,region,,14,Russia
+AMPERE WP2,regional coverage,region,,15,USA
+AMPERE WP2,time horizon,start,,,2010
+AMPERE WP2,,end,,,2100

@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="wrapper">
+  <div class="wrapper">
     <nav class="filter">
       <header>
         <h2>{{ title }} <small>(<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</small></h2>
@@ -18,6 +17,7 @@
     <div class="content">
       <Table />
     </div>
+    <Popover />
   </div>
 </template>
 
@@ -26,12 +26,14 @@
   import Facet from '~/components/Facet.vue'
   import Table from '~/components/Table.vue'
   import Options from '~/components/Options.vue'
+  import Popover from '~/components/Popover.vue'
 
   export default {
     props: ['title', 'file', 'facets'],
     computed: {
       ...mapState([
-        'data'
+        'data',
+        'popover'
       ]),
       ...mapGetters([
         'result',
@@ -46,7 +48,8 @@
     components: {
       Facet,
       Table,
-      Options
+      Options,
+      Popover
     },
     created: function () {
       this.setContent({ data: this.file, facets: this.facets })

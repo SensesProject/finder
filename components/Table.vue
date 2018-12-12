@@ -19,10 +19,13 @@
           <div>
             <span class="label">{{ cell.label || '—' }}</span>
             <section>
-              <i class="option icon-filter clickable" @click="setFacet({ key: cell.key, value: cell.label })" :title="`Filter table by »${cell.label || '—'}«`" />
+              <i
+                class="option icon-filter clickable"
+                @click="setFacet({ key: cell.key, value: cell.label })"
+                :title="`Filter table by »${cell.label || '—'}«`" />
               <i
                 class="option icon-popup clickable"
-                @click="setFacet({ key: cell.key, value: cell.label })"
+                @click="openPopover({ key: cell.key, value: cell.label })"
                 :title="`Show more information about »${cell.label || '—'}« in popover`"
                 v-if="cell.hasPopover" />
             </section>
@@ -89,7 +92,8 @@
       ...mapActions([
         'setHover',
         'resetHover',
-        'setFacet'
+        'setFacet',
+        'openPopover'
       ])
     }
   }

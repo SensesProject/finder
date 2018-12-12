@@ -1,0 +1,96 @@
+factsheet,topic,attribute,subattribute,#,value
+CLIMACAP-LAMP,project,,,,CLIMACAP-LAMP - Climate Mitigation in Latin America: Implications for Energy and Land Use project.
+,guiding questions,preamble,,,"The Integrated Climate Modelling and Capacity Building Project in Latin America (CLIMACAP) was a European Commission funded effort focused on analyzing the effects of mitigation strategies in key Latin American Countries. The Latin American Modeling Project (LAMP) was a similar effort funded by the U.S. Environmental Protection Agency and the U.S. Agency for International Development. The projects collaborated to develop a multi-model comparison project focused on mitigation in Latin America. The study compared results of approximately 10 energy-economic and integrated assessment models, focusing on results for Latin American regions. 
+"
+,,question,,1,What is the role of Latin American and countries in the region in meeting global mitigation goals?
+,,question,,2,What are opportunities for energy technology deployment under climate change mitigation efforts in Latin America?
+,,question,,3,What energy supply investment are required in Latin America to meet global mitigation goals?
+,,question,,4,What are the impacts of a variety of climate change control policies in the Argentinian energy sector?
+,,question,,5,What will be effects of market-based mechanisms and CO2 emission restrictions on the Brazilian energy system?
+,,question,,6,What role plays the power sector in achieving CO2 emission reductions in Colombia?
+,,question,,7,How can Mexico reverse current emission trends which are at odds with ambitious national GHG emission reduction targets?
+,,question,,8,"Are the commitments by Brazil and Mexico for 2020, made during the UNFCCC conferences in Copenhagen and Cancun (prior to the formulation of their NDCs) reachable?"
+,,question,,9,"How will future trajectorioes of GHG emissions from AFOLU develop in Latin America, with and without climate mitigation?"
+,,question,,10,What are the macroeconomic consequences of GHG emissions mitigation in Latin America up to 2050?
+,results,preamble,,,"The academic outcome of our work, includes two basic sorts of papers. One set of articles reports the efforts of teams that, through multiple models, investigated individual countries on the Latin American continent, exploring key elements and sensitivities for Argentina, Brazil, Colombia and Mexico. The second set of papers represents the work of several subgroups that explored specific issues across multiple countries and models, such as baseline scenarios, climate mitigation potential, and key characteristics and requirements of climate mitigation, including technology diffusion, investment requirements, biomass, agriculture and land-use effects, and macroeconomic impacts.
+"
+,,insight,,1,"The economic potential to reduce fossil fuel CO2 as well as non-CO2 emissions in Latin America in 2050 is lower than for the world as a whole, when measured against 2010 emissions."
+,,insight,,2,Electricity generation in Latin America increases two- to three-fold between 2010 and 2050 in the baseline.
+,,insight,,3,"Energy supply investment requirements in Latin America are doubling in the baseline scenario between 2010 and 2050, while investments may triple over the same time horizon when climate policies are introduced."
+,,insight,,4,"Emissions will increase over time in the baseline scenario due to a higher penetration of natural gas and coal. Climate policy scenarios with sufficiently high CO2 prices, however, indicate that such pathways can be avoided."
+,,insight,,5,"The study confirms that the power sector plays a fundamental role in achieving CO2 emission reductions in Colombia, particularly through the increase of hydropower, the use of wind energy and the deployment of CCS technology."
+,,insight,,6,"Decarbonization of electricity generation is needed to meet Mexico’s national GHG emission reduction targets. Along with changes in transportation towards the use of more efficient vehicles, potentially in combination with the use of low-carbon fuels. Mexico has some technological flexibility in meeting deep mitigation targets, although the costs of deep mitigation may be higher than official estimates indicate."
+,,insight,,7,"Brazil’s commitments (made during the UNFCCC conferences in Copenhagen and Cancun) could be met through reduced deforestation, at basically no additional cost, while Mexico’s pledges could cost around 4 billion US$ in terms of reduced GDP in 2020."
+,,insight,,8,"Nearly 40% of GHG emissions in Latin America derive from agriculture, forestry and other land use, more than double the global fraction of AFOLU . They find significant uncertainty in future AFOLU emissions, both with and without mitigation."
+,scenarios,preamble,,,"Scenarios can be classified in four distinct categories: baseline scenarios, CO2 price path scenarios), emission reduction scenarios , and radiative forcing target scenarios."
+,,scenario,name,1,Core baseline
+,,scenario,description,1,Business-as-usual scenario including climate and energy policies enacted prior to 2010.
+,,scenario,name,2,Policy baseline
+,,scenario,description,2,Business-as-usual scenario including “Copenhagen pledges” enacted since 2010.
+,,scenario,name,3,Low CO2 price
+,,scenario,description,3,"A carbon tax is levied of 10 $/tCO2e in 2020, growing at 4%/yr to reach 32$/tCO2e in 2050."
+,,scenario,name,4,High CO2 price
+,,scenario,description,4,"A carbon tax is levied of 50 $/tCO2e in 2020, growing at 4%/yr to reach 162$/tCO2e in 2050."
+,,scenario,name,5,20% abatement (GHG)
+,,scenario,description,5,"GHG emissions, excluding LUC CO2, are reduced by 5% in 2020, linearly increasing to 20% in 2050, w.r.t. 2010."
+,,scenario,name,6,50% abatement (GHG)
+,,scenario,description,6,"GHG emissions, excluding LUC CO2, are reduced by 12.5% in 2020, linearly increasing to 50% in 2050, w.r.t. 2010."
+,,scenario,name,7,20% abatement (FF&I)
+,,scenario,description,7,"Fossil fuel and industrial CO2 emissions are reduced by 5% in 2020, linearly increasing to 20% in 2050, w.r.t. 2010."
+,,scenario,name,8,50% abatement (FF&I)
+,,scenario,description,8,"Fossil fuel and industrial CO2 emissions are reduced by 12.5% in 2020, linearly increasing to 50% in 2050, w.r.t. 2010."
+,,scenario,name,9,650 concentration
+,,scenario,description,9,Global radiative forcing is kept below 4.5 W/m2 (650 ppmv CO2e) throughout the century.
+,,scenario,name,10,550 concentration
+,,scenario,description,10,Global radiative forcing is kept below 3.7 W/m2 (550 ppmv CO2e) throughout the century.
+,,scenario,name,11,450 concentration
+,,scenario,description,11,Global radiative forcing is brought to 2.6 W/m2 (450 ppmv CO2e) by 2100 (concentration can overshoot before 2100).
+,data sources,source,name,1,CLIMACAP-LAMP Scenario database
+,,source,link,1,https://tntcat.iiasa.ac.at/CLIMACAP-LAMPDB/
+,data sources,source,name,2,CLIMACAP web site.
+,,source,link,2,http://climacap.websitebuilderpro.com/publications/4582850483
+,publications,reference,citation,1,"van der Zwaan, B.C.C., K. Calvin, L. Clarke (Guest Editors), Climate Mitigation in Latin America: Implications for Energy and Land Use:, Energy Economics, 2016"
+,,reference,type,1,journal special issue
+,,reference,doi,1,https://doi.org/10.1016/j.eneco.2016.05.005
+,,reference,full,1,"van der Zwaan, B.C.C., K. Calvin, L. Clarke (Guest Editors), “Climate Mitigation in Latin America: Implications for Energy and Land Use: Preface to the Special Section on the findings of the CLIMACAP-LAMP project”, Energy Economics, 2016"
+,,reference,ris,1,"TY - JOUR
+ AU - van der Zwaan, B. C. C.
+ AU - Calvin, K. V.
+ AU - Clarke, L. E.
+ T1 - Climate Mitigation in Latin America: Implications for Energy and Land Use
+ JO - Energy Economics
+ Y1 - 2016/05
+ VL - 56
+ SP - 495
+ EP - 498"
+,diagnostics,source,name,1,N/A
+,,source,link,1,N/A
+,models,preamble,,,
+,,model,name,1,Adage-biofuel
+,,,name,2,EPPA
+,,,name,3,GCAM_LAMP
+,,,name,4,IMAGE
+,,,name,5,iPETS_2reg
+,,,name,6,LEAP-FB
+,,,name,7,LEAP-UNAM
+,,,name,8,MEG4C
+,,,name,9,MESSAGE-Brazil
+,,,name,10,POLES
+,,,name,11,Phoenix_6LA
+,,,name,12,TIAM-ECN
+,,,name,13,TIAM-WORLD
+,,model,version,,
+,year,,,,
+,keywords,keyword,,1,Climate change mitigation scenarios
+,,keyword,,2,Energy scenarios
+,,keyword,,3,International participation
+,,keyword,,4,Inter-model comparison exercise
+,,keyword,,4,Latin America
+,regional coverage,region,,1,World
+,,region,,2,Latin America (LAM)
+,,country,,3,Argentina
+,,country,,4,Brazil
+,,country,,5,Colombia
+,,country,,6,Mexico
+,time horizon,start,,,2005 (2010)
+,,end,,,2100 (2050)

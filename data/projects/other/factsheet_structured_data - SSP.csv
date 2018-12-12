@@ -1,0 +1,1245 @@
+factsheet,topic,attribute,subattribute,#,value
+SSP,project,,,,
+SSP,guiding questions,preamble,,,"The SSPs are part of a scenario framework, established by the climate change research community in order to facilitate the integrated analysis of future climate impacts, vulnerabilities, adaptation, and mitigation. The framework is built around a matrix that combines climate forcing on one axis (as represented by the Representative Concentration Pathways (RCPs)) and socio-economic conditions on the other. Together, these two axes describe situations in which mitigation, adaptation and residual climate damage can be evaluated.
+
+"
+SSP,guiding questions,question,,1,"In the absence of climate policy, how do scenarios based on the five different SSP narratives unfold in the future?"
+SSP,guiding questions,question,,2,"Across the different narratives, how does the challenge to climate mitigation compare when trying to limit global forcing levels consistent with those of the RCPs, going as low as 2.6W/m2?"
+SSP,results,preamble,,,"The SSPs are based on five narratives describing alternative socio-economic developments, including sustainable development, regional rivalry, inequality, fossil-fueled development, and middle-of-the-road development. The long-term demographic and economic projections of the SSPs depict a wide uncertainty range consistent with the scenario literature. A multi-model approach was used for the elaborati"
+SSP,results,insight,,1,The baseline scenarios lead to global energy consumption of 400–1200 EJ in 2100. The associated annual CO2 emissions of the baseline scenarios range from about 25 GtCO2 to more than 120 GtCO2 per year by 2100. 
+SSP,results,insight,,2,"With respect to mitigation, the scenarios show that associated costs strongly depend on three factors: (1) the policy assumptions, (2) the socio-economic narrative, and (3) the stringency of the target. The carbon price for reaching the target of 2.6 W/m2 that is consistent with a temperature change limit of 2 °C, differs in the analysis thus by about a factor of three across the SSP marker scenarios. Consistent with the narratives, mitigation costs and thus the challenge for mitigation is found lower in SSP1 & SSP4 relative to SSP3 & SSP5.  Perhaps most importantly, we find that not all targets are necessarily attainable from all SSPs"
+SSP,scenarios,preamble,,,"The SSPs have been developed to provide five distinctly different pathways about future socioeconomic developments as they might unfold in the absence of explicit additional policies and measures to limit climate forcing or to enhance adaptive capacity. They are intended to enable climate change research and policy analysis, and are designed to span a wide range of combinations of challenges to mitigation and adaptation to climate change.  For each SSP, a single population, education and urbanization projection was developed.  
+The baseline SSP scenarios are used as the starting point for a comprehensive mitigation analysis.  The nominal RCP forcing levels of 2.6, 4.5, and 6.0 W/m2 in 2100 as the long-term climate targets for our mitigation scenarios. In addition, mitigation runs for a target of 1.9 and 3.4 W/m2 are explored.  Finally, since policies and their effectiveness can be expected to vary consistent with the underlying socioeconomic storylines, so-called Shared Policy Assumptions (SPAs) are also designed. The SPAs describe the climate mitigation policy environment for the different SSPs.
+The scenario set therefore can be differentiated based on three different characteristics:
+1.        Storylines:
+           •        SSP1: Sustainability – Taking the Green Road (Challenge – Mitigation: Low // Adaptation: Low)
+           •        SSP2: Middle of the Road (Challenge – Mitigation: Intermediate // Adaptation: Intermediate)
+           •        SSP3: Regional Rivalry – A Rocky Road (Challenge – Mitigation: High // Adaptation: High)
+           •        SSP4: Inequality – A Road Divided (Challenge – Mitigation: Low // Adaptation: High)
+           •        SSP5: Fossil-fueled Development – Taking the Highway (Challenge – Mitigation: High // Adaptation: Low)
+2.        Shared Policy Assumptions:
+           •        SPA0
+           •        SPA1 - (combined with SSP1, low mitigation challenge due to the combination of low baseline fossil fuel emissions, low energy demand, no delays beyond 2020, and full participation of land mitigation)
+           •        SPA2 - (combined with SSP2, intermediate mitigation challenge due to intermediate assumptions for i) baseline emissions, ii) energy demand, iii) delays, and iv) land participation)
+           •        SPA3 - (combined with SSP3, high mitigation challenge due to high baseline emissions, major delays, and very limited participation of land in mitigation)
+           •        SPA4 - (combined with SSP4, low mitigation challenge due to no delays beyond 2020, relatively low energy demand combined with intermediate assumptions for land mitigation and intermediate assumptions for baseline emissions)
+           •        SPA5 - (combined with SSP5, high mitigation challenge due to the combination of high fossil fuel baseline emissions, very high energy demand, and delays in mitigation (for some regions up to 2040)
+3.        Long term radiative forcing levels by 2100:
+           •        6.0 W/m2
+           •        4.5 W/m2 (approx. 650ppm CO2e)
+           •        3.4 W/m2 (approx. 550ppm CO2e)
+           •        2.6 W/m2 (approx. 450ppm CO2e)
+           •        1.9 W/m2
+
+The resulting combinations of scenarios as follows:
+SSP1 + SPA0 and SPA1 + RCP 4.5, 3.4, 2.6, 1.9
+SSP2 + SPA0 and SPA2 + RCP 6.0, 4.5, 3.4, 2.6, 1.9
+SSP3 + SPA0 and SPA3 + RCP 6.0, 4.5, 3.4
+SSP4 + SPA0 and SPA4 + RCP 6.0, 4.5, 3.4, 2.6, 1.9
+SSP5 + SPA0 and SPA5 + RCP 6.0, 4.5, 3.4, 2.6, 1.9
+
+
+
+"
+SSP,scenarios,scenario,name,1,SSP1-19
+SSP,scenarios,scenario,description,1,"Storyline: 
+ Sustainability – Taking the Green Road (Low challenges to mitigation and adaptation) The world shifts gradually, but pervasively, toward a more sustainable path, emphasizing more inclusive development that respects perceived environmental boundaries. Management of the global commons slowly improves, educational and health investments accelerate the demographic transition, and the emphasis on economic growth shifts toward a broader emphasis on human well-being. Driven by an increasing commitment to achieving development goals, inequality is reduced both across and within countries. Consumption is oriented toward low material growth and lower resource and energy intensity.
+ Longterm policy:
+ RCP forcing level 1.9W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,2,SSP1-26
+SSP,scenarios,scenario,description,2,"Storyline: 
+ Sustainability – Taking the Green Road (Low challenges to mitigation and adaptation) The world shifts gradually, but pervasively, toward a more sustainable path, emphasizing more inclusive development that respects perceived environmental boundaries. Management of the global commons slowly improves, educational and health investments accelerate the demographic transition, and the emphasis on economic growth shifts toward a broader emphasis on human well-being. Driven by an increasing commitment to achieving development goals, inequality is reduced both across and within countries. Consumption is oriented toward low material growth and lower resource and energy intensity.
+ Longterm policy:
+ RCP forcing level 2.6W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,3,SSP1-34
+SSP,scenarios,scenario,description,3,"Storyline: 
+ Sustainability – Taking the Green Road (Low challenges to mitigation and adaptation) The world shifts gradually, but pervasively, toward a more sustainable path, emphasizing more inclusive development that respects perceived environmental boundaries. Management of the global commons slowly improves, educational and health investments accelerate the demographic transition, and the emphasis on economic growth shifts toward a broader emphasis on human well-being. Driven by an increasing commitment to achieving development goals, inequality is reduced both across and within countries. Consumption is oriented toward low material growth and lower resource and energy intensity.
+ Longterm policy:
+ RCP forcing level 3.4W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,4,SSP1-45
+SSP,scenarios,scenario,description,4,"Storyline: 
+ Sustainability – Taking the Green Road (Low challenges to mitigation and adaptation) The world shifts gradually, but pervasively, toward a more sustainable path, emphasizing more inclusive development that respects perceived environmental boundaries. Management of the global commons slowly improves, educational and health investments accelerate the demographic transition, and the emphasis on economic growth shifts toward a broader emphasis on human well-being. Driven by an increasing commitment to achieving development goals, inequality is reduced both across and within countries. Consumption is oriented toward low material growth and lower resource and energy intensity.
+ Longterm policy:
+ RCP forcing level 4.5W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,5,SSP1-Baseline
+SSP,scenarios,scenario,description,5,"Storyline: 
+ Sustainability – Taking the Green Road (Low challenges to mitigation and adaptation) The world shifts gradually, but pervasively, toward a more sustainable path, emphasizing more inclusive development that respects perceived environmental boundaries. Management of the global commons slowly improves, educational and health investments accelerate the demographic transition, and the emphasis on economic growth shifts toward a broader emphasis on human well-being. Driven by an increasing commitment to achieving development goals, inequality is reduced both across and within countries. Consumption is oriented toward low material growth and lower resource and energy intensity.
+ Longterm policy:
+ No-policy
+ Shared Climate Policy Assumption:
+ N/A"
+SSP,scenarios,scenario,name,6,SSP2-19
+SSP,scenarios,scenario,description,6,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ RCP forcing level 1.9W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,7,SSP2-26
+SSP,scenarios,scenario,description,7,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ RCP forcing level 2.6W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,8,SSP2-34
+SSP,scenarios,scenario,description,8,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ RCP forcing level 3.4W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,9,SSP2-45
+SSP,scenarios,scenario,description,9,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ RCP forcing level 4.5W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,10,SSP2-60
+SSP,scenarios,scenario,description,10,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ RCP forcing level 6.0W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,11,SSP2-Baseline
+SSP,scenarios,scenario,description,11,"Storyline: 
+ Middle of the Road (Medium challenges to mitigation and adaptation) The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Global and national institutions work toward but make slow progress in achieving sustainable development goals. Environmental systems experience degradation, although there are some improvements and overall the intensity of resource and energy use declines. Global population growth is moderate and levels off in the second half of the century. Income inequality persists or improves only slowly and challenges to reducing vulnerability to societal and environmental changes remain.
+ Longterm policy:
+ No-policy
+ Shared Climate Policy Assumption:
+ N/A"
+SSP,scenarios,scenario,name,12,SSP3-34
+SSP,scenarios,scenario,description,12,"Storyline: 
+ Regional Rivalry – A Rocky Road (High challenges to mitigation and adaptation) A resurgent nationalism, concerns about competitiveness and security, and regional conflicts push countries to increasingly focus on domestic or, at most, regional issues. Policies shift over time to become increasingly oriented toward national and regional security issues. Countries focus on achieving energy and food security goals within their own regions at the expense of broader-based development. Investments in education and technological development decline. Economic development is slow, consumption is material-intensive, and inequalities persist or worsen over time. Population growth is low in industrialized and high in developing countries. A low international priority for addressing environmental concerns leads to strong environmental degradation in some regions.
+ Longterm policy:
+ RCP forcing level 3.4W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Late accession – higher income regions join global regime between 2020–2040, while lower income regions follow between 2030 and 2050
+ Coverage of land use emissions: Very limited coverage (implementation failures and high transaction costs)"
+SSP,scenarios,scenario,name,13,SSP3-45
+SSP,scenarios,scenario,description,13,"Storyline: 
+ Regional Rivalry – A Rocky Road (High challenges to mitigation and adaptation) A resurgent nationalism, concerns about competitiveness and security, and regional conflicts push countries to increasingly focus on domestic or, at most, regional issues. Policies shift over time to become increasingly oriented toward national and regional security issues. Countries focus on achieving energy and food security goals within their own regions at the expense of broader-based development. Investments in education and technological development decline. Economic development is slow, consumption is material-intensive, and inequalities persist or worsen over time. Population growth is low in industrialized and high in developing countries. A low international priority for addressing environmental concerns leads to strong environmental degradation in some regions.
+ Longterm policy:
+ RCP forcing level 4.5W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Late accession – higher income regions join global regime between 2020–2040, while lower income regions follow between 2030 and 2050
+ Coverage of land use emissions: Very limited coverage (implementation failures and high transaction costs)"
+SSP,scenarios,scenario,name,14,SSP3-60
+SSP,scenarios,scenario,description,14,"Storyline: 
+ Regional Rivalry – A Rocky Road (High challenges to mitigation and adaptation) A resurgent nationalism, concerns about competitiveness and security, and regional conflicts push countries to increasingly focus on domestic or, at most, regional issues. Policies shift over time to become increasingly oriented toward national and regional security issues. Countries focus on achieving energy and food security goals within their own regions at the expense of broader-based development. Investments in education and technological development decline. Economic development is slow, consumption is material-intensive, and inequalities persist or worsen over time. Population growth is low in industrialized and high in developing countries. A low international priority for addressing environmental concerns leads to strong environmental degradation in some regions.
+ Longterm policy:
+ RCP forcing level 6.0W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Late accession – higher income regions join global regime between 2020–2040, while lower income regions follow between 2030 and 2050
+ Coverage of land use emissions: Very limited coverage (implementation failures and high transaction costs)"
+SSP,scenarios,scenario,name,15,SSP3-Baseline
+SSP,scenarios,scenario,description,15,"Storyline: 
+ Regional Rivalry – A Rocky Road (High challenges to mitigation and adaptation) A resurgent nationalism, concerns about competitiveness and security, and regional conflicts push countries to increasingly focus on domestic or, at most, regional issues. Policies shift over time to become increasingly oriented toward national and regional security issues. Countries focus on achieving energy and food security goals within their own regions at the expense of broader-based development. Investments in education and technological development decline. Economic development is slow, consumption is material-intensive, and inequalities persist or worsen over time. Population growth is low in industrialized and high in developing countries. A low international priority for addressing environmental concerns leads to strong environmental degradation in some regions.
+ Longterm policy:
+ No-policy
+ Shared Climate Policy Assumption:
+ N/A"
+SSP,scenarios,scenario,name,16,SSP4-19
+SSP,scenarios,scenario,description,16,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ RCP forcing level 1.9W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,17,SSP4-26
+SSP,scenarios,scenario,description,17,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ RCP forcing level 2.6W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,18,SSP4-34
+SSP,scenarios,scenario,description,18,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ RCP forcing level 3.4W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,19,SSP4-45
+SSP,scenarios,scenario,description,19,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ RCP forcing level 4.5W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,20,SSP4-60
+SSP,scenarios,scenario,description,20,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ RCP forcing level 6.0W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Early accession with global collaboration as of 2020
+ Coverage of land use emissions: Intermediately effective coverage (limited Reducing Emissions from Deforestation and forest Degradation (REDD), but effective coverage of agricultural emissions)"
+SSP,scenarios,scenario,name,21,SSP4-Baseline
+SSP,scenarios,scenario,description,21,"Storyline: 
+ Inequality – A Road Divided (Low challenges to mitigation, high challenges to adaptation) Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to increasing inequalities and stratification both across and within countries. Over time, a gap widens between an internationally-connected society that contributes to knowledge- and capital-intensive sectors of the global economy, and a fragmented collection of lower-income, poorly educated societies that work in a labor intensive, low-tech economy. Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. Environmental policies focus on local issues around middle and high income areas.
+ Longterm policy:
+ No-policy
+ Shared Climate Policy Assumption:
+ N/A"
+SSP,scenarios,scenario,name,22,SSP5-19
+SSP,scenarios,scenario,description,22,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ RCP forcing level 1.9W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,23,SSP5-26
+SSP,scenarios,scenario,description,23,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ RCP forcing level 2.6W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,24,SSP5-34
+SSP,scenarios,scenario,description,24,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ RCP forcing level 3.4W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,25,SSP5-45
+SSP,scenarios,scenario,description,25,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ RCP forcing level 4.5W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,26,SSP5-60
+SSP,scenarios,scenario,description,26,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ RCP forcing level 6.0W/m2 in 2100
+ Shared Climate Policy Assumption:
+ Policy stringency in the near term and the timing of regional participation: Some delays in establishing global action with regions transitioning to global cooperation between 2020–2040
+ Coverage of land use emissions: Effective coverage (at the level of emissions control in the energy and industrial sectors)"
+SSP,scenarios,scenario,name,27,SSP5-Baseline
+SSP,scenarios,scenario,description,27,"Storyline: 
+ Fossil-fueled Development – Taking the Highway (High challenges to mitigation, low challenges to adaptation) This world places increasing faith in competitive markets, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with the exploitation of abundant fossil fuel resources and the adoption of resource and energy intensive lifestyles around the world. All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+ Longterm policy:
+ No-policy
+ Shared Climate Policy Assumption:
+ N/A"
+SSP,data sources,source,name,1,SSP Database
+SSP,data sources,source,link,1,https://tntcat.iiasa.ac.at/SspDb
+SSP,publications,reference,citation,1,Riahi et al. (2017)
+SSP,publications,reference,type,1,journal article
+SSP,publications,reference,doi,1,10.1016/j.gloenvcha.2016.05.009
+SSP,publications,reference,full,1,"RIAHI, K., VAN VUUREN, D. P., KRIEGLER, E., EDMONDS, J., O'NEILL, B. C., FUJIMORI, S., BAUER, N., CALVIN, K., DELLINK, R., FRICKO, O., LUTZ, W., POPP, A., CUARESMA, J. C., KC, S., LEIMBACH, M., JIANG, L., KRAM, T., RAO, S., EMMERLING, J., EBI, K., HASEGAWA, T., HAVLIK, P., HUMPENÖDER, F., DA SILVA, L. A., SMITH, S., STEHFEST, E., BOSETTI, V., EOM, J., GERNAAT, D., MASUI, T., ROGELJ, J., STREFLER, J., DROUET, L., KREY, V., LUDERER, G., HARMSEN, M., TAKAHASHI, K., BAUMSTARK, L., DOELMAN, J. C., KAINUMA, M., KLIMONT, Z., MARANGONI, G., LOTZE-CAMPEN, H., OBERSTEINER, M., TABEAU, A. & TAVONI, M. 2017. The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications: An overview. Global Environmental Change, 42, 153-168."
+SSP,publications,reference,ris,1,"TY  - JOUR
+AB  - This paper presents the overview of the Shared Socioeconomic Pathways (SSPs) and their energy, land use, and emissions implications. The SSPs are part of a new scenario framework, established by the climate change research community in order to facilitate the integrated analysis of future climate impacts, vulnerabilities, adaptation, and mitigation. The pathways were developed over the last years as a joint community effort and describe plausible major global developments that together would lead in the future to different challenges for mitigation and adaptation to climate change. The SSPs are based on five narratives describing alternative socio-economic developments, including sustainable development, regional rivalry, inequality, fossil-fueled development, and middle-of-the-road development. The long-term demographic and economic projections of the SSPs depict a wide uncertainty range consistent with the scenario literature. A multi-model approach was used for the elaboration of the energy, land-use and the emissions trajectories of SSP-based scenarios. The baseline scenarios lead to global energy consumption of 400–1200 EJ in 2100, and feature vastly different land-use dynamics, ranging from a possible reduction in cropland area up to a massive expansion by more than 700 million hectares by 2100. The associated annual CO2 emissions of the baseline scenarios range from about 25 GtCO2 to more than 120 GtCO2 per year by 2100. With respect to mitigation, we find that associated costs strongly depend on three factors: (1) the policy assumptions, (2) the socio-economic narrative, and (3) the stringency of the target. The carbon price for reaching the target of 2.6 W/m2 that is consistent with a temperature change limit of 2 °C, differs in our analysis thus by about a factor of three across the SSP marker scenarios. Moreover, many models could not reach this target from the SSPs with high mitigation challenges. While the SSPs were designed to represent different mitigation and adaptation challenges, the resulting narratives and quantifications span a wide range of different futures broadly representative of the current literature. This allows their subsequent use and development in new assessments and research projects. Critical next steps for the community scenario process will, among others, involve regional and sectoral extensions, further elaboration of the adaptation and impacts dimension, as well as employing the SSP scenarios with the new generation of earth system models as part of the 6th climate model intercomparison project (CMIP6). © 2017 The Authors
+AU  - Riahi, K.
+AU  - van Vuuren, D. P.
+AU  - Kriegler, E.
+AU  - Edmonds, J.
+AU  - O'Neill, B. C.
+AU  - Fujimori, S.
+AU  - Bauer, N.
+AU  - Calvin, K.
+AU  - Dellink, R.
+AU  - Fricko, O.
+AU  - Lutz, W.
+AU  - Popp, A.
+AU  - Cuaresma, J. C.
+AU  - Kc, S.
+AU  - Leimbach, M.
+AU  - Jiang, L.
+AU  - Kram, T.
+AU  - Rao, S.
+AU  - Emmerling, J.
+AU  - Ebi, K.
+AU  - Hasegawa, T.
+AU  - Havlik, P.
+AU  - Humpenöder, F.
+AU  - Da Silva, L. A.
+AU  - Smith, S.
+AU  - Stehfest, E.
+AU  - Bosetti, V.
+AU  - Eom, J.
+AU  - Gernaat, D.
+AU  - Masui, T.
+AU  - Rogelj, J.
+AU  - Strefler, J.
+AU  - Drouet, L.
+AU  - Krey, V.
+AU  - Luderer, G.
+AU  - Harmsen, M.
+AU  - Takahashi, K.
+AU  - Baumstark, L.
+AU  - Doelman, J. C.
+AU  - Kainuma, M.
+AU  - Klimont, Z.
+AU  - Marangoni, G.
+AU  - Lotze-Campen, H.
+AU  - Obersteiner, M.
+AU  - Tabeau, A.
+AU  - Tavoni, M.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.05.009
+KW  - Adaptation
+Climate change
+Community scenarios
+Mitigation
+RCP
+Shared Socioeconomic Pathways
+SSP
+carbon emission
+climate effect
+climate modeling
+demography
+emission
+environmental economics
+fossil fuel
+greenhouse gas
+integrated approach
+land use
+land use change
+scenario analysis
+sustainable development
+twenty first century
+M3  - Article
+N1  - Cited By :164
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 153-168
+ST  - The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications: An overview
+T2  - Global Environmental Change
+TI  - The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications: An overview
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84994893387&doi=10.1016%2fj.gloenvcha.2016.05.009&partnerID=40&md5=0451dadc4bb3cf56509295bb789e99d5
+VL  - 42
+ID  - 5
+ER  - 
+
+"
+SSP,publications,reference,citation,2,Rogelj et al. (2018)
+SSP,publications,reference,type,2,journal article
+SSP,publications,reference,doi,2,10.1038/s41558-018-0091-3
+SSP,publications,reference,full,2,"ROGELJ, J., POPP, A., CALVIN, K. V., LUDERER, G., EMMERLING, J., GERNAAT, D., FUJIMORI, S., STREFLER, J., HASEGAWA, T., MARANGONI, G., KREY, V., KRIEGLER, E., RIAHI, K., VAN VUUREN, D. P., DOELMAN, J., DROUET, L., EDMONDS, J., FRICKO, O., HARMSEN, M., HAVLÍK, P., HUMPENÖDER, F., STEHFEST, E. & TAVONI, M. 2018. Scenarios towards limiting global mean temperature increase below 1.5 °c. Nature Climate Change, 8, 325-332."
+SSP,publications,reference,ris,2,"TY  - JOUR
+AB  - The 2015 Paris Agreement calls for countries to pursue efforts to limit global-mean temperature rise to 1.5 °C. The transition pathways that can meet such a target have not, however, been extensively explored. Here we describe scenarios that limit end-of-century radiative forcing to 1.9 W m-2, and consequently restrict median warming in the year 2100 to below 1.5 °C. We use six integrated assessment models and a simple climate model, under different socio-economic, technological and resource assumptions from five Shared Socio-economic Pathways (SSPs). Some, but not all, SSPs are amenable to pathways to 1.5 °C. Successful 1.9 W m-2 scenarios are characterized by a rapid shift away from traditional fossil-fuel use towards large-scale low-carbon energy supplies, reduced energy use, and carbon-dioxide removal. However, 1.9 W m-2 scenarios could not be achieved in several models under SSPs with strong inequalities, high baseline fossil-fuel use, or scattered short-term climate policy. Further research can help policy-makers to understand the real-world implications of these scenarios. © 2018 The Author(s).
+AU  - Rogelj, J.
+AU  - Popp, A.
+AU  - Calvin, K. V.
+AU  - Luderer, G.
+AU  - Emmerling, J.
+AU  - Gernaat, D.
+AU  - Fujimori, S.
+AU  - Strefler, J.
+AU  - Hasegawa, T.
+AU  - Marangoni, G.
+AU  - Krey, V.
+AU  - Kriegler, E.
+AU  - Riahi, K.
+AU  - Van Vuuren, D. P.
+AU  - Doelman, J.
+AU  - Drouet, L.
+AU  - Edmonds, J.
+AU  - Fricko, O.
+AU  - Harmsen, M.
+AU  - Havlík, P.
+AU  - Humpenöder, F.
+AU  - Stehfest, E.
+AU  - Tavoni, M.
+DB  - Scopus
+DO  - 10.1038/s41558-018-0091-3
+IS  - 4
+M3  - Article
+N1  - Cited By :18
+Export Date: 27 September 2018
+PY  - 2018
+SP  - 325-332
+ST  - Scenarios towards limiting global mean temperature increase below 1.5 °c
+T2  - Nature Climate Change
+TI  - Scenarios towards limiting global mean temperature increase below 1.5 °c
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85042870561&doi=10.1038%2fs41558-018-0091-3&partnerID=40&md5=67fb545bc3e32e102410f6582ad304bf
+VL  - 8
+ID  - 4
+ER  - 
+
+"
+SSP,publications,reference,citation,3,O'Neil et al. (2017)
+SSP,publications,reference,type,3,journal article
+SSP,publications,reference,doi,3,10.1016/j.gloenvcha.2015.01.004
+SSP,publications,reference,full,3,"O'NEILL, B. C., KRIEGLER, E., EBI, K. L., KEMP-BENEDICT, E., RIAHI, K., ROTHMAN, D. S., VAN RUIJVEN, B. J., VAN VUUREN, D. P., BIRKMANN, J., KOK, K., LEVY, M. & SOLECKI, W. 2017. The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. Global Environmental Change, 42, 169-180."
+SSP,publications,reference,ris,3,"TY  - JOUR
+AB  - Long-term scenarios play an important role in research on global environmental change. The climate change research community is developing new scenarios integrating future changes in climate and society to investigate climate impacts as well as options for mitigation and adaptation. One component of these new scenarios is a set of alternative futures of societal development known as the shared socioeconomic pathways (SSPs). The conceptual framework for the design and use of the SSPs calls for the development of global pathways describing the future evolution of key aspects of society that would together imply a range of challenges for mitigating and adapting to climate change. Here we present one component of these pathways: the SSP narratives, a set of five qualitative descriptions of future changes in demographics, human development, economy and lifestyle, policies and institutions, technology, and environment and natural resources. We describe the methods used to develop the narratives as well as how these pathways are hypothesized to produce particular combinations of challenges to mitigation and adaptation. Development of the narratives drew on expert opinion to (1) identify key determinants of these challenges that were essential to incorporate in the narratives and (2) combine these elements in the narratives in a manner consistent with scholarship on their inter-relationships. The narratives are intended as a description of plausible future conditions at the level of large world regions that can serve as a basis for integrated scenarios of emissions and land use, as well as climate impact, adaptation and vulnerability analyses. © 2015 Elsevier Ltd
+AU  - O'Neill, B. C.
+AU  - Kriegler, E.
+AU  - Ebi, K. L.
+AU  - Kemp-Benedict, E.
+AU  - Riahi, K.
+AU  - Rothman, D. S.
+AU  - van Ruijven, B. J.
+AU  - van Vuuren, D. P.
+AU  - Birkmann, J.
+AU  - Kok, K.
+AU  - Levy, M.
+AU  - Solecki, W.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2015.01.004
+KW  - Adaptation
+Climate change
+Mitigation
+Narratives
+Scenarios
+Shared socioeconomic pathways
+conceptual framework
+demography
+environmental planning
+future prospect
+global perspective
+integrated approach
+land use change
+natural resource
+scenario analysis
+social development
+socioeconomic survey
+twenty first century
+vulnerability
+M3  - Article
+N1  - Cited By :179
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 169-180
+ST  - The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century
+T2  - Global Environmental Change
+TI  - The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84922900576&doi=10.1016%2fj.gloenvcha.2015.01.004&partnerID=40&md5=106350d12803584940dc9fbc020a8ccd
+VL  - 42
+ID  - 3
+ER  - 
+
+"
+SSP,publications,reference,citation,4,KC et al. (2017)
+SSP,publications,reference,type,4,journal article
+SSP,publications,reference,doi,4,10.1016/j.gloenvcha.2014.06.004
+SSP,publications,reference,full,4,"KC, S. & LUTZ, W. 2017. The human core of the shared socioeconomic pathways: Population scenarios by age, sex and level of education for all countries to 2100. Global Environmental Change, 42, 181-192."
+SSP,publications,reference,ris,4,"TY  - JOUR
+AB  - This paper applies the methods of multi-dimensional mathematical demography to project national populations based on alternative assumptions on future, fertility, mortality, migration and educational transitions that correspond to the five shared socioeconomic pathways (SSP) storylines. In doing so it goes a significant step beyond past population scenarios in the IPCC context which considered only total population size. By differentiating the human population not only by age and sex—as is conventionally done in demographic projections—but also by different levels of educational attainment the most fundamental aspects of human development and social change are being explicitly addressed through modeling the changing composition of populations by these three important individual characteristics. The scenarios have been defined in a collaborative effort of the international Integrated Assessment Modeling community with the medium scenario following that of a major new effort by the Wittgenstein Centre for Demography and Global Human Capital (IIASA, OEAW, WU) involving over 550 experts from around the world. As a result, in terms of total world population size the trajectories resulting from the five SSPs stay very close to each other until around 2030 and by the middle of the century already a visible differentiation appears with the range between the highest (SSP3) and the lowest (SSP1) trajectories spanning 1.5 billion. The range opens up much more with the SSP3 reaching 12.6 billion in 2100 and SSP1 falling to 6.9 billion which is lower than today's world population. © 2014 The Authors
+AU  - Kc, S.
+AU  - Lutz, W.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2014.06.004
+KW  - Age structure
+Country level
+Education
+Scenarios
+Shared socioeconomic pathways
+World population
+age-related difference
+demographic survey
+educational attainment
+population size
+scenario analysis
+sex-related difference
+social change
+socioeconomic status
+M3  - Article
+N1  - Cited By :121
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 181-192
+ST  - The human core of the shared socioeconomic pathways: Population scenarios by age, sex and level of education for all countries to 2100
+T2  - Global Environmental Change
+TI  - The human core of the shared socioeconomic pathways: Population scenarios by age, sex and level of education for all countries to 2100
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84903422524&doi=10.1016%2fj.gloenvcha.2014.06.004&partnerID=40&md5=1d2048904ff2154f0c394c5c38810b6a
+VL  - 42
+ID  - 6
+ER  - 
+
+"
+SSP,publications,reference,citation,5,Dellink et al. (2017)
+SSP,publications,reference,type,5,journal article
+SSP,publications,reference,doi,5,10.1016/j.gloenvcha.2015.06.004
+SSP,publications,reference,full,5,"DELLINK, R., CHATEAU, J., LANZI, E. & MAGNÉ, B. 2017. Long-term economic growth projections in the Shared Socioeconomic Pathways. Global Environmental Change, 42, 200-214."
+SSP,publications,reference,ris,5,"TY  - JOUR
+AB  - Long-term economic scenarios (up to 2100) are needed as a basis to explore possible different futures for major environmental challenges, including climate change. Given the high level of uncertainty involved, such scenarios would need to span a wide range of possible growth trajectories. The recently developed storylines of the Shared Socioeconomic Pathways (SSPs) provide a basis for making such projections. This paper describes a consistent methodology to derive (per capita) GDP trend pathways on a country basis. The methodology is based on a convergence process and places emphasis on the key drivers of economic growth in the long run: population, total factor productivity, physical capital, employment and human capital, and energy and fossil fuel resources (specifically oil and gas). The paper uses this methodology to derive country-level economic growth projections for 184 countries. The paper also investigates the influence of short-term growth rate estimates on the long-term income levels in various countries. It does so by comparing long-term projections based on short-term forecasts from 2011 with the projections based on forecasts from 2013. This highlights the effects of the recent economic crisis and uncertainty in short term developments on longer term growth trends. The projections are subject to large uncertainties, particularly for the later decades, and disregard a wide range of country-specific drivers of economic growth that are outside the narrow economic framework, such as external shocks, governance barriers and feedbacks from environmental damage. Hence, they should be interpreted with sufficient care and not be treated as predictions. © 2015 Elsevier Ltd
+AU  - Dellink, R.
+AU  - Chateau, J.
+AU  - Lanzi, E.
+AU  - Magné, B.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2015.06.004
+KW  - Baselines
+Climate change
+Convergence
+Economic growth
+baseline survey
+global change
+Gross Domestic Product
+long-term change
+methodology
+socioeconomic status
+M3  - Article
+N1  - Cited By :77
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 200-214
+ST  - Long-term economic growth projections in the Shared Socioeconomic Pathways
+T2  - Global Environmental Change
+TI  - Long-term economic growth projections in the Shared Socioeconomic Pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84936818295&doi=10.1016%2fj.gloenvcha.2015.06.004&partnerID=40&md5=5594bdbe8521969036ff5f06450b3c19
+VL  - 42
+ID  - 8
+ER  - 
+
+"
+SSP,publications,reference,citation,6,Leimbach et al. (2017)
+SSP,publications,reference,type,6,journal article
+SSP,publications,reference,doi,6,10.1016/j.gloenvcha.2015.02.005
+SSP,publications,reference,full,6,"LEIMBACH, M., KRIEGLER, E., ROMING, N. & SCHWANITZ, J. 2017. Future growth patterns of world regions – A GDP scenario approach. Global Environmental Change, 42, 215-225."
+SSP,publications,reference,ris,6,"TY  - JOUR
+AB  - Global GDP projections for the 21st century are needed for the exploration of long-term global environmental problems, in particular climate change. Greenhouse gas emissions as well as climate change mitigation and adaption capacities strongly depend on growth of per capita income. However, long-term economic projections are highly uncertain. This paper provides five new long-term economic scenarios as part of the newly developed shared socio-economic pathways (SSPs) which represent a set of widely diverging narratives. A method of GDP scenario building is presented that is based on assumptions about technological progress, and human and physical capital formation as major drivers of long-term GDP per capita growth. The impact of these drivers differs significantly between different shared socio-economic pathways and is traced back to the underlying narratives and the associated population and education scenarios. In a highly fragmented world, technological and knowledge spillovers are low. Hence, the growth impact of technological progress and human capital is comparatively low, and per capita income diverges between world regions. These factors play a much larger role in globalization scenarios, leading to higher economic growth and stronger convergence between world regions. At the global average, per capita GDP is projected to grow annually in a range between 1.0% (SSP3) and 2.8% (SSP5) from 2010 to 2100. While this covers a large portion of variety in future global economic growth projections, plausible lower and higher growth projections may still be conceivable. The GDP projections are put into the context of historic patterns of economic growth (stylized facts), and their sensitivity to key assumptions is explored. © 2016 The Authors
+AU  - Leimbach, M.
+AU  - Kriegler, E.
+AU  - Roming, N.
+AU  - Schwanitz, J.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2015.02.005
+KW  - Convergence
+Economic growth
+GDP scenario
+capital formation
+climate change
+economic analysis
+educational development
+globalization
+greenhouse gas
+Gross Domestic Product
+growth rate
+human capital
+knowledge
+socioeconomic conditions
+M3  - Article
+N1  - Cited By :27
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 215-225
+ST  - Future growth patterns of world regions – A GDP scenario approach
+T2  - Global Environmental Change
+TI  - Future growth patterns of world regions – A GDP scenario approach
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84925936147&doi=10.1016%2fj.gloenvcha.2015.02.005&partnerID=40&md5=dd8010277fabefe216aaa43304aa747c
+VL  - 42
+ID  - 9
+ER  - 
+
+"
+SSP,publications,reference,citation,7,Crespo (2017)
+SSP,publications,reference,type,7,journal article
+SSP,publications,reference,doi,7,10.1016/j.gloenvcha.2015.02.012
+SSP,publications,reference,full,7,"CRESPO CUARESMA, J. 2017. Income projections for climate change research: A framework based on human capital dynamics. Global Environmental Change, 42, 226-236."
+SSP,publications,reference,ris,7,"TY  - JOUR
+AB  - The quantitative assessment of the global effects of climate change requires the construction of income projections spanning large time horizons. Exploiting the robust link between educational attainment, age structure dynamics and economic growth, we use population projections by age, sex and educational attainment to obtain income per capita paths to the year 2100 for 144 countries. Such a framework offers a powerful, consistent methodology which can be used to study the future environmental challenges and to address potential policy reactions. © 2015 Elsevier Ltd
+AU  - Crespo Cuaresma, J.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2015.02.012
+KW  - Climate change
+Economic growth
+Human capital
+Income projections
+age structure
+educational attainment
+global change
+global perspective
+income distribution
+nature-society relations
+research work
+M3  - Article
+N1  - Cited By :22
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 226-236
+ST  - Income projections for climate change research: A framework based on human capital dynamics
+T2  - Global Environmental Change
+TI  - Income projections for climate change research: A framework based on human capital dynamics
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84926330833&doi=10.1016%2fj.gloenvcha.2015.02.012&partnerID=40&md5=b56fac4a850a3402dd1e5d935a878b67
+VL  - 42
+ID  - 10
+ER  - 
+"
+SSP,publications,reference,citation,8,Jiang et al. (2017)
+SSP,publications,reference,type,8,journal article
+SSP,publications,reference,doi,8,10.1016/j.gloenvcha.2015.03.008
+SSP,publications,reference,full,8,"JIANG, L. & O'NEILL, B. C. 2017. Global urbanization projections for the Shared Socioeconomic Pathways. Global Environmental Change, 42, 193-199."
+SSP,publications,reference,ris,8,"TY  - JOUR
+AB  - The new scenario process for climate change research includes the creation of Shared Socioeconomic Pathways (SSPs) describing alternative societal development trends over the coming decades. Urbanization is a key aspect of development that is relevant to studies of mitigation, adaptation, and impacts. Incorporating urbanization into the SSPs requires a consistent set of global urbanization projections that cover long time horizons and span a full range of uncertainty. Existing urbanization projections do not meet these needs, in particular providing only a single scenario over the next few decades, a period during which urbanization is likely to be highly dynamic in many countries. We present here a new, long-term, global set of urbanization projections at country level that cover a plausible range of uncertainty. We create SSP-specific projections by choosing urbanization outcomes consistent with each SSP narrative. Results show that the world continues to urbanize in each of the SSPs but outcomes differ widely across them, with urbanization reaching 60%, 79%, and 92% by the end of century in SSP3, SSP2, and SSP1/SSP4/SSP5, respectively. The degree of convergence in urbanization across countries also differs substantially, with largely convergent outcomes by the end of the century in SSP1 and SSP5 and persistent diversity in SSP3. This set of global, country-specific projections produces urbanization pathways that are typical of regions in different stages of urbanization and development levels, and can be extended to further elaborate assumptions about the styles of urban growth and spatial distributions of urban people and land cover occurring in each SSP. © 2015 Elsevier Ltd
+AU  - Jiang, L.
+AU  - O'Neill, B. C.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2015.03.008
+KW  - Long term
+Socioeconomic scenarios
+Uncertainty
+Urbanization projections
+adaptive management
+climate change
+convergence
+global perspective
+land cover
+nature-society relations
+research work
+scenario analysis
+social development
+socioeconomic conditions
+uncertainty analysis
+urban growth
+urbanization
+M3  - Article
+N1  - Cited By :43
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 193-199
+ST  - Global urbanization projections for the Shared Socioeconomic Pathways
+T2  - Global Environmental Change
+TI  - Global urbanization projections for the Shared Socioeconomic Pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84926629672&doi=10.1016%2fj.gloenvcha.2015.03.008&partnerID=40&md5=3f6019a53d3c1a2527fdde1b6c0940b4
+VL  - 42
+ID  - 11
+ER  - 
+
+"
+SSP,publications,reference,citation,9,Bauer et al. (2017)
+SSP,publications,reference,type,9,journal article
+SSP,publications,reference,doi,9,10.1016/j.gloenvcha.2016.07.006
+SSP,publications,reference,full,9,"BAUER, N., CALVIN, K., EMMERLING, J., FRICKO, O., FUJIMORI, S., HILAIRE, J., EOM, J., KREY, V., KRIEGLER, E., MOURATIADOU, I., SYTZE DE BOER, H., VAN DEN BERG, M., CARRARA, S., DAIOGLOU, V., DROUET, L., EDMONDS, J. E., GERNAAT, D., HAVLIK, P., JOHNSON, N., KLEIN, D., KYLE, P., MARANGONI, G., MASUI, T., PIETZCKER, R. C., STRUBEGGER, M., WISE, M., RIAHI, K. & VAN VUUREN, D. P. 2017. Shared Socio-Economic Pathways of the Energy Sector – Quantifying the Narratives. Global Environmental Change, 42, 316-330."
+SSP,publications,reference,ris,9,"TY  - JOUR
+AB  - Energy is crucial for supporting basic human needs, development and well-being. The future evolution of the scale and character of the energy system will be fundamentally shaped by socioeconomic conditions and drivers, available energy resources, technologies of energy supply and transformation, and end-use energy demand. However, because energy-related activities are significant sources of greenhouse gas (GHG) emissions and other environmental and social externalities, energy system development will also be influenced by social acceptance and strategic policy choices. All of these uncertainties have important implications for many aspects of economic and environmental sustainability, and climate change in particular. In the Shared-Socioeconomic Pathway (SSP) framework these uncertainties are structured into five narratives, arranged according to the challenges to climate change mitigation and adaptation. In this study we explore future energy sector developments across the five SSPs using Integrated Assessment Models (IAMs), and we also provide summary output and analysis for selected scenarios of global emissions mitigation policies. The mitigation challenge strongly corresponds with global baseline energy sector growth over the 21st century, which varies between 40% and 230% depending on final energy consumer behavior, technological improvements, resource availability and policies. The future baseline CO2-emission range is even larger, as the most energy-intensive SSP also incorporates a comparatively high share of carbon-intensive fossil fuels, and vice versa. Inter-regional disparities in the SSPs are consistent with the underlying socioeconomic assumptions; these differences are particularly strong in the SSPs with large adaptation challenges, which have little inter-regional convergence in long-term income and final energy demand levels. The scenarios presented do not include feedbacks of climate change on energy sector development. The energy sector SSPs with and without emissions mitigation policies are introduced and analyzed here in order to contribute to future research in climate sciences, mitigation analysis, and studies on impacts, adaptation and vulnerability. © 2016 The Authors
+AU  - Bauer, N.
+AU  - Calvin, K.
+AU  - Emmerling, J.
+AU  - Fricko, O.
+AU  - Fujimori, S.
+AU  - Hilaire, J.
+AU  - Eom, J.
+AU  - Krey, V.
+AU  - Kriegler, E.
+AU  - Mouratiadou, I.
+AU  - Sytze de Boer, H.
+AU  - van den Berg, M.
+AU  - Carrara, S.
+AU  - Daioglou, V.
+AU  - Drouet, L.
+AU  - Edmonds, J. E.
+AU  - Gernaat, D.
+AU  - Havlik, P.
+AU  - Johnson, N.
+AU  - Klein, D.
+AU  - Kyle, P.
+AU  - Marangoni, G.
+AU  - Masui, T.
+AU  - Pietzcker, R. C.
+AU  - Strubegger, M.
+AU  - Wise, M.
+AU  - Riahi, K.
+AU  - van Vuuren, D. P.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.07.006
+KW  - Energy demand
+Energy resources
+Energy supply
+Energy system
+Integrated Assessment Models (IAMs)
+Shared Socio-economic Pathways (SSPs)
+carbon emission
+climate change
+consumption behavior
+demand analysis
+economic activity
+emission control
+energy budget
+energy policy
+energy resource
+energy use
+fossil fuel
+integrated approach
+resource availability
+socioeconomic conditions
+strategic approach
+sustainability
+twenty first century
+M3  - Article
+N1  - Cited By :33
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 316-330
+ST  - Shared Socio-Economic Pathways of the Energy Sector – Quantifying the Narratives
+T2  - Global Environmental Change
+TI  - Shared Socio-Economic Pathways of the Energy Sector – Quantifying the Narratives
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84990019816&doi=10.1016%2fj.gloenvcha.2016.07.006&partnerID=40&md5=b68285613977f9f82e1318e2bea6d911
+VL  - 42
+ID  - 12
+ER  - 
+
+"
+SSP,publications,reference,citation,10,Rao et al. (2017)
+SSP,publications,reference,type,10,journal article
+SSP,publications,reference,doi,10,10.1016/j.gloenvcha.2016.05.012
+SSP,publications,reference,full,10,"RAO, S., KLIMONT, Z., SMITH, S. J., VAN DINGENEN, R., DENTENER, F., BOUWMAN, L., RIAHI, K., AMANN, M., BODIRSKY, B. L., VAN VUUREN, D. P., ALELUIA REIS, L., CALVIN, K., DROUET, L., FRICKO, O., FUJIMORI, S., GERNAAT, D., HAVLIK, P., HARMSEN, M., HASEGAWA, T., HEYES, C., HILAIRE, J., LUDERER, G., MASUI, T., STEHFEST, E., STREFLER, J., VAN DER SLUIS, S. & TAVONI, M. 2017. Future air pollution in the Shared Socio-economic Pathways. Global Environmental Change, 42, 346-358."
+SSP,publications,reference,ris,10,"TY  - JOUR
+AU  - Rao, S.
+AU  - Klimont, Z.
+AU  - Smith, S. J.
+AU  - Van Dingenen, R.
+AU  - Dentener, F.
+AU  - Bouwman, L.
+AU  - Riahi, K.
+AU  - Amann, M.
+AU  - Bodirsky, B. L.
+AU  - van Vuuren, D. P.
+AU  - Aleluia Reis, L.
+AU  - Calvin, K.
+AU  - Drouet, L.
+AU  - Fricko, O.
+AU  - Fujimori, S.
+AU  - Gernaat, D.
+AU  - Havlik, P.
+AU  - Harmsen, M.
+AU  - Hasegawa, T.
+AU  - Heyes, C.
+AU  - Hilaire, J.
+AU  - Luderer, G.
+AU  - Masui, T.
+AU  - Stehfest, E.
+AU  - Strefler, J.
+AU  - van der Sluis, S.
+AU  - Tavoni, M.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.05.012
+M3  - Article
+N1  - Cited By :43
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 346-358
+ST  - Future air pollution in the Shared Socio-economic Pathways
+T2  - Global Environmental Change
+TI  - Future air pollution in the Shared Socio-economic Pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84978877801&doi=10.1016%2fj.gloenvcha.2016.05.012&partnerID=40&md5=8b862ef888fb35c1936b06a454064a7c
+VL  - 42
+ID  - 21
+ER  - 
+"
+SSP,publications,reference,citation,11,Popp et al. (2017)
+SSP,publications,reference,type,11,journal article
+SSP,publications,reference,doi,11,10.1016/j.gloenvcha.2016.10.002
+SSP,publications,reference,full,11,"POPP, A., CALVIN, K., FUJIMORI, S., HAVLIK, P., HUMPENÖDER, F., STEHFEST, E., BODIRSKY, B. L., DIETRICH, J. P., DOELMANN, J. C., GUSTI, M., HASEGAWA, T., KYLE, P., OBERSTEINER, M., TABEAU, A., TAKAHASHI, K., VALIN, H., WALDHOFF, S., WEINDL, I., WISE, M., KRIEGLER, E., LOTZE-CAMPEN, H., FRICKO, O., RIAHI, K. & VUUREN, D. P. V. 2017. Land-use futures in the shared socio-economic pathways. Global Environmental Change, 42, 331-345."
+SSP,publications,reference,ris,11,"TY  - JOUR
+AB  - In the future, the land system will be facing new intersecting challenges. While food demand, especially for resource-intensive livestock based commodities, is expected to increase, the terrestrial system has large potentials for climate change mitigation through improved agricultural management, providing biomass for bioenergy, and conserving or even enhancing carbon stocks of ecosystems. However, uncertainties in future socio-economic land use drivers may result in very different land-use dynamics and consequences for land-based ecosystem services. This is the first study with a systematic interpretation of the Shared Socio-Economic Pathways (SSPs) in terms of possible land-use changes and their consequences for the agricultural system, food provision and prices as well as greenhouse gas emissions. Therefore, five alternative Integrated Assessment Models with distinctive land-use modules have been used for the translation of the SSP narratives into quantitative projections. The model results reflect the general storylines of the SSPs and indicate a broad range of potential land-use futures with global agricultural land of 4900 mio ha in 2005 decreasing by 743 mio ha until 2100 at the lower (SSP1) and increasing by 1080 mio ha (SSP3) at the upper end. Greenhouse gas emissions from land use and land use change, as a direct outcome of these diverse land-use dynamics, and agricultural production systems differ strongly across SSPs (e.g. cumulative land use change emissions between 2005 and 2100 range from −54 to 402 Gt CO2). The inclusion of land-based mitigation efforts, particularly those in the most ambitious mitigation scenarios, further broadens the range of potential land futures and can strongly affect greenhouse gas dynamics and food prices. In general, it can be concluded that low demand for agricultural commodities, rapid growth in agricultural productivity and globalized trade, all most pronounced in a SSP1 world, have the potential to enhance the extent of natural ecosystems, lead to lowest greenhouse gas emissions from the land system and decrease food prices over time. The SSP-based land use pathways presented in this paper aim at supporting future climate research and provide the basis for further regional integrated assessments, biodiversity research and climate impact analysis. © 2016 The Authors
+AU  - Popp, A.
+AU  - Calvin, K.
+AU  - Fujimori, S.
+AU  - Havlik, P.
+AU  - Humpenöder, F.
+AU  - Stehfest, E.
+AU  - Bodirsky, B. L.
+AU  - Dietrich, J. P.
+AU  - Doelmann, J. C.
+AU  - Gusti, M.
+AU  - Hasegawa, T.
+AU  - Kyle, P.
+AU  - Obersteiner, M.
+AU  - Tabeau, A.
+AU  - Takahashi, K.
+AU  - Valin, H.
+AU  - Waldhoff, S.
+AU  - Weindl, I.
+AU  - Wise, M.
+AU  - Kriegler, E.
+AU  - Lotze-Campen, H.
+AU  - Fricko, O.
+AU  - Riahi, K.
+AU  - Vuuren, D. P. V.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.10.002
+KW  - Emissions
+Food prices
+Integrated assessment
+Land use
+Mitigation
+Scenarios
+SSP
+agricultural land
+agricultural management
+agricultural production
+assessment method
+climate change
+climate effect
+demand analysis
+ecosystem service
+emission
+greenhouse gas
+integrated approach
+land use change
+land use planning
+price dynamics
+scenario analysis
+socioeconomic indicator
+M3  - Article
+N1  - Cited By :73
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 331-345
+ST  - Land-use futures in the shared socio-economic pathways
+T2  - Global Environmental Change
+TI  - Land-use futures in the shared socio-economic pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85005978326&doi=10.1016%2fj.gloenvcha.2016.10.002&partnerID=40&md5=6389f7f9cbfd2b8bc93fe9ebb73c0757
+VL  - 42
+ID  - 14
+ER  - 
+
+"
+SSP,publications,reference,citation,12,van Vuuren et al. (2017)
+SSP,publications,reference,type,12,journal article
+SSP,publications,reference,doi,12,10.1016/j.gloenvcha.2016.05.008
+SSP,publications,reference,full,12,"VAN VUUREN, D. P., STEHFEST, E., GERNAAT, D. E. H. J., DOELMAN, J. C., VAN DEN BERG, M., HARMSEN, M., DE BOER, H. S., BOUWMAN, L. F., DAIOGLOU, V., EDELENBOSCH, O. Y., GIROD, B., KRAM, T., LASSALETTA, L., LUCAS, P. L., VAN MEIJL, H., MÜLLER, C., VAN RUIJVEN, B. J., VAN DER SLUIS, S. & TABEAU, A. 2017. Energy, land-use and greenhouse gas emissions trajectories under a green growth paradigm. Global Environmental Change, 42, 237-250."
+SSP,publications,reference,ris,12,"TY  - JOUR
+AB  - This paper describes the possible developments in global energy use and production, land use, emissions and climate changes following the SSP1 storyline, a development consistent with the green growth (or sustainable development) paradigm (a more inclusive development respecting environmental boundaries). The results are based on the implementation using the IMAGE 3.0 integrated assessment model and are compared with a) other IMAGE implementations of the SSPs (SSP2 and SSP3) and b) the SSP1 implementation of other integrated assessment models. The results show that a combination of resource efficiency, preferences for sustainable production methods and investment in human development could lead to a strong transition towards a more renewable energy supply, less land use and lower anthropogenic greenhouse gas emissions in 2100 than in 2010, even in the absence of explicit climate policies. At the same time, climate policy would still be needed to reduce emissions further, in order to reduce the projected increase of global mean temperature from 3 °C (SSP1 reference scenario) to 2 or 1.5 °C (in line with current policy targets). The SSP1 storyline could be a basis for further discussions on how climate policy can be combined with achieving other societal goals. © 2017 The Authors
+AU  - van Vuuren, D. P.
+AU  - Stehfest, E.
+AU  - Gernaat, D. E. H. J.
+AU  - Doelman, J. C.
+AU  - van den Berg, M.
+AU  - Harmsen, M.
+AU  - de Boer, H. S.
+AU  - Bouwman, L. F.
+AU  - Daioglou, V.
+AU  - Edelenbosch, O. Y.
+AU  - Girod, B.
+AU  - Kram, T.
+AU  - Lassaletta, L.
+AU  - Lucas, P. L.
+AU  - van Meijl, H.
+AU  - Müller, C.
+AU  - van Ruijven, B. J.
+AU  - van der Sluis, S.
+AU  - Tabeau, A.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.05.008
+KW  - Climate change research
+Integrated assessment
+Scenarios
+Shared Socio-economic Pathways (SSPs)
+Sustainable development
+anthropogenic effect
+climate change
+emission
+emission control
+energy resource
+energy use
+environmental assessment
+environmental economics
+environmental policy
+greenhouse gas
+integrated approach
+land use
+paradigm shift
+renewable resource
+scenario analysis
+M3  - Article
+N1  - Cited By :63
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 237-250
+ST  - Energy, land-use and greenhouse gas emissions trajectories under a green growth paradigm
+T2  - Global Environmental Change
+TI  - Energy, land-use and greenhouse gas emissions trajectories under a green growth paradigm
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84977513357&doi=10.1016%2fj.gloenvcha.2016.05.008&partnerID=40&md5=4198eb5eb8b6a0fa061ba61fcaca3908
+VL  - 42
+ID  - 16
+ER  - 
+
+"
+SSP,publications,reference,citation,13,Fricko et al. (2017)
+SSP,publications,reference,type,13,journal article
+SSP,publications,reference,doi,13,10.1016/j.gloenvcha.2016.06.009
+SSP,publications,reference,full,13,"FRICKO, O., HAVLIK, P., ROGELJ, J., KLIMONT, Z., GUSTI, M., JOHNSON, N., KOLP, P., STRUBEGGER, M., VALIN, H., AMANN, M., ERMOLIEVA, T., FORSELL, N., HERRERO, M., HEYES, C., KINDERMANN, G., KREY, V., MCCOLLUM, D. L., OBERSTEINER, M., PACHAURI, S., RAO, S., SCHMID, E., SCHOEPP, W. & RIAHI, K. 2017. The marker quantification of the Shared Socioeconomic Pathway 2: A middle-of-the-road scenario for the 21st century. Global Environmental Change, 42, 251-267."
+SSP,publications,reference,ris,13,"TY  - JOUR
+AB  - Studies of global environmental change make extensive use of scenarios to explore how the future can evolve under a consistent set of assumptions. The recently developed Shared Socioeconomic Pathways (SSPs) create a framework for the study of climate-related scenario outcomes. Their five narratives span a wide range of worlds that vary in their challenges for climate change mitigation and adaptation. Here we provide background on the quantification that has been selected to serve as the reference, or ‘marker’, implementation for SSP2. The SSP2 narrative describes a middle-of-the-road development in the mitigation and adaptation challenges space. We explain how the narrative has been translated into quantitative assumptions in the IIASA Integrated Assessment Modelling Framework. We show that our SSP2 marker implementation occupies a central position for key metrics along the mitigation and adaptation challenge dimensions. For many dimensions the SSP2 marker implementation also reflects an extension of the historical experience, particularly in terms of carbon and energy intensity improvements in its baseline. This leads to a steady emissions increase over the 21st century, with projected end-of-century warming nearing 4 °C relative to preindustrial levels. On the other hand, SSP2 also shows that global-mean temperature increase can be limited to below 2 °C, pending stringent climate policies throughout the world. The added value of the SSP2 marker implementation for the wider scientific community is that it can serve as a starting point to further explore integrated solutions for achieving multiple societal objectives in light of the climate adaptation and mitigation challenges that society could face over the 21st century. © 2016 The Authors
+AU  - Fricko, O.
+AU  - Havlik, P.
+AU  - Rogelj, J.
+AU  - Klimont, Z.
+AU  - Gusti, M.
+AU  - Johnson, N.
+AU  - Kolp, P.
+AU  - Strubegger, M.
+AU  - Valin, H.
+AU  - Amann, M.
+AU  - Ermolieva, T.
+AU  - Forsell, N.
+AU  - Herrero, M.
+AU  - Heyes, C.
+AU  - Kindermann, G.
+AU  - Krey, V.
+AU  - McCollum, D. L.
+AU  - Obersteiner, M.
+AU  - Pachauri, S.
+AU  - Rao, S.
+AU  - Schmid, E.
+AU  - Schoepp, W.
+AU  - Riahi, K.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.06.004
+KW  - Adaptation
+Climate change
+Greenhouse gas emissions
+Integrated assessment modeling
+Mitigation
+Shared socioeconomic pathways
+SSP
+assessment method
+emission
+environmental planning
+environmental policy
+greenhouse gas
+integrated approach
+numerical model
+policy implementation
+scenario analysis
+twenty first century
+M3  - Article
+N1  - Cited By :53
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 251-267
+ST  - The marker quantification of the Shared Socioeconomic Pathway 2: A middle-of-the-road scenario for the 21st century
+T2  - Global Environmental Change
+TI  - The marker quantification of the Shared Socioeconomic Pathway 2: A middle-of-the-road scenario for the 21st century
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84979705726&doi=10.1016%2fj.gloenvcha.2016.06.004&partnerID=40&md5=58ff522949430810e816e2b9369329fb
+VL  - 42
+ID  - 17
+ER  - 
+
+"
+SSP,publications,reference,citation,14,Fujimori et al. (2017)
+SSP,publications,reference,type,14,journal article
+SSP,publications,reference,doi,14,10.1016/j.gloenvcha.2016.06.009
+SSP,publications,reference,full,14,"FUJIMORI, S., HASEGAWA, T., MASUI, T., TAKAHASHI, K., HERRAN, D. S., DAI, H., HIJIOKA, Y. & KAINUMA, M. 2017. SSP3: AIM implementation of Shared Socioeconomic Pathways. Global Environmental Change, 42, 268-283."
+SSP,publications,reference,ris,14,"TY  - JOUR
+AB  - This study quantifies the Shared Socioeconomic Pathways (SSPs) using AIM/CGE (Asia-Pacific Integrated Assessment/Computable General Equilibrium). SSP3 (regional rivalry) forms the main focus of the study, which is supposed to face high challenges both in mitigation and adaptation. The AIM model has been selected as the model to quantify the SSP3 marker scenario, a representative case illustrating a particular narrative. Multiple parameter assumptions in AIM/CGE were differentiated across the SSPs for quantification. We confirm that SSP3 quantitative scenarios outcomes are consistent with its narrative. Moreover, four key features of SSP3 are observed. First, as SSP3 was originally designed to contain a high level of challenges to mitigation, mitigation costs in SSP3 were relatively high. This results from the combination of high greenhouse gas emissions in the baseline (no climate mitigation policy) scenario and low mitigative capacity. Second, the climate forcing level in 2100 for the baseline scenarios of SSP3 was similar to that of SSP2, whereas CO2 emissions in SSP3 are higher than those in SSP2. This is mainly due to high aerosol emissions in SSP3. A third feature was the high air pollutant emissions associated with weak implementation of air quality legislation and a high level of coal dependency. Fourth, forest area steadily decreases with a large expansion of cropland and pasture land. These characteristics indicate at least four potential uses for SSP3. First, SSP3 is useful for both IAM and impact, adaptation, vulnerability (IAV) analyses to present the worst-case scenario. Second, by comparing SSP2 and SSP3, IAV analyses can clarify the influences of socioeconomic elements under similar climatic conditions. Third, the high air pollutant emissions would be of interest to atmospheric chemistry climate modelers. Finally, in addition to climate change studies, many other environmental studies could benefit from the meaningful insights available from the large-scale land use change resulting in SSP3. © 2016 The Authors
+AU  - Fujimori, S.
+AU  - Hasegawa, T.
+AU  - Masui, T.
+AU  - Takahashi, K.
+AU  - Herran, D. S.
+AU  - Dai, H.
+AU  - Hijioka, Y.
+AU  - Kainuma, M.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.06.009
+KW  - AIM
+Climate mitigation
+Computable general equilibrium model
+Integrated assessment model
+Socioeconomic scenarios
+SSPs
+aerosol
+agricultural land
+air quality
+atmospheric chemistry
+atmospheric pollution
+carbon emission
+climate change
+climate conditions
+climate modeling
+computable general equilibrium analysis
+environmental planning
+greenhouse gas
+land use change
+numerical model
+scenario analysis
+socioeconomic status
+M3  - Article
+N1  - Cited By :51
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 268-283
+ST  - SSP3: AIM implementation of Shared Socioeconomic Pathways
+T2  - Global Environmental Change
+TI  - SSP3: AIM implementation of Shared Socioeconomic Pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85004130326&doi=10.1016%2fj.gloenvcha.2016.06.009&partnerID=40&md5=95f20e207375ce8027661002b80f1d6d
+VL  - 42
+ID  - 19
+ER  - 
+
+"
+SSP,publications,reference,citation,15,Calvin et al. (2017)
+SSP,publications,reference,type,15,journal article
+SSP,publications,reference,doi,15,10.1016/j.gloenvcha.2016.05.015
+SSP,publications,reference,full,15,"CALVIN, K., BOND-LAMBERTY, B., CLARKE, L., EDMONDS, J., EOM, J., HARTIN, C., KIM, S., KYLE, P., LINK, R., MOSS, R., MCJEON, H., PATEL, P., SMITH, S., WALDHOFF, S. & WISE, M. 2017. The SSP4: A world of deepening inequality. Global Environmental Change, 42, 284-296."
+SSP,publications,reference,ris,15,"TY  - JOUR
+AB  - Five new scenarios, or Shared Socioeconomic Pathways (SSPs), have been developed, spanning a range of challenges to mitigation and challenges to adaptation. The Shared Socioeconomic Pathway 4 (SSP4), “Inequality” or “A Road Divided,” is one of these scenarios, characterized by low challenges to mitigation and high challenges to adaptation. We describe, in quantitative terms, the SSP4 as implemented by the Global Change Assessment Model (GCAM), the marker model for this scenario. We use demographic and economic assumptions, in combination with technology and non-climate policy assumptions to develop a quantitative representation of energy, land-use and land-cover, and emissions consistent with the SSP4 narrative. The scenario is one with stark differences within and across regions. High-income regions prosper, continuing to increase their demand for energy and food. Electrification increases in these regions, with the increased generation being met by nuclear and renewables. Low-income regions, however, stagnate due to limited economic growth. Growth in total consumption is dominated by increases in population, not increases in per capita consumption. Due to failures in energy access policies, these regions continue to depend on traditional biofuels, leading to high pollutant emissions. Declining dependence on fossil fuels in all regions means that total radiative forcing absent the inclusion of mitigation or impacts only reaches 6.4 W m−2 in 2100, making this a world with relatively low challenges to mitigation. We explore the effects of mitigation effort on the SSP4 world, finding that the imposition of a carbon price has a varied effect across regions. In particular, the SSP4 mitigation scenarios are characterized by afforestation in the high-income regions and deforestation in the low-income regions. Furthermore, we find that the SSP4 is a world with low challenges to mitigation, but only to a point due to incomplete mitigation of land-related emissions. © 2016 Elsevier Ltd
+AU  - Calvin, K.
+AU  - Bond-Lamberty, B.
+AU  - Clarke, L.
+AU  - Edmonds, J.
+AU  - Eom, J.
+AU  - Hartin, C.
+AU  - Kim, S.
+AU  - Kyle, P.
+AU  - Link, R.
+AU  - Moss, R.
+AU  - McJeon, H.
+AU  - Patel, P.
+AU  - Smith, S.
+AU  - Waldhoff, S.
+AU  - Wise, M.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.06.010
+KW  - afforestation
+biofuel
+deforestation
+demand analysis
+demography
+economic growth
+electrification
+energy policy
+environmental economics
+fossil fuel
+land cover
+land use
+low income population
+numerical model
+scenario analysis
+M3  - Article
+N1  - Cited By :35
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 284-296
+ST  - The SSP4: A world of deepening inequality
+T2  - Global Environmental Change
+TI  - The SSP4: A world of deepening inequality
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84979681457&doi=10.1016%2fj.gloenvcha.2016.06.010&partnerID=40&md5=953ac8d7b968776a4687f05c3b1ac3e1
+VL  - 42
+ID  - 18
+ER  - 
+
+"
+SSP,publications,reference,citation,16,Kriegler et al. (2017)
+SSP,publications,reference,type,16,journal article
+SSP,publications,reference,doi,16,10.1016/j.gloenvcha.2016.05.015
+SSP,publications,reference,full,16,"KRIEGLER, E., BAUER, N., POPP, A., HUMPENÖDER, F., LEIMBACH, M., STREFLER, J., BAUMSTARK, L., BODIRSKY, B. L., HILAIRE, J., KLEIN, D., MOURATIADOU, I., WEINDL, I., BERTRAM, C., DIETRICH, J. P., LUDERER, G., PEHL, M., PIETZCKER, R., PIONTEK, F., LOTZE-CAMPEN, H., BIEWALD, A., BONSCH, M., GIANNOUSAKIS, A., KREIDENWEIS, U., MÜLLER, C., ROLINSKI, S., SCHULTES, A., SCHWANITZ, J., STEVANOVIC, M., CALVIN, K., EMMERLING, J., FUJIMORI, S. & EDENHOFER, O. 2017. Fossil-fueled development (SSP5): An energy and resource intensive scenario for the 21st century. Global Environmental Change, 42, 297-315."
+SSP,publications,reference,ris,16,"TY  - JOUR
+AB  - This paper presents a set of energy and resource intensive scenarios based on the concept of Shared Socio-Economic Pathways (SSPs). The scenario family is characterized by rapid and fossil-fueled development with high socio-economic challenges to mitigation and low socio-economic challenges to adaptation (SSP5). A special focus is placed on the SSP5 marker scenario developed by the REMIND-MAgPIE integrated assessment modeling framework. The SSP5 baseline scenarios exhibit very high levels of fossil fuel use, up to a doubling of global food demand, and up to a tripling of energy demand and greenhouse gas emissions over the course of the century, marking the upper end of the scenario literature in several dimensions. These scenarios are currently the only SSP scenarios that result in a radiative forcing pathway as high as the highest Representative Concentration Pathway (RCP8.5). This paper further investigates the direct impact of mitigation policies on the SSP5 energy, land and emissions dynamics confirming high socio-economic challenges to mitigation in SSP5. Nonetheless, mitigation policies reaching climate forcing levels as low as in the lowest Representative Concentration Pathway (RCP2.6) are accessible in SSP5. The SSP5 scenarios presented in this paper aim to provide useful reference points for future climate change, climate impact, adaption and mitigation analysis, and broader questions of sustainable development. © 2016 The Authors
+AU  - Kriegler, E.
+AU  - Bauer, N.
+AU  - Popp, A.
+AU  - Humpenöder, F.
+AU  - Leimbach, M.
+AU  - Strefler, J.
+AU  - Baumstark, L.
+AU  - Bodirsky, B. L.
+AU  - Hilaire, J.
+AU  - Klein, D.
+AU  - Mouratiadou, I.
+AU  - Weindl, I.
+AU  - Bertram, C.
+AU  - Dietrich, J. P.
+AU  - Luderer, G.
+AU  - Pehl, M.
+AU  - Pietzcker, R.
+AU  - Piontek, F.
+AU  - Lotze-Campen, H.
+AU  - Biewald, A.
+AU  - Bonsch, M.
+AU  - Giannousakis, A.
+AU  - Kreidenweis, U.
+AU  - Müller, C.
+AU  - Rolinski, S.
+AU  - Schultes, A.
+AU  - Schwanitz, J.
+AU  - Stevanovic, M.
+AU  - Calvin, K.
+AU  - Emmerling, J.
+AU  - Fujimori, S.
+AU  - Edenhofer, O.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.05.015
+KW  - Emission scenario
+Energy transformation
+Integrated assessment modeling
+Land-use change
+Shared Socio-economic Pathway
+SSP5
+adaptive management
+climate forcing
+emission inventory
+energy resource
+environmental assessment
+environmental modeling
+environmental policy
+fossil fuel
+global change
+integrated approach
+scenario analysis
+socioeconomic impact
+transformation
+twenty first century
+M3  - Article
+N1  - Cited By :43
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 297-315
+ST  - Fossil-fueled development (SSP5): An energy and resource intensive scenario for the 21st century
+T2  - Global Environmental Change
+TI  - Fossil-fueled development (SSP5): An energy and resource intensive scenario for the 21st century
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-84995917657&doi=10.1016%2fj.gloenvcha.2016.05.015&partnerID=40&md5=f3d7cce5029003645b166767ba458ca0
+VL  - 42
+ID  - 15
+ER  - 
+
+"
+SSP,publications,reference,citation,17,van Vuuren et al. (2017)
+SSP,publications,reference,type,17,journal article
+SSP,publications,reference,doi,17,10.1016/j.gloenvcha.2016.10.009
+SSP,publications,reference,full,17,"VAN VUUREN, D. P., RIAHI, K., CALVIN, K., DELLINK, R., EMMERLING, J., FUJIMORI, S., KC, S., KRIEGLER, E. & O'NEILL, B. 2017. The Shared Socio-economic Pathways: Trajectories for human development and global environmental change. Global Environmental Change, 42, 148-152."
+SSP,publications,reference,ris,17,"TY  - JOUR
+AU  - van Vuuren, D. P.
+AU  - Riahi, K.
+AU  - Calvin, K.
+AU  - Dellink, R.
+AU  - Emmerling, J.
+AU  - Fujimori, S.
+AU  - Kc, S.
+AU  - Kriegler, E.
+AU  - O'Neill, B.
+DB  - Scopus
+DO  - 10.1016/j.gloenvcha.2016.10.009
+M3  - Editorial
+N1  - Cited By :14
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 148-152
+ST  - The Shared Socio-economic Pathways: Trajectories for human development and global environmental change
+T2  - Global Environmental Change
+TI  - The Shared Socio-economic Pathways: Trajectories for human development and global environmental change
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85007451730&doi=10.1016%2fj.gloenvcha.2016.10.009&partnerID=40&md5=c533334c7cc05884f581845d43901cd1
+VL  - 42
+ID  - 20
+ER  - 
+"
+SSP,publications,reference,citation,18,Marangoni et al. (2017)
+SSP,publications,reference,type,18,journal article
+SSP,publications,reference,doi,18,10.1038/nclimate3199
+SSP,publications,reference,full,18,"MARANGONI, G., TAVONI, M., BOSETTI, V., BORGONOVO, E., CAPROS, P., FRICKO, O., GERNAAT, D. E. H. J., GUIVARCH, C., HAVLIK, P., HUPPMANN, D., JOHNSON, N., KARKATSOULIS, P., KEPPO, I., KREY, V., Ó BROIN, E., PRICE, J. & VAN VUUREN, D. P. 2017. Sensitivity of projected long-term CO 2 emissions across the Shared Socioeconomic Pathways. Nature Climate Change, 7, 113-117."
+SSP,publications,reference,ris,18,"TY  - JOUR
+AB  - Scenarios showing future greenhouse gas emissions are needed to estimate climate impacts and the mitigation efforts required for climate stabilization. Recently, the Shared Socioeconomic Pathways (SSPs) have been introduced to describe alternative social, economic and technical narratives, spanning a wide range of plausible futures in terms of challenges to mitigation and adaptation. Thus far the key drivers of the uncertainty in emissions projections have not been robustly disentangled. Here we assess the sensitivities of future CO 2 emissions to key drivers characterizing the SSPs. We use six state-of-the-art integrated assessment models with different structural characteristics, and study the impact of five families of parameters, related to population, income, energy efficiency, fossil fuel availability, and low-carbon energy technology development. A recently developed sensitivity analysis algorithm allows us to parsimoniously compute both the direct and interaction effects of each of these drivers on cumulative emissions. The study reveals that the SSP assumptions about energy intensity and economic growth are the most important determinants of future CO 2 emissions from energy combustion, both with and without a climate policy. Interaction terms between parameters are shown to be important determinants of the total sensitivities. © 2017 Macmillan Publishers Limited, part of Springer Nature. All rights reserved.
+AU  - Marangoni, G.
+AU  - Tavoni, M.
+AU  - Bosetti, V.
+AU  - Borgonovo, E.
+AU  - Capros, P.
+AU  - Fricko, O.
+AU  - Gernaat, D. E. H. J.
+AU  - Guivarch, C.
+AU  - Havlik, P.
+AU  - Huppmann, D.
+AU  - Johnson, N.
+AU  - Karkatsoulis, P.
+AU  - Keppo, I.
+AU  - Krey, V.
+AU  - Ó Broin, E.
+AU  - Price, J.
+AU  - Van Vuuren, D. P.
+DB  - Scopus
+DO  - 10.1038/nclimate3199
+IS  - 2
+KW  - carbon dioxide
+climate effect
+emission
+energy efficiency
+environmental assessment
+environmental management
+future prospect
+mitigation
+sensitivity analysis
+socioeconomic conditions
+technological development
+M3  - Article
+N1  - Cited By :13
+Export Date: 27 September 2018
+PY  - 2017
+SP  - 113-117
+ST  - Sensitivity of projected long-term CO 2 emissions across the Shared Socioeconomic Pathways
+T2  - Nature Climate Change
+TI  - Sensitivity of projected long-term CO 2 emissions across the Shared Socioeconomic Pathways
+UR  - https://www.scopus.com/inward/record.uri?eid=2-s2.0-85011601766&doi=10.1038%2fnclimate3199&partnerID=40&md5=8a8651e9339cd2a50b1b69ad4912f14f
+VL  - 7
+ID  - 7
+ER  - 
+
+"
+SSP,diagnostics,source,name,1,
+SSP,diagnostics,source,link,1,
+SSP,models,preamble,,,"Six alternative global IAM models were used for the quantification of the SSP baseline scenarios. For each SSP a single IAM interpretation was selected as the so-called representative marker scenario for recommended use by future analyses of climate change, its impacts and response measures. SSP was interpreted by other IAM models, leading to multiple non-marker IAM scenarios for each SSP narrative.
+The six participating intitutions and the respective models:
+           •        Institution: National Institute for Environmental Studies (NIES), Japan
+                     Model: AIM/CGE
+           •        Institution: Pacific Northwest National Laboratory, Joint Global Change Research Institute at the University of Maryland-College Park (PNNL), United States
+                     Model: GCAM
+           •        Institution: Netherlands Environmental Assessment Agency (PBL), Netherlands
+                     Model: IMAGE
+           •        Institution: International Institute for Applied Systems Analysis (IIASA), Austria 
+                     Model: MESSAGE-GLOBIOM
+           •        Institution: Potsdam Institute for Climate Impact Research (PIK), Germany
+                     Model: REMIND-MAgPIE
+           •        Institution: Fondazione Eni Enrico Mattei (FEEM), Italy
+                     Model: WITCH-GLOBIOM"
+SSP,models,model,name,1,AIM/CGE
+SSP,models,model,version,1,2.0
+SSP,models,model,name,2,GCAM
+SSP,models,model,version,2,4.2
+SSP,models,model,name,3,IMAGE
+SSP,models,model,version,3,3.0.1
+SSP,models,model,name,4,MESSAGE-GLOBIOM
+SSP,models,model,version,4,1
+SSP,models,model,name,5,REMIND-MAgPIE
+SSP,models,model,version,5,1.5
+SSP,models,model,name,6,WITCH-GLOBIOM
+SSP,models,model,version,6,3.1
+SSP,year,,,,2016
+SSP,project,,,,Shared Socioeconomic Pathways (SSP)
+SSP,keywords,keyword,,1,Shared Socioeconomic Pathways
+SSP,keywords,keyword,,2,Climate change
+SSP,keywords,keyword,,4,Community scenarios
+SSP,keywords,keyword,,3,Mitigation
+SSP,keywords,keyword,,5,Adaptation
+SSP,regional coverage,region,,1,World
+SSP,regional coverage,region,,2,Asia
+SSP,regional coverage,region,,3,Latin America
+SSP,regional coverage,region,,4,Middle East and Africa
+SSP,regional coverage,region,,5,OECD90+EU
+SSP,regional coverage,region,,6,Reforming Economies
+SSP,time horizon,start,,,2010
+SSP,,end,,,2100
