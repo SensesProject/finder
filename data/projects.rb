@@ -44,7 +44,6 @@ end
 
 def extractData (arr, path, key)
 	datum = get(arr, path)
-	ap path
 	if datum.length > 1
 		datum.map { |e| e[key] }
 	elsif datum.length.eql? 0
@@ -96,11 +95,13 @@ structure = [{
 	'key' => 'value'
 }]
 
+items = {}
 
-items = files.map do |file|
+files.each do |file|
 	raw = readCSV(file)
 	data = buildDataStructure(raw)
-	buildData(structure, data)
+	key = extractData(data, structure[0]['path'], structure[0]['key'])
+	items[key] = buildData(structure, data)
 end
 
 writeJSON('projects.json', items)

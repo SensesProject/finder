@@ -1,5 +1,5 @@
-[
-  {
+{
+  "IMAGE 1.5": {
     "title": "IMAGE 1.5",
     "guiding questions preamble": "CDR strategies face several difficulties such as reliance on underground CO2 storage and competition for land with food production and biodiversity protection. The question arises whether alternative deep mitigation pathways exist?",
     "guiding questions questions": "How essential are bioenergy with carbon capture and storage, and other negative-emission technologies for the 1.5 degree target?",
@@ -9,7 +9,7 @@
     "start": "2010",
     "end": "2100"
   },
-  {
+  "GGI": {
     "title": "GGI",
     "guiding questions preamble": "The main objective of the exercise has been to explore the feasibility and costs of meeting alternative climate stabilization targets under a range of salient long-term uncertainties with a limited set of scenarios. Development pathway uncertainty, which includes alternative demographic, economic, and technological developments that lead to high (A2r), intermediary (B2), or low (B1) emissions of GHGs and hence magnitude of future climate change. Climate stabilization target uncertainty is addressed by systematic model simulations for a range of alternative climate stabilization targets imposed on the no-policy baseline scenarios. Altogether, calculations for 11 stabilization scenarios for eight comparable stabilization levels has been performed.\n",
     "guiding questions questions": [
@@ -32,7 +32,7 @@
     "start": "2000",
     "end": "2100"
   },
-  {
+  "GEA": {
     "title": "GEA",
     "guiding questions preamble": "The main purpose of the GEA has been to establish a state-of-the-art assessment of the science of energy in light of the inevidable transformation that is required to address major challenges and avoiding potentially catasgtrophic future consequences for humand kind and planetary systems.  The transformation pathways developed within the framework of the GEA are designed to explore technical measures, policies, and related costs and benefits for meeting the following energy objectives:\n      - Improving energy access: Universal access to electricity and clean cooking by 2030\n      - Reduce air pollution and improve human health: Achieve global compliance with World Health Organization (WHO) air quality standards (PM2.5 concentration < 35 μg/m3) by 2030\n      - Avoid dangerous climate change: Limit global average temperature change to 2°C above preindustrial levels with a likelihood >50%\n      - Enhance energy security: Reduce energy import dependence; increase diversity and resilience of energy supply (both by 2050)\n",
     "guiding questions questions": [
@@ -48,7 +48,7 @@
     "start": "2010",
     "end": "2100"
   },
-  {
+  "EMF22": {
     "title": "EMF22",
     "guiding questions preamble": "The EMF 22 International Scenarios engaged ten of the world's leading integrated assessment models to focus on the combined implications of three factors integral to international climate negotiations, (1) the long-term climate-related target, expressed in this study in terms of the CO2-equivalent concentration associated with the GHGs regulated under the Kyoto Protocol, (2) whether or not this target can be temporarily exceeded prior to 2100 \n(“overshoot”) allowing for greater near-term flexibility, and (3) the nature of international participation in emissions mitigation.",
     "guiding questions questions": [
@@ -68,7 +68,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "EMF 27": {
     "title": "EMF 27",
     "guiding questions preamble": "The EMF27 study presents a first detailed assessments of the energy system transformation requirements for low stabilization in a large ensemble of leading global integrated assessment models.",
     "guiding questions questions": [
@@ -86,7 +86,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "EMF33": {
     "title": "EMF33",
     "guiding questions preamble": "Objective: Assessing large-scale global bioenergy deployment for managing climate change.",
     "guiding questions questions": "How is bioenergy used across different IAMs under harmonized variations of climate policies, availability of bioenergy technologies and constraints on biomass supply?",
@@ -101,7 +101,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "CLIMACAP-LAMP": {
     "title": "CLIMACAP-LAMP",
     "guiding questions preamble": "The Integrated Climate Modelling and Capacity Building Project in Latin America (CLIMACAP) was a European Commission funded effort focused on analyzing the effects of mitigation strategies in key Latin American Countries. The Latin American Modeling Project (LAMP) was a similar effort funded by the U.S. Environmental Protection Agency and the U.S. Agency for International Development. The projects collaborated to develop a multi-model comparison project focused on mitigation in Latin America. The study compared results of approximately 10 energy-economic and integrated assessment models, focusing on results for Latin American regions. \n",
     "guiding questions questions": [
@@ -131,7 +131,7 @@
     "start": "2005 (2010)",
     "end": "2100 (2050)"
   },
-  {
+  "LIMITS": {
     "title": "LIMITS",
     "guiding questions preamble": "This study provides a novel and comprehensive model-based assessment of possible outcomes of the Durban\n Platform negotiations with a focus on emissions reduction requirements, the consistency with the 2°C target and\n global economic impacts.",
     "guiding questions questions": [
@@ -149,7 +149,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "EMF30": {
     "title": "EMF30",
     "guiding questions preamble": "The EMF30 project is designed to assess the impact of policies aiming at reducing short-lived climate forcers, namely CH4 and BC/OC.",
     "guiding questions questions": "What is the impact of policies aiming at reducing short-lived climate forcers on emission reductions?",
@@ -162,7 +162,7 @@
     "start": "2005",
     "end": "2050"
   },
-  {
+  "CMIP5": {
     "title": "CMIP5",
     "guiding questions preamble": null,
     "guiding questions questions": "How does system earth develop under certain greenhouse gas concentrations? How will the system develop for the following quantitites of special interest: metereological quantities (temperature, precipitation, airpressure, wind, radiation), oceanic quantities, and landsurface quantities (evatranspiration, vegetation).",
@@ -172,7 +172,7 @@
     "start": "1861",
     "end": "2100"
   },
-  {
+  "ISIMIP2b": {
     "title": "ISIMIP2b",
     "guiding questions preamble": null,
     "guiding questions questions": [
@@ -188,7 +188,7 @@
     "start": "1860",
     "end": "2300"
   },
-  {
+  "UBA EMC": {
     "title": "UBA EMC",
     "guiding questions preamble": "The study analyses various economic mitigation challenges in a broad range of scenarios, varying the carbon tax, technology assumption and start data of ambitious policies in a set of 300 scenarios.",
     "guiding questions questions": [
@@ -204,7 +204,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "ISIMIP2a": {
     "title": "ISIMIP2a",
     "guiding questions preamble": null,
     "guiding questions questions": [
@@ -221,7 +221,7 @@
     "start": "1971",
     "end": "2100"
   },
-  {
+  "AMPERE WP3": {
     "title": "AMPERE WP3",
     "guiding questions preamble": "The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP3 specifically focused on fragmented policy regimes and the effects for front-runners.\n",
     "guiding questions questions": [
@@ -239,7 +239,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "AMPERE WP2": {
     "title": "AMPERE WP2",
     "guiding questions preamble": "The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP2 of AMPERE specifically focused on “Delayed policy action and path dependency in energy systems”",
     "guiding questions questions": [
@@ -255,7 +255,7 @@
     "start": "2010",
     "end": "2100"
   },
-  {
+  "Pep1p5": {
     "title": "Pep1p5",
     "guiding questions preamble": "The PEP project aims to answer crucial questions about the feasibility of 1.5°C scenarios, related to the feasibility of policies - contrasting immediate pricing only and scenarios with gradual ratcheting up of ambition. Further it assesses the implications of carbon dioxide removal (CDR) availability.",
     "guiding questions questions": [
@@ -274,7 +274,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "SSP": {
     "title": "SSP",
     "guiding questions preamble": "The SSPs are part of a scenario framework, established by the climate change research community in order to facilitate the integrated analysis of future climate impacts, vulnerabilities, adaptation, and mitigation. The framework is built around a matrix that combines climate forcing on one axis (as represented by the Representative Concentration Pathways (RCPs)) and socio-economic conditions on the other. Together, these two axes describe situations in which mitigation, adaptation and residual climate damage can be evaluated.\n\n",
     "guiding questions questions": [
@@ -290,7 +290,7 @@
     "start": "2010",
     "end": "2100"
   },
-  {
+  "ISIMIPFasttrack": {
     "title": "ISIMIPFasttrack",
     "guiding questions preamble": null,
     "guiding questions questions": [
@@ -312,7 +312,7 @@
     "start": "1970",
     "end": "2100"
   },
-  {
+  "Advance": {
     "title": "Advance",
     "guiding questions preamble": "The study aims to contribute the first multi-model assessment of Paris Agreement scenarios, exploring both the emission impacts of NDC until 2030 and strengthening scenarios that achieve the long-term targets of 2 or 1.5°C, with strengthening either after 2020 or 2030",
     "guiding questions questions": [
@@ -330,7 +330,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "LED": {
     "title": "LED",
     "guiding questions preamble": "Scenarios that limit global warming to 1.5 °C describe major transformations in energy supply and ever-rising energy demand. Here, we provide a contrasting perspective by developing a narrative of future change based on observable trends that results in low energy demand.",
     "guiding questions questions": [
@@ -348,7 +348,7 @@
     "start": "2020",
     "end": "2100"
   },
-  {
+  "IEA ETP": {
     "title": "IEA ETP",
     "guiding questions preamble": "ETP 2017 applies a combination of \"backcasting\" and forecasting over three scenarios from now to 2060. Backcasting lays out plausible pathways to a desired end state. It makes it easier to identify milestones that need to be reached or trends that need to change promptly in order for the end goal to be achieved.",
     "guiding questions questions": [
@@ -368,7 +368,7 @@
     "start": "2010",
     "end": "2060"
   },
-  {
+  "UBA SMP": {
     "title": "UBA SMP",
     "guiding questions preamble": "The study aims to contribute to the understanding of key sustainability impacts of mitigation pathways, and how they can be managed by policy choice in order to maximize benefits and minimize risks.",
     "guiding questions questions": [
@@ -386,7 +386,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "CEMICS": {
     "title": "CEMICS",
     "guiding questions preamble": "CEMICS is driven by the hypothesis that society will not take decisions on climate engineering (CE) in isolation, but in consideration of the whole portfolio of existing climate policy options. The work within that project puts CE in the context of mitigation by exploring synergies, trade-offs, and side-effects of different CDR methods.\nPlease note: The project itself investigated the options of CE in a broader context also towards potential synergies or ethical aspects. This research however is not based on scenarios and thus not treated here. ",
     "guiding questions questions": [
@@ -408,7 +408,7 @@
     "start": "2005",
     "end": "2100"
   },
-  {
+  "CD-LINKS": {
     "title": "CD-LINKS",
     "guiding questions preamble": "The CD-LINKS project is exploring the complex interplay between climate action and development, while simultaneously taking both global and national perspectives and thereby informing the design of complementary climate-development policies.",
     "guiding questions questions": [
@@ -430,7 +430,7 @@
     "start": "2010",
     "end": "2100"
   },
-  {
+  "ROSE": {
     "title": "ROSE",
     "guiding questions preamble": null,
     "guiding questions questions": [
@@ -448,4 +448,4 @@
     "start": "2005",
     "end": "2100"
   }
-]
+}
