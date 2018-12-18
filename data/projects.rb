@@ -12,6 +12,12 @@ def readCSV (file)
   CSV.read("#{file}", { encoding: "UTF-8", headers: true }).map { |d| d.to_hash }
 end
 
+def writeJSON (file, obj)
+	File.open("#{file}", 'w') do |f|
+	  f.write(JSON.pretty_generate(obj))
+	end
+end
+
 def buildDataStructure (arr)
 	attributes = ['factsheet', 'topic', 'attribute', 'subattribute']
 	temp = Array.new(attributes.length)
@@ -36,19 +42,65 @@ def get (arr, obj)
 	end
 end
 
-def extractData (arr)
-	datum = get(arr, { 'factsheet' => 'AMPERE WP3', 'topic' => 'project' })
+def extractData (arr, path, key)
+	datum = get(arr, path)
+	ap path
 	if datum.length > 1
-		datum.map { |e| e['value'] }
+		datum.map { |e| e[key] }
+	elsif datum.length.eql? 0
+		nil
 	else
-		datum[0]['value']
+		datum[0][key]
 	end
 end
 
-files.each do |file|
+def buildData (arr, data)
+	item = {}
+	arr.each do |el|
+		item[el['label']] = extractData(data, el['path'], el['key'])
+	end
+	item
+end
+
+structure = [{
+	'label' => 'title',
+	'path' => { 'topic' => 'project', 'attribute' => nil },
+	'key' => 'factsheet'
+}, {
+	'label' => 'guiding questions preamble',
+	'path' => { 'topic' => 'guiding questions', 'attribute' => 'preamble' },
+	'key' => 'value'
+}, {
+	'label' => 'guiding questions questions',
+	'path' => { 'topic' => 'guiding questions', 'attribute' => 'question' },
+	'key' => 'value'
+}, {
+	'label' => 'results preamble',
+	'path' => { 'topic' => 'results', 'attribute' => 'preamble' },
+	'key' => 'value'
+}, {
+	'label' => 'results',
+	'path' => { 'topic' => 'results', 'attribute' => 'insight' },
+	'key' => 'value'
+}, {
+	'label' => 'scenarios',
+	'path' => { 'topic' => 'scenarios', 'attribute' => 'preamble' },
+	'key' => 'value'
+}, {
+	'label' => 'start',
+	'path' => { 'topic' => 'time horizon', 'attribute' => 'start' },
+	'key' => 'value'
+}, {
+	'label' => 'end',
+	'path' => { 'topic' => 'time horizon', 'attribute' => 'end' },
+	'key' => 'value'
+}]
+
+
+items = files.map do |file|
 	raw = readCSV(file)
 	data = buildDataStructure(raw)
-	ap data
-	ap extractData (data)
-	# ap file
+	buildData(structure, data)
 end
+
+writeJSON('projects.json', items)
