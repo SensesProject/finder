@@ -2,9 +2,10 @@
   <transition name="fade">
     <aside
       class="popover-wrapper"
-      v-if="isObject(popover)"
-      @click="closePopover()">
+      v-if="isObject(popover)">
+      <div class="backshadow" @click="closePopover()" />
       <div class="popover">
+        <span @click="closePopover()" class="button-close clickable">&times;</span>
         <h2>AMPERE WP3</h2>
         <h3>guiding questions</h3>
         <p>The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP3 specifically focused on fragmented policy regimes and the effects for front-runners.</p>
@@ -58,7 +59,7 @@
     opacity: 0;
   }
 
-  .popover-wrapper {
+  .popover-wrapper, .backshadow {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -66,11 +67,18 @@
     right: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  .popover-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
     z-index: 100;
+
+    .backshadow {
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
 
     .popover {
       width: 50vw;
@@ -79,6 +87,16 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
       padding: $spacing * 1.5;
       overflow-y: scroll;
+      z-index: 2;
+      position: relative;
+
+      .button-close {
+        position: absolute;
+        right: $spacing * 1.2;
+        top: $spacing;
+        font-size: $size-big;
+        line-height: 1;
+      }
 
       p, ul {
         font-size: $size-small;
