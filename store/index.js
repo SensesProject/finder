@@ -13,7 +13,8 @@ const store = () => new Vuex.Store({
     activeKey: false,
     facets: [],
     data: [],
-    popover: false
+    popover: false,
+    popoverContent: {}
   },
   getters: {
     datum: state => {
@@ -158,8 +159,12 @@ const store = () => new Vuex.Store({
     SET_SORT_REMAINING (state, { value }) {
       state.sortRemaining = value
     },
-    SET_CONTENT (state, { data, facets }) {
-      state.data = data
+    SET_CONTENT (state, { data, facets, popovers }) {
+      state.data = data.items
+      console.log(popovers)
+      state.popoverContent = _.fromPairs(_.map(popovers, popover => {
+        return [popover, _.get(data, popover, {})]
+      }))
       state.facets = facets
     }
   },
@@ -219,9 +224,9 @@ const store = () => new Vuex.Store({
       // console.log('setHover')
       commit('SET_SORT_REMAINING', { value })
     },
-    setContent ({ commit }, { data, facets }) {
+    setContent ({ commit }, obj) {
       // console.log('setHover')
-      commit('SET_CONTENT', { data, facets })
+      commit('SET_CONTENT', obj)
     }
   }
 })

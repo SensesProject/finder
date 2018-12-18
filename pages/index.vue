@@ -1,5 +1,5 @@
 <template>
-  <Wrapper title="Co-Creation techniques" :file="file" :facets="facets" />
+  <Wrapper title="Co-Creation techniques" :file="file" :facets="facets" :popovers="popovers" />
 </template>
 
 <script>
@@ -159,7 +159,8 @@
           'label': 'Column2',
           'key': 'Column2',
           'type': 'category'
-        }]
+        }],
+        popovers: []
       }
     },
     computed: {

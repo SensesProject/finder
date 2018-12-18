@@ -100,7 +100,7 @@ items = {}
 files.each do |file|
 	raw = readCSV(file)
 	data = buildDataStructure(raw)
-	key = extractData(data, structure[0]['path'], structure[0]['key'])
+	key = extractData(data, structure[0]['path'], structure[0]['key']).downcase
 	items[key] = buildData(structure, data)
 end
 

@@ -1,10 +1,10 @@
 <template>
-  <Wrapper title="SR1P5 Selected Metadata Indicators" :file="file" :facets="facets" />
+  <Wrapper title="SR1P5 Selected Metadata Indicators" :file="file" :facets="facets" :popovers="popovers" />
 </template>
 
 <script>
   import Wrapper from '~/components/Wrapper.vue'
-  import * as data from '../data/sr1p5_selected_metadata_indicators-xlsx.json'
+  import * as data from '../data/indicators.json'
 
   export default {
     data: function () {
@@ -244,7 +244,8 @@
         //   'type': 'number',
         //   'precision': -1
         // }
-        ]
+        ],
+        popovers: ['project']
       }
     },
     computed: {

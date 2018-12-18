@@ -6,25 +6,21 @@
       <div class="backshadow" @click="closePopover()" />
       <div class="popover">
         <span @click="closePopover()" class="button-close clickable">&times;</span>
-        <h2>AMPERE WP3</h2>
-        <h3>guiding questions</h3>
-        <p>The AMPERE project aimed to improve our understanding of possible pathways toward medium- and long-term climate targets at the global and European levels. The project assessed key aspects of the mitigation challenge in a world of delayed and fragmented climate policy. WP3 specifically focused on fragmented policy regimes and the effects for front-runners.</p>
-        <ul>
-          <li>What impacts do fragmented policy regimes (with a coalition of front-runners and staged accession of others) have on achievability of long-term targets and global energy systems?</li>
-          <li>What advantages and disadvantages have the frontrunners and late-comers respectively?</li>
-          <li>How much carbon leakage is caused by fragmented policies?</li>
-        </ul>
-        <h3>results</h3>
-        <p>This study explores a situation of staged accession to a global climate policy regime from the current situation of regionally fragmented and moderate climate action. The analysis is based on scenarios in which a front runner coalition – the EU or the EU and China – embarks on immediate ambitious climate action while the rest of the world makes a transition to a global climate regime between 2030 and 2050. We assume that the ensuing regime involves strong mitigation efforts but does not require late joiners to compensate for their initially higher emissions.</p>
-        <ul>
-          <li>Although staged accession can achieve significant reductions of global warming, the resulting climate outcome is unlikely to be consistent with the goal of limiting global warming to 2 degrees. The addition of China to the front runner coalition can reduce pre-2050 excess emissions by 20–30%, increasing the likelihood of staying below2 degrees.</li>
-          <li>Not accounting for potential co-benefits, the cost of front runner action is found to be lower for the EU than for China.</li>
-          <li>Regions that delay their accession to the climate regime face a trade-off between reduced short term costs and higher transitional requirements due to larger carbon lock-ins and more rapidly increasing carbon prices during the accession period.</li>
-        </ul>
-        <h3>scenarios</h3>
-        <p>The unique feature about WP3 scenarios are those scenarios with a period of high ambition in front-runner countries (EU or EU and China) and later following of others, as well as "reconsideration" scenarios, where front-runners shift back to no climate policy.</p>
-        <h3>time horizon</h3>
-        <p>Time – end</p>
+        <div v-if="kees.length">
+          <h2>{{ content['title'] }}</h2>
+          <section v-for="key in kees">
+            <div v-if="content[key]">
+              <h3>{{ key }}</h3>
+              <ul v-if="isArray(content[key])">
+                <li v-for="point in content[key]">{{ point }}</li>
+              </ul>
+              <p v-if="!isArray(content[key])">
+                {{ content[key] }}
+              </p>
+            </div>
+          </section>
+        </div>
+        <h2 v-else><span>{{ key }}</span> »{{ value }}« not found</h2>
       </div>
     </aside>
   </transition>
@@ -33,18 +29,38 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import isObject from 'lodash/isObject'
+  import get from 'lodash/get'
+  import keys from 'lodash/keys'
+  import isArray from 'lodash/isArray'
 
   export default {
     computed: {
       ...mapState([
-        'popover'
-      ])
+        'popover',
+        'popoverContent'
+      ]),
+      key () {
+        return get(this.popover, 'key', false)
+      },
+      value () {
+        return get(this.popover, 'value', false)
+      },
+      content () {
+        const { popoverContent, key, value } = this
+        return key && value ? get(popoverContent, `${key}.${value.toLowerCase()}`, {}) : {}
+      },
+      kees () {
+        let kees = keys(this.content)
+        kees.shift()
+        return kees
+      }
     },
     methods: {
       ...mapActions([
         'closePopover'
       ]),
-      isObject
+      isObject,
+      isArray
     }
   }
 </script>
@@ -104,10 +120,15 @@
 
       h2 {
         display: block;
+
+        span {
+          text-transform: capitalize;
+        }
       }
 
       h3 {
         margin-top: $spacing;
+        text-transform: capitalize;
       }
 
       ul {

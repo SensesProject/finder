@@ -29,11 +29,12 @@
   import Popover from '~/components/Popover.vue'
 
   export default {
-    props: ['title', 'file', 'facets'],
+    props: ['title', 'file', 'facets', 'popovers'],
     computed: {
       ...mapState([
         'data',
-        'popover'
+        'popover',
+        'popoverContent'
       ]),
       ...mapGetters([
         'result',
@@ -52,7 +53,7 @@
       Popover
     },
     created: function () {
-      this.setContent({ data: this.file, facets: this.facets })
+      this.setContent({ data: this.file, facets: this.facets, popovers: this.popovers })
     }
   }
 </script>
