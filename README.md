@@ -5,6 +5,8 @@
 - Model Charakterisierung – Reference Card
 - Meta Indikatoren - Szenarien, Studien – Factsheets
 
+[https://tea-albattani-b88a3c.netlify.com/indicators/](https://tea-albattani-b88a3c.netlify.com/indicators/)
+
 ![Screenshot](screenshot.png)
 
 ## Build Setup
