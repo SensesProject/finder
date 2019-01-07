@@ -173,11 +173,6 @@
     }
   }
 
-  .reset {
-    color: palette(accent, base);
-    cursor: pointer;
-  }
-
   ul {
     background-color: #fff;
     padding: 0.5rem;

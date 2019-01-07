@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.10",
-    "nuxt": "^1.4.2"
+    "nuxt": "^1.4.2",
+    "v-tooltip": "^2.0.0-rc.33"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",

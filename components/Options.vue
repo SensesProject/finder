@@ -1,19 +1,8 @@
 <template>
-  <section
-    class="options">
-    <header>
-      <section>
-        <h3>Options</h3>
-      </section>
-      <section>
-        <span class="reset tag" @click="resetFilter" v-if="filter.length">Reset all filter</span>
-      </section>
-      <ul class="options">
-        <li><input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label></li>
-        <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
-      </ul>
-    </header>
-  </section>
+  <ul class="options">
+    <li><input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label></li>
+    <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
+  </ul>
 </template>
 
 <script>
@@ -56,42 +45,22 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
 
+  .tooltip[aria-hidden='true'] {
+    display: none;
+  }
+
   .options {
     li {
       color: palette(grey, 10);
       font-size: $size-smallest;
-      margin-right: $spacing / 2;
+      margin-bottom: $spacing / 4;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       input {
         margin-right: $spacing / 6;
-      }
-    }
-  }
-
-  header {
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 0;
-
-    span {
-      font-size: $size-smallest;
-
-      &.spacer {
-        display: inline-block;
-        margin: 0 0.2em;
-      }
-
-      &.active {
-        color: rgb(255, 255, 255);
-      }
-    }
-
-    section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      &:first-child {
-        min-height: 2rem;
       }
     }
   }

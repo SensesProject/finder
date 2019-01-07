@@ -2,11 +2,12 @@
   <div class="wrapper">
     <nav class="filter">
       <header>
-        <h2>{{ title }} <small>(<span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items)</small></h2>
+        <h2>{{ title }}</h2>
+        <Aside />
       </header>
       <div class="columns columns-gutter-narrow facets">
-        <Options />
-        <Facet
+        <component
+          v-bind:is="option.title ? 'Search' : 'Facet'"
           v-for="option in options"
           :title="option.label"
           :values="option.options"
@@ -23,21 +24,19 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
+  import Aside from '~/components/Aside.vue'
   import Facet from '~/components/Facet.vue'
-  import Table from '~/components/Table.vue'
-  import Options from '~/components/Options.vue'
   import Popover from '~/components/Popover.vue'
+  import Search from '~/components/Search.vue'
+  import Table from '~/components/Table.vue'
 
   export default {
     props: ['title', 'file', 'facets', 'popovers'],
     computed: {
       ...mapState([
-        'data',
-        'popover',
-        'popoverContent'
+        'data'
       ]),
       ...mapGetters([
-        'result',
         'options'
       ])
     },
@@ -47,10 +46,11 @@
       ])
     },
     components: {
+      Aside,
       Facet,
-      Table,
-      Options,
-      Popover
+      Popover,
+      Search,
+      Table
     },
     created: function () {
       this.setContent({ data: this.file, facets: this.facets, popovers: this.popovers })
@@ -85,6 +85,14 @@
     border-bottom: 1px solid palette(grey, 85);
     // box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 1rem;
+
+    header {
+      width: calc(100vw - 2rem);
+      display: flex;
+      align-items: center;
+      margin-bottom: $spacing / 2;
+      justify-content: space-between;
+    }
 
     h2 {
       color: palette(grey, 0);

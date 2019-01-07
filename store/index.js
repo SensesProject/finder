@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
+import VTooltip from 'v-tooltip'
 
 Vue.use(Vuex)
+Vue.use(VTooltip)
 
 const store = () => new Vuex.Store({
   state: {
@@ -17,6 +19,9 @@ const store = () => new Vuex.Store({
     popoverContent: {}
   },
   getters: {
+    titles: state => {
+      return _.map(_.filter(state.facets, 'title'), 'key')
+    },
     datum: state => {
       return _.map(state.data, datum => {
         // Rebuild the data structure. Build an object from the data array
@@ -40,7 +45,7 @@ const store = () => new Vuex.Store({
       })
     },
     options: (state, getters) => {
-      const facets = state.facets.filter(facet => !facet.title)
+      const facets = state.facets// .filter(facet => !facet.title)
       return facets.map(facet => {
         const { key } = facet
         // Count all options for that facet (respectively key)
@@ -66,11 +71,16 @@ const store = () => new Vuex.Store({
         result = result.filter(item => {
           // console.log(filta.key, item[filta.key], filta.values, _.indexOf(filta.values, item[filta.key]))
           let retVal = true
-          if (_.isArray(item[filta.key])) { // TODO: Does this ever happen?
-            retVal = _.intersection(item[filta.key].label, filta.values).length > 0
+          if (_.indexOf(getters.titles, filta.key) > -1) { // Facet is search term
+            retVal = _.lowerCase(item[filta.key].label).includes(_.lowerCase(filta.values))
           } else {
-            retVal = _.indexOf(filta.values, item[filta.key].label) > -1
+            if (_.isArray(item[filta.key])) { // TODO: Does this ever happen?
+              retVal = _.intersection(item[filta.key].label, filta.values).length > 0
+            } else {
+              retVal = _.indexOf(filta.values, item[filta.key].label) > -1
+            }
           }
+
           return filta.invert ? !retVal : retVal
         })
       })
@@ -161,7 +171,6 @@ const store = () => new Vuex.Store({
     },
     SET_CONTENT (state, { data, facets, popovers }) {
       state.data = data.items
-      console.log(popovers)
       state.popoverContent = _.fromPairs(_.map(popovers, popover => {
         return [popover, _.get(data, popover, {})]
       }))

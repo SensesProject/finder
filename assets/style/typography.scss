@@ -62,7 +62,6 @@
 h2 {
   font-size: $size-big;
   line-height: 1.2em;
-  margin-bottom: $spacing / 2;
   color: palette(grey, 20);
   font-weight: $font-weight-bold;
   display: inline-block;
@@ -193,18 +192,25 @@ table {
 
 .btn {
   transition-duration: 0.5s;
-  color: $color-accent;
-  border-radius: $radius-default;
-  padding: 0.8rem 1rem;
+  color: palette(grey, 60);
+  border-radius: 4px;
+  padding: $spacing / 4 $spacing / 3;
   text-align: center;
-  background-color: $color-bg-light;
-  font-weight: $font-weight-bold;
-  cursor: pointer;
-  width: 100%;
   display: inline-block;
+  border: 1px solid palette(grey, 85);
+  background-color: transparent;
+  letter-spacing: $spacing-wide;
+  font-size: $size-small;
+  outline: none;
 
-  &:hover {
-    background-color: $color-bg-lighter;
+  &.clickable {
+    cursor: pointer;
+    color: palette(grey, 20);
+
+    &:hover {
+      border-color: palette(grey, 70);
+      color: palette(grey, 0);
+    }
   }
 }
 
@@ -225,19 +231,25 @@ table {
 }
 
 .tag {
-  background-color: #fff;
-  padding: 0.1em 0.3em;
-  color: $color-mute;
+  padding: 0.1em 0.4em;
+  color: palette(grey, 80);
+  background-color: palette(grey, 100);
+  // border: 1px solid palette(grey, 80);
   border-radius: $radius-default;
   font-size: $size-smallest;
-  cursor: pointer;
   margin-left: $spacing / 4;
 
   &.clickable {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.02);
+    // border: 1px solid palette(grey, 80);
+    // background-color: #fff;
+    cursor: pointer;
     border-radius: $radius-default;
+    color: palette(accent, base);
 
     &:hover, &:focus {
-      background-color: $color-bg-lighter;
+      background-color: #fff;
+      // background-color: $color-bg-lighter;
       color: $color-default;
     }
 
