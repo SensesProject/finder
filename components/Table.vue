@@ -22,11 +22,11 @@
               <i
                 class="option icon-filter clickable"
                 @click="setFacet({ key: cell.key, value: cell.label })"
-                :title="`Filter table by »${cell.label || '—'}«`" />
+                v-tooltip="{ content: `Filter table by »${cell.label || '—'}«`, placement: 'top' }" />
               <i
                 class="option icon-popup clickable"
                 @click="openPopover({ key: cell.key, value: cell.label })"
-                :title="`Show more information about »${cell.label || '—'}« in popover`"
+                v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'top' }"
                 v-if="cell.hasPopover" />
             </section>
           </div>
@@ -175,7 +175,8 @@
       }
 
       .option {
-        color: rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 0, 0.8);
+        transition: 0.2s;
         opacity: 0;
 
         &:hover {
