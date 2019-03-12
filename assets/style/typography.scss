@@ -59,8 +59,15 @@
   }
 }
 
-h2 {
+h1 {
   font-size: $size-big;
+  display: inline-block;
+  margin-right: $spacing / 2;
+  width: 220px;
+}
+
+h2 {
+  font-size: $size-default;
   line-height: 1.2em;
   color: palette(grey, 20);
   font-weight: $font-weight-bold;

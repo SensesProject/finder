@@ -2,7 +2,10 @@
   <div class="wrapper">
     <nav class="filter">
       <header>
-        <h2>{{ title }}</h2>
+        <hgroup>
+          <h1>{{ title }}</h1>
+          <h2>{{ subtitle }}</h2>
+        </hgroup>
         <Aside />
       </header>
       <div class="columns columns-gutter-narrow facets">
@@ -31,7 +34,7 @@
   import Table from '~/components/Table.vue'
 
   export default {
-    props: ['title', 'file', 'facets', 'popovers'],
+    props: ['title', 'subtitle', 'file', 'facets', 'popovers'],
     computed: {
       ...mapState([
         'data'

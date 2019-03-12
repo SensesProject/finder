@@ -35,8 +35,10 @@
 
   export default {
     computed: {
+      ...mapState({
+        'popover': state => state.popover.popover
+      }),
       ...mapState([
-        'popover',
         'popoverContent'
       ]),
       key () {

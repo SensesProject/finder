@@ -1,5 +1,10 @@
 <template>
-  <Wrapper title="SR1P5 Selected Metadata Indicators" :file="file" :facets="facets" :popovers="popovers" />
+  <Wrapper
+    title="Scenario Finder"
+    subtitle="SR1P5 Selected Metadata Indicators"
+    :file="file"
+    :facets="facets"
+    :popovers="popovers" />
 </template>
 
 <script>

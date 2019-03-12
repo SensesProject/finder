@@ -2,11 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
 import VTooltip from 'v-tooltip'
+import popover from './modules/popover'
 
 Vue.use(Vuex)
 Vue.use(VTooltip)
 
 const store = () => new Vuex.Store({
+  modules: {
+    popover
+  },
   state: {
     optionsFilter: false,
     sortRemaining: false,
@@ -15,7 +19,6 @@ const store = () => new Vuex.Store({
     activeKey: false,
     facets: [],
     data: [],
-    popover: false,
     popoverContent: {}
   },
   getters: {
@@ -96,12 +99,6 @@ const store = () => new Vuex.Store({
     }
   },
   mutations: {
-    CLOSE_POPOVER (state) {
-      state.popover = false
-    },
-    OPEN_POPOVER (state, key) {
-      state.popover = key
-    },
     RESET_FILTER (state) {
       state.filter = []
     },
@@ -170,6 +167,7 @@ const store = () => new Vuex.Store({
       state.sortRemaining = value
     },
     SET_CONTENT (state, { data, facets, popovers }) {
+      // Sets the content of the Finder. It is triggered by setContent in the Wrapper component
       state.data = data.items
       state.popoverContent = _.fromPairs(_.map(popovers, popover => {
         return [popover, _.get(data, popover, {})]
@@ -180,13 +178,6 @@ const store = () => new Vuex.Store({
   actions: {
     resetFilter ({ commit }) {
       commit('RESET_FILTER')
-    },
-    closePopover ({ commit }) {
-      commit('CLOSE_POPOVER')
-    },
-    openPopover ({ commit }, key) {
-      // console.log('openPopover', key)
-      commit('OPEN_POPOVER', key)
     },
     resetFacet ({ commit }, key) {
       // console.log('resetFacet')
@@ -234,6 +225,7 @@ const store = () => new Vuex.Store({
       commit('SET_SORT_REMAINING', { value })
     },
     setContent ({ commit }, obj) {
+      // Sets the content of the Finder. It is called by the Wrapper component
       // console.log('setHover')
       commit('SET_CONTENT', obj)
     }
