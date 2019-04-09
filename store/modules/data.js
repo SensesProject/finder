@@ -27,7 +27,9 @@ const getters = {
         const value = get(datum, facet.key, '—')
         let label
         if (facet.type === 'category') {
-          label = value.replace(/[_-]/g, ' ')
+          label = value
+            .replace(/[_-]/g, ' ')
+            .replace(/1p5/g, '1.5')
         } else if (facet.type === 'number') {
           label = round(value, facet.precision)
         }
@@ -115,17 +117,14 @@ const actions = {
       .then(response => {
         const { data } = response
         commit('API_DATA', { status: STATUS_AUTH_SUCCESS, token: data })
-        console.log(STATUS_AUTH_SUCCESS)
         dispatch('load')
       })
       .catch(error => {
         commit('API_DATA', { status: STATUS_AUTH_FAILED, message: error })
-        console.log(STATUS_AUTH_FAILED)
       })
   },
   load ({ state, commit }, params) {
     commit('API_DATA', { status: STATUS_LOADING })
-    console.log(STATUS_LOADING, state.token)
     const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
     const config = {
       headers: { 'Authorization': `Bearer ${state.token}` }
@@ -133,9 +132,7 @@ const actions = {
     axios.get(url, config)
       .then(response => {
         const { data } = response
-        console.log(STATUS_LOADING_SUCCESS)
         commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
-        console.log(data)
       })
       .catch(error => {
         commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
