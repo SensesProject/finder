@@ -53,11 +53,11 @@
           'key': 'metadata.reference',
           'type': 'category'
         },
-        {
-          'label': 'status',
-          'key': 'status',
-          'type': 'category'
-        },
+        // {
+        //   'label': 'status',
+        //   'key': 'status',
+        //   'type': 'category'
+        // },
         {
           'label': 'project',
           'key': 'metadata.project',
