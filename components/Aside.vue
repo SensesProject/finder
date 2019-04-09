@@ -86,5 +86,9 @@
     * {
       font-size: $size-smaller !important;
     }
+
+    .reset.clickable {
+      color: #99242e;
+    }
   }
 </style>
