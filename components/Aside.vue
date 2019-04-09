@@ -8,7 +8,7 @@
     </v-popover>
     <section class="counter">
       <Loading v-if="status !== 'LOADING_SUCCESS'" />
-      <span v-else-if="status === 'AUTH_FAILED' || status === 'LOADING_FAILED'">—</span>
+      <span v-else-if="status === 'AUTH_FAILED' || status === 'LOADING_FAILED' || status === 'ERROR'">—</span>
       <div v-else>
         <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} items</span>
       </div>

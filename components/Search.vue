@@ -13,17 +13,18 @@
       </section>
       <section>
         <aside>
-          <span>{{ number }} options</span>
+          <span v-if="status === 'LOADING_SUCCESS'">{{ number }} options</span>
+          <span v-else>&nbsp;</span>
         </aside>
       </section>
     </header>
-    <div><input type="text" :class="{ active: isActive }" placeholder="Search …" v-model="inputTerm" /></div>
+    <div><input type="text" :class="{ active: isActive }" placeholder="Search …" v-model="inputTerm" :disabled="status !== 'LOADING_SUCCESS'" /></div>
   </section>
 </template>
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import _ from 'lodash'
+  import { isUndefined, find, get, size, trim } from 'lodash'
 
   export default {
     props: ['title', 'values', 'ki'],
@@ -33,25 +34,28 @@
       }
     },
     computed: {
+      ...mapState({
+        status: state => get(state, 'data.status', 'ERROR')
+      }),
       ...mapState([
         'filter'
       ]),
       isInvert () {
-        const keys = _.find(this.filter, ['key', this.ki])
-        return _.isUndefined(keys) ? false : keys.invert
+        const keys = find(this.filter, ['key', this.ki])
+        return isUndefined(keys) ? false : keys.invert
       },
       isActive () {
         return this.term.length
       },
       number () {
-        return _.size(this.values)
+        return size(this.values)
       },
       inputTerm: {
         get () {
           return this.term
         },
         set (input) {
-          const value = _.trim(input)
+          const value = trim(input)
           this.term = value
           if (value.length) {
             this.setFacet({ key: this.ki, value: value })
@@ -138,6 +142,10 @@
     &.active {
       font-weight: bold;
       color: $color-green;
+    }
+
+    &[disabled] {
+      opacity: 0.5;
     }
   }
 </style>

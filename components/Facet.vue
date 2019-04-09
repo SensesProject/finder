@@ -12,16 +12,18 @@
         </aside>
       </section>
       <section>
-        <span>{{ number }} options</span>
+        <span v-if="status === 'LOADING_SUCCESS'">{{ number }} options</span>
+        <span v-else>&nbsp;</span>
         <aside>
           <span :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
         </aside>
       </section>
     </header>
     <ul>
+      <li v-if="status !== 'LOADING_SUCCESS'"><Loading v-if="status !== 'LOADING_SUCCESS'" /></li>
       <li
         v-for="item in list"
-        v-if="!(optionsFilter && filter.length && item.current_value === 0)"
+        v-if="status === 'LOADING_SUCCESS' && !(optionsFilter && filter.length && item.current_value === 0)"
         :class="{ active: item.isActive, empty: item.current_value === 0 }">
         <svg>
           <line
@@ -60,7 +62,8 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import _ from 'lodash'
+  import { isUndefined, find, map, size, sortBy, get, reverse } from 'lodash'
+  import Loading from '~/components/Loading.vue'
 
   export default {
     props: ['title', 'values', 'ki'],
@@ -71,6 +74,9 @@
       }
     },
     computed: {
+      ...mapState({
+        status: state => get(state, 'data.status', 'ERROR')
+      }),
       ...mapState([
         'filter',
         'optionsFilter',
@@ -80,26 +86,26 @@
         'counter'
       ]),
       active () {
-        const keys = _.find(this.filter, ['key', this.ki])
-        return _.isUndefined(keys) ? [] : keys.values
+        const keys = find(this.filter, ['key', this.ki])
+        return isUndefined(keys) ? [] : keys.values
       },
       isInvert () {
-        const keys = _.find(this.filter, ['key', this.ki])
-        return _.isUndefined(keys) ? false : keys.invert
+        const keys = find(this.filter, ['key', this.ki])
+        return isUndefined(keys) ? false : keys.invert
       },
       isActive () {
         return this.active.length > 0
       },
       number () {
-        return _.size(this.values)
+        return size(this.values)
       },
       range () {
-        const values = _.map(this.values, value => { return value })
+        const values = map(this.values, value => { return value })
         return Math.max(...values)
       },
       list () {
         const { ki } = this
-        const list = _.map(this.values, (key, value) => {
+        const list = map(this.values, (key, value) => {
           return {
             'label': value,
             'value': key,
@@ -109,9 +115,9 @@
           }
         })
 
-        const sorted = _.sortBy(list, this.rank ? 'label' : (this.sortRemaining ? 'current_value' : 'value'))
+        const sorted = sortBy(list, this.rank ? 'label' : (this.sortRemaining ? 'current_value' : 'value'))
 
-        return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? _.reverse(sorted) : sorted
+        return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? reverse(sorted) : sorted
       }
     },
     methods: {
@@ -134,6 +140,9 @@
           this.reverse = true
         }
       }
+    },
+    components: {
+      Loading
     }
   }
 </script>
