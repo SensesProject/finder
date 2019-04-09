@@ -1,21 +1,27 @@
 <template>
   <aside>
-    <span class="counter">{{ status }}</span>
     <v-popover offset="4">
       <button class="btn clickable" v-tooltip="{ delay: { show: 0, hide: 1000 }, autoHide: true, trigger: 'click', closeOnClickOutside: true }">Options</button>
       <template slot="popover">
         <Options />
       </template>
     </v-popover>
-    <span class="counter"><span v-if="result.length !== data.length">{{ result.length }}/</span>{{ data.length }} items</span>
+    <section class="counter">
+      <Loading v-if="status !== 'LOADING_SUCCESS'" />
+      <span v-else-if="status === 'AUTH_FAILED' || status === 'LOADING_FAILED'">—</span>
+      <div v-else>
+        <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} items</span>
+      </div>
+    </section>
     <span :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter">Reset all filter</span>
   </aside>
 </template>
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import Options from '~/components/Options.vue'
   import { get } from 'lodash'
+  import Options from '~/components/Options.vue'
+  import Loading from '~/components/Loading.vue'
 
   export default {
     computed: {
@@ -36,7 +42,8 @@
       ])
     },
     components: {
-      Options
+      Options,
+      Loading
     }
   }
 </script>
@@ -45,6 +52,8 @@
   @import "~@/assets/style/variables";
 
   aside {
+    display: flex;
+
     & > * {
       display: inline-block;
       text-align: center;
@@ -52,6 +61,17 @@
 
       &.counter {
         min-width: 120px;
+
+        & > * {
+          max-height: 35px;
+          width: auto;
+          height: 100%;
+          vertical-align: middle;
+        }
+
+        & span {
+          line-height: 35px;
+        }
       }
 
       &:first-child {
