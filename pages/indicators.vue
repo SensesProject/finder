@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import Wrapper from '~/components/Wrapper.vue'
   import * as data from '../data/indicators.json'
 
@@ -29,7 +30,7 @@
         },
         {
           'label': 'category',
-          'key': 'category',
+          'key': 'metadata.category',
           'type': 'category'
         },
         // {
@@ -39,7 +40,7 @@
         // },
         {
           'label': 'baseline',
-          'key': 'baseline',
+          'key': 'metadata.baseline',
           'type': 'category'
         },
         // {
@@ -49,7 +50,7 @@
         // },
         {
           'label': 'reference',
-          'key': 'reference',
+          'key': 'metadata.reference',
           'type': 'category'
         },
         {
@@ -59,7 +60,7 @@
         },
         {
           'label': 'project',
-          'key': 'project',
+          'key': 'metadata.project',
           'type': 'category',
           'hasPopover': true
         }
@@ -257,6 +258,14 @@
       file () {
         return data
       }
+    },
+    methods: {
+      ...mapActions([
+        'loadData'
+      ])
+    },
+    created () {
+      this.loadData()
     },
     components: {
       Wrapper

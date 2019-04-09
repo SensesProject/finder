@@ -1,5 +1,6 @@
 <template>
   <aside>
+    <span class="counter">{{ status }}</span>
     <v-popover offset="4">
       <button class="btn clickable" v-tooltip="{ delay: { show: 0, hide: 1000 }, autoHide: true, trigger: 'click', closeOnClickOutside: true }">Options</button>
       <template slot="popover">
@@ -14,13 +15,17 @@
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
   import Options from '~/components/Options.vue'
+  import { get } from 'lodash'
 
   export default {
     computed: {
       ...mapState([
-        'data',
         'filter'
       ]),
+      ...mapState({
+        status: state => get(state, 'data.status', 'ERROR'),
+        data: state => get(state, 'data.data', [])
+      }),
       ...mapGetters([
         'result'
       ])

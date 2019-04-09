@@ -3,13 +3,15 @@ import Vuex from 'vuex'
 import _ from 'lodash'
 import VTooltip from 'v-tooltip'
 import popover from './modules/popover'
+import data from './modules/data'
 
 Vue.use(Vuex)
 Vue.use(VTooltip)
 
 const store = () => new Vuex.Store({
   modules: {
-    popover
+    popover,
+    data
   },
   state: {
     optionsFilter: false,
@@ -18,84 +20,15 @@ const store = () => new Vuex.Store({
     filter: [],
     activeKey: false,
     facets: [],
-    data: [],
     popoverContent: {}
   },
   getters: {
     titles: state => {
       return _.map(_.filter(state.facets, 'title'), 'key')
     },
-    datum: state => {
-      return _.map(state.data, datum => {
-        // Rebuild the data structure. Build an object from the data array
-        return _.fromPairs(_.map(state.facets, facet => {
-          const key = facet.key
-          const value = datum[facet.key] || '—'
-          let label
-          if (facet.type === 'category') {
-            label = value.replace(/[_-]/g, ' ')
-          } else if (facet.type === 'number') {
-            label = _.round(value, facet.precision)
-          }
-          const obj = {
-            key,
-            value,
-            label,
-            hasPopover: !_.isUndefined(facet.hasPopover)
-          }
-          return [facet.key, obj]
-        }))
-      })
-    },
-    options: (state, getters) => {
-      const facets = state.facets// .filter(facet => !facet.title)
-      return facets.map(facet => {
-        const { key } = facet
-        // Count all options for that facet (respectively key)
-        const options = _.countBy(_.flatten(getters.datum.map(item => {
-          return item[key].label
-        })))
-        return {
-          ...facet,
-          options
-        }
-      })
-    },
     visibleHeader: state => {
       // implement toggle option for columns
       return _.map(state.facets, 'key')
-    },
-    process: state => {
-      return _.countBy(state.data.map(item => item['process']))
-    },
-    result: (state, getters) => {
-      let result = getters.datum
-      state.filter.forEach(filta => {
-        result = result.filter(item => {
-          // console.log(filta.key, item[filta.key], filta.values, _.indexOf(filta.values, item[filta.key]))
-          let retVal = true
-          if (_.indexOf(getters.titles, filta.key) > -1) { // Facet is search term
-            retVal = _.lowerCase(item[filta.key].label).includes(_.lowerCase(filta.values))
-          } else {
-            if (_.isArray(item[filta.key])) { // TODO: Does this ever happen?
-              retVal = _.intersection(item[filta.key].label, filta.values).length > 0
-            } else {
-              retVal = _.indexOf(filta.values, item[filta.key].label) > -1
-            }
-          }
-
-          return filta.invert ? !retVal : retVal
-        })
-      })
-      return result
-    },
-    counter: (state, getters) => {
-      const values = state.facets.map(facet => {
-        const { key } = facet
-        const options = _.countBy(_.flatten(getters.result.map(item => item[key].label)))
-        return [key, options]
-      })
-      return _.fromPairs(values)
     }
   },
   mutations: {
@@ -168,7 +101,7 @@ const store = () => new Vuex.Store({
     },
     SET_CONTENT (state, { data, facets, popovers }) {
       // Sets the content of the Finder. It is triggered by setContent in the Wrapper component
-      state.data = data.items
+      // state.data = data.items
       state.popoverContent = _.fromPairs(_.map(popovers, popover => {
         return [popover, _.get(data, popover, {})]
       }))
