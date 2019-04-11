@@ -110,33 +110,46 @@ const actions = {
   loadData ({ dispatch }) {
     dispatch('auth')
   },
-  auth ({ commit, dispatch }, params) {
-    commit('API_DATA', { status: STATUS_AUTH })
-    const url = 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15'
-    axios.get(url)
-      .then(response => {
-        const { data } = response
-        commit('API_DATA', { status: STATUS_AUTH_SUCCESS, token: data })
-        dispatch('load')
-      })
-      .catch(error => {
-        commit('API_DATA', { status: STATUS_AUTH_FAILED, message: error })
-      })
-  },
-  load ({ state, commit }, params) {
-    commit('API_DATA', { status: STATUS_LOADING })
-    const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
-    const config = {
-      headers: { 'Authorization': `Bearer ${state.token}` }
+  auth ({ state, commit, dispatch }, isForced = false) {
+    if (isForced && (state.status === STATUS_IDLE || state.token === false)) {
+      commit('API_DATA', { status: STATUS_AUTH })
+      const url = 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15'
+      console.log('Auth Request send')
+      axios.get(url)
+        .then(response => {
+          const { data } = response
+          console.log('Auth success')
+          commit('API_DATA', { status: STATUS_AUTH_SUCCESS, token: data })
+          dispatch('load')
+        })
+        .catch(error => {
+          console.log('Auth failed')
+          commit('API_DATA', { status: STATUS_AUTH_FAILED, message: error })
+        })
+    } else {
+      console.log('Already logged in')
+      dispatch('load')
     }
-    axios.get(url, config)
-      .then(response => {
-        const { data } = response
-        commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
-      })
-      .catch(error => {
-        commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
-      })
+  },
+  load ({ state, commit }, isForced = false) {
+    if (isForced && (state.status !== STATUS_LOADING && ((state.status !== STATUS_AUTH_SUCCESS && state.status !== STATUS_LOADING_FAILED) || (state.status === STATUS_AUTH_SUCCESS && state.data.length === 0)))) {
+      commit('API_DATA', { status: STATUS_LOADING })
+      const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
+      const config = {
+        headers: { 'Authorization': `Bearer ${state.token}` }
+      }
+      console.log('Load Request send')
+      axios.get(url, config)
+        .then(response => {
+          const { data } = response
+          commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
+        })
+        .catch(error => {
+          commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
+        })
+    } else {
+      console.log('Data already loaded')
+    }
   }
 }
 
