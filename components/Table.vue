@@ -25,9 +25,9 @@
                 v-tooltip="{ content: `Filter table by »${cell.label || '—'}«`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
-                @click="openPopover({ key: cell.key, value: cell.label })"
+                @click="openPopover(cell)"
                 v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
-                v-if="cell.hasPopover" />
+                v-if="cell.popover" />
             </section>
           </div>
         </td>
@@ -59,6 +59,7 @@
         return _.map(this.result, item => {
           // For each row: build an array of values based on the visible headers
           const cells = _.map(this.visibleHeader, key => {
+            // console.log(item[key])
             return item[key]
             // return {
             //   // 'label': _.isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so

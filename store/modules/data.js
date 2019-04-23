@@ -3,19 +3,15 @@ import { get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, low
 
 const STATUS_IDLE = 'IDLE'
 
-const STATUS_AUTH = 'AUTH'
-const STATUS_AUTH_FAILED = 'AUTH_FAILED'
-const STATUS_AUTH_SUCCESS = 'AUTH_SUCCESS'
-
 const STATUS_LOADING = 'LOADING'
 const STATUS_LOADING_FAILED = 'LOADING_FAILED'
 const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
 
 const state = {
   data: [],
-  token: false,
   status: STATUS_IDLE,
-  message: false
+  message: false,
+  date: false
 }
 
 const getters = {
@@ -33,11 +29,23 @@ const getters = {
         } else if (facet.type === 'number') {
           label = round(value, facet.precision)
         }
+
+        const popover = get(facet, 'popover.url', false) // Checks if column has a popover
+        let popoverID // ID used for the url to request information displayed in popover
+        let popoverKey
+        if (popover) {
+          const path = get(facet, 'popover.path', false)
+          popoverID = get(datum, path, false)
+          popoverKey = get(facet, 'popover.key', false)
+        }
+
         const obj = {
           key,
           value,
           label,
-          hasPopover: !isUndefined(facet.hasPopover)
+          popover,
+          popoverID,
+          popoverKey
         }
         return [facet.key, obj]
       }))
@@ -102,37 +110,18 @@ const mutations = {
     }
     if (!isUndefined(data)) {
       state.data = data
+      state.date = new Date()
     }
   }
 }
 
 const actions = {
   loadData ({ dispatch }) {
-    dispatch('auth')
+    dispatch('auth', { follower: { name: 'load' } })
   },
-  auth ({ state, commit, dispatch }, isForced = false) {
-    if (isForced && (state.status === STATUS_IDLE || state.token === false)) {
-      commit('API_DATA', { status: STATUS_AUTH })
-      const url = 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15'
-      console.log('Auth Request send')
-      axios.get(url)
-        .then(response => {
-          const { data } = response
-          console.log('Auth success')
-          commit('API_DATA', { status: STATUS_AUTH_SUCCESS, token: data })
-          dispatch('load')
-        })
-        .catch(error => {
-          console.log('Auth failed')
-          commit('API_DATA', { status: STATUS_AUTH_FAILED, message: error })
-        })
-    } else {
-      console.log('Already logged in')
-      dispatch('load')
-    }
-  },
-  load ({ state, commit }, isForced = false) {
-    if (isForced && (state.status !== STATUS_LOADING && ((state.status !== STATUS_AUTH_SUCCESS && state.status !== STATUS_LOADING_FAILED) || (state.status === STATUS_AUTH_SUCCESS && state.data.length === 0)))) {
+  load ({ state, commit, dispatch }, { isForced, isLoop }) {
+    console.log(state.status, state.data.length)
+    if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
       const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
       const config = {
@@ -146,9 +135,13 @@ const actions = {
         })
         .catch(error => {
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
+          if (!isLoop) {
+            dispatch('auth', { follower: { name: 'load' } })
+          }
         })
     } else {
       console.log('Data already loaded')
+      commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
     }
   }
 }

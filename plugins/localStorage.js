@@ -4,7 +4,7 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     const { dispatch } = store
     createPersistedState({
-      paths: ['data.data', 'data.token', 'data.status']
+      paths: ['data.data', 'auth.token', 'data.status']
     })(store)
     dispatch('loadData')
   })

@@ -4,6 +4,7 @@ import _ from 'lodash'
 import VTooltip from 'v-tooltip'
 import popover from './modules/popover'
 import data from './modules/data'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 Vue.use(VTooltip)
@@ -11,7 +12,8 @@ Vue.use(VTooltip)
 const store = () => new Vuex.Store({
   modules: {
     popover,
-    data
+    data,
+    auth
   },
   state: {
     optionsFilter: false,
@@ -27,7 +29,7 @@ const store = () => new Vuex.Store({
       return _.map(_.filter(state.facets, 'title'), 'key')
     },
     visibleHeader: state => {
-      // implement toggle option for columns
+      // get a list of all keys from the facets
       return _.map(state.facets, 'key')
     }
   },

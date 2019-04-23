@@ -7,8 +7,8 @@
       </template>
     </v-popover>
     <section class="counter">
-      <Loading v-if="status !== 'LOADING_SUCCESS'" />
-      <span v-else-if="status === 'AUTH_FAILED' || status === 'LOADING_FAILED' || status === 'ERROR'">—</span>
+      <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
+      <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
       <div v-else>
         <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} items</span>
       </div>
@@ -29,7 +29,8 @@
         'filter'
       ]),
       ...mapState({
-        status: state => get(state, 'data.status', 'ERROR'),
+        statusData: state => get(state, 'data.status', 'ERROR'),
+        statusAuth: state => get(state, 'auth.status', 'ERROR'),
         data: state => get(state, 'data.data', [])
       }),
       ...mapGetters([

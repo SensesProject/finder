@@ -97,6 +97,10 @@
       justify-content: space-between;
     }
 
+    h1, h2, h3 {
+      display: inline-block;
+    }
+
     h2 {
       color: palette(grey, 0);
     }

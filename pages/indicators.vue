@@ -1,16 +1,13 @@
 <template>
   <Wrapper
     title="Scenario Finder"
-    subtitle="SR1P5 Selected Metadata Indicators"
-    :file="file"
+    subtitle="IAMC 1.5°C Scenario Data hosted by IIASA"
     :facets="facets"
     :popovers="popovers" />
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
   import Wrapper from '~/components/Wrapper.vue'
-  import * as data from '../data/indicators.json'
 
   export default {
     data: function () {
@@ -20,13 +17,21 @@
           'key': 'scenario',
           'type': 'category',
           'title': true,
-          'hasPopover': true
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'scenarios',
+            'path': 'scen_id'
+          }
         },
         {
           'label': 'model',
           'key': 'model',
           'type': 'category',
-          'hasPopover': true
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'models',
+            'path': 'model_id'
+          }
         },
         {
           'label': 'category',
@@ -62,7 +67,11 @@
           'label': 'project',
           'key': 'metadata.project',
           'type': 'category',
-          'hasPopover': true
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'project',
+            'path': 'project'
+          }
         }
         // {
         //   'label': 'median warming at peak',
@@ -253,19 +262,6 @@
         ],
         popovers: ['project']
       }
-    },
-    computed: {
-      file () {
-        return data
-      }
-    },
-    methods: {
-      ...mapActions([
-        'loadData'
-      ])
-    },
-    created () {
-      this.loadData()
     },
     components: {
       Wrapper
