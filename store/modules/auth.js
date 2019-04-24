@@ -45,7 +45,7 @@ const actions = {
           const { data } = response
           console.log('Auth success', data)
           commit('API_AUTH', { status: STATUS_AUTH_SUCCESS, token: data })
-          dispatch('callFollower', follower)
+          dispatch('callFollower', { follower, isForced })
         })
         .catch(error => {
           console.log('Auth failed')
@@ -53,13 +53,13 @@ const actions = {
         })
     } else {
       console.log('Already logged in')
-      dispatch('callFollower', follower)
+      dispatch('callFollower', { follower, isForced })
     }
   },
-  callFollower ({ dispatch }, follower) {
+  callFollower ({ dispatch }, { follower, isForced }) {
     if (isObject(follower)) {
       const { name, params } = follower
-      dispatch(name, { ...params, isLoop: true }) // isLoop prevents a loop of calling the target in a loop
+      dispatch(name, { ...params, isLoop: !isForced }) // isLoop prevents a loop of calling the target in a loop
     }
   }
 }
