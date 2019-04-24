@@ -138,6 +138,7 @@ const actions = {
           console.log('Loading failed', { error })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
+            console.log('Trying to relogin')
             dispatch('auth', { follower: { name: 'load' } })
           }
         })
