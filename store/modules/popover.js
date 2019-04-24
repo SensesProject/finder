@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { isUndefined, get, isObject } from 'lodash'
+import { isUndefined, get } from 'lodash'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -20,11 +20,7 @@ const mutations = {
   OPEN_POPOVER (state, { id, content }) {
     state.popover = id
     if (!isUndefined(content)) {
-      if (isObject(content)) {
-        state.content = get(content, '[0].description', false)
-      } else {
-        state.content = content
-      }
+      state.content = content
     }
   }
 }
@@ -37,8 +33,8 @@ const actions = {
     commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content: '<h1>Reference</h1><p>Daniel Huppmann, Elmar Kriegler, Volker Krey, Keywan Riahi, Joeri Rogelj, Steven K. Rose, John Weyant, et al.<br />IAMC 1.5°C Scenario Explorer and Data hosted by IIASA.<br />Integrated Assessment Modeling Consortium & International Institute for Applied Systems Analysis, 2018.<br />doi: 10.22022/SR15/08-2018.15429 | url: data.ene.iiasa.ac.at/iamc-1.5c-explorer</p>', id: 'info' })
   },
   openPopover ({ getters, commit, rootState, dispatch }, obj) {
-    console.log('openPopover', obj, state)
-    const { popover: url, popoverID: id, popoverKey: key, isLoop } = obj
+    const { popover: url, popoverKey: key, isLoop } = obj
+    let { popoverID: id } = obj
     const token = get(rootState, 'auth.token', false)
     const headers = {
       'Authorization': `Bearer ${token}`,
@@ -50,10 +46,12 @@ const actions = {
     commit('OPEN_POPOVER', { status: STATUS_LOADING })
     axios({ method: 'POST', url, data: data, headers })
       .then(response => {
-        const { data } = response
-        console.log('Popover success')
-        console.log(data, response)
-        commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content: data, id })
+        let content = get(response, 'data.[0].description', false)
+        if (!content) {
+          content = `Nothing found for ${obj.label}`
+          id = obj.value
+        }
+        commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content, id })
       })
       .catch(error => {
         console.log('Popover failed', { error })
