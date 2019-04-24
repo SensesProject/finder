@@ -12,7 +12,7 @@
         </aside>
       </section>
       <section>
-        <span v-if="number === 0">{{ number }} options</span>
+        <span v-if="number !== 0">{{ number }} options</span>
         <span v-else>&nbsp;</span>
         <aside>
           <span :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
