@@ -1,12 +1,5 @@
 <template>
   <table>
-    <!-- <thead>
-      <tr>
-        <th
-          v-for="key in header"
-          :class="{ 'active': activeKey === key }">{{ key }}</th>
-      </tr>
-    </thead> -->
     <tbody v-if="items.length">
       <tr
         v-for="(row, n) in items"

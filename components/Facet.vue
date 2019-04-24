@@ -62,7 +62,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { isUndefined, find, map, size, sortBy, get, reverse } from 'lodash'
+  import { isUndefined, find, map, size, sortBy, reverse } from 'lodash'
   import Loading from '~/components/Loading.vue'
 
   export default {
@@ -74,9 +74,6 @@
       }
     },
     computed: {
-      ...mapState({
-        status: state => get(state, 'data.status', 'ERROR')
-      }),
       ...mapState([
         'filter',
         'optionsFilter',

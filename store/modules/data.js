@@ -131,9 +131,11 @@ const actions = {
       axios.get(url, config)
         .then(response => {
           const { data } = response
+          console.log('Loading successfull', data)
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
         })
         .catch(error => {
+          console.log('Loading failed', { error })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
             dispatch('auth', { follower: { name: 'load' } })
