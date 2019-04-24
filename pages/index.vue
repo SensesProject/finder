@@ -1,171 +1,266 @@
 <template>
-  <Wrapper title="Co-Creation techniques" :file="file" :facets="facets" :popovers="popovers" />
+  <Wrapper
+    title="Scenario Finder"
+    subtitle="IAMC 1.5°C Scenario Data hosted by IIASA"
+    :facets="facets"
+    :popovers="popovers" />
 </template>
 
 <script>
   import Wrapper from '~/components/Wrapper.vue'
-  import * as data from '../data/data.json'
 
   export default {
     data: function () {
       return {
         facets: [{
-          'label': 'Name',
-          'key': 'Name',
+          'label': 'scenario',
+          'key': 'scenario',
           'type': 'category',
-          'title': true
+          'title': true,
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'scenarios',
+            'path': 'scen_id'
+          }
         },
         {
-          'label': 'Technique or Method',
-          'key': 'Technique or Method',
-          'type': 'category'
+          'label': 'model',
+          'key': 'model',
+          'type': 'category',
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'models',
+            'path': 'model_id'
+          }
         },
         {
-          'label': 'Type (grouping of techniques)',
-          'key': 'Type (grouping of techniques)',
+          'label': 'category',
+          'key': 'metadata.category',
           'type': 'category'
         },
+        // {
+        //   'label': 'subcategory',
+        //   'key': 'subcategory',
+        //   'type': 'category'
+        // },
         {
-          'label': 'Time Duration',
-          'key': 'Time Duration',
+          'label': 'baseline',
+          'key': 'metadata.baseline',
           'type': 'category'
         },
+        // {
+        //   'label': 'marker',
+        //   'key': 'marker',
+        //   'type': 'category'
+        // },
         {
-          'label': 'narrow/ broad participation',
-          'key': 'narrow/ broad participation',
+          'label': 'reference',
+          'key': 'metadata.reference',
           'type': 'category'
         },
+        // {
+        //   'label': 'status',
+        //   'key': 'status',
+        //   'type': 'category'
+        // },
         {
-          'label': 'Experts',
-          'key': 'Experts',
-          'type': 'category'
-        },
-        {
-          'label': 'stakeholders',
-          'key': 'stakeholders',
-          'type': 'category'
-        },
-        {
-          'label': 'group/individual',
-          'key': 'group/individual',
-          'type': 'category'
-        },
-        {
-          'label': 'can be performed in a 1 day workshop',
-          'key': 'can be performed in a 1 day workshop',
-          'type': 'category'
-        },
-        {
-          'label': 'in person',
-          'key': 'in person',
-          'type': 'category'
-        },
-        {
-          'label': 'distance/ online',
-          'key': 'distance/ online',
-          'type': 'category'
-        },
-        {
-          'label': 'Backward (normative)',
-          'key': 'Backward (normative)',
-          'type': 'category'
-        },
-        {
-          'label': 'Forward (explorative)',
-          'key': 'Forward (explorative)',
-          'type': 'category'
-        },
-        {
-          'label': 'Quantitative',
-          'key': 'Quantitative',
-          'type': 'category'
-        },
-        {
-          'label': 'Qualitative',
-          'key': 'Qualitative',
-          'type': 'category'
-        },
-        {
-          'label': 'Translation tools',
-          'key': 'Translation tools',
-          'type': 'category'
-        },
-        {
-          'label': 'reduce ambiguity',
-          'key': 'reduce ambiguity',
-          'type': 'category'
-        },
-        {
-          'label': 'allow ambiguity',
-          'key': 'allow ambiguity',
-          'type': 'category'
-        },
-        {
-          'label': 'creative',
-          'key': 'creative',
-          'type': 'category'
-        },
-        {
-          'label': 'evidence-based (systematic)',
-          'key': 'evidence-based (systematic)',
-          'type': 'category'
-        },
-        {
-          'label': 'fundamental, broad exploration, probabilty, statistical',
-          'key': 'fundamental, broad exploration, probabilty, statistical',
-          'type': 'category'
-        },
-        {
-          'label': 'Under-stand',
-          'key': 'Under-stand',
-          'type': 'category'
-        },
-        {
-          'label': 'Generate ideas',
-          'key': 'Generate ideas',
-          'type': 'category'
-        },
-        {
-          'label': 'Integrate ideas into whole',
-          'key': 'Integrate ideas into whole',
-          'type': 'category'
-        },
-        {
-          'label': 'Consistency',
-          'key': 'Consistency',
-          'type': 'category'
-        },
-        {
-          'label': 'Decision',
-          'key': 'Decision',
-          'type': 'category'
-        },
-        {
-          'label': 'Analysis',
-          'key': 'Analysis',
-          'type': 'category'
-        },
-        {
-          'label': 'Syntheis',
-          'key': 'Syntheis',
-          'type': 'category'
-        },
-        {
-          'label': 'creation',
-          'key': 'creation',
-          'type': 'category'
-        },
-        {
-          'label': 'Column2',
-          'key': 'Column2',
-          'type': 'category'
-        }],
-        popovers: []
-      }
-    },
-    computed: {
-      file () {
-        return data
+          'label': 'project',
+          'key': 'metadata.project',
+          'type': 'category',
+          'popover': {
+            'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
+            'key': 'project',
+            'path': 'project'
+          }
+        }
+        // {
+        //   'label': 'median warming at peak',
+        //   'key': 'median warming at peak',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'year of peak warming',
+        //   'key': 'year of peak warming',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'median warming in 2100',
+        //   'key': 'median warming in 2100',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'median warming peak-and-decline',
+        //   'key': 'median warming peak-and-decline',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'median warming at peak (FAIR)',
+        //   'key': 'median warming at peak (FAIR)',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'year of peak warming (FAIR)',
+        //   'key': 'year of peak warming (FAIR)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'exceedance year|1.5°C',
+        //   'key': 'exceedance year|1.5°C',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'return year|1.5°C',
+        //   'key': 'return year|1.5°C',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'overshoot years|1.5°C',
+        //   'key': 'overshoot years|1.5°C',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'exceedance severity|1.5°C',
+        //   'key': 'exceedance severity|1.5°C',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'exceedance year|2.0°C',
+        //   'key': 'exceedance year|2.0°C',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'return year|2.0°C',
+        //   'key': 'return year|2.0°C',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'overshoot years|2.0°C',
+        //   'key': 'overshoot years|2.0°C',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'cumulative CO2 emissions (2016-2100)',
+        //   'key': 'cumulative CO2 emissions (2016-2100)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'cumulative CCS (2016-2100)',
+        //   'key': 'cumulative CCS (2016-2100)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'cumulative BECCS (2016-2100)',
+        //   'key': 'cumulative BECCS (2016-2100)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'cumulative DAC (2016-2100)',
+        //   'key': 'cumulative DAC (2016-2100)',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'cumulative sequestration land-use (2016-2100)',
+        //   'key': 'cumulative sequestration land-use (2016-2100)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'cumulative CO2 emissions (2016 to peak warming)',
+        //   'key': 'cumulative CO2 emissions (2016 to peak warming)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'year of netzero CO2 emissions',
+        //   'key': 'year of netzero CO2 emissions',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'cumulative CO2 emissions (2016 to netzero)',
+        //   'key': 'cumulative CO2 emissions (2016 to netzero)',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'warming at netzero',
+        //   'key': 'warming at netzero',
+        //   'type': 'number',
+        //   'precision': 0
+        // },
+        // {
+        //   'label': 'carbon price|2030',
+        //   'key': 'carbon price|2030',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|2050',
+        //   'key': 'carbon price|2050',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|2100',
+        //   'key': 'carbon price|2100',
+        //   'type': 'number',
+        //   'precision': -2
+        // },
+        // {
+        //   'label': 'carbon price|2030 (NPV)',
+        //   'key': 'carbon price|2030 (NPV)',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|2050 (NPV)',
+        //   'key': 'carbon price|2050 (NPV)',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|2100 (NPV)',
+        //   'key': 'carbon price|2100 (NPV)',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|Avg NPV (2030-2100)',
+        //   'key': 'carbon price|Avg NPV (2030-2100)',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|AC NPV (2030-2100)',
+        //   'key': 'carbon price|AC NPV (2030-2100)',
+        //   'type': 'number',
+        //   'precision': -1
+        // },
+        // {
+        //   'label': 'carbon price|CC NPV (2030-2100)',
+        //   'key': 'carbon price|CC NPV (2030-2100)',
+        //   'type': 'number',
+        //   'precision': -1
+        // }
+        ],
+        popovers: ['project']
       }
     },
     components: {
