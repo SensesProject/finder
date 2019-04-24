@@ -53,13 +53,13 @@ const actions = {
         })
     } else {
       console.log('Already logged in')
-      dispatch('callFollower', { follower, isForced })
+      dispatch('callFollower', { follower })
     }
   },
   callFollower ({ dispatch }, { follower, isForced }) {
     if (isObject(follower)) {
       const { name, params } = follower
-      dispatch(name, { ...params, isLoop: !isForced }) // isLoop prevents a loop of calling the target in a loop
+      dispatch(name, { ...params, isLoop: isForced }) // isLoop prevents a loop of calling the target in a loop
     }
   }
 }
