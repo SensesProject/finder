@@ -135,7 +135,7 @@ const actions = {
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
         })
         .catch(error => {
-          console.log('Loading failed', { error })
+          console.log('Loading failed', { error, isLoop }, )
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
             console.log('Trying to relogin')
