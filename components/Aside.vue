@@ -10,9 +10,10 @@
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
       <div v-else>
-        <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} items</span>
+        <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span>
       </div>
     </section>
+    <button class="btn">Open in Explorer</button>
     <span :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter">Reset all filter</span>
   </aside>
 </template>
