@@ -13,8 +13,9 @@
         <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span>
       </div>
     </section>
-    <button class="btn">Open in Explorer</button>
     <span :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter">Reset all filter</span>
+    <button class="btn">Open in Explorer</button>
+    <button class="btn clickable" @click="openInfoBox">References</button>
   </aside>
 </template>
 
@@ -40,7 +41,8 @@
     },
     methods: {
       ...mapActions([
-        'resetFilter'
+        'resetFilter',
+        'openInfoBox'
       ])
     },
     components: {

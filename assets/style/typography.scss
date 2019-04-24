@@ -114,12 +114,12 @@ h5 {
 .reference {
   font-size: $size-smaller;
   font-weight: $font-weight-default;
-  color: $color-mute;
+  color: $color-default;
 }
 
 p {
   max-width: 800px;
-  font-size: $size-default;
+  font-size: $size-small;
   line-height: 1.9;
   color: $color-default;
 

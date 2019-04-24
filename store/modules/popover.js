@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { isUndefined, get } from 'lodash'
+import { isUndefined, get, isObject } from 'lodash'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -13,15 +13,6 @@ const state = {
   content: false
 }
 
-// const getters = {
-//   popoverOptions: (state, getters, rootState) => {
-//     const facets = filter(rootState.facets, 'popover')
-//     return fromPairs(map(facets, facet => {
-//       return [facet.key, facet.popover]
-//     }))
-//   }
-// }
-
 const mutations = {
   CLOSE_POPOVER (state) {
     state.popover = false
@@ -29,7 +20,11 @@ const mutations = {
   OPEN_POPOVER (state, { id, content }) {
     state.popover = id
     if (!isUndefined(content)) {
-      state.content = get(content, '[0].description', false)
+      if (isObject(content)) {
+        state.content = get(content, '[0].description', false)
+      } else {
+        state.content = content
+      }
     }
   }
 }
@@ -37,6 +32,9 @@ const mutations = {
 const actions = {
   closePopover ({ commit }) {
     commit('CLOSE_POPOVER')
+  },
+  openInfoBox ({ commit }) {
+    commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content: '<h1>Reference</h1><p>Daniel Huppmann, Elmar Kriegler, Volker Krey, Keywan Riahi, Joeri Rogelj, Steven K. Rose, John Weyant, et al.<br />IAMC 1.5°C Scenario Explorer and Data hosted by IIASA.<br />Integrated Assessment Modeling Consortium & International Institute for Applied Systems Analysis, 2018.<br />doi: 10.22022/SR15/08-2018.15429 | url: data.ene.iiasa.ac.at/iamc-1.5c-explorer</p>', id: 'info' })
   },
   openPopover ({ getters, commit, rootState, dispatch }, obj) {
     console.log('openPopover', obj, state)
