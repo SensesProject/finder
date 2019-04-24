@@ -116,26 +116,26 @@ const mutations = {
 }
 
 const actions = {
-  loadData ({ dispatch }) {
-    dispatch('auth', { follower: { name: 'load' } })
+  loadData ({ dispatch }, isForced = false) {
+    dispatch('auth', { follower: { name: 'load' }, isForced })
   },
-  load ({ state, commit, dispatch }, { isForced, isLoop }) {
+  load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
     console.log(state.status, state.data.length)
     if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
       const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
       const config = {
-        headers: { 'Authorization': `Bearer ${state.token}` }
+        headers: { 'Authorization': `Bearer ${rootState.auth.token}` }
       }
       console.log('Load Request send')
       axios.get(url, config)
         .then(response => {
           const { data } = response
-          console.log('Loading successfull', data)
+          console.log('Loading successfull')
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
         })
         .catch(error => {
-          console.log('Loading failed', { error, isLoop, config })
+          console.log('Loading failed', { error, isLoop })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
             console.log('Trying to relogin')

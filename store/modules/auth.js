@@ -59,7 +59,7 @@ const actions = {
   callFollower ({ dispatch }, { follower, isForced }) {
     if (isObject(follower)) {
       const { name, params } = follower
-      dispatch(name, { ...params, isLoop: isForced }) // isLoop prevents a loop of calling the target in a loop
+      dispatch(name, { ...params, isLoop: isForced, isForced }) // isLoop prevents a loop of calling the target in a loop
     }
   }
 }

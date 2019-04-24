@@ -15,6 +15,7 @@
     </section>
     <span :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter">Reset all filter</span>
     <button class="btn">Open in Explorer</button>
+    <button class="btn clickable" @click="loadData(true)">Force Reload</button>
     <button class="btn clickable" @click="openInfoBox">References</button>
   </aside>
 </template>
@@ -42,7 +43,8 @@
     methods: {
       ...mapActions([
         'resetFilter',
-        'openInfoBox'
+        'openInfoBox',
+        'loadData'
       ])
     },
     components: {
