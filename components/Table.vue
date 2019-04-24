@@ -35,7 +35,8 @@
     </tbody>
     <tbody v-else>
       <tr>
-        <td class="message" :colspan="1">No item found</td>
+        <td v-if="status === 'STATUS_LOADING' || status === 'IDLE'" class="message" :colspan="1"><Loading /></td>
+        <td v-else class="message" :colspan="1">No scenarios found</td>
       </tr>
     </tbody>
   </table>
@@ -43,7 +44,8 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import _ from 'lodash'
+  import { map, get, indexOf, isUndefined, isArray } from 'lodash'
+  import Loading from '~/components/Loading.vue'
 
   export default {
     computed: {
@@ -51,27 +53,30 @@
         'hover',
         'activeKey'
       ]),
+      ...mapState({
+        status: state => get(state, 'data.status', 'ERROR')
+      }),
       ...mapGetters([
         'visibleHeader',
         'result'
       ]),
       items () {
-        return _.map(this.result, item => {
+        return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
-          const cells = _.map(this.visibleHeader, key => {
+          const cells = map(this.visibleHeader, key => {
             // console.log(item[key])
             return item[key]
             // return {
-            //   // 'label': _.isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
+            //   // 'label': isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
             //   key
             // }
           })
 
           let active = false // By default, the cell is not highlighted
-          if (this.hover && !_.isUndefined(this.hover.key) && !_.isUndefined(this.hover.value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
-            if (_.isArray(item[this.hover.key])) { // If multiple keys are hovered
+          if (this.hover && !isUndefined(this.hover.key) && !isUndefined(this.hover.value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
+            if (isArray(item[this.hover.key])) { // If multiple keys are hovered
               console.log('here')
-              if (_.indexOf(item[this.hover.key], this.hover.value) >= 0) {
+              if (indexOf(item[this.hover.key], this.hover.value) >= 0) {
                 active = true
               }
             } else { // If a single key is hovered
@@ -96,6 +101,9 @@
         'setFacet',
         'openPopover'
       ])
+    },
+    components: {
+      Loading
     }
   }
 </script>
@@ -188,7 +196,16 @@
     }
   }
 
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
   .message {
-    text-align: left;
+    text-align: center;
+    width: 100% !important;
+
+    & > * {
+      height: 2em;
+    }
   }
 </style>
