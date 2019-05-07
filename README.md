@@ -5,7 +5,7 @@
 - Model Charakterisierung – Reference Card
 - Meta Indikatoren - Szenarien, Studien – Factsheets
 
-[https://tea-albattani-b88a3c.netlify.com/indicators/](https://tea-albattani-b88a3c.netlify.com/indicators/)
+[https://scenario-finder.netlify.com/](https://scenario-finder.netlify.com/)
 
 ![Screenshot](screenshot.png)
 
