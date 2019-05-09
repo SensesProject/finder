@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
-import VTooltip from 'v-tooltip'
+import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import popover from './modules/popover'
 import data from './modules/data'
 import auth from './modules/auth'
 
 Vue.use(Vuex)
-Vue.use(VTooltip)
+Vue.directive('tooltip', VTooltip)
+Vue.directive('close-popover', VClosePopover)
+Vue.component('v-popover', VPopover)
 
 const store = () => new Vuex.Store({
   modules: {

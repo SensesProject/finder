@@ -1,10 +1,8 @@
 <template>
   <aside>
-    <v-popover offset="4">
-      <button class="btn clickable" v-tooltip="{ delay: { show: 0, hide: 1000 }, autoHide: true, trigger: 'click', closeOnClickOutside: true }">Options</button>
-      <template slot="popover">
-        <Options />
-      </template>
+    <v-popover :autoHide="true">
+      <button class="btn clickable">Options</button>
+      <Options slot="popover"/>
     </v-popover>
     <section class="counter">
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />

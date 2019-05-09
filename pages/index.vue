@@ -74,13 +74,13 @@
           }
         },
         {
-          'label': 'Test data',
+          'label': 'Media Warming',
           'precision': 2,
           'key': ['metadata.median warming at peak (FAIR)'],
           'type': 'Histogram'
         },
         {
-          'label': 'Test data',
+          'label': 'Year Peak Warming',
           'precision': 0,
           'key': ['metadata.year of netzero CO2 emissions', 'metadata.year of peak warming (FAIR)'],
           'type': 'Scatterplot'

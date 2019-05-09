@@ -1,3 +1,11 @@
+button {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .tooltip {
   display: block !important;
   z-index: 10000;
@@ -85,32 +93,30 @@
   }
 
   &.popover {
-    $color: #fff;
 
     .popover-inner {
-      opacity: 0.97;
-      background: $color;
-      color: $color-default;
-      padding: $spacing / 2.5 $spacing / 2;
-      border-radius: 4px;
-      box-shadow: 0 2px 10px rgba(black, 0.05);
+      opacity: 1;
+      background: #fff;
+      color: palette(grey, 0);
+      padding: $spacing / 2 $spacing / 2;
+      border-radius: 2px;
+      box-shadow: 0 5px 30px rgba(black, .1);
     }
 
     .popover-arrow {
-      border-color: $color;
+      border-color: #fff;
     }
   }
 
   &[aria-hidden='true'] {
     visibility: hidden;
-    display: none !important;
     opacity: 0;
-    transition: opacity .3s, visibility .3s;
+    transition: opacity .15s, visibility .15s;
   }
 
   &[aria-hidden='false'] {
     visibility: visible;
     opacity: 1;
-    transition: opacity .3s;
+    transition: opacity .15s;
   }
 }
