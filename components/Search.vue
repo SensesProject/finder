@@ -27,7 +27,7 @@
   import { isUndefined, find, get, size, trim } from 'lodash'
 
   export default {
-    props: ['title', 'values', 'ki'],
+    props: ['title', 'values', 'ki', 'options'],
     data: function () {
       return {
         term: ''
@@ -48,7 +48,7 @@
         return this.term.length
       },
       number () {
-        return size(this.values)
+        return size(this.options)
       },
       inputTerm: {
         get () {

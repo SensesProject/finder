@@ -66,7 +66,7 @@
   import Loading from '~/components/Loading.vue'
 
   export default {
-    props: ['title', 'values', 'ki'],
+    props: ['title', 'values', 'ki', 'options'],
     data: function () {
       return {
         rank: false,
@@ -94,15 +94,15 @@
         return this.active.length > 0
       },
       number () {
-        return size(this.values)
+        return size(this.options)
       },
       range () {
-        const values = map(this.values, value => { return value })
+        const values = map(this.options, value => { return value })
         return Math.max(...values)
       },
       list () {
         const { ki } = this
-        const list = map(this.values, (key, value) => {
+        const list = map(this.options, (key, value) => {
           return {
             'label': value,
             'value': key,

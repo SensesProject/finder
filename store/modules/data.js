@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, intersection, isArray } from 'lodash'
+import { compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, intersection, isArray } from 'lodash'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -20,14 +20,21 @@ const getters = {
       // Rebuild the data structure. Build an object from the data array
       return fromPairs(map(rootState.facets, facet => {
         const key = facet.key
-        const value = get(datum, facet.key, '—')
-        let label
-        if (facet.type === 'category') {
-          label = value
-            .replace(/[_-]/g, ' ')
-            .replace(/1p5/g, '1.5')
-        } else if (facet.type === 'number') {
-          label = round(value, facet.precision)
+        const values = map(key, k => {
+          return get(datum, k, false)
+        })
+        // console.log(values, facet.key, datum)
+        let label = values[0]
+        if (facet.type === 'Facet' || facet.type === 'Search') {
+          if (!label) {
+            label = '—'
+          } else {
+            label = label
+              .replace(/[_-]/g, ' ')
+              .replace(/1p5/g, '1.5')
+          }
+        } else if (facet.type === 'Histogram' || facet.type === 'Scatterplot') {
+          label = round(label, facet.precision || 0)
         }
 
         const popover = get(facet, 'popover.url', false) // Checks if column has a popover
@@ -41,7 +48,7 @@ const getters = {
 
         const obj = {
           key,
-          value,
+          values,
           label,
           popover,
           popoverID,
@@ -59,9 +66,13 @@ const getters = {
       const options = countBy(flatten(getters.datum.map(item => {
         return item[key].label
       })))
+      const values = compact(getters.datum.map(item => {
+        return item[key].values
+      }))
       return {
         ...facet,
-        options
+        options,
+        values
       }
     })
   },

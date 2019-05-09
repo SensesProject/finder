@@ -10,12 +10,13 @@
       </header>
       <div class="columns columns-gutter-narrow facets">
         <component
-          v-bind:is="option.title ? 'Search' : 'Facet'"
           v-for="option in options"
+          v-bind:is="option.type"
           :title="option.label"
-          :values="option.options"
+          :options="option.options"
+          :values="option.values"
           :ki="option.key"
-          :key="option.key" />
+          :key="option.key.join('')" />
       </div>
     </nav>
     <div class="content">
@@ -32,6 +33,8 @@
   import Popover from '~/components/Popover.vue'
   import Search from '~/components/Search.vue'
   import Table from '~/components/Table.vue'
+  import Histogram from '~/components/Histogram.vue'
+  import Scatterplot from '~/components/Scatterplot.vue'
 
   export default {
     props: ['title', 'subtitle', 'file', 'facets', 'popovers'],
@@ -53,7 +56,9 @@
       Facet,
       Popover,
       Search,
-      Table
+      Table,
+      Histogram,
+      Scatterplot
     },
     created: function () {
       this.setContent({ data: this.file, facets: this.facets, popovers: this.popovers })
