@@ -74,7 +74,7 @@
           }
         },
         {
-          'label': 'Media Warming',
+          'label': 'Median Warming',
           'precision': 2,
           'key': ['metadata.median warming at peak (FAIR)'],
           'type': 'Histogram'
