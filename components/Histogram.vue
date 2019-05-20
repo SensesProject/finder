@@ -232,6 +232,10 @@
       stroke: rgba(0, 0, 0, .1);
     }
 
+    .brush {
+      opacity: 0;
+    }
+
     rect.brush {
       fill: rgba(0, 0, 0, .05);
     }
@@ -239,6 +243,12 @@
     line.brush {
       stroke: rgba(0, 0, 0, .2);
       cursor: ns-resize;
+    }
+
+    &:hover {
+      .brush {
+        opacity: 1;
+      }
     }
   }
 </style>
