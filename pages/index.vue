@@ -84,6 +84,11 @@
           'precision': 0,
           'key': ['metadata.year of netzero CO2 emissions', 'metadata.year of peak warming (FAIR)'],
           'type': 'Scatterplot'
+        },
+        {
+          'label': 'Add facet',
+          'key': ['scenario'],
+          'type': 'Add'
         }
         // {
         //   'label': 'median warming at peak',

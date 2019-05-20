@@ -35,6 +35,7 @@
   import Table from '~/components/Table.vue'
   import Histogram from '~/components/Histogram.vue'
   import Scatterplot from '~/components/Scatterplot.vue'
+  import Add from '~/components/Add.vue'
 
   export default {
     props: ['title', 'subtitle', 'file', 'facets', 'popovers'],
@@ -58,7 +59,8 @@
       Search,
       Table,
       Histogram,
-      Scatterplot
+      Scatterplot,
+      Add
     },
     created: function () {
       this.setContent({ data: this.file, facets: this.facets, popovers: this.popovers })
