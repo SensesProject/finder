@@ -20,6 +20,36 @@
     </header>
     <div class="vis-wrapper">
       <svg ref="vis" v-if="number !== 0">
+        <rect
+          :x="brush.x"
+          :y="brush.y"
+          :width="brush.width"
+          :height="brush.height"
+          class="brush" />
+        <line
+          :x1="brush.x"
+          :x2="brush.x1"
+          :y1="brush.y"
+          :y2="brush.y"
+          class="brush brush--vertical" />
+        <line
+          :x1="brush.x1"
+          :x2="brush.x1"
+          :y1="brush.y"
+          :y2="brush.y2"
+          class="brush brush--horizontal" />
+        <line
+          :x1="brush.x"
+          :x2="brush.x1"
+          :y1="brush.y2"
+          :y2="brush.y2"
+          class="brush brush--vertical" />
+        <line
+          :x1="brush.x"
+          :x2="brush.x"
+          :y1="brush.y"
+          :y2="brush.y2"
+          class="brush brush--horizontal" />
         <line
           class="axis"
           :x1="center.x"
@@ -134,6 +164,23 @@
             y: this.height
           }
         })
+      },
+      brush () {
+        const [, _x2] = this.scaleX.range()
+        const [, _h] = this.scaleY.range()
+        const l = _h * 0.2
+        const h = _h * 0.7
+        const x = _x2 * 0.4
+        const x1 = _x2 * 0.8
+        return {
+          x: x,
+          x1: x1,
+          x2: _x2,
+          width: x1 - x,
+          y: l,
+          y2: h,
+          height: h - l
+        }
       }
     },
     methods: {
@@ -221,6 +268,22 @@
 
     .axis {
       stroke: rgba(0, 0, 0, .1);
+    }
+
+    rect.brush {
+      fill: rgba(0, 0, 0, .05);
+    }
+
+    line.brush {
+      stroke: rgba(0, 0, 0, .2);
+
+      &.brush--vertical {
+        cursor: ns-resize;
+      }
+
+      &.brush--horizontal {
+        cursor: ew-resize;
+      }
     }
 
     text {

@@ -25,6 +25,24 @@
           v-html="tick.label" />
       </ul>
       <svg ref="vis" v-if="number !== 0">
+        <rect
+          :x="brush.x"
+          :y="brush.y"
+          :width="brush.width"
+          :height="brush.height"
+          class="brush" />
+        <line
+          :x1="brush.x"
+          :x2="brush.width"
+          :y1="brush.y"
+          :y2="brush.y"
+          class="brush" />
+        <line
+          :x1="brush.x"
+          :x2="brush.width"
+          :y1="brush.y2"
+          :y2="brush.y2"
+          class="brush" />
         <line
           class="axis"
           :x1="marginLeft / 2"
@@ -110,8 +128,20 @@
           }
         })
       },
+      brush () {
+        const [, _h] = this.scaleY.range()
+        const l = _h * 0.3
+        const h = _h * 0.8
+        return {
+          x: 0,
+          width: this.width - this.marginLeft,
+          y: l,
+          y2: h,
+          height: h - l
+        }
+      },
       ticks () {
-        return map(this.scaleBins.ticks(3), tick => {
+        return map(this.scaleBins.domain(), tick => {
           return {
             label: tick
           }
@@ -200,6 +230,15 @@
 
     .axis {
       stroke: rgba(0, 0, 0, .1);
+    }
+
+    rect.brush {
+      fill: rgba(0, 0, 0, .05);
+    }
+
+    line.brush {
+      stroke: rgba(0, 0, 0, .2);
+      cursor: ns-resize;
     }
   }
 </style>
