@@ -7,8 +7,8 @@
       <section>
         <h3 :class="{ active: isActive }">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
-          <span @click="resetFacet(ki)" class="reset tag clickable">Reset</span>
+          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="resetFilter(ki)" class="reset tag clickable">Reset</span>
         </aside>
       </section>
       <section>
@@ -48,13 +48,13 @@
         <div
           @mouseenter="setHoverValue({ key: ki, value: item.label })"
           @mouseleave="resetHoverValue()"
-          @click="setFacet({ key: ki, value: item.label })"
+          @click="setFilter({ key: ki, value: item.label })"
           class="label">
           <span>{{ item.label }}</span>
         </div>
-        <span v-if="isActive && !item.isActive" class="include" @click="addFacet({ key: ki, value: item.label })">Include</span>
-        <span v-if="item.isActive" class="include" @click="removeFacet({ key: ki, value: item.label })">Exclude</span>
-        <span class="counter"><span v-if="filter.length">{{ item.current_value }}/</span>{{ item.value }}</span>
+        <span v-if="isActive && !item.isActive" class="include" @click="addFilter({ key: ki, value: item.label })">Include</span>
+        <span v-if="item.isActive" class="include" @click="removeFilter({ key: ki, value: item.label })">Exclude</span>
+        <span :class="{ counter: true, hide: isActive }"><span v-if="filter.length">{{ item.current_value }}/</span>{{ item.value }}</span>
       </li>
     </ul>
   </section>
@@ -122,15 +122,15 @@
     },
     methods: {
       ...mapActions([
-        'resetFacet',
-        'setFacet',
-        'addFacet',
-        'removeFacet',
-        'setHoverValue',
-        'resetHoverValue',
-        'setHoverKey',
+        'addFilter',
+        'invertFilter',
+        'removeFilter',
+        'resetFilter',
         'resetHoverKey',
-        'invertFacet'
+        'resetHoverValue',
+        'setFilter',
+        'setHoverKey',
+        'setHoverValue'
       ]),
       sort: function (val) {
         if (this.rank === val) {
@@ -245,7 +245,7 @@
         z-index: 10;
         position: absolute;
         overflow: hidden;
-        max-width: 90%;
+        max-width: 70%;
         text-overflow: ellipsis;
       }
     }
@@ -263,18 +263,25 @@
       }
 
       &.include {
+        position: absolute;
+        z-index: 10;
+        right: 0;
         font-size: $size-smallest;
         opacity: 0;
       }
     }
 
     &:hover {
+      .counter.hide {
+        opacity: 0;
+      }
+
       .include {
         opacity: 1;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(0, 0, 0, 0.6);
 
         &:hover {
-          color: rgba(255, 255, 255, 1);
+          color: rgba(0, 0, 0, 1);
         }
       }
     }
