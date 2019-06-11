@@ -6,9 +6,9 @@
         :class="{ 'hover': row.active }">
         <td
           v-for="cell in row.cells"
-          :class="{ 'active': activeKey === cell.key }"
-          @mouseenter="setHover({ key: cell.key, value: cell.label })"
-          @mouseleave="resetHover()">
+          :class="{ 'active': hoverKey === cell.key }"
+          @mouseenter="setHoverValue({ key: cell.key, value: cell.label })"
+          @mouseleave="resetHoverValue()">
           <div>
             <span class="label">{{ cell.label || '—' }}</span>
             <section>
@@ -42,12 +42,10 @@
 
   export default {
     computed: {
-      ...mapState([
-        'hover',
-        'activeKey'
-      ]),
       ...mapState({
-        status: state => get(state, 'data.status', 'ERROR')
+        status: state => get(state, 'data.status', 'ERROR'),
+        hoverValue: state => get(state, 'hover.hoverValue', false),
+        hoverKey: state => get(state, 'hover.hoverKey', false)
       }),
       ...mapGetters([
         'visibleHeader',
@@ -58,6 +56,10 @@
           // For each row: build an array of values based on the visible headers
           const cells = map(this.visibleHeader, key => {
             // console.log(item[key])
+            // console.log(item, key)
+            if (key[0] === 'run_id') {
+              return '—'
+            }
             return item[key]
             // return {
             //   // 'label': isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
@@ -65,16 +67,20 @@
             // }
           })
 
+          const hover = get(this, 'hoverValue', false)
+          const key = get(this, 'hoverValue.key', undefined)
+          const value = get(this, 'hoverValue.value', undefined)
+
           let active = false // By default, the cell is not highlighted
-          if (this.hover && !isUndefined(this.hover.key) && !isUndefined(this.hover.value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
-            if (isArray(item[this.hover.key])) { // If multiple keys are hovered
+          if (hover && !isUndefined(key) && !isUndefined(value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
+            if (isArray(item[key])) { // If multiple keys are hovered
               console.log('here')
-              if (indexOf(item[this.hover.key], this.hover.value) >= 0) {
+              if (indexOf(item[key], value) >= 0) {
                 active = true
               }
             } else { // If a single key is hovered
               // console.log(this.hover.value, item[this.hover.key])
-              if (item[this.hover.key].label === this.hover.value) {
+              if (item[key].label === value) {
                 active = true
               }
             }
@@ -89,8 +95,8 @@
     },
     methods: {
       ...mapActions([
-        'setHover',
-        'resetHover',
+        'setHoverValue',
+        'resetHoverValue',
         'setFacet',
         'openPopover'
       ])

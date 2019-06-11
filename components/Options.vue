@@ -7,20 +7,20 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
+  import { get } from 'lodash'
 
   export default {
     computed: {
-      ...mapState([
-        'filter',
-        'optionsFilter',
-        'sortRemaining'
-      ]),
+      ...mapState({
+        filterEmpty: state => get(state, 'options.filterEmpty', false),
+        sortRemaining: state => get(state, 'options.sortRemaining', false)
+      }),
       optionsFilterProp: {
         get () {
-          return this.optionsFilter
+          return this.filterEmpty
         },
         set (value) {
-          this.setOptionsFilter({ value })
+          this.setFilterEmpty({ value })
         }
       },
       sortRemainingProp: {
@@ -34,8 +34,7 @@
     },
     methods: {
       ...mapActions([
-        'resetFilter',
-        'setOptionsFilter',
+        'setFilterEmpty',
         'setSortRemaining'
       ])
     }

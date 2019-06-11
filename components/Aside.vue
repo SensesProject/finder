@@ -26,10 +26,8 @@
 
   export default {
     computed: {
-      ...mapState([
-        'filter'
-      ]),
       ...mapState({
+        filter: state => get(state, 'facet.filter', []),
         statusData: state => get(state, 'data.status', 'ERROR'),
         statusAuth: state => get(state, 'auth.status', 'ERROR'),
         data: state => get(state, 'data.data', [])

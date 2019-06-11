@@ -23,7 +23,7 @@
       <li v-if="number === 0"><Loading /></li>
       <li
         v-for="item in list"
-        v-if="!(optionsFilter && filter.length && item.current_value === 0)"
+        v-if="!(filterEmpty && filter.length && item.current_value === 0)"
         :class="{ active: item.isActive, empty: item.current_value === 0 }">
         <svg>
           <line
@@ -46,8 +46,8 @@
             y2="90%" />
         </svg>
         <div
-          @mouseenter="setHover({ key: ki, value: item.label })"
-          @mouseleave="resetHover()"
+          @mouseenter="setHoverValue({ key: ki, value: item.label })"
+          @mouseleave="resetHoverValue()"
           @click="setFacet({ key: ki, value: item.label })"
           class="label">
           <span>{{ item.label }}</span>
@@ -62,7 +62,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { isUndefined, find, map, size, sortBy, reverse } from 'lodash'
+  import { isUndefined, find, map, size, sortBy, reverse, get } from 'lodash'
   import Loading from '~/components/Loading.vue'
 
   export default {
@@ -74,11 +74,15 @@
       }
     },
     computed: {
-      ...mapState([
-        'filter',
-        'optionsFilter',
-        'sortRemaining'
-      ]),
+      ...mapState({
+        filter: state => get(state, 'facet.filter', []),
+        filterEmpty: state => get(state, 'options.filterEmpty', false),
+        sortRemaining: state => get(state, 'options.sortRemaining', false)
+      }),
+      ...mapState({
+        filterEmpty: state => get(state, 'options.filterEmpty', false),
+        sortRemaining: state => get(state, 'options.sortRemaining', false)
+      }),
       ...mapGetters([
         'counter'
       ]),
@@ -122,8 +126,8 @@
         'setFacet',
         'addFacet',
         'removeFacet',
-        'setHover',
-        'resetHover',
+        'setHoverValue',
+        'resetHoverValue',
         'setHoverKey',
         'resetHoverKey',
         'invertFacet'
