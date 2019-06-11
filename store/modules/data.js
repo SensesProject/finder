@@ -81,7 +81,8 @@ const getters = {
   },
   result: (state, getters, rootState) => {
     let result = getters.datum
-    rootState.filter.forEach(filta => {
+    const filter = get(rootState, 'facet.filter', [])
+    filter.forEach(filta => {
       result = result.filter(item => {
         // console.log(filta.key, item[filta.key], filta.values, indexOf(filta.values, item[filta.key]))
         let retVal = true
