@@ -1,9 +1,5 @@
 <template>
   <aside>
-    <v-popover :autoHide="true">
-      <button class="btn clickable">Options</button>
-      <Options slot="popover"/>
-    </v-popover>
     <section class="counter">
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
@@ -11,10 +7,14 @@
         <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span>
       </div>
     </section>
-    <span :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter">Reset all filter</span>
-    <button class="btn">Open in Explorer</button>
-    <button class="btn clickable" @click="loadData(true)">Force Reload</button>
-    <button class="btn clickable" @click="openInfoBox">References</button>
+    <button v-tooltip="'Load data from API instead of cache'" class="btn btn--icon clickable" @click="loadData(true)"><i class="icon-arrows-ccw" /></button>
+    <button v-tooltip="'View references for data'" class="btn btn--icon clickable" @click="openInfoBox"><i class="demo-icon icon-info-circled" /></button>
+    <v-popover :autoHide="true">
+      <button class="btn btn--icon clickable" v-tooltip="'Show display options'"><i class="demo-icon icon-cog" /></button>
+      <Options slot="popover"/>
+    </v-popover>
+    <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter"><i class="demo-icon icon-cancel-circled" /> Reset all filter</button>
+    <button class="btn" v-tooltip="'Open selected scenarios in IIASA Explorer'"><i class="demo-icon icon-export" /> Open in Explorer</button>
   </aside>
 </template>
 
