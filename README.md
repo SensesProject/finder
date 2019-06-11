@@ -1,9 +1,4 @@
-# Facet Navigation
-
-## Content
-- Co-Creation
-- Model Charakterisierung – Reference Card
-- Meta Indikatoren - Szenarien, Studien – Factsheets
+# Scenario Finder
 
 [https://scenario-finder.netlify.com/](https://scenario-finder.netlify.com/)
 

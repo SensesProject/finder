@@ -1,7 +1,7 @@
 {
-  "name": "facet-navigation",
+  "name": "scenario-finder",
   "version": "1.0.0",
-  "description": "Facet navigation",
+  "description": "Scenario Finder",
   "author": "Jonas <parnow@fh-potsdam.de>",
   "private": true,
   "scripts": {
