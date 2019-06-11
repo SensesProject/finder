@@ -119,13 +119,13 @@
 }
 
 @font-face {
-  font-family: 'facet';
-  src: url('~/assets/fonts/facet.eot?57420886');
-  src: url('~/assets/fonts/facet.eot?57420886#iefix') format('embedded-opentype'),
-       url('~/assets/fonts/facet.woff2?57420886') format('woff2'),
-       url('~/assets/fonts/facet.woff?57420886') format('woff'),
-       url('~/assets/fonts/facet.ttf?57420886') format('truetype'),
-       url('~/assets/fonts/facet.svg?57420886#facet') format('svg');
+  font-family: 'icons';
+  src: url('../fonts/icons.eot?87301653');
+  src: url('../fonts/icons.eot?87301653#iefix') format('embedded-opentype'),
+       url('../fonts/icons.woff2?87301653') format('woff2'),
+       url('../fonts/icons.woff?87301653') format('woff'),
+       url('../fonts/icons.ttf?87301653') format('truetype'),
+       url('../fonts/icons.svg?87301653#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -134,14 +134,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'facet';
-    src: url('../font/facet.svg?57420886#facet') format('svg');
+    font-family: 'icons';
+    src: url('../fonts/icons.svg?87301653#icons') format('svg');
   }
 }
 */
 
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "facet";
+  font-family: "icons";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -175,5 +175,10 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-popup:before { content: '\e801'; } /* '' */
+.icon-arrows-ccw:before { content: '\e800'; } /* '' */
+.icon-cog:before { content: '\e801'; } /* '' */
+.icon-cancel-circled:before { content: '\e802'; } /* '' */
+.icon-export:before { content: '\e803'; } /* '' */
+.icon-info-circled:before { content: '\e804'; } /* '' */
+.icon-popup:before { content: '\e805'; } /* '' */
 .icon-filter:before { content: '\f0b0'; } /* '' */

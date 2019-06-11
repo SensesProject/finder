@@ -208,6 +208,10 @@ table {
   outline: none;
   line-height: 1.3;
 
+  &.btn--icon {
+    border-color: transparent;
+  }
+
   &.clickable {
     cursor: pointer;
     color: palette(grey, 20);
