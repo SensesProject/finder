@@ -14,7 +14,7 @@
             <section>
               <i
                 class="option icon-filter clickable"
-                @click="setFacet({ key: cell.key, value: cell.label })"
+                @click="setFiler({ key: cell.key, value: cell.label })"
                 v-tooltip="{ content: `Filter table by »${cell.label || '—'}«`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
@@ -90,14 +90,14 @@
             cells,
             active
           }
-        })
+        }).slice(0, 50)
       }
     },
     methods: {
       ...mapActions([
         'setHoverValue',
         'resetHoverValue',
-        'setFacet',
+        'setFiler',
         'openPopover'
       ])
     },

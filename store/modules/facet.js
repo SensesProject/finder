@@ -1,17 +1,22 @@
-import _ from 'lodash'
+import { reject, clone, find, pull } from 'lodash'
 
 const state = {
   filter: []
 }
 
 const mutations = {
-  RESET_FACET (state, key) {
-    // console.log('RESET_FACET', key)
-    state.filter = _.reject(state.filter, ['key', key])
+  RESET_FILTERS (state) {
+    // Resets all filter
+    state.filter = []
   },
-  SET_FACET (state, { key, value }) {
-    // console.log('SET_FACET', key, value)
-    const filter = _.clone(state.filter)
+  RESET_FILTER (state, key) {
+    // Reset a single filter
+    // console.log('RESET_FILTER', key)
+    state.filter = reject(state.filter, ['key', key])
+  },
+  SET_FILTER (state, { key, value }) {
+    // console.log('SET_FILTER', key, value)
+    const filter = clone(state.filter)
     filter.push({
       'key': key,
       'values': [value],
@@ -19,27 +24,27 @@ const mutations = {
     })
     state.filter = filter
   },
-  ADD_FACET (state, { key, value }) {
-    // console.log('SET_FACET', key, value)
-    const filter = _.clone(state.filter)
-    const facet = _.find(filter, ['key', key])
+  ADD_FILTER (state, { key, value }) {
+    // console.log('SET_FILTER', key, value)
+    const filter = clone(state.filter)
+    const facet = find(filter, ['key', key])
     facet.values.push(value)
     state.filter = filter
   },
-  INVERT_FACET (state, { key }) {
-    // console.log('SET_FACET', key, value)
-    const filter = _.clone(state.filter)
-    const facet = _.find(filter, ['key', key])
+  INVERT_FILTER (state, { key }) {
+    // console.log('SET_FILTER', key, value)
+    const filter = clone(state.filter)
+    const facet = find(filter, ['key', key])
     facet.invert = !facet.invert
     state.filter = filter
   },
-  REMOVE_FACET (state, { key, value }) {
-    // console.log('SET_FACET', key, value)
-    const filter = _.clone(state.filter)
-    const facet = _.find(filter, ['key', key])
-    _.pull(facet.values, value)
+  REMOVE_FILTER (state, { key, value }) {
+    // console.log('SET_FILTER', key, value)
+    const filter = clone(state.filter)
+    const facet = find(filter, ['key', key])
+    pull(facet.values, value)
     if (facet.values.length === 0) {
-      state.filter = _.reject(state.filter, ['key', key])
+      state.filter = reject(state.filter, ['key', key])
     } else {
       state.filter = filter
     }
@@ -48,26 +53,29 @@ const mutations = {
 }
 
 const actions = {
-  resetFacet ({ commit }, key) {
-    // console.log('resetFacet')
-    commit('RESET_FACET', key)
+  resetFilters ({ commit }) {
+    commit('RESET_FILTERS')
   },
-  setFacet ({ commit }, { key, value }) {
-    // console.log('setFacet', key, value)
-    commit('RESET_FACET', key)
-    commit('SET_FACET', { key, value })
+  resetFilter ({ commit }, key) {
+    // console.log('resetFilter')
+    commit('RESET_FILTER', key)
   },
-  addFacet ({ commit }, { key, value }) {
-    // console.log('addFacet', key, value)
-    commit('ADD_FACET', { key, value })
+  setFilter ({ commit }, { key, value }) {
+    // console.log('setFilter', key, value)
+    commit('RESET_FILTER', key)
+    commit('SET_FILTER', { key, value })
   },
-  removeFacet ({ commit }, { key, value }) {
-    // console.log('removeFacet', key, value)
-    commit('REMOVE_FACET', { key, value })
+  addFilter ({ commit }, { key, value }) {
+    // console.log('addFilter', key, value)
+    commit('ADD_FILTER', { key, value })
   },
-  invertFacet ({ commit }, key) {
-    // console.log('invertFacet', key)
-    commit('INVERT_FACET', { key })
+  removeFilter ({ commit }, { key, value }) {
+    // console.log('removeFilter', key, value)
+    commit('REMOVE_FILTER', { key, value })
+  },
+  invertFilter ({ commit }, key) {
+    // console.log('invertFilter', key)
+    commit('INVERT_FILTER', { key })
   }
 }
 

@@ -13,7 +13,7 @@
       <button class="btn btn--icon clickable" v-tooltip="'Show display options'"><i class="demo-icon icon-cog" /></button>
       <Options slot="popover"/>
     </v-popover>
-    <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilter"><i class="demo-icon icon-cancel-circled" /> Reset all filter</button>
+    <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="demo-icon icon-cancel-circled" /> Reset all filter</button>
     <button class="btn" v-tooltip="'Open selected scenarios in IIASA Explorer'"><i class="demo-icon icon-export" /> Open in Explorer</button>
   </aside>
 </template>
@@ -38,7 +38,7 @@
     },
     methods: {
       ...mapActions([
-        'resetFilter',
+        'resetFilters',
         'openInfoBox',
         'loadData'
       ])
