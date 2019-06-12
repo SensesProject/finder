@@ -23,8 +23,8 @@
       <li v-if="number === 0"><Loading /></li>
       <li
         v-for="item in list"
-        v-if="!(filterEmpty && filter.length && item.current_value === 0)"
-        :class="{ active: item.isActive, empty: item.current_value === 0 }">
+        v-if="item.isVisible"
+        :class="{ active: item.isActive, empty: item.isEmpty }">
         <svg>
           <line
             class="base"
@@ -42,7 +42,7 @@
             class="filter"
             x1="0%"
             y1="90%"
-            :x2="100 / range * (counter[ki][item.label] || 0) + '%'"
+            :x2="item.filter"
             y2="90%" />
         </svg>
         <div
@@ -54,7 +54,7 @@
         </div>
         <span v-if="isActive && !item.isActive" class="include" @click="addFilter({ key: ki, value: item.label })">Include</span>
         <span v-if="item.isActive" class="include" @click="removeFilter({ key: ki, value: item.label })">Exclude</span>
-        <span :class="{ counter: true, hide: isActive }"><span v-if="filter.length">{{ item.current_value }}/</span>{{ item.value }}</span>
+        <span :class="{ counter: true, hide: isActive }"><span v-if="filter.length">{{ item.currentValue }}/</span>{{ item.value }}</span>
       </li>
     </ul>
   </section>
@@ -107,12 +107,19 @@
       list () {
         const { ki } = this
         const list = map(this.options, (key, value) => {
+          const currentValue = this.counter[ki][value] || 0
+          const percentage = 100 / this.range
+          const isEmpty = currentValue === 0
+          const isActive = this.active.indexOf(value) > -1
           return {
+            'filter': percentage * currentValue + '%',
             'label': value,
+            'percentage': percentage * key,
             'value': key,
-            'current_value': this.counter[ki][value] || 0,
-            'isActive': this.active.indexOf(value) > -1,
-            'percentage': 100 / this.range * key
+            currentValue,
+            isActive,
+            isEmpty,
+            isVisible: !(this.filterEmpty && isEmpty)
           }
         })
 
