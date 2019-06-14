@@ -202,8 +202,14 @@
       color: $color-green;
     }
 
-    .empty .label span {
-      text-decoration: line-through;
+    .empty {
+      .label, .counter {
+        opacity: 0.5;
+      }
+
+      .label span {
+        text-decoration: line-through;
+      }
     }
   }
 
@@ -301,8 +307,12 @@
   ul:hover li {
     color: palette(grey, 60);
 
-    .label span {
-      text-decoration: none !important;
+    .label {
+      opacity: 1 !important;
+
+      span {
+        text-decoration: none !important;
+      }
     }
 
     &:hover .label, &:hover .counter {

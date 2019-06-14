@@ -198,7 +198,6 @@ table {
   transition-duration: 0.5s;
   color: palette(grey, 60);
   border-radius: 4px;
-  padding: $spacing / 4 $spacing / 3;
   text-align: center;
   display: inline-block;
   border: 1px solid palette(grey, 85);
@@ -207,6 +206,12 @@ table {
   font-size: $size-small;
   outline: none;
   line-height: 1.3;
+
+  padding: $spacing / 4 $spacing / 3;
+
+  &.btn--compact {
+    padding: $spacing / 10 $spacing / 6;
+  }
 
   &.btn--icon {
     border-color: transparent;

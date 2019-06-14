@@ -1,5 +1,19 @@
 <template>
   <table>
+    <thead>
+      <tr>
+        <td>
+          <div><span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span></div>
+        </td>
+        <td :colspan="facets.length">
+          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setFirstPage">&LeftArrowBar;</button>
+          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setPreviousPage">&ShortLeftArrow;</button>
+          <span class="space">Page {{ currentPage + 1 }} of {{ numberOfPages }}</span>
+          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setNextPage">&ShortRightArrow;</button>
+          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setLastPage">&RightArrowBar;</button>
+        </td>
+      </tr>
+    </thead>
     <tbody v-if="items.length">
       <tr
         v-for="(row, n) in items"
@@ -41,16 +55,30 @@
   import Loading from '~/components/Loading.vue'
 
   export default {
+    data: function () {
+      return {
+        currentPage: 0,
+        itemsPerPage: 50
+      }
+    },
     computed: {
+      ...mapState([
+        'facets'
+      ]),
       ...mapState({
         status: state => get(state, 'data.status', 'ERROR'),
         hoverValue: state => get(state, 'hover.hoverValue', false),
-        hoverKey: state => get(state, 'hover.hoverKey', false)
+        hoverKey: state => get(state, 'hover.hoverKey', false),
+        data: state => get(state, 'data.data', [])
       }),
       ...mapGetters([
         'visibleHeader',
         'result'
       ]),
+      currentRange () {
+        const { currentPage, itemsPerPage } = this
+        return [currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage]
+      },
       items () {
         return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
@@ -90,7 +118,10 @@
             cells,
             active
           }
-        }).slice(0, 50)
+        }).slice(...this.currentRange)
+      },
+      numberOfPages () {
+        return Math.ceil((this.result.length || 0) / this.itemsPerPage)
       }
     },
     methods: {
@@ -99,7 +130,23 @@
         'resetHoverValue',
         'setFiler',
         'openPopover'
-      ])
+      ]),
+      setNextPage: function () {
+        if (this.currentPage + 1 < this.numberOfPages) {
+          this.currentPage += 1
+        }
+      },
+      setPreviousPage: function () {
+        if (this.currentPage > 0) {
+          this.currentPage -= 1
+        }
+      },
+      setLastPage: function () {
+        this.currentPage = this.numberOfPages - 1
+      },
+      setFirstPage: function () {
+        this.currentPage = 0
+      }
     },
     components: {
       Loading
@@ -205,6 +252,30 @@
 
     & > * {
       height: 2em;
+    }
+  }
+
+  thead {
+    tr {
+      border-bottom: 1px solid $color-bg-mute;
+
+      td {
+        margin: $spacing / 4 0;
+        vertical-align: middle;
+
+        &:last-child {
+          width: auto !important;
+        }
+
+        button, div, .space {
+          display: inline-block;
+          margin: 0 $spacing / 4;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 </style>
