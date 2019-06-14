@@ -69,7 +69,8 @@
         status: state => get(state, 'data.status', 'ERROR'),
         hoverValue: state => get(state, 'hover.hoverValue', false),
         hoverKey: state => get(state, 'hover.hoverKey', false),
-        data: state => get(state, 'data.data', [])
+        data: state => get(state, 'data.data', []),
+        filter: state => get(state, 'facet.filter', [])
       }),
       ...mapGetters([
         'visibleHeader',
@@ -146,6 +147,11 @@
       },
       setFirstPage: function () {
         this.currentPage = 0
+      }
+    },
+    watch: {
+      filter: function () {
+        this.setFirstPage()
       }
     },
     components: {
