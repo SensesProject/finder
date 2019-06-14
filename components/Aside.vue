@@ -3,9 +3,6 @@
     <section class="counter">
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
-      <div v-else>
-        <span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span>
-      </div>
     </section>
     <button v-tooltip="'Load data from API instead of cache'" class="btn btn--icon clickable" @click="loadData(true)"><i class="icon-arrows-ccw" /></button>
     <button v-tooltip="'View references for data'" class="btn btn--icon clickable" @click="openInfoBox"><i class="demo-icon icon-info-circled" /></button>
