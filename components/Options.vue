@@ -2,6 +2,8 @@
   <ul class="options">
     <li><input v-model="optionsFilterProp" id="optionsFilter" type="checkbox" /> <label for="optionsFilter">Hide empty options</label></li>
     <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
+    <li><input v-model="columnHoverEffectProp" id="columnHoverEffect" type="checkbox" /> <label for="columnHoverEffect">Show column hover effect</label></li>
+    <li><input v-model="cellHoverEffectProp" id="cellHoverEffect" type="checkbox" /> <label for="cellHoverEffect">Show cell hover effect</label></li>
   </ul>
 </template>
 
@@ -13,7 +15,9 @@
     computed: {
       ...mapState({
         filterEmpty: state => get(state, 'options.filterEmpty', false),
-        sortRemaining: state => get(state, 'options.sortRemaining', false)
+        sortRemaining: state => get(state, 'options.sortRemaining', false),
+        columnHoverEffect: state => get(state, 'options.columnHoverEffect', false),
+        cellHoverEffect: state => get(state, 'options.cellHoverEffect', false)
       }),
       optionsFilterProp: {
         get () {
@@ -30,12 +34,30 @@
         set (value) {
           this.setSortRemaining({ value })
         }
+      },
+      columnHoverEffectProp: {
+        get () {
+          return this.columnHoverEffect
+        },
+        set (value) {
+          this.setColumnHoverEffect({ value })
+        }
+      },
+      cellHoverEffectProp: {
+        get () {
+          return this.cellHoverEffect
+        },
+        set (value) {
+          this.setCellHoverEffect({ value })
+        }
       }
     },
     methods: {
       ...mapActions([
         'setFilterEmpty',
-        'setSortRemaining'
+        'setSortRemaining',
+        'setColumnHoverEffect',
+        'setCellHoverEffect'
       ])
     }
   }
