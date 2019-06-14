@@ -48,7 +48,7 @@
         <div
           @mouseenter="setHoverValue({ key: ki, value: item.label })"
           @mouseleave="resetHoverValue()"
-          @click="setFilter({ key: ki, value: item.label })"
+          @click="setFilter({ key: ki, value: item.label, type: 'key-value' })"
           class="label">
           <span>{{ item.label }}</span>
         </div>

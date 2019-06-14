@@ -7,7 +7,7 @@
       <section>
         <h3 :class="{ active: isActive }">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetSearch()" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -58,7 +58,7 @@
           const value = trim(input)
           this.term = value
           if (value.length) {
-            this.setFacet({ key: this.ki, value: value })
+            this.setFilter({ key: this.ki, value: value, type: 'term' })
           } else {
             this.resetSearch()
           }
@@ -67,15 +67,15 @@
     },
     methods: {
       ...mapActions([
-        'resetFacet',
-        'setFacet',
+        'resetFilter',
+        'setFilter',
         'setHoverKey',
         'resetHoverKey',
-        'invertFacet'
+        'invertFilter'
       ]),
       resetSearch: function () {
         this.term = ''
-        this.resetFacet(this.ki)
+        this.resetFilter(this.ki)
       }
     }
   }

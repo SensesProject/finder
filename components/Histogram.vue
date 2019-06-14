@@ -7,7 +7,7 @@
       <section>
         <h3 :class="{ active: isActive }">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetSearch()" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -25,24 +25,6 @@
           v-html="tick.label" />
       </ul>
       <svg ref="vis" v-if="number !== 0">
-        <rect
-          :x="brush.x"
-          :y="brush.y"
-          :width="brush.width"
-          :height="brush.height"
-          class="brush" />
-        <line
-          :x1="brush.x"
-          :x2="brush.width"
-          :y1="brush.y"
-          :y2="brush.y"
-          class="brush" />
-        <line
-          :x1="brush.x"
-          :x2="brush.width"
-          :y1="brush.y2"
-          :y2="brush.y2"
-          class="brush" />
         <line
           class="axis"
           :x1="marginLeft / 2"
@@ -51,13 +33,27 @@
           :y2="scaleY.range()[1]" />
         <rect
           v-for="bar in bars"
-          class="bar"
+          :class="{ bar: true, isActive: bar.selected }"
           :x="bar.x"
           :y="bar.y"
           :width="bar.width"
           :height="bar.height"
           v-tooltip="bar.tooltip" />
       </svg>
+      <no-ssr>
+        <VueDragResize
+          v-on:resizing="resize"
+          v-on:dragging="resize"
+          :isActive="true"
+          :parentLimitation="true"
+          :parentH="height"
+          :parentW="width"
+          :w="width"
+          :sticks="['tm','bm']"
+          :minh="grid"
+          :gridY="grid"
+          :snapToGrid="true" />
+      </no-ssr>
     </div>
   </section>
 </template>
@@ -66,7 +62,7 @@
   import { histogram, extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapState, mapActions } from 'vuex'
-  import { isUndefined, find, get, size, map, maxBy, flatten, compact } from 'lodash'
+  import { isUndefined, find, get, size, map, maxBy, flatten, compact, inRange } from 'lodash'
 
   export default {
     props: ['title', 'values', 'ki', 'options'],
@@ -76,7 +72,11 @@
         width: 220,
         height: 250,
         barsCount: 60,
-        marginLeft: 10
+        marginLeft: 10,
+        brushing: {
+          low: -Infinity,
+          high: Infinity
+        }
       }
     },
     computed: {
@@ -99,6 +99,7 @@
       scaleBins () {
         return scaleLinear()
           .domain(extent(this.items)).nice(this.barsCount)
+          .range([0, this.height])
       },
       list () {
         const list = histogram()
@@ -119,12 +120,15 @@
       },
       bars () {
         return map(this.list, (item, n) => {
+          // TODO: Does not include end
+          const selected = inRange(item.x0, this.brushing.low, this.brushing.high) && inRange(item.x0, this.brushing.low, this.brushing.high)
           return {
             x: this.marginLeft,
             y: this.scaleY(n),
             width: this.scaleX(item.length),
             height: this.scaleY.bandwidth(),
-            tooltip: `${item.x0}–${item.x1}`
+            tooltip: `${item.x0}–${item.x1}`,
+            selected
           }
         })
       },
@@ -140,6 +144,9 @@
           height: h - l
         }
       },
+      grid () {
+        return this.height / this.list.length
+      },
       ticks () {
         return map(this.scaleBins.domain(), tick => {
           return {
@@ -150,12 +157,27 @@
     },
     methods: {
       ...mapActions([
-        'resetFacet',
-        'setFacet',
+        'resetFilter',
+        'setFilter',
         'setHoverKey',
         'resetHoverKey',
-        'invertFacet'
-      ])
+        'invertFilter'
+      ]),
+      resize (newRect) {
+        const low = this.scaleBins.invert(newRect.top)
+        const high = this.scaleBins.invert(newRect.top + newRect.height)
+        // console.log(this.scaleBins.invert(newRect.top), this.scaleBins.invert(newRect.top + newRect.height))
+        this.setFilter({
+          key: this.ki,
+          value: {
+            low,
+            high
+          },
+          type: 'range'
+        })
+        this.brushing.low = low
+        this.brushing.high = high
+      }
     }
   }
 </script>
@@ -203,6 +225,7 @@
   .vis-wrapper, svg {
     height: 100%;
     flex: 1;
+    position: relative;
   }
 
   .vis-wrapper {
@@ -225,7 +248,11 @@
 
   svg {
     .bar {
-      fill: #39C88A;
+      fill: rgba(0, 0, 0, .2);
+
+      &.isActive {
+        fill: #39C88A;
+      }
     }
 
     .axis {
@@ -250,5 +277,11 @@
         opacity: 1;
       }
     }
+  }
+
+  .brush {
+    position: absolute;
+    width: 100%;
+    background-color: red;
   }
 </style>

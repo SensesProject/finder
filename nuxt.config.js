@@ -16,7 +16,10 @@ module.exports = {
     }
   },
   loading: { color: '#3B8070' },
-  plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
+  plugins: [
+    { src: '~/plugins/localStorage.js', ssr: false },
+    { src: '~/plugins/vue-drag-resize', ssr: false }
+  ],
   build: {
     extend (config, ctx) {
       if (ctx.isDev && ctx.isClient) {

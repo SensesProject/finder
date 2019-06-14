@@ -14,13 +14,14 @@ const mutations = {
     // console.log('RESET_FILTER', key)
     state.filter = reject(state.filter, ['key', key])
   },
-  SET_FILTER (state, { key, value }) {
+  SET_FILTER (state, { key, value, type }) {
     // console.log('SET_FILTER', key, value)
     const filter = clone(state.filter)
     filter.push({
-      'key': key,
+      key,
       'values': [value],
-      'invert': false
+      'invert': false,
+      type
     })
     state.filter = filter
   },
@@ -60,10 +61,10 @@ const actions = {
     // console.log('resetFilter')
     commit('RESET_FILTER', key)
   },
-  setFilter ({ commit }, { key, value }) {
+  setFilter ({ commit }, { key, value, type }) {
     // console.log('setFilter', key, value)
     commit('RESET_FILTER', key)
-    commit('SET_FILTER', { key, value })
+    commit('SET_FILTER', { key, value, type })
   },
   addFilter ({ commit }, { key, value }) {
     // console.log('addFilter', key, value)
