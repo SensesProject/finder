@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, intersection, isArray, inRange } from 'lodash'
+import { compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -37,6 +37,8 @@ const getters = {
           label = round(label, facet.precision || 0)
         }
 
+        const lower = lowerCase(label)
+
         const popover = get(facet, 'popover.url', false) // Checks if column has a popover
         let popoverID // ID used for the url to request information displayed in popover
         let popoverKey
@@ -50,6 +52,7 @@ const getters = {
           key,
           values,
           label,
+          lower,
           popover,
           popoverID,
           popoverKey
@@ -86,19 +89,26 @@ const getters = {
     filter.forEach(filta => {
       const low = get(filta, 'values[0].low', -Infinity)
       const high = get(filta, 'values[0].high', Infinity)
+      let term
+      if (filta.type === 'term') {
+        term = lowerCase(filta.values)
+      }
       result = result.filter(item => {
         // console.log(filta.key, item[filta.key], filta.values, indexOf(filta.values, item[filta.key]))
         let retVal = true
         if (filta.type === 'term') { // Facet is search term
-          retVal = lowerCase(item[filta.key].label).includes(lowerCase(filta.values))
+          retVal = item[filta.key].lower.includes(term)
         } else if (filta.type === 'key-value') {
-          if (isArray(item[filta.key])) { // TODO: Does this ever happen?
-            retVal = intersection(item[filta.key].label, filta.values).length > 0
-          } else {
-            retVal = indexOf(filta.values, item[filta.key].label) > -1
-          }
+          retVal = indexOf(filta.values, item[filta.key].label) > -1
+          // if (isArray(item[filta.key])) { // TODO: Does this ever happen?
+          //   console.log('test 1')
+          //   retVal = intersection(item[filta.key].label, filta.values).length > 0
+          // } else {
+          //   console.log('test 2')
+          //   retVal = indexOf(filta.values, item[filta.key].label) > -1
+          // }
         } else if (filta.type === 'range') {
-          // console.log(item[filta.key].label, inRange(item[filta.key].label, low, high))
+          // TODO: Does not include end
           retVal = inRange(item[filta.key].label, low, high)
         }
         return filta.invert ? !retVal : retVal
