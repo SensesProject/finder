@@ -62,7 +62,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { isUndefined, find, map, size, sortBy, reverse, get } from 'lodash'
+  import { isUndefined, map, size, sortBy, reverse, get } from 'lodash'
   import Loading from '~/components/Loading.vue'
 
   export default {
@@ -87,11 +87,11 @@
         'counter'
       ]),
       active () {
-        const keys = find(this.filter, ['key', this.ki])
+        const keys = this.filter.find(({ key }) => key === this.ki)
         return isUndefined(keys) ? [] : keys.values
       },
       isInvert () {
-        const keys = find(this.filter, ['key', this.ki])
+        const keys = this.filter.find(({ key }) => key === this.ki)
         return isUndefined(keys) ? false : keys.invert
       },
       isActive () {
