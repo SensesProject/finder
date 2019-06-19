@@ -66,9 +66,9 @@ const getters = {
     return facets.map(facet => {
       const { key } = facet
       // Count all options for that facet (respectively key)
-      const options = countBy(flatten(getters.datum.map(item => {
+      const options = countBy(getters.datum.map(item => {
         return item[key].label
-      })))
+      }))
       const values = compact(getters.datum.map(item => {
         return item[key].values
       }))
