@@ -49,6 +49,7 @@
           :parentH="height"
           :parentW="width"
           :w="width"
+          :h="height"
           :sticks="['tm','bm']"
           :minh="grid"
           :gridY="grid"
@@ -131,18 +132,6 @@
             selected
           }
         })
-      },
-      brush () {
-        const [, _h] = this.scaleY.range()
-        const l = _h * 0.3
-        const h = _h * 0.8
-        return {
-          x: 0,
-          width: this.width - this.marginLeft,
-          y: l,
-          y2: h,
-          height: h - l
-        }
       },
       grid () {
         return this.height / this.list.length
@@ -279,9 +268,7 @@
     }
   }
 
-  .brush {
-    position: absolute;
-    width: 100%;
-    background-color: red;
+  .vdr.active {
+    cursor: row-resize;
   }
 </style>
