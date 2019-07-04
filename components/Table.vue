@@ -29,7 +29,7 @@
               <i
                 class="option icon-filter clickable"
                 @click="setFilter({ key: cell.key, value: cell.label, type: 'key-value' })"
-                v-tooltip="{ content: `Filter table by »${cell.label || '—'}«`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
+                v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
                 @click="openPopover(cell)"
