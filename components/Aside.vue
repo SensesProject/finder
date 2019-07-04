@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <section class="counter">
+    <section class="counter" v-if="false">
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
     </section>
@@ -84,6 +84,12 @@
 
     * {
       font-size: $size-smaller !important;
+    }
+
+    .v-popover {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .reset.clickable {
