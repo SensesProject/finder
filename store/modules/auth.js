@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { isUndefined, isObject } from 'lodash'
+import { format } from 'timeago.js'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -52,7 +53,7 @@ const actions = {
           commit('API_AUTH', { status: STATUS_AUTH_FAILED, message: error })
         })
     } else {
-      console.log('Already logged in')
+      console.log('Already logged in', format(state.date))
       dispatch('callFollower', { follower })
     }
   },

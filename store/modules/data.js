@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
+import { format } from 'timeago.js'
 
 const STATUS_IDLE = 'IDLE'
 
@@ -127,11 +128,8 @@ const getters = {
 }
 
 const mutations = {
-  API_DATA (state, { status, token, message, data }) {
+  API_DATA (state, { status, message, data }) {
     state.status = status
-    if (!isUndefined(token)) {
-      state.token = token
-    }
     if (!isUndefined(message)) {
       state.message = message
     }
@@ -143,11 +141,21 @@ const mutations = {
 }
 
 const actions = {
-  loadData ({ dispatch }, isForced = false) {
-    dispatch('auth', { follower: { name: 'load' }, isForced })
+  loadData ({ state, dispatch }, isForced = false) {
+    const ONE_DAY = 60 * 60 * 1000 * 24
+    const lastLoad = get(state, 'date', false)
+    const shouldReload = !lastLoad || ((new Date()) - lastLoad) > ONE_DAY
+    const willReload = shouldReload ? true : isForced
+    if (willReload) {
+      console.log('Data is too old or reload is forced. Will reload data')
+    }
+    dispatch('auth', { follower: { name: 'load' }, isForced: willReload })
   },
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
     console.log(state.status, state.data.length)
+    if (isForced) {
+      commit('API_DATA', { status: STATUS_LOADING, data: [] })
+    }
     if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
       const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
@@ -170,7 +178,7 @@ const actions = {
           }
         })
     } else {
-      console.log('Data already loaded')
+      console.log('Data already loaded', format(state.date))
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
     }
   }
