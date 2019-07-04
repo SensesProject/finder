@@ -15,7 +15,9 @@
         <span v-if="number !== 0">{{ number }} options</span>
         <span v-else>&nbsp;</span>
         <aside>
-          <span :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span><span class="spacer">/</span><span :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+          <span v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
+          <span class="spacer">/</span>
+          <span v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
         </aside>
       </section>
     </header>
@@ -24,7 +26,8 @@
       <li
         v-for="item in list"
         v-if="item.isVisible"
-        :class="{ active: item.isActive, empty: item.isEmpty }">
+        :class="{ active: item.isActive, empty: item.isEmpty }"
+        v-tooltip="item.isActive || isActive ? false : `Set »${item.label}« as filter option`">
         <svg>
           <line
             class="base"
@@ -52,8 +55,8 @@
           class="label">
           <span>{{ item.label }}</span>
         </div>
-        <span v-if="isActive && !item.isActive" class="include" @click="addFilter({ key: ki, value: item.label })">Include</span>
-        <span v-if="item.isActive" class="include" @click="removeFilter({ key: ki, value: item.label })">Exclude</span>
+        <span v-tooltip="`Add »${item.label}« to filter options`" v-if="isActive && !item.isActive" class="include" @click="addFilter({ key: ki, value: item.label })">Include</span>
+        <span v-tooltip="`Remove »${item.label}« from filter options`" v-if="item.isActive" class="include" @click="removeFilter({ key: ki, value: item.label })">Exclude</span>
         <span :class="{ counter: true, hide: isActive }"><span v-if="filter.length">{{ item.currentValue }}/</span>{{ item.value }}</span>
       </li>
     </ul>

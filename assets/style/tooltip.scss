@@ -11,6 +11,10 @@ button {
   z-index: 10000;
   font-size: $size-smaller;
 
+  &:not(.popover) {
+    pointer-events: none;
+  }
+
   .tooltip-inner {
     background: black;
     color: white;
