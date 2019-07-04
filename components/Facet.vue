@@ -109,24 +109,24 @@
       },
       list () {
         const { ki } = this
-        const list = map(this.options, (key, value) => {
-          const currentValue = this.counter[ki][value] || 0
+        const counts = get(this.counter, `${ki}`, {})
+        const list = map(this.options, (value, label) => {
+          const currentValue = get(counts, `${label}`, 0)
           const percentage = 100 / this.range
           const isEmpty = currentValue === 0
-          const isActive = this.active.indexOf(value) > -1
           return {
-            'filter': percentage * currentValue + '%',
-            'label': value,
-            'percentage': percentage * key,
-            'value': key,
+            filter: percentage * currentValue + '%',
+            label,
+            percentage: percentage * value,
+            value,
             currentValue,
-            isActive,
+            isActive: this.active.indexOf(label) > -1,
             isEmpty,
             isVisible: !(this.filterEmpty && isEmpty)
           }
         })
 
-        const sorted = sortBy(list, this.rank ? 'label' : (this.sortRemaining ? 'current_value' : 'value'))
+        const sorted = sortBy(list, this.rank ? 'label' : (this.sortRemaining ? ['currentValue', 'value', 'label'] : ['value', 'label']))
         return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? reverse(sorted) : sorted
       }
     },
