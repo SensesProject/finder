@@ -15,9 +15,9 @@
         <span v-if="number !== 0">{{ number }} options</span>
         <span v-else>&nbsp;</span>
         <aside>
-          <span v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: rank, clickable: true }" @click="sort(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
+          <span v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: rank, clickable: true }" @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
           <span class="spacer">/</span>
-          <span v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: !rank, clickable: true }" @click="sort(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+          <span v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: !rank, clickable: true }" @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
         </aside>
       </section>
     </header>
@@ -108,7 +108,7 @@
         return Math.max(...values)
       },
       list () {
-        const { ki } = this
+        const { ki, rank } = this
         const counts = get(this.counter, `${ki}`, {})
         const list = map(this.options, (value, label) => {
           const currentValue = get(counts, `${label}`, 0)
@@ -126,8 +126,8 @@
           }
         })
 
-        const sorted = sortBy(list, this.rank ? 'label' : (this.sortRemaining ? ['currentValue', 'value', 'label'] : ['value', 'label']))
-        return (this.reverse && !this.rank) || (!this.reverse && this.rank) ? reverse(sorted) : sorted
+        const sorted = sortBy(list, rank ? 'label' : (this.sortRemaining ? ['currentValue', 'value', 'label'] : ['value', 'label']))
+        return (this.reverse && !rank) || (!this.reverse && rank) ? reverse(sorted) : sorted
       }
     },
     methods: {
@@ -142,7 +142,7 @@
         'setHoverKey',
         'setHoverValue'
       ]),
-      sort: function (val) {
+      setSortOption: function (val) {
         if (this.rank === val) {
           this.reverse = !this.reverse
         } else {
