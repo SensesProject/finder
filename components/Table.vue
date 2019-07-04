@@ -28,7 +28,7 @@
             <section>
               <i
                 class="option icon-filter clickable"
-                @click="setFiler({ key: cell.key, value: cell.label })"
+                @click="setFilter({ key: cell.key, value: cell.label, type: 'key-value' })"
                 v-tooltip="{ content: `Filter table by »${cell.label || '—'}«`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
@@ -129,7 +129,7 @@
       ...mapActions([
         'setHoverValue',
         'resetHoverValue',
-        'setFiler',
+        'setFilter',
         'openPopover'
       ]),
       setNextPage: function () {

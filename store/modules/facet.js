@@ -1,4 +1,4 @@
-import { reject, clone, find, pull } from 'lodash'
+import { reject, clone, find, pull, isUndefined } from 'lodash'
 
 const state = {
   filter: []
@@ -16,14 +16,16 @@ const mutations = {
   },
   SET_FILTER (state, { key, value, type }) {
     // console.log('SET_FILTER', key, value)
-    const filter = clone(state.filter)
-    filter.push({
-      key,
-      'values': [value],
-      'invert': false,
-      type
-    })
-    state.filter = filter
+    if (!isUndefined(type) && !isUndefined(key) && !isUndefined(value)) {
+      const filter = clone(state.filter)
+      filter.push({
+        key,
+        'values': [value],
+        'invert': false,
+        type
+      })
+      state.filter = filter
+    }
   },
   ADD_FILTER (state, { key, value }) {
     // console.log('SET_FILTER', key, value)
