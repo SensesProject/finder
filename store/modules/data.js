@@ -17,9 +17,10 @@ const state = {
 
 const getters = {
   datum: (state, getters, rootState) => {
+    const facets = get(rootState, 'facets.facets', [])
     return map(state.data, datum => {
       // Rebuild the data structure. Build an object from the data array
-      return fromPairs(map(rootState.facets, facet => {
+      return fromPairs(map(facets, facet => {
         const key = facet.key
         const values = map(key, k => {
           return get(datum, k, false)
@@ -63,15 +64,16 @@ const getters = {
     })
   },
   options: (state, getters, rootState) => {
-    const facets = rootState.facets
+    const facets = get(rootState, 'facets.facets', [])
+    console.log({facets})
     return facets.map(facet => {
       const { key } = facet
       // Count all options for that facet (respectively key)
       const options = countBy(getters.datum.map(item => {
-        return item[key].label
+        return get(item, [key, 'label'])
       }))
       const values = compact(getters.datum.map(item => {
-        return item[key].values
+        return get(item, [key, 'values'])
       }))
       return {
         ...facet,
@@ -109,7 +111,8 @@ const getters = {
     return result
   },
   counter: (state, getters, rootState) => {
-    const values = rootState.facets.map(facet => {
+    const facets = get(rootState, 'facets.facets', [])
+    const values = facets.map(facet => {
       const { key } = facet
       const options = countBy(flatten(getters.result.map(item => item[key].label)))
       return [key, options]

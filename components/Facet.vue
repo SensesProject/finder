@@ -109,9 +109,9 @@
       },
       list () {
         const { ki, rank } = this
-        const counts = get(this.counter, `${ki}`, {})
+        const counts = get(this.counter, [ki], {})
         const list = map(this.options, (value, label) => {
-          const currentValue = get(counts, `${label}`, 0)
+          const currentValue = get(counts, [label], 0)
           const percentage = 100 / this.range
           const isEmpty = currentValue === 0
           return {

@@ -62,10 +62,8 @@
       }
     },
     computed: {
-      ...mapState([
-        'facets'
-      ]),
       ...mapState({
+        facets: state => get(state, 'facets.facets', []),
         status: state => get(state, 'data.status', 'ERROR'),
         hoverValue: state => get(state, 'hover.hoverValue', false),
         hoverKey: state => get(state, 'hover.hoverKey', false),
