@@ -29,13 +29,14 @@
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
   import Aside from '~/components/Aside.vue'
-  import Facet from '~/components/Facet.vue'
   import Popover from '~/components/Popover.vue'
-  import Search from '~/components/Search.vue'
   import Table from '~/components/Table.vue'
+
+  // Facet types
+  import Facet from '~/components/Facet.vue'
   import Histogram from '~/components/Histogram.vue'
   import Scatterplot from '~/components/Scatterplot.vue'
-  import Add from '~/components/Add.vue'
+  import Search from '~/components/Search.vue'
 
   export default {
     props: ['title', 'subtitle', 'facets'],
@@ -59,8 +60,7 @@
       Search,
       Table,
       Histogram,
-      Scatterplot,
-      Add
+      Scatterplot
     },
     created: function () {
       this.setContent({ facets: this.facets })
@@ -93,7 +93,6 @@
   .filter {
     background-color: palette(grey, 90);
     border-bottom: 1px solid palette(grey, 85);
-    // box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 1rem;
 
     header {
