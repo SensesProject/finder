@@ -51,7 +51,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { map, get, indexOf, isUndefined, isArray } from 'lodash'
+  import { includes, flatMap, compact, map, get, indexOf, isUndefined, isArray } from 'lodash'
   import Loading from '~/components/Loading.vue'
 
   export default {
@@ -68,10 +68,10 @@
         hoverValue: state => get(state, 'hover.hoverValue', false),
         hoverKey: state => get(state, 'hover.hoverKey', false),
         data: state => get(state, 'data.data', []),
-        filter: state => get(state, 'filter.filter', [])
+        filter: state => get(state, 'filter.filter', []),
+        visibleFacets: state => get(state, 'facets.visibleFacets', [])
       }),
       ...mapGetters([
-        'visibleHeader',
         'result'
       ]),
       currentRange () {
@@ -79,11 +79,12 @@
         return [currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage]
       },
       items () {
+        const facetKeys = flatMap(this.facets, 'key')
         return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
-          const cells = map(this.visibleHeader, key => {
-            return item[key]
-          })
+          const cells = compact(map(facetKeys, key => {
+            return includes(this.visibleFacets, key) ? get(item, key) : false
+          }))
 
           const hover = get(this, 'hoverValue', false)
           const key = get(this, 'hoverValue.key', undefined)

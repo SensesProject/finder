@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
+import { includes, compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
 import { format } from 'timeago.js'
 
 const STATUS_IDLE = 'IDLE'
@@ -65,8 +65,13 @@ const getters = {
   },
   options: (state, getters, rootState) => {
     const facets = get(rootState, 'facets.facets', [])
-    console.log({facets})
-    return facets.map(facet => {
+    const visibleFacets = rootState.facets.visibleFacets
+
+    return compact(facets.map(facet => {
+      if (!includes(visibleFacets, facet.key[0])) {
+        return false
+      }
+
       const { key } = facet
       // Count all options for that facet (respectively key)
       const options = countBy(getters.datum.map(item => {
@@ -80,7 +85,7 @@ const getters = {
         options,
         values
       }
-    })
+    }))
   },
   process: state => {
     return countBy(state.data.map(item => item['process']))

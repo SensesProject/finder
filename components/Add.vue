@@ -3,7 +3,7 @@
     class="facet">
     <header>
       <section>
-        <h3 :class="{ active: isActive }">{{ title }}</h3>
+        <h3>{{ title }}</h3>
       </section>
     </header>
     <div class="add"><div>+</div></div>

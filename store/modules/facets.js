@@ -1,5 +1,5 @@
 // Coordinates the visible/selected facets
-import { map, filter } from 'lodash'
+import { compact, get, map, filter } from 'lodash'
 
 const state = {
   facets: [],
@@ -18,23 +18,28 @@ const getters = {
 }
 
 const mutations = {
-  SET_CONTENT (state, { facets }) {
+  SET_FACETS (state, facets) {
     // Sets the content of the Finder. It is triggered by setContent in the Wrapper component
     state.facets = facets
   },
-  INIT_VISIBLE_FACETS (state, facets) {
-    state.visibleFacets = map(facets, true)
+  SET_VISIBLE_FACETS (state, visibleFacets) {
+    state.visibleFacets = visibleFacets
   }
 }
 
 const actions = {
+  setVisibleFacets ({ commit }, value) {
+    commit('SET_VISIBLE_FACETS', value)
+  },
   setContent ({ commit }, obj) {
     // Sets the content of the Finder. It is called by the Wrapper component
-    commit('SET_CONTENT', obj)
-  },
-  initVisibleFacets ({ commit }, facets) {
-    const visibleFacets = map(facets, true)
-    commit('INIT_VISIBLE_FACETS', visibleFacets)
+    const facets = get(obj, 'facets', [])
+    const visibleFacets = compact(map(facets, facet => {
+      // TODO: Make conditionally
+      return facet.key[0]
+    }))
+    commit('SET_FACETS', facets)
+    commit('SET_VISIBLE_FACETS', visibleFacets)
   }
 }
 

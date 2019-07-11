@@ -10,6 +10,10 @@
       <button class="btn btn--icon clickable" v-tooltip="'Show display options'"><i class="demo-icon icon-cog" /></button>
       <Options slot="popover"/>
     </v-popover>
+    <v-popover :autoHide="true">
+      <button class="btn btn--icon clickable" v-tooltip="'Show facet options'"><i class="demo-icon icon-cog" /></button>
+      <SelectFacets slot="popover"/>
+    </v-popover>
     <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="demo-icon icon-cancel-circled" /> Reset all filter</button>
     <button class="btn" v-tooltip="'Open selected scenarios in IIASA Explorer'"><i class="demo-icon icon-export" /> Open in Explorer</button>
   </aside>
@@ -19,12 +23,13 @@
   import { mapState, mapGetters, mapActions } from 'vuex'
   import { get } from 'lodash'
   import Options from '~/components/Options.vue'
+  import SelectFacets from '~/components/SelectFacets.vue'
   import Loading from '~/components/Loading.vue'
 
   export default {
     computed: {
       ...mapState({
-        filter: state => get(state, 'facet.filter', []),
+        filter: state => get(state, 'filter.filter', []),
         statusData: state => get(state, 'data.status', 'ERROR'),
         statusAuth: state => get(state, 'auth.status', 'ERROR'),
         data: state => get(state, 'data.data', [])
@@ -42,6 +47,7 @@
     },
     components: {
       Options,
+      SelectFacets,
       Loading
     }
   }
