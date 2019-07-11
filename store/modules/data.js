@@ -86,7 +86,6 @@ const getters = {
   result: (state, getters, rootState) => {
     let result = getters.datum
     const filter = get(rootState, 'facet.filter', [])
-    // console.log(filter)
     filter.forEach(filta => {
       const low = get(filta, 'values[0].low', -Infinity)
       const high = get(filta, 'values[0].high', Infinity)
@@ -95,19 +94,11 @@ const getters = {
         term = lowerCase(filta.values)
       }
       result = result.filter(item => {
-        // console.log(filta.key, item[filta.key], filta.values, indexOf(filta.values, item[filta.key]))
         let retVal = true
         if (filta.type === 'term') { // Facet is search term
           retVal = item[filta.key].lower.includes(term)
         } else if (filta.type === 'key-value') {
           retVal = indexOf(filta.values, item[filta.key].label) > -1
-          // if (isArray(item[filta.key])) { // TODO: Does this ever happen?
-          //   console.log('test 1')
-          //   retVal = intersection(item[filta.key].label, filta.values).length > 0
-          // } else {
-          //   console.log('test 2')
-          //   retVal = indexOf(filta.values, item[filta.key].label) > -1
-          // }
         } else if (filta.type === 'range') {
           // TODO: Does not include end
           retVal = inRange(item[filta.key].label, low, high)
