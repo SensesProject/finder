@@ -84,16 +84,7 @@
         return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
           const cells = map(this.visibleHeader, key => {
-            // console.log(item[key])
-            // console.log(item, key)
-            if (key[0] === 'run_id') {
-              return '—'
-            }
             return item[key]
-            // return {
-            //   // 'label': isArray(item[key]) ? item[key].join(', ') : item[key], // Check if item is an array and merge if so
-            //   key
-            // }
           })
 
           const hover = get(this, 'hoverValue', false)
@@ -103,12 +94,10 @@
           let active = false // By default, the cell is not highlighted
           if (hover && !isUndefined(key) && !isUndefined(value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
             if (isArray(item[key])) { // If multiple keys are hovered
-              console.log('here')
               if (indexOf(item[key], value) >= 0) {
                 active = true
               }
             } else { // If a single key is hovered
-              // console.log(this.hover.value, item[this.hover.key])
               if (item[key].label === value) {
                 active = true
               }
