@@ -24,25 +24,21 @@ const store = () => new Vuex.Store({
     popover
   },
   state: {
-    facets: [],
-    popoverContent: {}
+    facets: []
   },
   getters: {
     titles: state => {
       return _.map(_.filter(state.facets, 'title'), 'key')
     },
     visibleHeader: state => {
-      // get a list of all keys from the facets
+      // Get a list of all keys from the facets
+      // This is used for the Table view to build each row
       return _.map(state.facets, 'key')
     }
   },
   mutations: {
-    SET_CONTENT (state, { data, facets, popovers }) {
+    SET_CONTENT (state, { facets }) {
       // Sets the content of the Finder. It is triggered by setContent in the Wrapper component
-      // state.data = data.items
-      state.popoverContent = _.fromPairs(_.map(popovers, popover => {
-        return [popover, _.get(data, popover, {})]
-      }))
       state.facets = facets
     }
   },

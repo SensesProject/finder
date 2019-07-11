@@ -38,7 +38,7 @@
   import Add from '~/components/Add.vue'
 
   export default {
-    props: ['title', 'subtitle', 'file', 'facets', 'popovers'],
+    props: ['title', 'subtitle', 'facets'],
     computed: {
       ...mapState([
         'data'
@@ -63,7 +63,7 @@
       Add
     },
     created: function () {
-      this.setContent({ data: this.file, facets: this.facets, popovers: this.popovers })
+      this.setContent({ facets: this.facets })
     }
   }
 </script>

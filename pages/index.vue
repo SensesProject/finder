@@ -2,8 +2,7 @@
   <Wrapper
     title="Scenario Finder"
     subtitle="IAMC 1.5°C Scenario Data hosted by IIASA"
-    :facets="facets"
-    :popovers="popovers" />
+    :facets="facets" />
 </template>
 
 <script>
@@ -84,11 +83,6 @@
           'precision': 0,
           'key': ['metadata.year of netzero CO2 emissions', 'metadata.year of peak warming (FAIR)'],
           'type': 'Scatterplot'
-        },
-        {
-          'label': 'Add facet',
-          'key': ['scenario'],
-          'type': 'Add'
         }
         // {
         //   'label': 'median warming at peak',
@@ -276,8 +270,7 @@
         //   'type': 'number',
         //   'precision': -1
         // }
-        ],
-        popovers: ['project']
+        ]
       }
     },
     components: {
