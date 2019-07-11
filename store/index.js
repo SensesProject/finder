@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
 import auth from './modules/auth'
 import data from './modules/data'
-import facet from './modules/facet'
+import filter from './modules/filter'
 import hover from './modules/hover'
 import options from './modules/options'
 import popover from './modules/popover'
@@ -18,7 +18,7 @@ const store = () => new Vuex.Store({
   modules: {
     auth,
     data,
-    facet,
+    filter,
     hover,
     options,
     popover
@@ -45,7 +45,6 @@ const store = () => new Vuex.Store({
   actions: {
     setContent ({ commit }, obj) {
       // Sets the content of the Finder. It is called by the Wrapper component
-      // console.log('setHover')
       commit('SET_CONTENT', obj)
     }
   }

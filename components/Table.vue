@@ -70,7 +70,7 @@
         hoverValue: state => get(state, 'hover.hoverValue', false),
         hoverKey: state => get(state, 'hover.hoverKey', false),
         data: state => get(state, 'data.data', []),
-        filter: state => get(state, 'facet.filter', [])
+        filter: state => get(state, 'filter.filter', [])
       }),
       ...mapGetters([
         'visibleHeader',

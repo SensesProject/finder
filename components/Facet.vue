@@ -78,7 +78,7 @@
     },
     computed: {
       ...mapState({
-        filter: state => get(state, 'facet.filter', []),
+        filter: state => get(state, 'filter.filter', []),
         filterEmpty: state => get(state, 'options.filterEmpty', false),
         sortRemaining: state => get(state, 'options.sortRemaining', false)
       }),

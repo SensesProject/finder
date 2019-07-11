@@ -85,7 +85,7 @@ const getters = {
   },
   result: (state, getters, rootState) => {
     let result = getters.datum
-    const filter = get(rootState, 'facet.filter', [])
+    const filter = get(rootState, 'filter.filter', [])
     filter.forEach(filta => {
       const low = get(filta, 'values[0].low', -Infinity)
       const high = get(filta, 'values[0].high', Infinity)
