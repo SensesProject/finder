@@ -143,7 +143,7 @@ const actions = {
   loadData ({ state, dispatch }, isForced = false) {
     const ONE_DAY = 60 * 60 * 1000 * 24
     const lastLoad = get(state, 'date', false)
-    const shouldReload = !lastLoad || ((new Date()) - lastLoad) > ONE_DAY
+    const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
     const willReload = shouldReload ? true : isForced
     if (willReload) {
       console.log('Data is too old or reload is forced. Will reload data')
