@@ -14,6 +14,7 @@
         facets: [{
           'label': 'scenario',
           'key': ['scenario'],
+          'visible': true,
           'type': 'Search',
           'title': true,
           'popover': {
@@ -25,6 +26,7 @@
         {
           'label': 'model',
           'key': ['model'],
+          'visible': true,
           'type': 'Facet',
           'popover': {
             'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
@@ -35,6 +37,7 @@
         {
           'label': 'category',
           'key': ['metadata.category'],
+          'visible': true,
           'type': 'Facet'
         },
         // {
@@ -45,6 +48,7 @@
         {
           'label': 'baseline',
           'key': ['metadata.baseline'],
+          'visible': true,
           'type': 'Facet'
         },
         // {
@@ -55,6 +59,7 @@
         {
           'label': 'reference',
           'key': ['metadata.reference'],
+          'visible': true,
           'type': 'Facet'
         },
         // {
@@ -65,6 +70,7 @@
         {
           'label': 'project',
           'key': ['metadata.project'],
+          'visible': false,
           'type': 'Facet',
           'popover': {
             'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
@@ -76,6 +82,7 @@
           'label': 'Median Warming',
           'precision': 2,
           'key': ['metadata.median warming at peak (FAIR)'],
+          'visible': false,
           'type': 'Histogram'
         }
         // {
