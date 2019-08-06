@@ -141,6 +141,7 @@ const mutations = {
 
 const actions = {
   loadData ({ state, dispatch }, isForced = false) {
+    console.log('Action: Check data')
     const ONE_DAY = 60 * 60 * 1000 * 24
     const lastLoad = get(state, 'date', false)
     const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
@@ -151,7 +152,7 @@ const actions = {
     dispatch('auth', { follower: { name: 'load' }, isForced: willReload })
   },
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
-    console.log(state.status, state.data.length)
+    console.log('Action: Load data')
     if (isForced) {
       commit('API_DATA', { status: STATUS_LOADING, data: [] })
     }
