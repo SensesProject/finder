@@ -5,7 +5,7 @@
     @mouseleave="resetHoverKey()">
     <header>
       <section>
-        <h3 :class="{ active: isActive }">{{ title }}</h3>
+        <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
         <aside v-if="isActive">
           <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetFilter(ki)" class="reset tag clickable">Reset</span>
@@ -69,7 +69,7 @@
   import Loading from '~/components/Loading.vue'
 
   export default {
-    props: ['title', 'values', 'ki', 'options'],
+    props: ['title', 'values', 'ki', 'options', 'tooltip'],
     data: function () {
       return {
         rank: false,
