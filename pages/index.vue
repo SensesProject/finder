@@ -12,8 +12,9 @@
     data: function () {
       return {
         facets: [{
-          'label': 'scenario',
+          'label': 'Scenario',
           'key': ['scenario'],
+          'tooltip': 'Scenario name',
           'visible': true,
           'type': 'Search',
           'title': true,
@@ -24,8 +25,9 @@
           }
         },
         {
-          'label': 'model',
+          'label': 'Model',
           'key': ['model'],
+          'tooltip': 'Model name',
           'visible': true,
           'type': 'Facet',
           'popover': {
@@ -35,41 +37,37 @@
           }
         },
         {
-          'label': 'category',
+          'label': 'Category',
           'key': ['metadata.category'],
+          'tooltip': 'Category type',
           'visible': true,
           'type': 'Facet'
         },
-        // {
-        //   'label': 'subcategory',
-        //   'key': ['subcategory'],
-        //   'type': 'Facet'
-        // },
         {
-          'label': 'baseline',
+          'label': 'Subcategory',
+          'key': ['metadata.subcategory'],
+          'tooltip': 'Subcategory type',
+          'visible': false,
+          'type': 'Facet'
+        },
+        {
+          'label': 'Baseline',
           'key': ['metadata.baseline'],
+          'tooltip': 'Baseline',
           'visible': true,
           'type': 'Facet'
         },
-        // {
-        //   'label': 'marker',
-        //   'key': ['marker'],
-        //   'type': 'Facet'
-        // },
         {
-          'label': 'reference',
+          'label': 'Reference',
           'key': ['metadata.reference'],
-          'visible': true,
+          'tooltip': 'Reference',
+          'visible': false,
           'type': 'Facet'
         },
-        // {
-        //   'label': 'status',
-        //   'key': ['status'],
-        //   'type': 'Facet'
-        // },
         {
-          'label': 'project',
+          'label': 'Project',
           'key': ['metadata.project'],
+          'tooltip': 'Project name',
           'visible': false,
           'type': 'Facet',
           'popover': {
@@ -79,205 +77,244 @@
           }
         },
         {
-          'label': 'Median Warming',
+          'label': 'Kyoto-GHG',
+          'key': ['metadata.Kyoto-GHG|2010 (SAR)'],
+          'tooltip': '2010 (SAR)',
+          'visible': false,
+          'type': 'Facet'
+        },
+        {
+          'label': 'Carbon Price Average',
           'precision': 2,
-          'key': ['metadata.median warming at peak (FAIR)'],
+          'key': ['metadata.carbon price|Avg NPV (2030-2100)'],
+          'tooltip': 'Avg NPV (2030-2100)',
           'visible': false,
           'type': 'Histogram'
-        }
-        // {
-        //   'label': 'Year Peak Warming',
-        //   'precision': 0,
-        //   'key': ['metadata.year of netzero CO2 emissions', 'metadata.year of peak warming (FAIR)'],
-        //   'type': 'Scatterplot'
-        // }
-        // {
-        //   'label': 'median warming at peak',
-        //   'key': ['median warming at peak'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'year of peak warming',
-        //   'key': ['year of peak warming'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'median warming in 2100',
-        //   'key': ['median warming in 2100'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'median warming peak-and-decline',
-        //   'key': ['median warming peak-and-decline'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'median warming at peak (FAIR)',
-        //   'key': ['median warming at peak (FAIR)'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'year of peak warming (FAIR)',
-        //   'key': ['year of peak warming (FAIR)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'exceedance year|1.5°C',
-        //   'key': ['exceedance year|1.5°C'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'return year|1.5°C',
-        //   'key': ['return year|1.5°C'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'overshoot years|1.5°C',
-        //   'key': ['overshoot years|1.5°C'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'exceedance severity|1.5°C',
-        //   'key': ['exceedance severity|1.5°C'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'exceedance year|2.0°C',
-        //   'key': ['exceedance year|2.0°C'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'return year|2.0°C',
-        //   'key': ['return year|2.0°C'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'overshoot years|2.0°C',
-        //   'key': ['overshoot years|2.0°C'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'cumulative CO2 emissions (2016-2100)',
-        //   'key': ['cumulative CO2 emissions (2016-2100)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'cumulative CCS (2016-2100)',
-        //   'key': ['cumulative CCS (2016-2100)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'cumulative BECCS (2016-2100)',
-        //   'key': ['cumulative BECCS (2016-2100)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'cumulative DAC (2016-2100)',
-        //   'key': ['cumulative DAC (2016-2100)'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'cumulative sequestration land-use (2016-2100)',
-        //   'key': ['cumulative sequestration land-use (2016-2100)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'cumulative CO2 emissions (2016 to peak warming)',
-        //   'key': ['cumulative CO2 emissions (2016 to peak warming)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'year of netzero CO2 emissions',
-        //   'key': ['year of netzero CO2 emissions'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'cumulative CO2 emissions (2016 to netzero)',
-        //   'key': ['cumulative CO2 emissions (2016 to netzero)'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'warming at netzero',
-        //   'key': ['warming at netzero'],
-        //   'type': 'number',
-        //   'precision': 0
-        // },
-        // {
-        //   'label': 'carbon price|2030',
-        //   'key': ['carbon price|2030'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|2050',
-        //   'key': ['carbon price|2050'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|2100',
-        //   'key': ['carbon price|2100'],
-        //   'type': 'number',
-        //   'precision': -2
-        // },
-        // {
-        //   'label': 'carbon price|2030 (NPV)',
-        //   'key': ['carbon price|2030 (NPV)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|2050 (NPV)',
-        //   'key': ['carbon price|2050 (NPV)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|2100 (NPV)',
-        //   'key': ['carbon price|2100 (NPV)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|Avg NPV (2030-2100)',
-        //   'key': ['carbon price|Avg NPV (2030-2100)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|AC NPV (2030-2100)',
-        //   'key': ['carbon price|AC NPV (2030-2100)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // },
-        // {
-        //   'label': 'carbon price|CC NPV (2030-2100)',
-        //   'key': ['carbon price|CC NPV (2030-2100)'],
-        //   'type': 'number',
-        //   'precision': -1
-        // }
-        ]
+        },
+        {
+          'label': 'Year of NetZero CO2 Emissions',
+          'precision': 2,
+          'key': ['metadata.year of netzero CO2 emissions'],
+          'tooltip': 'Year of NetZero CO2 Emissions',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price 2100',
+          'precision': 2,
+          'key': ['metadata.carbon price|2100 (NPV)'],
+          'tooltip': '2100 (NPV)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative CO2 Emissions',
+          'precision': 2,
+          'key': ['metadata.cumulative CO2 emissions (2016 to peak warming, Gt CO2)'],
+          'tooltip': '2016 to peak warming, Gt CO2',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Median Warming at Peak',
+          'precision': 2,
+          'key': ['metadata.median warming at peak (MAGICC6)'],
+          'tooltip': 'MAGICC6',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price CC',
+          'precision': 2,
+          'key': ['metadata.carbon price|CC NPV (2030-2100)'],
+          'tooltip': 'CC NPV (2030-2100)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price 2030',
+          'precision': 2,
+          'key': ['metadata.carbon price|2030'],
+          'tooltip': 'Carbon Price 2030',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Year of Return 1.5°C',
+          'precision': 2,
+          'key': ['metadata.return year|1.5°C'],
+          'tooltip': 'Year of Return 1.5°C',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Median Warming in 2100',
+          'precision': 2,
+          'key': ['metadata.median warming in 2100 (MAGICC6)'],
+          'tooltip': 'Median Warming in 2100 (MAGICC6)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Exceedance Year',
+          'precision': 2,
+          'key': ['metadata.exceedance year|1.5°C'],
+          'tooltip': 'Exceedance Year 1.5°C',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative BECCS',
+          'precision': 2,
+          'key': ['metadata.cumulative BECCS (2016-2100, Gt CO2)'],
+          'tooltip': 'Cumulative BECCS (2016-2100, Gt CO2)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative CO2 Emissions',
+          'precision': 2,
+          'key': ['metadata.cumulative CO2 emissions (2016 to netzero, Gt CO2)'],
+          'tooltip': 'cumulative CO2 emissions (2016 to netzero, Gt CO2)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Year of Peak Warming (FAIR)',
+          'precision': 2,
+          'key': ['metadata.year of peak warming (FAIR)'],
+          'tooltip': 'Year of Peak Warming (FAIR)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Year of Peak Warming (MAGICC6)',
+          'precision': 2,
+          'key': ['metadata.year of peak warming (MAGICC6)'],
+          'tooltip': 'Year of Peak Warming (MAGICC6)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative Sequestration Land-Use',
+          'precision': 2,
+          'key': ['metadata.cumulative sequestration land-use (2016-2100, Gt CO2)'],
+          'tooltip': 'Cumulative Sequestration Land-Use (2016-2100, Gt CO2)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Minimum Net CO2 Emissions',
+          'precision': 2,
+          'key': ['metadata.minimum net CO2 emissions (Gt CO2/yr)'],
+          'tooltip': 'Minimum Net CO2 Emissions (Gt CO2/yr)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative CO2 Emissions',
+          'precision': 2,
+          'key': ['metadata.cumulative CO2 emissions (2016-2100, Gt CO2)'],
+          'tooltip': 'Cumulative CO2 Emissions (2016-2100, Gt CO2)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Exceedance Severity',
+          'precision': 2,
+          'key': ['metadata.exceedance severity|1.5°C'],
+          'tooltip': 'Exceedance Severity 1.5°C',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price AC',
+          'precision': 2,
+          'key': ['metadata.carbon price|AC NPV (2030-2100)'],
+          'tooltip': 'Carbon Price|AC NPV (2030-2100)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Final Energy',
+          'precision': 2,
+          'key': ['metadata.final energy|2100'],
+          'tooltip': 'Final Energy in 2100',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price',
+          'precision': 2,
+          'key': ['metadata.carbon price|2050'],
+          'tooltip': 'Carbon Price in 2050',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Overshoot Years',
+          'precision': 2,
+          'key': ['metadata.overshoot years|1.5°C'],
+          'tooltip': 'Overshoot Years at 1.5°C',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price',
+          'precision': 2,
+          'key': ['metadata.carbon price|2100'],
+          'tooltip': 'Carbon Price in 2100',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price in 2050',
+          'precision': 2,
+          'key': ['metadata.carbon price|2050 (NPV)'],
+          'tooltip': 'Carbon Price in 2050 (NPV)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Carbon Price in 2030',
+          'precision': 2,
+          'key': ['metadata.carbon price|2030 (NPV)'],
+          'tooltip': 'Carbon Price in 2030 (NPV)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Warming at Netzero',
+          'precision': 2,
+          'key': ['metadata.warming at netzero (MAGICC6)'],
+          'tooltip': 'Warming at Netzero (MAGICC6)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Cumulative CCS',
+          'precision': 2,
+          'key': ['metadata.cumulative CCS (2016-2100, Gt CO2)'],
+          'tooltip': 'Cumulative CCS (2016-2100, Gt CO2)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Median Warming Peak-and-Decline',
+          'precision': 2,
+          'key': ['metadata.median warming peak-and-decline (MAGICC6)'],
+          'tooltip': 'Median Warming Peak-and-Decline (MAGICC6)',
+          'visible': false,
+          'type': 'Histogram'
+        },
+        {
+          'label': 'Median Warming at Peak',
+          'precision': 2,
+          'key': ['metadata.median warming at peak (FAIR)'],
+          'tooltip': 'Median Warming at Peak (FAIR)',
+          'visible': false,
+          'type': 'Histogram'
+        }]
       }
     },
     components: {
