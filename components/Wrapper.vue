@@ -67,7 +67,9 @@
     },
     created: function () {
       this.setUrlData(this.urlData)
-      this.setUrlAuth(this.urlAuth)
+      if (this.urlAuth) {
+        this.setUrlAuth(this.urlAuth)
+      }
       this.setFacets(this.facets)
     }
   }
