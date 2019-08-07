@@ -23,7 +23,7 @@
     <div class="content">
       <Table />
     </div>
-    <Popover><slot name="reference" /></Popover>
+    <Popover><template v-slot:reference><slot name="reference" /></template></Popover>
   </div>
 </template>
 
