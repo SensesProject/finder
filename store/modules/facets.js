@@ -18,11 +18,11 @@ const getters = {
 
 const mutations = {
   SET_FACETS (state, facets) {
-    // Sets the content of the Finder. It is triggered by setContent in the Wrapper component
+    // Sets the content of the Finder. It is triggered by setFacets in the Wrapper component
     state.facets = facets
   },
   SET_VISIBLE_FACETS (state, visibleFacets) {
-    // Set the keys of visible facts. It is triggered by setContent in the Wrapper component
+    // Set the keys of visible facts. It is triggered by setFacets in the Wrapper component
     state.visibleFacets = visibleFacets
   }
 }
@@ -32,9 +32,8 @@ const actions = {
     // This action is used by the popover to change the visble facets
     commit('SET_VISIBLE_FACETS', value)
   },
-  setContent ({ commit }, obj) {
+  setFacets ({ commit }, facets) {
     // Sets the columns of the Finder. It is called by the Wrapper component
-    const facets = get(obj, 'facets', [])
     const visibleFacets = compact(map(facets, facet => {
       return get(facet, 'visible', false) ? facet.key[0] : false
     }))

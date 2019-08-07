@@ -51,7 +51,7 @@
     },
     methods: {
       ...mapActions([
-        'setContent'
+        'setFacets'
       ])
     },
     components: {
@@ -64,7 +64,7 @@
       Scatterplot
     },
     created: function () {
-      this.setContent({ facets: this.facets })
+      this.setFacets(this.facets)
     }
   }
 </script>
