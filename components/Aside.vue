@@ -11,7 +11,7 @@
       <Options slot="popover"/>
     </v-popover>
     <v-popover :autoHide="true">
-      <button class="btn btn--icon clickable" v-tooltip="'Show facet options'"><i class="demo-icon icon-cog" /></button>
+      <button class="btn btn--icon clickable" v-tooltip="'Show facet options'"><i class="demo-icon icon-list" /></button>
       <SelectFacets slot="popover"/>
     </v-popover>
     <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="demo-icon icon-cancel-circled" /> Reset all filter</button>
