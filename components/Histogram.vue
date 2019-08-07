@@ -53,7 +53,8 @@
           :sticks="['tm','bm']"
           :minh="grid"
           :gridY="grid"
-          :snapToGrid="true" />
+          :snapToGrid="true"
+          :isDraggable="false" />
       </no-ssr>
     </div>
   </section>
@@ -122,7 +123,7 @@
       bars () {
         return map(this.list, (item, n) => {
           // TODO: Does not include end
-          const selected = inRange(item.x0, this.brushing.low, this.brushing.high) && inRange(item.x0, this.brushing.low, this.brushing.high)
+          const selected = inRange(item.x0, this.brushing.low, this.brushing.high)
           return {
             x: this.marginLeft,
             y: this.scaleY(n),
@@ -155,7 +156,6 @@
       resize (newRect) {
         const low = this.scaleBins.invert(newRect.top)
         const high = this.scaleBins.invert(newRect.top + newRect.height)
-        // console.log(this.scaleBins.invert(newRect.top), this.scaleBins.invert(newRect.top + newRect.height))
         this.setFilter({
           key: this.ki,
           value: {
@@ -266,9 +266,5 @@
         opacity: 1;
       }
     }
-  }
-
-  .vdr.active {
-    cursor: row-resize;
   }
 </style>
