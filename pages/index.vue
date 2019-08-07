@@ -76,7 +76,7 @@
           'label': 'Project',
           'key': ['metadata.project'],
           'tooltip': 'Project name',
-          'visible': false,
+          'visible': true,
           'type': 'Facet',
           'popover': {
             'url': 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/docs',
