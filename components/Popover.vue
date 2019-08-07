@@ -8,8 +8,9 @@
         <span @click="closePopover()" class="button-close clickable">&times;</span>
         <div
           class="content"
-          v-if="content"
+          v-if="content && content !== 'reference'"
           v-html="content" />
+        <slot v-else-if="content && content === 'reference'" />
         <h2 v-else>Nothing found</h2>
       </div>
     </aside>

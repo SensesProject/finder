@@ -23,7 +23,7 @@
     <div class="content">
       <Table />
     </div>
-    <Popover />
+    <Popover><slot name="reference" /></Popover>
   </div>
 </template>
 
