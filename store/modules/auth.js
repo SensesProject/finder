@@ -8,12 +8,12 @@ const STATUS_AUTH = 'AUTH'
 const STATUS_AUTH_FAILED = 'AUTH_FAILED'
 const STATUS_AUTH_SUCCESS = 'AUTH_SUCCESS'
 
-const state = {
+const state = () => ({
   token: false,
   status: STATUS_IDLE,
   message: false,
   date: false
-}
+})
 
 const mutations = {
   API_AUTH (state, { status, token, message }) {

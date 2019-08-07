@@ -1,8 +1,8 @@
 import { reject, clone, find, pull, isUndefined } from 'lodash'
 
-const state = {
+const state = () => ({
   filter: []
-}
+})
 
 const mutations = {
   RESET_FILTERS (state) {

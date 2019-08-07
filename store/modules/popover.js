@@ -7,11 +7,11 @@ const STATUS_LOADING = 'LOADING'
 const STATUS_LOADING_FAILED = 'LOADING_FAILED'
 const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
 
-const state = {
+const state = () => ({
   popover: false,
   status: STATUS_IDLE,
   content: false
-}
+})
 
 const mutations = {
   CLOSE_POPOVER (state) {

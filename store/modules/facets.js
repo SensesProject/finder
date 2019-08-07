@@ -3,10 +3,10 @@ import { compact, get, map } from 'lodash'
 
 // A list of possible facts it set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that state if the facet is used or not
-const state = {
+const state = () => ({
   facets: [],
   visibleFacets: []
-}
+})
 
 const getters = {
   visibleHeader: state => {

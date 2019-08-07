@@ -8,12 +8,12 @@ const STATUS_LOADING = 'LOADING'
 const STATUS_LOADING_FAILED = 'LOADING_FAILED'
 const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
 
-const state = {
+const state = () => ({
   data: [],
   status: STATUS_IDLE,
   message: false,
   date: false
-}
+})
 
 const getters = {
   datum: (state, getters, rootState) => {

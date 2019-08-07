@@ -3,10 +3,10 @@
 
 import { get } from 'lodash'
 
-const state = {
+const state = () => ({
   hoverValue: false,
   hoverKey: false
-}
+})
 
 const mutations = {
   SET_HOVER_VALUE (state, { key, value }) {

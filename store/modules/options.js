@@ -2,12 +2,12 @@
 // SortRemaining: Sort by remaining amount
 // columnHoverEffect: Trigger effect when hovering a column
 
-const state = {
+const state = () => ({
   filterEmpty: false,
   sortRemaining: false,
   columnHoverEffect: false,
   cellHoverEffect: false
-}
+})
 
 const mutations = {
   SET_FILTER_EMPTY (state, { value }) {
