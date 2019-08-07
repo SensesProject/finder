@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { includes, compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
+import { includes, compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange, set } from 'lodash'
 import { format } from 'timeago.js'
 
 const STATUS_IDLE = 'IDLE'
@@ -12,7 +12,8 @@ const state = () => ({
   data: [],
   status: STATUS_IDLE,
   message: false,
-  date: false
+  date: false,
+  url: false
 })
 
 const getters = {
@@ -127,6 +128,9 @@ const getters = {
 }
 
 const mutations = {
+  SET_URL_DATA (state, url) {
+    state.url = url
+  },
   API_DATA (state, { status, message, data }) {
     state.status = status
     if (!isUndefined(message)) {
@@ -140,6 +144,9 @@ const mutations = {
 }
 
 const actions = {
+  setUrlData ({ commit }, url) {
+    commit('SET_URL_DATA', url)
+  },
   loadData ({ state, dispatch }, isForced = false) {
     console.log('Action: Check data')
     const ONE_DAY = 60 * 60 * 1000 * 24
@@ -158,15 +165,17 @@ const actions = {
     }
     if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
-      const url = 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true'
-      const config = {
-        headers: { 'Authorization': `Bearer ${rootState.auth.token}` }
+      const url = state.url
+      const config = {}
+      if (rootState.auth.url) {
+        set(config, 'headers.Authorization', `Bearer ${rootState.auth.token}`)
       }
       console.log('Load Request send')
       axios.get(url, config)
         .then(response => {
           const { data } = response
           console.log('Loading successfull')
+          console.log(data)
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
         })
         .catch(error => {

@@ -12,10 +12,14 @@ const state = () => ({
   token: false,
   status: STATUS_IDLE,
   message: false,
-  date: false
+  date: false,
+  url: false
 })
 
 const mutations = {
+  SET_URL_AUTH (state, url) {
+    state.url = url
+  },
   API_AUTH (state, { status, token, message }) {
     if (!isUndefined(status)) {
       state.status = status
@@ -31,6 +35,9 @@ const mutations = {
 }
 
 const actions = {
+  setUrlAuth ({ commit }, url) {
+    commit('SET_URL_AUTH', url)
+  },
   auth ({ state, commit, dispatch }, { isForced, follower }) {
     // This method is called in two cases
     // 1. The website is called brand new without a token in local storage
@@ -38,7 +45,7 @@ const actions = {
     // Parameters can be a function that is called afterwards
     console.log('Action: Auth')
     if (isForced || state.token === false) {
-      const url = 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15'
+      const url = state.url
       console.log('Auth Request send')
       commit('API_AUTH', { status: STATUS_AUTH })
       axios.get(url)

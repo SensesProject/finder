@@ -40,7 +40,7 @@
   import Search from '~/components/Search.vue'
 
   export default {
-    props: ['title', 'subtitle', 'facets'],
+    props: ['title', 'subtitle', 'facets', 'urlData', 'urlAuth'],
     computed: {
       ...mapState([
         'data'
@@ -51,7 +51,9 @@
     },
     methods: {
       ...mapActions([
-        'setFacets'
+        'setFacets',
+        'setUrlData',
+        'setUrlAuth'
       ])
     },
     components: {
@@ -64,6 +66,8 @@
       Scatterplot
     },
     created: function () {
+      this.setUrlData(this.urlData)
+      this.setUrlAuth(this.urlAuth)
       this.setFacets(this.facets)
     }
   }
