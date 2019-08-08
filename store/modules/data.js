@@ -148,7 +148,7 @@ const actions = {
     commit('SET_URL_DATA', url)
   },
   loadData ({ state, dispatch }, isForced = false) {
-    console.log('Action: Check data')
+    console.log('Action: Check data', { isForced })
     const ONE_DAY = 60 * 60 * 1000 * 24
     const lastLoad = get(state, 'date', false)
     const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
@@ -159,7 +159,7 @@ const actions = {
     dispatch('auth', { follower: { name: 'load' }, isForced: willReload })
   },
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
-    console.log('Action: Load data')
+    console.log('Action: Load data', { isForced })
     if (isForced) {
       commit('API_DATA', { status: STATUS_LOADING, data: [] })
     }
