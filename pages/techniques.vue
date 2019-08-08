@@ -19,7 +19,7 @@
     data: function () {
       return {
         id: 'techniques',
-        urlData: 'http://zeto.horologium.uberspace.de/co-production-techniques/techniques',
+        urlData: 'https://zeto.horologium.uberspace.de/co-production-techniques/techniques',
         urlAuth: '',
         facets: [{
           'label': 'Name',
