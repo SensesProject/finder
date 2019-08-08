@@ -43,8 +43,8 @@ const actions = {
     // 1. The website is called brand new without a token in local storage
     // 2. The method is called by force to get a new token
     // Parameters can be a function that is called afterwards
-    console.log('Action: Auth')
-    if (isForced || state.token === false) {
+    console.log('Action: Auth', { isForced })
+    if ((isForced || state.token === false) && state.url) {
       const url = state.url
       console.log('Auth Request send')
       commit('API_AUTH', { status: STATUS_AUTH })
@@ -61,7 +61,7 @@ const actions = {
         })
     } else {
       console.log('Already logged in', format(state.date))
-      dispatch('callFollower', { follower })
+      dispatch('callFollower', { follower, isForced })
     }
   },
   callFollower ({ dispatch }, { follower, isForced }) {
