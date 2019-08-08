@@ -4,7 +4,8 @@
     subtitle="IAMC 1.5°C Scenario Data hosted by IIASA"
     :facets="facets"
     :urlData="urlData"
-    :urlAuth="urlAuth">
+    :urlAuth="urlAuth"
+    :id="id">
     <template v-slot:reference>
       <h1>Reference</h1><p>Daniel Huppmann, Elmar Kriegler, Volker Krey, Keywan Riahi, Joeri Rogelj, Steven K. Rose, John Weyant, et al.<br />IAMC 1.5°C Scenario Explorer and Data hosted by IIASA.<br />Integrated Assessment Modeling Consortium & International Institute for Applied Systems Analysis, 2018.<br />doi: 10.22022/SR15/08-2018.15429 | url: data.ene.iiasa.ac.at/iamc-1.5c-explorer</p>
     </template>
@@ -17,6 +18,7 @@
   export default {
     data: function () {
       return {
+        id: 'scenarios',
         urlData: 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true',
         urlAuth: 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15',
         facets: [{
@@ -108,7 +110,7 @@
           'type': 'Histogram'
         },
         {
-          'label': 'Carbon Price 2100',
+          'label': 'Carbon Price 2100 NPV',
           'precision': 2,
           'key': ['metadata.carbon price|2100 (NPV)'],
           'tooltip': '2100 (NPV)',
@@ -252,7 +254,7 @@
           'type': 'Histogram'
         },
         {
-          'label': 'Carbon Price',
+          'label': 'Carbon Price 2050',
           'precision': 2,
           'key': ['metadata.carbon price|2050'],
           'tooltip': 'Carbon Price in 2050',
@@ -268,7 +270,7 @@
           'type': 'Histogram'
         },
         {
-          'label': 'Carbon Price',
+          'label': 'Carbon Price 2100',
           'precision': 2,
           'key': ['metadata.carbon price|2100'],
           'tooltip': 'Carbon Price in 2100',
@@ -276,7 +278,7 @@
           'type': 'Histogram'
         },
         {
-          'label': 'Carbon Price in 2050',
+          'label': 'Carbon Price in 2050 NPV',
           'precision': 2,
           'key': ['metadata.carbon price|2050 (NPV)'],
           'tooltip': 'Carbon Price in 2050 (NPV)',
@@ -284,7 +286,7 @@
           'type': 'Histogram'
         },
         {
-          'label': 'Carbon Price in 2030',
+          'label': 'Carbon Price in 2030 NPV',
           'precision': 2,
           'key': ['metadata.carbon price|2030 (NPV)'],
           'tooltip': 'Carbon Price in 2030 (NPV)',
