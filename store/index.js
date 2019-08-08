@@ -6,6 +6,7 @@ import data from './modules/data'
 import facets from './modules/facets'
 import filter from './modules/filter'
 import hover from './modules/hover'
+import id from './modules/id'
 import options from './modules/options'
 import popover from './modules/popover'
 
@@ -21,6 +22,7 @@ const store = () => new Vuex.Store({
     facets,
     filter,
     hover,
+    id,
     options,
     popover
   }
