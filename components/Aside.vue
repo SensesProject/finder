@@ -58,6 +58,8 @@
 
   aside {
     display: flex;
+    max-height: 40px;
+    overflow-y: hidden;
 
     & > * {
       display: inline-block;

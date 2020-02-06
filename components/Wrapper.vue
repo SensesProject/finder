@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
-    <nav class="filter">
-      <header>
+    <nav class="navigation">
+      <header class="header">
         <hgroup>
           <h1>{{ title }}</h1>
           <h2>{{ subtitle }}</h2>
         </hgroup>
         <Aside />
       </header>
-      <div class="columns columns-gutter-narrow facets">
+      <div class="facets">
         <component
           v-for="option in options"
           v-bind:is="option.type"
@@ -82,16 +82,19 @@
 
   .wrapper {
     max-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    min-width: calc(100vw - #{$spacing});
   }
 
   .facets {
-    justify-content: flex-start;
-    display: inline-flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: $spacing / 2;
+    justify-items: start;
+    grid-template-columns: repeat(auto-fill, #{$column-width});
 
     .facet, .options {
-      width: calc(#{$column-width});
+      width: $column-width;
     }
   }
 
@@ -99,17 +102,24 @@
     color: #DC3023;
   }
 
-  .filter {
+  $navigation-height: 50px;
+
+  .navigation {
     background-color: palette(grey, 90);
     border-bottom: 1px solid palette(grey, 85);
-    padding: 1rem;
+    padding: $spacing / 2;
+    display: grid;
+    grid-template-rows: $navigation-height auto;
+    grid-row-gap: $spacing / 2;
 
-    header {
-      width: calc(100vw - 2rem);
-      display: flex;
+    .header {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: $column-width * 3 auto;
       align-items: center;
-      margin-bottom: $spacing / 2;
+      grid-column-gap: $spacing / 2;
       justify-content: space-between;
+      width: calc(100vw - #{$spacing});
     }
 
     h1, h2, h3 {
