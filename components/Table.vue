@@ -51,7 +51,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { includes, flatMap, compact, map, get, indexOf, isUndefined, isArray } from 'lodash'
+  import { includes, compact, map, get, indexOf, isUndefined, isArray } from 'lodash'
   import Loading from '~/components/Loading.vue'
 
   export default {
@@ -79,7 +79,7 @@
         return [currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage]
       },
       items () {
-        const facetKeys = flatMap(this.facets, 'key')
+        const facetKeys = map(this.facets, 'key')
         return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
           const cells = compact(map(facetKeys, key => {

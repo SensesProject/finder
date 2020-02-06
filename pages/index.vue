@@ -14,6 +14,8 @@
 
 <script>
   import Wrapper from '~/components/Wrapper.vue'
+  import { get } from 'lodash'
+  import { mapActions } from 'vuex'
 
   export default {
     data: function () {
@@ -23,7 +25,7 @@
         urlAuth: 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15',
         facets: [{
           'label': 'Scenario',
-          'key': ['scenario'],
+          'key': 'scenario',
           'tooltip': 'Scenario name',
           'visible': true,
           'type': 'Search',
@@ -36,7 +38,7 @@
         },
         {
           'label': 'Model',
-          'key': ['model'],
+          'key': 'model',
           'tooltip': 'Model name',
           'visible': true,
           'type': 'Facet',
@@ -48,35 +50,35 @@
         },
         {
           'label': 'Category',
-          'key': ['metadata.category'],
+          'key': 'metadata.category',
           'tooltip': 'Category type',
           'visible': true,
           'type': 'Facet'
         },
         {
           'label': 'Subcategory',
-          'key': ['metadata.subcategory'],
+          'key': 'metadata.subcategory',
           'tooltip': 'Subcategory type',
           'visible': false,
           'type': 'Facet'
         },
         {
           'label': 'Baseline',
-          'key': ['metadata.baseline'],
+          'key': 'metadata.baseline',
           'tooltip': 'Baseline',
           'visible': true,
           'type': 'Facet'
         },
         {
           'label': 'Reference',
-          'key': ['metadata.reference'],
+          'key': 'metadata.reference',
           'tooltip': 'Reference',
           'visible': false,
           'type': 'Facet'
         },
         {
           'label': 'Project',
-          'key': ['metadata.project'],
+          'key': 'metadata.project',
           'tooltip': 'Project name',
           'visible': true,
           'type': 'Facet',
@@ -88,7 +90,7 @@
         },
         {
           'label': 'Kyoto-GHG',
-          'key': ['metadata.Kyoto-GHG|2010 (SAR)'],
+          'key': 'metadata.Kyoto-GHG|2010 (SAR)',
           'tooltip': '2010 (SAR)',
           'visible': false,
           'type': 'Facet'
@@ -96,7 +98,7 @@
         {
           'label': 'Carbon Price Average',
           'precision': 2,
-          'key': ['metadata.carbon price|Avg NPV (2030-2100)'],
+          'key': 'metadata.carbon price|Avg NPV (2030-2100)',
           'tooltip': 'Avg NPV (2030-2100)',
           'visible': false,
           'type': 'Histogram'
@@ -104,7 +106,7 @@
         {
           'label': 'Year of NetZero CO2 Emissions',
           'precision': 2,
-          'key': ['metadata.year of netzero CO2 emissions'],
+          'key': 'metadata.year of netzero CO2 emissions',
           'tooltip': 'Year of NetZero CO2 Emissions',
           'visible': false,
           'type': 'Histogram'
@@ -112,7 +114,7 @@
         {
           'label': 'Carbon Price 2100 NPV',
           'precision': 2,
-          'key': ['metadata.carbon price|2100 (NPV)'],
+          'key': 'metadata.carbon price|2100 (NPV)',
           'tooltip': '2100 (NPV)',
           'visible': false,
           'type': 'Histogram'
@@ -120,7 +122,7 @@
         {
           'label': 'Cumulative CO2 Emissions',
           'precision': 2,
-          'key': ['metadata.cumulative CO2 emissions (2016 to peak warming, Gt CO2)'],
+          'key': 'metadata.cumulative CO2 emissions (2016 to peak warming, Gt CO2)',
           'tooltip': '2016 to peak warming, Gt CO2',
           'visible': false,
           'type': 'Histogram'
@@ -128,7 +130,7 @@
         {
           'label': 'Median Warming at Peak',
           'precision': 2,
-          'key': ['metadata.median warming at peak (MAGICC6)'],
+          'key': 'metadata.median warming at peak (MAGICC6)',
           'tooltip': 'MAGICC6',
           'visible': false,
           'type': 'Histogram'
@@ -136,7 +138,7 @@
         {
           'label': 'Carbon Price CC',
           'precision': 2,
-          'key': ['metadata.carbon price|CC NPV (2030-2100)'],
+          'key': 'metadata.carbon price|CC NPV (2030-2100)',
           'tooltip': 'CC NPV (2030-2100)',
           'visible': false,
           'type': 'Histogram'
@@ -144,7 +146,7 @@
         {
           'label': 'Carbon Price 2030',
           'precision': 2,
-          'key': ['metadata.carbon price|2030'],
+          'key': 'metadata.carbon price|2030',
           'tooltip': 'Carbon Price 2030',
           'visible': false,
           'type': 'Histogram'
@@ -152,7 +154,7 @@
         {
           'label': 'Year of Return 1.5°C',
           'precision': 2,
-          'key': ['metadata.return year|1.5°C'],
+          'key': 'metadata.return year|1.5°C',
           'tooltip': 'Year of Return 1.5°C',
           'visible': false,
           'type': 'Histogram'
@@ -160,7 +162,7 @@
         {
           'label': 'Median Warming in 2100',
           'precision': 2,
-          'key': ['metadata.median warming in 2100 (MAGICC6)'],
+          'key': 'metadata.median warming in 2100 (MAGICC6)',
           'tooltip': 'Median Warming in 2100 (MAGICC6)',
           'visible': false,
           'type': 'Histogram'
@@ -168,7 +170,7 @@
         {
           'label': 'Exceedance Year',
           'precision': 2,
-          'key': ['metadata.exceedance year|1.5°C'],
+          'key': 'metadata.exceedance year|1.5°C',
           'tooltip': 'Exceedance Year 1.5°C',
           'visible': false,
           'type': 'Histogram'
@@ -176,7 +178,7 @@
         {
           'label': 'Cumulative BECCS',
           'precision': 2,
-          'key': ['metadata.cumulative BECCS (2016-2100, Gt CO2)'],
+          'key': 'metadata.cumulative BECCS (2016-2100, Gt CO2)',
           'tooltip': 'Cumulative BECCS (2016-2100, Gt CO2)',
           'visible': false,
           'type': 'Histogram'
@@ -184,7 +186,7 @@
         {
           'label': 'Cumulative CO2 Emissions',
           'precision': 2,
-          'key': ['metadata.cumulative CO2 emissions (2016 to netzero, Gt CO2)'],
+          'key': 'metadata.cumulative CO2 emissions (2016 to netzero, Gt CO2)',
           'tooltip': 'cumulative CO2 emissions (2016 to netzero, Gt CO2)',
           'visible': false,
           'type': 'Histogram'
@@ -192,7 +194,7 @@
         {
           'label': 'Year of Peak Warming (FAIR)',
           'precision': 2,
-          'key': ['metadata.year of peak warming (FAIR)'],
+          'key': 'metadata.year of peak warming (FAIR)',
           'tooltip': 'Year of Peak Warming (FAIR)',
           'visible': false,
           'type': 'Histogram'
@@ -200,7 +202,7 @@
         {
           'label': 'Year of Peak Warming (MAGICC6)',
           'precision': 2,
-          'key': ['metadata.year of peak warming (MAGICC6)'],
+          'key': 'metadata.year of peak warming (MAGICC6)',
           'tooltip': 'Year of Peak Warming (MAGICC6)',
           'visible': false,
           'type': 'Histogram'
@@ -208,7 +210,7 @@
         {
           'label': 'Cumulative Sequestration Land-Use',
           'precision': 2,
-          'key': ['metadata.cumulative sequestration land-use (2016-2100, Gt CO2)'],
+          'key': 'metadata.cumulative sequestration land-use (2016-2100, Gt CO2)',
           'tooltip': 'Cumulative Sequestration Land-Use (2016-2100, Gt CO2)',
           'visible': false,
           'type': 'Histogram'
@@ -216,7 +218,7 @@
         {
           'label': 'Minimum Net CO2 Emissions',
           'precision': 2,
-          'key': ['metadata.minimum net CO2 emissions (Gt CO2/yr)'],
+          'key': 'metadata.minimum net CO2 emissions (Gt CO2/yr)',
           'tooltip': 'Minimum Net CO2 Emissions (Gt CO2/yr)',
           'visible': false,
           'type': 'Histogram'
@@ -224,7 +226,7 @@
         {
           'label': 'Cumulative CO2 Emissions',
           'precision': 2,
-          'key': ['metadata.cumulative CO2 emissions (2016-2100, Gt CO2)'],
+          'key': 'metadata.cumulative CO2 emissions (2016-2100, Gt CO2)',
           'tooltip': 'Cumulative CO2 Emissions (2016-2100, Gt CO2)',
           'visible': false,
           'type': 'Histogram'
@@ -232,7 +234,7 @@
         {
           'label': 'Exceedance Severity',
           'precision': 2,
-          'key': ['metadata.exceedance severity|1.5°C'],
+          'key': 'metadata.exceedance severity|1.5°C',
           'tooltip': 'Exceedance Severity 1.5°C',
           'visible': false,
           'type': 'Histogram'
@@ -240,7 +242,7 @@
         {
           'label': 'Carbon Price AC',
           'precision': 2,
-          'key': ['metadata.carbon price|AC NPV (2030-2100)'],
+          'key': 'metadata.carbon price|AC NPV (2030-2100)',
           'tooltip': 'Carbon Price|AC NPV (2030-2100)',
           'visible': false,
           'type': 'Histogram'
@@ -248,7 +250,7 @@
         {
           'label': 'Final Energy',
           'precision': 2,
-          'key': ['metadata.final energy|2100'],
+          'key': 'metadata.final energy|2100',
           'tooltip': 'Final Energy in 2100',
           'visible': false,
           'type': 'Histogram'
@@ -256,7 +258,7 @@
         {
           'label': 'Carbon Price 2050',
           'precision': 2,
-          'key': ['metadata.carbon price|2050'],
+          'key': 'metadata.carbon price|2050',
           'tooltip': 'Carbon Price in 2050',
           'visible': false,
           'type': 'Histogram'
@@ -264,7 +266,7 @@
         {
           'label': 'Overshoot Years',
           'precision': 2,
-          'key': ['metadata.overshoot years|1.5°C'],
+          'key': 'metadata.overshoot years|1.5°C',
           'tooltip': 'Overshoot Years at 1.5°C',
           'visible': false,
           'type': 'Histogram'
@@ -272,7 +274,7 @@
         {
           'label': 'Carbon Price 2100',
           'precision': 2,
-          'key': ['metadata.carbon price|2100'],
+          'key': 'metadata.carbon price|2100',
           'tooltip': 'Carbon Price in 2100',
           'visible': false,
           'type': 'Histogram'
@@ -280,7 +282,7 @@
         {
           'label': 'Carbon Price in 2050 NPV',
           'precision': 2,
-          'key': ['metadata.carbon price|2050 (NPV)'],
+          'key': 'metadata.carbon price|2050 (NPV)',
           'tooltip': 'Carbon Price in 2050 (NPV)',
           'visible': false,
           'type': 'Histogram'
@@ -288,7 +290,7 @@
         {
           'label': 'Carbon Price in 2030 NPV',
           'precision': 2,
-          'key': ['metadata.carbon price|2030 (NPV)'],
+          'key': 'metadata.carbon price|2030 (NPV)',
           'tooltip': 'Carbon Price in 2030 (NPV)',
           'visible': false,
           'type': 'Histogram'
@@ -296,7 +298,7 @@
         {
           'label': 'Warming at Netzero',
           'precision': 2,
-          'key': ['metadata.warming at netzero (MAGICC6)'],
+          'key': 'metadata.warming at netzero (MAGICC6)',
           'tooltip': 'Warming at Netzero (MAGICC6)',
           'visible': false,
           'type': 'Histogram'
@@ -304,7 +306,7 @@
         {
           'label': 'Cumulative CCS',
           'precision': 2,
-          'key': ['metadata.cumulative CCS (2016-2100, Gt CO2)'],
+          'key': 'metadata.cumulative CCS (2016-2100, Gt CO2)',
           'tooltip': 'Cumulative CCS (2016-2100, Gt CO2)',
           'visible': false,
           'type': 'Histogram'
@@ -312,7 +314,7 @@
         {
           'label': 'Median Warming Peak-and-Decline',
           'precision': 2,
-          'key': ['metadata.median warming peak-and-decline (MAGICC6)'],
+          'key': 'metadata.median warming peak-and-decline (MAGICC6)',
           'tooltip': 'Median Warming Peak-and-Decline (MAGICC6)',
           'visible': false,
           'type': 'Histogram'
@@ -320,12 +322,20 @@
         {
           'label': 'Median Warming at Peak',
           'precision': 2,
-          'key': ['metadata.median warming at peak (FAIR)'],
+          'key': 'metadata.median warming at peak (FAIR)',
           'tooltip': 'Median Warming at Peak (FAIR)',
           'visible': false,
           'type': 'Histogram'
         }]
       }
+    },
+    methods: {
+      ...mapActions([
+        'initFilter'
+      ])
+    },
+    mounted () {
+      this.initFilter(get(this.$route, 'query', {}))
     },
     components: {
       Wrapper

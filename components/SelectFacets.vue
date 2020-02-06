@@ -4,7 +4,7 @@
       <input
         v-model="tempVisibleFacets"
         type="checkbox"
-        v-bind:value="facet.key[0]"
+        v-bind:value="facet.key"
         :id="facet.label" />
       <label
         :for="facet.label"

@@ -17,7 +17,7 @@
           :options="option.options"
           :values="option.values"
           :ki="option.key"
-          :key="option.key.join('')" />
+          :key="option.key" />
       </div>
     </nav>
     <div class="content">

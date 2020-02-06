@@ -23,11 +23,9 @@ const getters = {
       // Rebuild the data structure. Build an object from the data array
       return fromPairs(map(facets, facet => {
         const key = facet.key
-        const values = map(key, k => {
-          return get(datum, k, false)
-        })
+        const values = get(datum, key, false)
         // console.log(values, facet.key, datum)
-        let label = values[0]
+        let label = values
         if (facet.type === 'Facet' || facet.type === 'Search') {
           if (!label) {
             label = '—'
@@ -69,7 +67,7 @@ const getters = {
     const visibleFacets = rootState.facets.visibleFacets
 
     return compact(facets.map(facet => {
-      if (!includes(visibleFacets, facet.key[0])) {
+      if (!includes(visibleFacets, facet.key)) {
         return false
       }
 
@@ -95,8 +93,10 @@ const getters = {
     let result = getters.datum
     const filter = get(rootState, 'filter.filter', [])
     filter.forEach(filta => {
+      // Prepare filter options before loop
       const low = get(filta, 'values[0].low', -Infinity)
       const high = get(filta, 'values[0].high', Infinity)
+      // Prepare term before loop
       let term
       if (filta.type === 'term') {
         term = lowerCase(filta.values)
@@ -106,7 +106,8 @@ const getters = {
         if (filta.type === 'term') { // Facet is search term
           retVal = item[filta.key].lower.includes(term)
         } else if (filta.type === 'key-value') {
-          retVal = indexOf(filta.values, item[filta.key].label) > -1
+          const label = get(item[filta.key], 'label')
+          retVal = label ? indexOf(filta.values, label) > -1 : true
         } else if (filta.type === 'range') {
           // TODO: Does not include end
           retVal = inRange(item[filta.key].label, low, high)

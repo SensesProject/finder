@@ -1,4 +1,4 @@
-import { reject, clone, find, pull, isUndefined } from 'lodash'
+import { reject, clone, find, pull, isUndefined, get, forEach, isArray } from 'lodash'
 
 const state = () => ({
   filter: []
@@ -20,7 +20,7 @@ const mutations = {
       const filter = clone(state.filter)
       filter.push({
         key,
-        'values': [value],
+        'values': isArray(value) ? value : [value],
         'invert': false,
         type
       })
@@ -64,7 +64,6 @@ const actions = {
     commit('RESET_FILTER', key)
   },
   setFilter ({ commit }, { key, value, type }) {
-    // console.log('setFilter', key, value)
     commit('RESET_FILTER', key)
     commit('SET_FILTER', { key, value, type })
   },
@@ -79,6 +78,20 @@ const actions = {
   invertFilter ({ commit }, key) {
     // console.log('invertFilter', key)
     commit('INVERT_FILTER', { key })
+  },
+  initFilter ({ dispatch, rootState }, query) {
+    const types = {
+      'Facet': 'key-value',
+      'Search': 'term',
+      'Histogram': 'range'
+    }
+    const facets = get(rootState, ['facets', 'facets'], [])
+    forEach(query, (value, key) => {
+      const facet = find(facets, { id: key })
+      const type = get(types, get(facet, 'type'), false)
+      const ki = get(facet, 'key')
+      dispatch('setFilter', { key: ki, value: value.split('|'), type })
+    })
   }
 }
 
