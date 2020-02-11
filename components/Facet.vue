@@ -1,23 +1,29 @@
 <template>
   <section
     class="facet"
-    @mouseenter="setHoverKey({ key: ki })"
+    @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
     <header>
       <section>
         <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
-          <span @click="resetFilter(ki)" class="reset tag clickable">Reset</span>
+          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="resetFilter(id)" class="reset tag clickable">Reset</span>
         </aside>
       </section>
       <section>
         <span v-if="number !== 0">{{ number }} options</span>
         <span v-else>&nbsp;</span>
         <aside>
-          <span v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: rank, clickable: true }" @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
+          <span
+            v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`"
+            :class="{ active: rank, clickable: true }"
+            @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
           <span class="spacer">/</span>
-          <span v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`" :class="{ active: !rank, clickable: true }" @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+          <span
+            v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`"
+            :class="{ active: !rank, clickable: true }"
+            @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
         </aside>
       </section>
     </header>
@@ -49,15 +55,25 @@
             y2="90%" />
         </svg>
         <div
-          @mouseenter="setHoverValue({ key: ki, value: item.label })"
+          @mouseenter="setHoverValue({ id, value: item.label })"
           @mouseleave="resetHoverValue()"
-          @click="setFilter({ key: ki, value: item.label, type: 'key-value' })"
+          @click="setFilter({ id, value: item.label })"
           class="label">
           <span>{{ item.label }}</span>
         </div>
-        <span v-tooltip="`Add »${item.label}« to filter options`" v-if="isActive && !item.isActive" class="include" @click="addFilter({ key: ki, value: item.label })">Include</span>
-        <span v-tooltip="`Remove »${item.label}« from filter options`" v-if="item.isActive" class="include" @click="removeFilter({ key: ki, value: item.label })">Exclude</span>
-        <span :class="{ counter: true, hide: isActive }"><span v-if="filter.length">{{ item.currentValue }}/</span>{{ item.value }}</span>
+        <span
+          v-tooltip="`Add »${item.label}« to filter options`"
+          v-if="isActive && !item.isActive"
+          class="include"
+          @click="addFilter({ id, value: item.label })">Include</span>
+        <span
+          v-tooltip="`Remove »${item.label}« from filter options`"
+          v-if="item.isActive" class="include"
+          @click="removeFilter({ id, value: item.label })">Exclude</span>
+        <span
+          :class="{ counter: true, hide: isActive }">
+          <span v-if="filter.length">{{ item.currentValue }}/</span>{{ item.value }}
+        </span>
       </li>
     </ul>
   </section>
@@ -69,7 +85,7 @@
   import Loading from '~/components/Loading.vue'
 
   export default {
-    props: ['title', 'values', 'ki', 'options', 'tooltip'],
+    props: ['title', 'values', 'id', 'options', 'tooltip'],
     data: function () {
       return {
         rank: false,
@@ -90,11 +106,11 @@
         'counter'
       ]),
       active () {
-        const keys = this.filter.find(({ key }) => key === this.ki)
+        const keys = this.filter.find(({ id }) => id === this.id)
         return isUndefined(keys) ? [] : keys.values
       },
       isInvert () {
-        const keys = this.filter.find(({ key }) => key === this.ki)
+        const keys = this.filter.find(({ id }) => id === this.id)
         return isUndefined(keys) ? false : keys.invert
       },
       isActive () {
@@ -108,8 +124,8 @@
         return Math.max(...values)
       },
       list () {
-        const { ki, rank } = this
-        const counts = get(this.counter, [ki], {})
+        const { id, rank } = this
+        const counts = get(this.counter, [id], {})
         const list = map(this.options, (value, label) => {
           const currentValue = get(counts, [label], 0)
           const percentage = 100 / this.range

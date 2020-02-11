@@ -4,6 +4,7 @@
     <li><input v-model="sortRemainingProp" id="sortRemaining" type="checkbox" /> <label for="sortRemaining">Sort by remaining amount</label></li>
     <li><input v-model="columnHoverEffectProp" id="columnHoverEffect" type="checkbox" /> <label for="columnHoverEffect">Show column hover effect</label></li>
     <li><input v-model="cellHoverEffectProp" id="cellHoverEffect" type="checkbox" /> <label for="cellHoverEffect">Show cell hover effect</label></li>
+    <li><input v-model="displayURLProp" id="displayURL" type="checkbox" /> <label for="displayURL">Show filter in URL</label></li>
   </ul>
 </template>
 
@@ -17,7 +18,8 @@
         filterEmpty: state => get(state, 'options.filterEmpty', false),
         sortRemaining: state => get(state, 'options.sortRemaining', false),
         columnHoverEffect: state => get(state, 'options.columnHoverEffect', false),
-        cellHoverEffect: state => get(state, 'options.cellHoverEffect', false)
+        cellHoverEffect: state => get(state, 'options.cellHoverEffect', false),
+        displayURL: state => get(state, 'options.displayURL', false)
       }),
       optionsFilterProp: {
         get () {
@@ -50,6 +52,14 @@
         set (value) {
           this.setCellHoverEffect({ value })
         }
+      },
+      displayURLProp: {
+        get () {
+          return this.displayURL
+        },
+        set (value) {
+          this.setDisplayURL(value)
+        }
       }
     },
     methods: {
@@ -57,7 +67,8 @@
         'setFilterEmpty',
         'setSortRemaining',
         'setColumnHoverEffect',
-        'setCellHoverEffect'
+        'setCellHoverEffect',
+        'setDisplayURL'
       ])
     }
   }

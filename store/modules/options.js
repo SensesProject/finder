@@ -1,12 +1,9 @@
-// FilterEmpty: Hide empty options
-// SortRemaining: Sort by remaining amount
-// columnHoverEffect: Trigger effect when hovering a column
-
 const state = () => ({
-  filterEmpty: false,
-  sortRemaining: false,
-  columnHoverEffect: false,
-  cellHoverEffect: false
+  filterEmpty: false, // Hide empty options
+  sortRemaining: false, // Sort by remaining amount
+  columnHoverEffect: false, // Trigger effect when hovering a column
+  cellHoverEffect: false, // Trigger effect when hovering a cell
+  displayURL: false // Should the url change according to the filter
 })
 
 const mutations = {
@@ -21,6 +18,9 @@ const mutations = {
   },
   SET_CELL_HOVER_EFFECT (state, { value }) {
     state.cellHoverEffect = value
+  },
+  SET_DISPLAY_URL (state, value) {
+    state.displayURL = value
   }
 }
 
@@ -42,6 +42,9 @@ const actions = {
     if (!value) {
       commit('RESET_HOVER_VALUE')
     }
+  },
+  setDisplayURL ({ commit }, value) {
+    commit('SET_DISPLAY_URL', value)
   }
 }
 

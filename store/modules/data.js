@@ -17,14 +17,17 @@ const state = () => ({
 })
 
 const getters = {
+  // Datum contains all relevant data. It loops over all data rows
+  // and builds each object based on the facets
   datum: (state, getters, rootState) => {
     const facets = get(rootState, 'facets.facets', [])
     return map(state.data, datum => {
       // Rebuild the data structure. Build an object from the data array
       return fromPairs(map(facets, facet => {
-        const key = facet.key
+        const { id, key } = facet
         const values = get(datum, key, false)
-        // console.log(values, facet.key, datum)
+
+        // The label can be different. It’s based on the type of the column
         let label = values
         if (facet.type === 'Facet' || facet.type === 'Search') {
           if (!label) {
@@ -38,8 +41,7 @@ const getters = {
           label = round(label, facet.precision || 0)
         }
 
-        const lower = lowerCase(label)
-
+        // Build the popover properties
         const popover = get(facet, 'popover.url', false) // Checks if column has a popover
         let popoverID // ID used for the url to request information displayed in popover
         let popoverKey
@@ -50,34 +52,36 @@ const getters = {
         }
 
         const obj = {
+          id,
           key,
           values,
           label,
-          lower,
+          lower: lowerCase(label), // This is used for the search facet
           popover,
           popoverID,
           popoverKey
         }
-        return [facet.key, obj]
+        return [facet.id, obj]
       }))
     })
   },
+  // This lists all options for every facet and how often they occure in datum
   options: (state, getters, rootState) => {
     const facets = get(rootState, 'facets.facets', [])
     const visibleFacets = rootState.facets.visibleFacets
 
     return compact(facets.map(facet => {
-      if (!includes(visibleFacets, facet.key)) {
+      const { id } = facet
+      if (!includes(visibleFacets, id)) {
         return false
       }
 
-      const { key } = facet
-      // Count all options for that facet (respectively key)
+      // Count all options for that facet (respectively id)
       const options = countBy(getters.datum.map(item => {
-        return get(item, [key, 'label'])
+        return get(item, [id, 'label'])
       }))
       const values = compact(getters.datum.map(item => {
-        return get(item, [key, 'values'])
+        return get(item, [id, 'values'])
       }))
       return {
         ...facet,
@@ -86,43 +90,42 @@ const getters = {
       }
     }))
   },
-  process: state => {
-    return countBy(state.data.map(item => item['process']))
-  },
+  // This is the list of times filtered by the applied filters
   result: (state, getters, rootState) => {
     let result = getters.datum
     const filter = get(rootState, 'filter.filter', [])
+    // Loop over every filter
     filter.forEach(filta => {
-      // Prepare filter options before loop
-      const low = get(filta, 'values[0].low', -Infinity)
-      const high = get(filta, 'values[0].high', Infinity)
-      // Prepare term before loop
       let term
       if (filta.type === 'term') {
         term = lowerCase(filta.values)
       }
+      // Filter the list of results with every loop
       result = result.filter(item => {
         let retVal = true
         if (filta.type === 'term') { // Facet is search term
           retVal = item[filta.key].lower.includes(term)
         } else if (filta.type === 'key-value') {
-          const label = get(item[filta.key], 'label')
+          const label = get(item[filta.id], 'label')
           retVal = label ? indexOf(filta.values, label) > -1 : true
         } else if (filta.type === 'range') {
           // TODO: Does not include end
-          retVal = inRange(item[filta.key].label, low, high)
+          const low = get(filta, 'values[0].low', -Infinity)
+          const high = get(filta, 'values[0].high', Infinity)
+          retVal = inRange(item[filta.id].label, low, high)
         }
         return filta.invert ? !retVal : retVal
       })
     })
     return result
   },
+  // This is a list of options and how often they occure in the result list
   counter: (state, getters, rootState) => {
     const facets = get(rootState, 'facets.facets', [])
     const values = facets.map(facet => {
-      const { key } = facet
-      const options = countBy(flatten(getters.result.map(item => item[key].label)))
-      return [key, options]
+      const { id } = facet
+      const options = countBy(flatten(getters.result.map(item => get(item, [id, 'label']))))
+      return [id, options]
     })
     return fromPairs(values)
   }

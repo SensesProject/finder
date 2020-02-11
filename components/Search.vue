@@ -1,13 +1,13 @@
 <template>
   <section
     class="facet"
-    @mouseenter="setHoverKey({ key: ki })"
+    @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
     <header>
       <section>
         <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetSearch()" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -27,7 +27,7 @@
   import { isUndefined, find, get, size, trim } from 'lodash'
 
   export default {
-    props: ['title', 'values', 'ki', 'options', 'tooltip'],
+    props: ['title', 'values', 'id', 'options', 'tooltip'],
     data: function () {
       return {
         term: ''
@@ -41,7 +41,7 @@
         'filter'
       ]),
       isInvert () {
-        const keys = find(this.filter, ['key', this.ki])
+        const keys = find(this.filter, ['id', this.id])
         return isUndefined(keys) ? false : keys.invert
       },
       isActive () {
@@ -58,7 +58,7 @@
           const value = trim(input)
           this.term = value
           if (value.length) {
-            this.setFilter({ key: this.ki, value: value, type: 'term' })
+            this.setFilter({ id: this.id, value: value })
           } else {
             this.resetSearch()
           }
@@ -75,7 +75,7 @@
       ]),
       resetSearch: function () {
         this.term = ''
-        this.resetFilter(this.ki)
+        this.resetFilter(this.id)
       }
     }
   }

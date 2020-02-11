@@ -14,8 +14,6 @@
 
 <script>
   import Wrapper from '~/components/Wrapper.vue'
-  import { get } from 'lodash'
-  import { mapActions } from 'vuex'
 
   export default {
     data: function () {
@@ -328,14 +326,6 @@
           'type': 'Histogram'
         }]
       }
-    },
-    methods: {
-      ...mapActions([
-        'initFilter'
-      ])
-    },
-    mounted () {
-      this.initFilter(get(this.$route, 'query', {}))
     },
     components: {
       Wrapper

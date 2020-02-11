@@ -1,13 +1,13 @@
 <template>
   <section
     class="facet"
-    @mouseenter="setHoverKey({ key: ki })"
+    @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
     <header>
       <section>
         <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFilter(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetSearch()" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -68,7 +68,7 @@
   import { isUndefined, find, get, size, map, maxBy, flatten, compact, inRange } from 'lodash'
 
   export default {
-    props: ['title', 'values', 'ki', 'options', 'tooltip'],
+    props: ['title', 'values', 'id', 'options', 'tooltip'],
     data: function () {
       return {
         isActive: false,
@@ -90,7 +90,7 @@
         'filter'
       ]),
       isInvert () {
-        const keys = find(this.filter, ['key', this.ki])
+        const keys = find(this.filter, ['id', this.id])
         return isUndefined(keys) ? false : keys.invert
       },
       number () {
@@ -158,12 +158,11 @@
         const low = this.scaleBins.invert(newRect.top)
         const high = this.scaleBins.invert(newRect.top + newRect.height)
         this.setFilter({
-          key: this.ki,
+          id: this.id,
           value: {
             low,
             high
-          },
-          type: 'range'
+          }
         })
         this.brushing.low = low
         this.brushing.high = high

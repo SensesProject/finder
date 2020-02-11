@@ -28,7 +28,7 @@
             <section>
               <i
                 class="option icon-filter clickable"
-                @click="setFilter({ key: cell.key, value: cell.label, type: 'key-value' })"
+                @click="setFilter({ key: cell.key, value: cell.label })"
                 v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
@@ -79,25 +79,25 @@
         return [currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage]
       },
       items () {
-        const facetKeys = map(this.facets, 'key')
+        const facetIDs = map(this.facets, 'id')
         return map(this.result, item => {
           // For each row: build an array of values based on the visible headers
-          const cells = compact(map(facetKeys, key => {
-            return includes(this.visibleFacets, key) ? get(item, key) : false
+          const cells = compact(map(facetIDs, id => {
+            return includes(this.visibleFacets, id) ? get(item, id) : false
           }))
 
           const hover = get(this, 'hoverValue', false)
-          const key = get(this, 'hoverValue.key', undefined)
+          const id = get(this, 'hoverValue.id', undefined)
           const value = get(this, 'hoverValue.value', undefined)
 
           let active = false // By default, the cell is not highlighted
-          if (hover && !isUndefined(key) && !isUndefined(value)) { // Check if hover is defined and if key and value is defined. The key defines the hovered column and value the (to be) highlighted value in this column
-            if (isArray(item[key])) { // If multiple keys are hovered
-              if (indexOf(item[key], value) >= 0) {
+          if (hover && !isUndefined(id) && !isUndefined(value)) { // Check if hover is defined and if id and value is defined. The id defines the hovered column and value the (to be) highlighted value in this column
+            if (isArray(item[id])) { // If multiple ids are hovered
+              if (indexOf(item[id], value) >= 0) {
                 active = true
               }
-            } else { // If a single key is hovered
-              if (item[key].label === value) {
+            } else { // If a single id is hovered
+              if (item[id].label === value) {
                 active = true
               }
             }

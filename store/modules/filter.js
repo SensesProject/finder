@@ -1,102 +1,117 @@
-import { reject, clone, find, pull, isUndefined, get, forEach, isArray } from 'lodash'
+import { reject, clone, find, pull, isUndefined, get, forEach, isArray, set, map, fromPairs } from 'lodash'
 
 const state = () => ({
   filter: []
 })
 
+const getters = {
+  url: (state, getters, rootState) => {
+    return fromPairs(map(state.filter, filter => {
+      return [filter.id, filter.values.join('|')]
+    }))
+    // console.log(state.filter)
+    // return map(state.filter, filter => {
+    //   return [filter.id, filter.values.join('|')].join('=')
+    // }).join('&')
+  }
+}
+
 const mutations = {
   RESET_FILTERS (state) {
     // Resets all filter
-    state.filter = []
+    set(state, 'filter', [])
   },
-  RESET_FILTER (state, key) {
+  RESET_FILTER (state, id) {
     // Reset a single filter
-    // console.log('RESET_FILTER', key)
-    state.filter = reject(state.filter, ['key', key])
+    // console.log('RESET_FILTER', id)
+    state.filter = reject(state.filter, ['id', id])
   },
-  SET_FILTER (state, { key, value, type }) {
-    // console.log('SET_FILTER', key, value)
-    if (!isUndefined(type) && !isUndefined(key) && !isUndefined(value)) {
+  SET_FILTER (state, { id, value, type, key }) {
+    // This initiates a filter for one column/key
+    // The column is filtered by items in values
+    if (!isUndefined(type) && !isUndefined(id) && !isUndefined(value) && !isUndefined(key)) {
       const filter = clone(state.filter)
       filter.push({
-        key,
+        id,
         'values': isArray(value) ? value : [value],
         'invert': false,
-        type
+        type,
+        key
       })
       state.filter = filter
     }
   },
-  ADD_FILTER (state, { key, value }) {
-    // console.log('SET_FILTER', key, value)
+  ADD_FILTER (state, { id, value }) {
+    // This adds a value to an existing filter
     const filter = clone(state.filter)
-    const facet = find(filter, ['key', key])
+    const facet = find(filter, ['id', id])
     facet.values.push(value)
     state.filter = filter
   },
-  INVERT_FILTER (state, { key }) {
-    // console.log('SET_FILTER', key, value)
+  INVERT_FILTER (state, { id }) {
     const filter = clone(state.filter)
-    const facet = find(filter, ['key', key])
+    const facet = find(filter, ['id', id])
     facet.invert = !facet.invert
     state.filter = filter
   },
-  REMOVE_FILTER (state, { key, value }) {
-    // console.log('SET_FILTER', key, value)
+  REMOVE_FILTER (state, { id, value }) {
     const filter = clone(state.filter)
-    const facet = find(filter, ['key', key])
+    const facet = find(filter, ['id', id])
     pull(facet.values, value)
     if (facet.values.length === 0) {
-      state.filter = reject(state.filter, ['key', key])
+      state.filter = reject(state.filter, ['id', id])
     } else {
       state.filter = filter
     }
-    // console.log(filter)
   }
+}
+
+const TYPES = {
+  'Facet': 'key-value',
+  'Search': 'term',
+  'Histogram': 'range'
 }
 
 const actions = {
   resetFilters ({ commit }) {
     commit('RESET_FILTERS')
   },
-  resetFilter ({ commit }, key) {
+  resetFilter ({ commit }, id) {
     // console.log('resetFilter')
-    commit('RESET_FILTER', key)
+    commit('RESET_FILTER', id)
   },
-  setFilter ({ commit }, { key, value, type }) {
-    commit('RESET_FILTER', key)
-    commit('SET_FILTER', { key, value, type })
-  },
-  addFilter ({ commit }, { key, value }) {
-    // console.log('addFilter', key, value)
-    commit('ADD_FILTER', { key, value })
-  },
-  removeFilter ({ commit }, { key, value }) {
-    // console.log('removeFilter', key, value)
-    commit('REMOVE_FILTER', { key, value })
-  },
-  invertFilter ({ commit }, key) {
-    // console.log('invertFilter', key)
-    commit('INVERT_FILTER', { key })
-  },
-  initFilter ({ dispatch, rootState }, query) {
-    const types = {
-      'Facet': 'key-value',
-      'Search': 'term',
-      'Histogram': 'range'
+  setFilter ({ commit, rootState }, { id, value }) {
+    const facets = get(rootState, ['facets', 'facets'])
+    const facet = find(facets, { id })
+    const type = get(TYPES, get(facet, 'type')) // The type of the filter (range, key-value, term)
+    const key = get(facet, 'key') // The »address« of the value
+    if (!isUndefined(type) && !isUndefined(id) && !isUndefined(value) && !isUndefined(key)) {
+      commit('RESET_FILTER', id)
+      commit('SET_FILTER', { id, value, type, key })
     }
-    const facets = get(rootState, ['facets', 'facets'], [])
-    forEach(query, (value, key) => {
-      const facet = find(facets, { id: key })
-      const type = get(types, get(facet, 'type'), false)
-      const ki = get(facet, 'key')
-      dispatch('setFilter', { key: ki, value: value.split('|'), type })
+  },
+  addFilter ({ commit }, { id, value }) {
+    // console.log('addFilter', id, value)
+    commit('ADD_FILTER', { id, value })
+  },
+  removeFilter ({ commit }, { id, value }) {
+    // console.log('removeFilter', id, value)
+    commit('REMOVE_FILTER', { id, value })
+  },
+  invertFilter ({ commit }, id) {
+    // console.log('invertFilter', id)
+    commit('INVERT_FILTER', { id })
+  },
+  initFilter ({ dispatch }, query) {
+    forEach(query, (value, id) => {
+      dispatch('setFilter', { id, value: value.split('|') })
     })
   }
 }
 
 export default {
   state,
+  getters,
   mutations,
   actions
 }

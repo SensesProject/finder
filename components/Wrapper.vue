@@ -16,7 +16,7 @@
           :title="option.label"
           :options="option.options"
           :values="option.values"
-          :ki="option.key"
+          :id="option.id"
           :key="option.key" />
       </div>
     </nav>
@@ -29,6 +29,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
+  import { get, size, map, kebabCase, isEqual } from 'lodash'
   import Aside from '~/components/Aside.vue'
   import Popover from '~/components/Popover.vue'
   import Table from '~/components/Table.vue'
@@ -45,8 +46,12 @@
       ...mapState([
         'data'
       ]),
+      ...mapState({
+        displayURL: state => get(state, 'options.displayURL', false)
+      }),
       ...mapGetters([
-        'options'
+        'options',
+        'url'
       ])
     },
     methods: {
@@ -54,8 +59,22 @@
         'setFacets',
         'setUrlData',
         'setUrlAuth',
-        'setID'
-      ])
+        'setID',
+        'initFilter'
+      ]),
+      changeURL () {
+        const { displayURL, url } = this
+        let query
+        if (displayURL) {
+          query = url
+        } else {
+          query = {}
+        }
+        const current = get(this.$route, 'query', {})
+        if (!isEqual(current, query)) {
+          this.$router.replace({ query: query })
+        }
+      }
     },
     components: {
       Aside,
@@ -72,7 +91,26 @@
       if (this.urlAuth) {
         this.setUrlAuth(this.urlAuth)
       }
-      this.setFacets(this.facets)
+      this.setFacets(map(this.facets, facet => {
+        return {
+          ...facet,
+          id: kebabCase(get(facet, 'label')) // Used for the url
+        }
+      }))
+      const query = get(this.$route, 'query', {})
+      if (size(query)) {
+        this.$router.replace({ params: {} })
+        this.initFilter(query)
+      }
+    },
+    watch: {
+      // whenever question changes, this function will run
+      url () {
+        this.changeURL()
+      },
+      displayURL () {
+        this.changeURL()
+      }
     }
   }
 </script>

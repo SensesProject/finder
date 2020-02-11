@@ -1,13 +1,13 @@
 <template>
   <section
     class="facet"
-    @mouseenter="setHoverKey({ key: ki })"
+    @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
     <header>
       <section>
         <h3 :class="{ active: isActive }">{{ title }}</h3>
         <aside v-if="isActive">
-          <span @click="invertFacet(ki)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
+          <span @click="invertFacet(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
           <span @click="resetSearch()" class="reset tag clickable">Reset</span>
         </aside>
       </section>
@@ -86,7 +86,7 @@
   const f = format('.0%')
 
   export default {
-    props: ['title', 'values', 'ki', 'options'],
+    props: ['title', 'values', 'id', 'options'],
     data: function () {
       const r = 1.7
       return {
@@ -110,7 +110,7 @@
         'filter'
       ]),
       isInvert () {
-        const keys = find(this.filter, ['key', this.ki])
+        const keys = find(this.filter, ['id', this.id])
         return isUndefined(keys) ? false : keys.invert
       },
       number () {
@@ -193,7 +193,7 @@
       ]),
       resetSearch: function () {
         this.term = ''
-        this.resetFacet(this.ki)
+        this.resetFacet(this.id)
       }
     }
   }
