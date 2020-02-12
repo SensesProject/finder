@@ -1,5 +1,6 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
-import { compact, get, map } from 'lodash'
+import { compact, get, map, set, forEach, kebabCase } from 'lodash'
+import axios from 'axios'
 
 // A list of possible facts it set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
@@ -7,6 +8,28 @@ const state = () => ({
   facets: [],
   visibleFacets: []
 })
+
+const KEYS = ['key', 'label', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
+
+function extractFromGoogleTable (data) {
+  return map(get(data, ['feed', 'entry']), entry => {
+    const obj = {}
+    forEach(KEYS, key => {
+      let value = get(entry, [`gsx$${key}`, '$t'])
+      switch (value) {
+        case 'TRUE':
+          value = true
+          break
+        case 'FALSE':
+          value = false
+          break
+      }
+      set(obj, key, value)
+    })
+    set(obj, 'id', kebabCase(get(entry, [`gsx$label`, '$t'])))
+    return obj
+  })
+}
 
 const mutations = {
   SET_FACETS (state, facets) {
@@ -32,6 +55,15 @@ const actions = {
     }))
     commit('SET_FACETS', facets)
     commit('SET_VISIBLE_FACETS', visibleFacets)
+  },
+  loadFacets ({ commit, state, dispatch }, url) {
+    axios.get(url)
+      .then((response) => {
+        dispatch('setFacets', extractFromGoogleTable(response.data))
+      })
+      .catch((error) => {
+        console.error('error', error)
+      })
   }
 }
 

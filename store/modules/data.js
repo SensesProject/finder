@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { includes, compact, get, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange, set } from 'lodash'
+import { includes, compact, get, isBoolean, replace, forEach, startsWith, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange, set, keys } from 'lodash'
 import { format } from 'timeago.js'
 
 const STATUS_IDLE = 'IDLE'
@@ -13,7 +13,8 @@ const state = () => ({
   status: STATUS_IDLE,
   message: false,
   date: false,
-  url: false
+  url: false,
+  isGoogleSheet: false
 })
 
 const getters = {
@@ -30,12 +31,16 @@ const getters = {
         // The label can be different. It’s based on the type of the column
         let label = values
         if (facet.type === 'Facet' || facet.type === 'Search') {
-          if (!label) {
-            label = '—'
+          if (isBoolean(label)) {
+            label = label ? 'Yes' : 'No'
           } else {
-            label = label
-              .replace(/[_-]/g, ' ')
-              .replace(/1p5/g, '1.5')
+            if (!label) {
+              label = '—'
+            } else {
+              label = label
+                .replace(/[_-]/g, ' ')
+                .replace(/1p5/g, '1.5')
+            }
           }
         } else if (facet.type === 'Histogram' || facet.type === 'Scatterplot') {
           label = round(label, facet.precision || 0)
@@ -135,6 +140,9 @@ const mutations = {
   SET_URL_DATA (state, url) {
     state.url = url
   },
+  SET_IS_GOOGLE_SHEET (state, value) {
+    state.isGoogleSheet = value
+  },
   API_DATA (state, { status, message, data }) {
     state.status = status
     if (!isUndefined(message)) {
@@ -147,7 +155,32 @@ const mutations = {
   }
 }
 
+function extractFromGoogleTable (data) {
+  return map(get(data, ['feed', 'entry']), entry => {
+    const obj = {}
+    forEach(keys(entry), key => {
+      if (startsWith(key, 'gsx$')) {
+        const path = replace(key, 'gsx$', '')
+        let value = get(entry, [key, '$t'])
+        switch (value) {
+          case 'TRUE':
+            value = true
+            break
+          case 'FALSE':
+            value = false
+            break
+        }
+        set(obj, path, value)
+      }
+    })
+    return obj
+  })
+}
+
 const actions = {
+  setIsGoogleSheet ({ commit }, value) {
+    commit('SET_IS_GOOGLE_SHEET', value)
+  },
   setUrlData ({ commit }, url) {
     commit('SET_URL_DATA', url)
   },
@@ -179,8 +212,13 @@ const actions = {
         .then(response => {
           const { data } = response
           console.log('Loading successfull')
+          console.log(state.isGoogleSheet)
+          let datum = data
+          if (state.isGoogleSheet) {
+            datum = extractFromGoogleTable(data)
+          }
           console.log(data)
-          commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: data })
+          commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
         })
         .catch(error => {
           console.log('Loading failed', { error, isLoop })

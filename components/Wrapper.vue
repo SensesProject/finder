@@ -29,7 +29,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { get, size, map, kebabCase, isEqual } from 'lodash'
+  import { get, size, isEqual } from 'lodash'
   import Aside from '~/components/Aside.vue'
   import Popover from '~/components/Popover.vue'
   import Table from '~/components/Table.vue'
@@ -41,7 +41,32 @@
   import Search from '~/components/Search.vue'
 
   export default {
-    props: ['title', 'subtitle', 'facets', 'urlData', 'urlAuth', 'id'],
+    props: {
+      title: {
+        type: String,
+        default: 'Finder'
+      },
+      subtitle: {
+        type: String,
+        default: 'Senses Finder Tool'
+      },
+      urlData: {
+        type: String
+      },
+      urlAuth: {
+        type: String
+      },
+      id: {
+        type: String
+      },
+      facetsURL: {
+        type: String
+      },
+      isGoogleSheet: {
+        type: Boolean,
+        default: false
+      }
+    },
     computed: {
       ...mapState([
         'data'
@@ -60,7 +85,9 @@
         'setUrlData',
         'setUrlAuth',
         'setID',
-        'initFilter'
+        'initFilter',
+        'loadFacets',
+        'setIsGoogleSheet'
       ]),
       changeURL () {
         const { displayURL, url } = this
@@ -86,17 +113,19 @@
       Scatterplot
     },
     created: function () {
+      this.loadFacets(this.facetsURL)
+      this.setIsGoogleSheet(this.isGoogleSheet)
       this.setID(this.id)
       this.setUrlData(this.urlData)
       if (this.urlAuth) {
         this.setUrlAuth(this.urlAuth)
       }
-      this.setFacets(map(this.facets, facet => {
-        return {
-          ...facet,
-          id: kebabCase(get(facet, 'label')) // Used for the url
-        }
-      }))
+      // this.setFacets(map(this.facets, facet => {
+      //   return {
+      //     ...facet,
+      //     id: kebabCase(get(facet, 'label')) // Used for the url
+      //   }
+      // }))
       const query = get(this.$route, 'query', {})
       if (size(query)) {
         this.$router.replace({ params: {} })

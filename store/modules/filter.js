@@ -9,10 +9,6 @@ const getters = {
     return fromPairs(map(state.filter, filter => {
       return [filter.id, filter.values.join('|')]
     }))
-    // console.log(state.filter)
-    // return map(state.filter, filter => {
-    //   return [filter.id, filter.values.join('|')].join('=')
-    // }).join('&')
   }
 }
 
