@@ -98,8 +98,8 @@ const actions = {
     // console.log('invertFilter', id)
     commit('INVERT_FILTER', { id })
   },
-  initFilter ({ dispatch }, query) {
-    forEach(query, (value, id) => {
+  initFilter ({ dispatch }, initFilter) {
+    forEach(initFilter, (value, id) => {
       dispatch('setFilter', { id, value: value.split('|') })
     })
   }

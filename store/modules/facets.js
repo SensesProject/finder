@@ -56,10 +56,11 @@ const actions = {
     commit('SET_FACETS', facets)
     commit('SET_VISIBLE_FACETS', visibleFacets)
   },
-  loadFacets ({ commit, state, dispatch }, url) {
+  loadFacets ({ commit, state, dispatch }, { url, initFilter }) {
     axios.get(url)
       .then((response) => {
         dispatch('setFacets', extractFromGoogleTable(response.data))
+        dispatch('initFilter', initFilter)
       })
       .catch((error) => {
         console.error('error', error)

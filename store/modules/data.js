@@ -212,12 +212,10 @@ const actions = {
         .then(response => {
           const { data } = response
           console.log('Loading successfull')
-          console.log(state.isGoogleSheet)
           let datum = data
           if (state.isGoogleSheet) {
             datum = extractFromGoogleTable(data)
           }
-          console.log(data)
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
         })
         .catch(error => {

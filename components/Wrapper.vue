@@ -113,7 +113,12 @@
       Scatterplot
     },
     created: function () {
-      this.loadFacets(this.facetsURL)
+      const initFilter = get(this.$route, 'query', {})
+      if (size(initFilter)) {
+        this.$router.replace({ params: {} })
+        // this.initFilter(initFilter)
+      }
+      this.loadFacets({ url: this.facetsURL, initFilter })
       this.setIsGoogleSheet(this.isGoogleSheet)
       this.setID(this.id)
       this.setUrlData(this.urlData)
@@ -126,11 +131,6 @@
       //     id: kebabCase(get(facet, 'label')) // Used for the url
       //   }
       // }))
-      const query = get(this.$route, 'query', {})
-      if (size(query)) {
-        this.$router.replace({ params: {} })
-        this.initFilter(query)
-      }
     },
     watch: {
       // whenever question changes, this function will run
