@@ -87,7 +87,9 @@
         'setID',
         'initFilter',
         'loadFacets',
-        'setIsGoogleSheet'
+        'setIsGoogleSheet',
+        'setUrlFacets',
+        'setInitFilter'
       ]),
       changeURL () {
         const { displayURL, url } = this
@@ -118,7 +120,8 @@
         this.$router.replace({ params: {} })
         // this.initFilter(initFilter)
       }
-      this.loadFacets({ url: this.facetsURL, initFilter })
+      this.setInitFilter(initFilter)
+      this.setUrlFacets(this.facetsURL)
       this.setIsGoogleSheet(this.isGoogleSheet)
       this.setID(this.id)
       this.setUrlData(this.urlData)

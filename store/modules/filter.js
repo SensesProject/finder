@@ -1,7 +1,8 @@
 import { reject, clone, find, pull, isUndefined, get, forEach, isArray, set, map, fromPairs } from 'lodash'
 
 const state = () => ({
-  filter: []
+  filter: [],
+  initFilter: null
 })
 
 const getters = {
@@ -59,6 +60,9 @@ const mutations = {
     } else {
       state.filter = filter
     }
+  },
+  SET_INIT_FILTER (state, initFilter) {
+    set(state, 'initFilter', initFilter)
   }
 }
 
@@ -98,10 +102,14 @@ const actions = {
     // console.log('invertFilter', id)
     commit('INVERT_FILTER', { id })
   },
-  initFilter ({ dispatch }, initFilter) {
-    forEach(initFilter, (value, id) => {
+  setInitFilter ({ commit }, initFilter) {
+    commit('SET_INIT_FILTER', initFilter)
+  },
+  initFilter ({ dispatch, commit }) {
+    forEach(state.initFilter, (value, id) => {
       dispatch('setFilter', { id, value: value.split('|') })
     })
+    commit('SET_INIT_FILTER', null)
   }
 }
 
