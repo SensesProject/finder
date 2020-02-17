@@ -40,6 +40,7 @@ const mutations = {
     state.facets = facets
     state.date = new Date()
     console.log('new date', state.date)
+    console.log({ facets })
   },
   SET_VISIBLE_FACETS (state, visibleFacets) {
     // Set the keys of visible facts. It is triggered by setFacets in the Wrapper component
@@ -65,6 +66,7 @@ const actions = {
     commit('SET_FACETS', facets)
   },
   setInvisibleFacets ({ state, commit }) {
+    console.log('setInvisibleFacets', state.facets)
     const visibleFacets = compact(map(state.facets, facet => {
       return get(facet, 'visible', false) ? facet.id : false
     }))
@@ -76,12 +78,14 @@ const actions = {
     const lastLoad = get(state, 'date', null)
     const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
     const willReload = shouldReload ? true : isForced
-    const url = get(state, 'null', null)
+    const url = get(state, 'url', null)
+    console.log({ willReload, url })
     if (willReload && url) {
       console.log('Facets data is too old or reload is forced. Will reload data')
       axios.get(url)
         .then((response) => {
           dispatch('setFacets', extractFromGoogleTable(response.data))
+          dispatch('setInvisibleFacets')
           dispatch('initFilter')
         })
         .catch((error) => {
