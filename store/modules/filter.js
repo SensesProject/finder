@@ -105,10 +105,11 @@ const actions = {
   setInitFilter ({ commit }, initFilter) {
     commit('SET_INIT_FILTER', initFilter)
   },
-  initFilter ({ dispatch, commit }) {
+  initFilter ({ dispatch, commit, state }) {
     forEach(state.initFilter, (value, id) => {
       dispatch('setFilter', { id, value: value.split('|') })
     })
+    // Reset state.initFilter to null
     commit('SET_INIT_FILTER', null)
   }
 }
