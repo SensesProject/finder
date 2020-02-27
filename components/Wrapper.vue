@@ -6,7 +6,7 @@
           <h1>{{ title }}</h1>
           <h2>{{ subtitle }}</h2>
         </hgroup>
-        <Aside />
+        <Aside :showExplorer="showExplorer" />
       </header>
       <div class="facets">
         <component
@@ -63,6 +63,10 @@
         type: String
       },
       isGoogleSheet: {
+        type: Boolean,
+        default: false
+      },
+      showExplorer: {
         type: Boolean,
         default: false
       }
