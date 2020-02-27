@@ -118,7 +118,6 @@
       const initFilter = get(this.$route, 'query', {})
       if (size(initFilter)) {
         this.$router.replace({ params: {} })
-        // this.initFilter(initFilter)
       }
       this.setInitFilter(initFilter)
       this.setUrlFacets(this.facetsURL)
