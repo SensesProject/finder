@@ -1,6 +1,9 @@
 <template>
-  <ul class="options">
-    <li v-for="facet in facets">
+  <ul class="options" :style="{ 'grid-template-columns': `repeat(${columns.length}, 1fr)` }">
+    <li v-for="header in headers" :style="{ 'grid-column-start': header.position }">
+      <strong>{{ header.label }}</strong>
+    </li>
+    <li v-for="facet in elements" :style="{ 'grid-column-start': facet.position }">
       <input
         v-model="tempVisibleFacets"
         type="checkbox"
@@ -15,7 +18,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import { get } from 'lodash'
+  import { get, uniq, map } from 'lodash'
 
   export default {
     computed: {
@@ -30,6 +33,26 @@
         set: function (val) {
           this.setVisibleFacets(val)
         }
+      },
+      columns () {
+        return uniq(map(this.facets, 'group'))
+      },
+      headers () {
+        return map(this.columns, (column, i) => {
+          return {
+            position: i + 1,
+            label: column
+          }
+        })
+      },
+      elements () {
+        return map(this.facets, facet => {
+          const position = this.columns.indexOf(facet.group) + 1
+          return {
+            position,
+            ...facet
+          }
+        })
       }
     },
     methods: {
@@ -48,10 +71,16 @@
   }
 
   .options {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: $spacing / 4 $spacing;
+    max-width: 1000px;
+
     li {
       color: palette(grey, 10);
       font-size: $size-smallest;
-      margin-bottom: $spacing / 4;
+      align-self: start;
+      display: flex;
 
       &:last-child {
         margin-bottom: 0;
@@ -59,6 +88,12 @@
 
       input {
         margin-right: $spacing / 6;
+        margin-top: 1px;
+      }
+
+      label {
+        display: block;
+        line-height: 1.2;
       }
     }
   }

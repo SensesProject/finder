@@ -11,7 +11,7 @@ const state = () => ({
   url: null
 })
 
-const KEYS = ['key', 'label', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
+const KEYS = ['key', 'label', 'group', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
 
 function extractFromGoogleTable (data) {
   return map(get(data, ['feed', 'entry']), entry => {
@@ -36,11 +36,8 @@ function extractFromGoogleTable (data) {
 const mutations = {
   SET_FACETS (state, facets) {
     // Sets the content of the Finder. It is triggered by setFacets in the Wrapper component
-    console.log('old date', state.date)
     state.facets = facets
     state.date = new Date()
-    console.log('new date', state.date)
-    console.log({ facets })
   },
   SET_VISIBLE_FACETS (state, visibleFacets) {
     // Set the keys of visible facts. It is triggered by setFacets in the Wrapper component
