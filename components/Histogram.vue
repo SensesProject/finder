@@ -19,37 +19,43 @@
       </section>
     </header>
     <div class="vis-wrapper">
-      <ul>
-        <li
-          v-for="tick in ticks"
-          v-html="tick.label" />
-      </ul>
       <svg ref="vis" v-if="number !== 0">
         <line
           class="axis"
-          :x1="marginLeft / 2"
-          :x2="marginLeft / 2"
+          :x1="marginLeft - 5"
+          :x2="marginLeft - 5"
           :y1="scaleY.range()[0]"
           :y2="scaleY.range()[1]" />
         <rect
-          v-for="bar in bars"
-          :class="{ bar: true, isActive: bar.selected }"
+          v-for="(bar, i) in bars"
+          :class="{ bar: true, isActive: actives[i] }"
           :x="bar.x"
           :y="bar.y"
           :width="bar.width"
           :height="bar.height"
           v-tooltip="bar.tooltip" />
+        <text
+          :x="marginLeft - 10"
+          :y="yLow"
+          class="tick"
+          text-anchor="end"
+          ref="labelLow">{{ ticks.low.value }}</text>
+        <text
+          :x="marginLeft - 10"
+          :y="yHigh"
+          class="tick"
+          text-anchor="end">{{ ticks.high.value }}</text>
       </svg>
       <no-ssr>
         <VueDragResize
           v-on:resizing="resize"
-          v-on:dragging="resize"
           :isActive="true"
           :preventActiveBehavior="true"
           :parentLimitation="true"
           :parentH="height"
           :parentW="width"
-          :w="width"
+          :w="width - marginLeft"
+          :x="marginLeft"
           :h="height"
           :sticks="['tm','bm']"
           :minh="grid"
@@ -65,7 +71,7 @@
   import { histogram, extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapState, mapActions } from 'vuex'
-  import { isUndefined, find, get, size, map, maxBy, flatten, compact, inRange } from 'lodash'
+  import { isUndefined, find, get, size, map, maxBy, flatten, compact, inRange, throttle } from 'lodash'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],
@@ -75,7 +81,10 @@
         width: 220,
         height: 250,
         barsCount: 60,
-        marginLeft: 10,
+        marginLeft: 50,
+        yLow: 0,
+        yHigh: 0,
+        labelHeight: 0,
         brushing: {
           low: -Infinity,
           high: Infinity
@@ -110,6 +119,9 @@
           .thresholds(this.scaleBins.ticks(this.barsCount))
         return list(this.items)
       },
+      step () {
+        return get(this.list, ['0', 'x1']) - get(this.list, ['0', 'x0'])
+      },
       scaleX () {
         return scaleLinear()
           .range([0, this.width - this.marginLeft])
@@ -124,26 +136,45 @@
       bars () {
         return map(this.list, (item, n) => {
           // TODO: Does not include end
-          const selected = inRange(item.x0, this.brushing.low, this.brushing.high)
           return {
             x: this.marginLeft,
             y: this.scaleY(n),
             width: this.scaleX(item.length),
             height: this.scaleY.bandwidth(),
-            tooltip: `${item.x0}–${item.x1}`,
-            selected
+            tooltip: `${item.length} element${item.length === 1 ? ' is' : 's are'} between ${item.x0} and ${item.x1}`
           }
+        })
+      },
+      actives () {
+        return map(this.list, (item) => {
+          return inRange(item.x0, this.brushing.low, this.brushing.high)
         })
       },
       grid () {
         return this.height / this.list.length
       },
+      labelPlacement () {
+        return scaleLinear()
+          .range([this.labelHeight - 5, 0])
+          .domain(this.scaleBins.domain())
+      },
+      // ticks () {
+      //   return map(this.scaleBins.domain(), tick => {
+      //     return {
+      //       label: tick
+      //     }
+      //   })
+      // },
       ticks () {
-        return map(this.scaleBins.domain(), tick => {
-          return {
-            label: tick
+        const { brushing } = this
+        return {
+          low: {
+            value: brushing.low.toFixed(0)
+          },
+          high: {
+            value: brushing.high.toFixed(0)
           }
-        })
+        }
       }
     },
     methods: {
@@ -154,22 +185,53 @@
         'resetHoverKey',
         'invertFilter'
       ]),
-      resize (newRect) {
-        const low = this.scaleBins.invert(newRect.top)
-        const high = this.scaleBins.invert(newRect.top + newRect.height)
+      applyFilter: throttle(function () {
         this.setFilter({
           id: this.id,
           value: {
-            low,
-            high
+            low: this.brushing.low,
+            high: this.brushing.high
           }
         })
-        this.brushing.low = low
-        this.brushing.high = high
-      }
+      }, 500),
+      resize: throttle(function (newRect) {
+        const { step, scaleBins } = this
+        const low = newRect.top
+        const high = newRect.top + newRect.height
+        this.brushing.low = Math.ceil(scaleBins.invert(low) / step) * step
+        this.brushing.high = Math.ceil(scaleBins.invert(high) / step) * step
+        this.yLow = low + this.labelPlacement(this.brushing.low)
+        this.yHigh = high + this.labelPlacement(this.brushing.high)
+        this.applyFilter()
+      }, 100)
+    },
+    mounted () {
+      const { scaleBins } = this
+      const labelLow = get(this.$refs, 'labelLow')
+      const height = labelLow ? get(this.$refs.labelLow.getBBox(), 'height') : 0
+      this.labelHeight = height
+      const [low, high] = scaleBins.domain()
+      this.brushing.low = low
+      this.brushing.high = high
+      this.yLow = scaleBins(low) + this.labelPlacement(low)
+      this.yHigh = scaleBins(high) + this.labelPlacement(high)
     }
   }
 </script>
+
+<style lang="scss">
+.vdr {
+  pointer-events: none;
+
+  & > * {
+    pointer-events: all;
+  }
+}
+
+.vdr-stick {
+  pointer-events: all;
+}
+</style>
 
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
@@ -259,6 +321,11 @@
     line.brush {
       stroke: rgba(0, 0, 0, .2);
       cursor: ns-resize;
+    }
+
+    .tick {
+      font-size: 0.7rem;
+      fill: #494950;
     }
 
     &:hover {
