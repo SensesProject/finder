@@ -127,12 +127,6 @@
       if (this.urlAuth) {
         this.setUrlAuth(this.urlAuth)
       }
-      // this.setFacets(map(this.facets, facet => {
-      //   return {
-      //     ...facet,
-      //     id: kebabCase(get(facet, 'label')) // Used for the url
-      //   }
-      // }))
     },
     watch: {
       // whenever question changes, this function will run
