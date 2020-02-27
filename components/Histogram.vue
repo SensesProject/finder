@@ -6,9 +6,8 @@
     <header>
       <section>
         <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
-        <aside v-if="isActive">
-          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
-          <span @click="resetSearch()" class="reset tag clickable">Reset</span>
+        <aside v-if="hasAnyActiveFilter && isActive">
+          <span @click="resetHistogram" class="reset tag clickable">Reset</span>
         </aside>
       </section>
       <section>
@@ -48,6 +47,7 @@
       </svg>
       <no-ssr>
         <VueDragResize
+          ref="dragElement"
           v-on:resizing="resize"
           :isActive="true"
           :preventActiveBehavior="true"
@@ -71,7 +71,7 @@
   import { histogram, extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapState, mapActions } from 'vuex'
-  import { isUndefined, find, get, size, map, maxBy, flatten, compact, inRange, throttle } from 'lodash'
+  import { get, size, map, maxBy, flatten, compact, inRange, throttle } from 'lodash'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],
@@ -93,14 +93,11 @@
     },
     computed: {
       ...mapState({
-        status: state => get(state, 'data.status', 'ERROR')
+        status: state => get(state, 'data.status', 'ERROR'),
+        filter: state => get(state, 'filter.filter', [])
       }),
-      ...mapState([
-        'filter'
-      ]),
-      isInvert () {
-        const keys = find(this.filter, ['id', this.id])
-        return isUndefined(keys) ? false : keys.invert
+      hasAnyActiveFilter () {
+        return this.filter.length > 0
       },
       number () {
         return size(this.values)
@@ -158,13 +155,6 @@
           .range([this.labelHeight - 5, 0])
           .domain(this.scaleBins.domain())
       },
-      // ticks () {
-      //   return map(this.scaleBins.domain(), tick => {
-      //     return {
-      //       label: tick
-      //     }
-      //   })
-      // },
       ticks () {
         const { brushing } = this
         return {
@@ -185,16 +175,26 @@
         'resetHoverKey',
         'invertFilter'
       ]),
-      applyFilter: throttle(function () {
-        this.setFilter({
-          id: this.id,
-          value: {
-            low: this.brushing.low,
-            high: this.brushing.high
-          }
-        })
+      resetHistogram () {
+        this.$refs.dragElement.top = 0
+        this.$refs.dragElement.bottom = 0
+        this.resetFilter(this.id)
+        this.resize(this.$refs.dragElement, true)
+      },
+      applyFilter: throttle(function (reset) {
+        const [low, high] = this.scaleBins.domain()
+        this.isActive = this.brushing.low !== low || this.brushing.high !== high
+        if (!reset) {
+          this.setFilter({
+            id: this.id,
+            value: {
+              low: this.brushing.low,
+              high: this.brushing.high
+            }
+          })
+        }
       }, 500),
-      resize: throttle(function (newRect) {
+      resize: throttle(function (newRect, reset = false) {
         const { step, scaleBins } = this
         const low = newRect.top
         const high = newRect.top + newRect.height
@@ -202,8 +202,15 @@
         this.brushing.high = Math.ceil(scaleBins.invert(high) / step) * step
         this.yLow = low + this.labelPlacement(this.brushing.low)
         this.yHigh = high + this.labelPlacement(this.brushing.high)
-        this.applyFilter()
+        this.applyFilter(reset)
       }, 100)
+    },
+    watch: {
+      hasAnyActiveFilter (value) {
+        if (!value) {
+          this.resetHistogram()
+        }
+      }
     },
     mounted () {
       const { scaleBins } = this
