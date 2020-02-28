@@ -1,7 +1,7 @@
 <template>
   <Wrapper
     title="Co-Production Techniques"
-    subtitle="Lorem ipsum"
+    subtitle="Overview of different methods and tools for co-production objectives"
     :facetsURL="facetsURL"
     :urlData="urlData"
     :urlAuth="urlAuth"
