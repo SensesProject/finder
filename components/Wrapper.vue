@@ -187,6 +187,11 @@
       grid-column-gap: $spacing / 2;
       justify-content: space-between;
       width: calc(100vw - #{$spacing});
+
+      hgroup {
+        display: flex;
+        align-items: flex-end;
+      }
     }
 
     h1, h2, h3 {
