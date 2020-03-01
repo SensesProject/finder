@@ -12,6 +12,7 @@
         <component
           v-for="option in options"
           v-bind:is="option.type"
+          v-if="!option.system"
           :tooltip="option.tooltip"
           :title="option.label"
           :options="option.options"

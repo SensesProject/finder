@@ -2,7 +2,7 @@
 import { compact, get, map, set, forEach, kebabCase } from 'lodash'
 import axios from 'axios'
 
-// A list of possible facts it set in the Wrapper component. It is stored with all options in the facts state.
+// A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
 const state = () => ({
   facets: [],
@@ -11,7 +11,7 @@ const state = () => ({
   url: null
 })
 
-const KEYS = ['key', 'label', 'group', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
+const KEYS = ['key', 'label', 'group', 'system', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
 
 function extractFromGoogleTable (data) {
   return map(get(data, ['feed', 'entry']), entry => {
@@ -65,8 +65,10 @@ const actions = {
   setInvisibleFacets ({ state, commit }) {
     console.log('setInvisibleFacets', state.facets)
     const visibleFacets = compact(map(state.facets, facet => {
-      return get(facet, 'visible', false) ? facet.id : false
+      console.log({facet}, !get(facet, 'system', true))
+      return get(facet, 'visible', false) && !get(facet, 'system', true) ? facet.id : false
     }))
+    console.log({ visibleFacets })
     commit('SET_VISIBLE_FACETS', visibleFacets)
   },
   loadFacets ({ commit, state, dispatch }, isForced = false) {

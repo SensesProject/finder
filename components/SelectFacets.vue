@@ -18,7 +18,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import { get, uniq, map } from 'lodash'
+  import { get, uniq, map, compact } from 'lodash'
 
   export default {
     computed: {
@@ -35,7 +35,7 @@
         }
       },
       columns () {
-        return uniq(map(this.facets, 'group'))
+        return uniq(compact(map(this.facets, (facet) => { return get(facet, 'system', true) ? false : get(facet, 'group', false) })))
       },
       headers () {
         return map(this.columns, (column, i) => {
@@ -46,13 +46,14 @@
         })
       },
       elements () {
-        return map(this.facets, facet => {
+        return compact(map(this.facets, facet => {
+          if (get(facet, 'system', true)) return false
           const position = this.columns.indexOf(facet.group) + 1
           return {
             position,
             ...facet
           }
-        })
+        }))
       }
     },
     methods: {

@@ -4,10 +4,10 @@
 
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import { get } from 'lodash'
+  import { get, map, compact } from 'lodash'
 
-  const APP_NAME = 'IXSE_SENSES'
-  const AUTH_API = 'https://data.fonfon.at/auth-server-api'
+  const APP_NAME = 'IXSE_TEST_PUBLIC'
+  const AUTH_API = 'https://db1.ene.iiasa.ac.at/EneAuth'
 
   const asJson = response => response.json()
 
@@ -17,7 +17,7 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username, password, application: APP_NAME })
+      body: JSON.stringify({username, password, application: APP_NAME})
     }).then(asJson)
   }
 
@@ -40,71 +40,54 @@
     }).then(asJson)
   }
 
-  const workspaceTemplate = {
-    'name': 'Demo',
-    'description': 'Demo workspace',
-    'panels': [
-      {
-        'id': 1,
-        'selection': null,
-        'options': {
-          'name': 'New panel',
-          'description': '',
-          'showAs': 'text',
-          'size': 'half',
-          'markdown': '# Demo workspace\n\nThis workspace is created for demo purposes.'
-        }
-      },
-      {
-        'id': 2,
-        'selection': {
-          'metadata': [],
-          'models': [
-            1
-          ],
-          'scenarios': [
-            3,
-            6
-          ],
-          'runs': [
-            3,
-            6
-          ],
-          'ranges': {
-            'years': [
-              2023,
-              2076
-            ]
-          },
-          'characteristics': {
-            'parameters': [],
-            'variables': [],
-            'timeseries': [
-              32
-            ]
-          },
-          'regions': [
-            0
-          ],
-          'units': [],
-          'minMaxTimeseries': [
-            32
-          ],
-          'scales': null
+  function generateTemplate (url, runs) {
+    return {
+      'name': 'Senses Scenario Finder Workspace',
+      'description': 'Workspace created by the Senses Scenario Finder selection',
+      'panels': [
+        {
+          'id': 1,
+          'selection': null,
+          'options': {
+            'name': 'Introduction',
+            'description': '',
+            'showAs': 'text',
+            'size': 'half',
+            'markdown': `# Senses Scenario Finder workspace\n\nFind the selection of scenarios at [${url}](${url})`
+          }
         },
-        'options': {
-          'name': 'Chart panel',
-          'description': '',
-          'showAs': 'chart-line',
-          'size': 'half',
-          'stackedCharts': false,
-          'crossPanelLinking': [],
-          'showSelectedOnly': null
+        {
+          'id': 2,
+          'selection': {
+            'metadata': [],
+            'runs': runs,
+            'ranges': {
+              'years': [2023, 2076]
+            },
+            'characteristics': {
+              'parameters': [],
+              'variables': [],
+              'timeseries': [1]
+            },
+            'regions': [0],
+            'units': [],
+            'minMaxTimeseries': [1],
+            'scales': null
+          },
+          'options': {
+            'name': 'Chart panel',
+            'description': '',
+            'showAs': 'chart-line',
+            'size': 'half',
+            'stackedCharts': false,
+            'crossPanelLinking': [],
+            'showSelectedOnly': null
+          }
         }
-      }
-    ],
-    'publishType': 'UNLISTED',
-    'hasPreview': true
+      ],
+      'publishType': 'UNLISTED',
+      'hasPreview': true
+    }
   }
 
   export default {
@@ -125,23 +108,28 @@
         console.log(this.result)
         console.log(this.data)
         console.log(this.datum)
-        console.log(workspaceTemplate)
         this.onCreate()
       },
       async onCreate () {
-        const username = 'scenario-finder'
-        const password = 'g2qo@mBB!uPXsmwVAzJ-'
-        if (!username || !password) return
-        const authToken = await login(username, password)
-        // console.log({authToken})
-        const config = await getAppConfig(authToken, APP_NAME)
-        const baseUrl = config.find(e => e.path === 'baseUrl').value
-        // console.log({config})
-        const workspace = await createWorkspace(baseUrl, authToken, workspaceTemplate)
-        // console.log({workspace})
-        const shareUrl = `https://data.fonfon.at/scenario-explorer//#/workspaces/share/${workspace.accessToken}`
-        if (confirm(`Open ${shareUrl}`)) {
-          window.open(shareUrl, 'blank')
+        console.log(this.result)
+        const runs = compact(map(this.result, run => {
+          return get(run, ['run-id', 'values'], false)
+        }))
+        if (runs.length) {
+          console.log({ runs })
+          const username = 'scenario-finder'
+          const password = 'g2qo@mBB!uPXsmwVAzJ-'
+          if (!username || !password) return
+          const authToken = await login(username, password)
+          const config = await getAppConfig(authToken, APP_NAME)
+          const baseUrl = config.find(e => e.path === 'baseUrl').value
+          const uiUrl = config.find(e => e.path === 'uiUrl').value
+
+          const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(this.url, runs))
+          const shareUrl = `${uiUrl}/#/workspaces/share/${workspace.accessToken}`
+          if (confirm(`Open  ${shareUrl}`)) {
+            window.open(shareUrl, 'blank')
+          }
         }
       }
     }

@@ -6,7 +6,7 @@
     :urlData="urlData"
     :urlAuth="urlAuth"
     :id="id"
-    :showExplorer="false">
+    :showExplorer="true">
     <template v-slot:reference>
       <h1>Reference</h1><p>Daniel Huppmann, Elmar Kriegler, Volker Krey, Keywan Riahi, Joeri Rogelj, Steven K. Rose, John Weyant, et al.<br />IAMC 1.5°C Scenario Explorer and Data hosted by IIASA.<br />Integrated Assessment Modeling Consortium & International Institute for Applied Systems Analysis, 2018.<br />doi: 10.22022/SR15/08-2018.15429 | url: data.ene.iiasa.ac.at/iamc-1.5c-explorer</p>
     </template>
