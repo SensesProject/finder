@@ -80,14 +80,27 @@
   @import "~@/assets/style/variables";
 
   aside {
-    display: flex;
+    display: grid;
     max-height: 40px;
     overflow-y: hidden;
+    grid-auto-flow: column;
+    grid-column-gap: $spacing / 6;
+
+    @include media-query($narrow) {
+      grid-column-gap: $spacing / 4;
+    }
+
+    @include media-query($medium) {
+      grid-column-gap: $spacing / 6;
+    }
+
+    @include media-query($wide) {
+      grid-column-gap: $spacing / 2;
+    }
 
     & > * {
       display: inline-block;
       text-align: center;
-      margin: 0 $spacing / 2;
 
       &.counter {
         min-width: 120px;

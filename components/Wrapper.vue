@@ -183,15 +183,24 @@
     .header {
       display: grid;
       grid-auto-flow: column;
-      grid-template-columns: $column-width * 3 auto;
+      grid-template-columns: auto auto;
       align-items: center;
       grid-column-gap: $spacing / 2;
       justify-content: space-between;
       width: calc(100vw - #{$spacing});
 
+      @include media-query($wide) {
+        grid-template-columns: $column-width * 3 auto;
+      }
+
       hgroup {
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+
+        @include media-query($wide) {
+          align-items: flex-end;
+          flex-direction: row;
+        }
       }
     }
 
