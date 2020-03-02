@@ -24,17 +24,18 @@
           @mouseenter="setHoverValue({ key: cell.key, value: cell.label })"
           @mouseleave="resetHoverValue()">
           <div>
-            <span class="label">{{ cell.label || '—' }}</span>
+            <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span>
+            <span v-else class="label">{{ cell.label || '—' }}</span>
             <section>
-              <i
-                class="option icon-filter clickable"
-                @click="setFilter({ key: cell.key, value: cell.label })"
-                v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
               <i
                 class="option icon-popup clickable"
                 @click="openPopover(cell)"
                 v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
                 v-if="cell.popover" />
+              <i
+                class="option icon-filter clickable"
+                @click="setFilter({ key: cell.key, value: cell.label })"
+                v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
             </section>
           </div>
         </td>
