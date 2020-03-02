@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" v-tooltip="'Open selected scenarios in IIASA Explorer'" @click="openExplorer"><i class="icon-export" /> Open in Explorer</button>
+  <button :class="['btn', { clickable: isClickable }, { error: isError }]" v-tooltip="{ content: message ? message : 'Open selected scenarios in IIASA Explorer', placement: 'bottom', open: message, trigger: message ? 'manual' : 'hover focus' }" @click="openExplorer"><i class="icon-export" /> Open in Explorer</button>
 </template>
 
 <script>
@@ -7,7 +7,7 @@
   import { get, map, compact } from 'lodash'
   import copy from 'copy-to-clipboard'
 
-  const APP_NAME = 'IXSE_TEST_PUBLIC'
+  const APP_NAME = 'IXSE_SR15'
   const AUTH_API = 'https://db1.ene.iiasa.ac.at/EneAuth'
 
   const asJson = response => response.json()
@@ -92,6 +92,13 @@
   }
 
   export default {
+    data: function () {
+      return {
+        message: false,
+        isClickable: true,
+        isError: false
+      }
+    },
     computed: {
       ...mapState({
         filter: state => get(state, 'filter.filter', []),
@@ -110,8 +117,21 @@
     },
     methods: {
       openExplorer () {
-        console.log(this.url)
+        this.isClickable = false
+        this.message = 'Loading'
         this.onCreate()
+      },
+      reset () {
+        this.isError = false
+        this.message = false
+        this.isClickable = true
+      },
+      displayError (message) {
+        this.isError = true
+        this.message = message
+        setTimeout(() => {
+          this.reset()
+        }, 2000)
       },
       async onCreate () {
         const runs = compact(map(this.result, run => {
@@ -121,17 +141,22 @@
           const username = 'scenario-finder'
           const password = 'g2qo@mBB!uPXsmwVAzJ-'
           if (!username || !password) return
-          const authToken = await login(username, password)
-          const config = await getAppConfig(authToken, APP_NAME)
+          const authToken = await login(username, password).catch((error) => { this.displayError(error) })
+          const config = await getAppConfig(authToken, APP_NAME).catch((error) => { this.displayError(error) })
           const baseUrl = config.find(e => e.path === 'baseUrl').value
           const uiUrl = config.find(e => e.path === 'uiUrl').value
-
-          const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(this.url, runs))
+          const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(this.url, runs)).catch((error) => { this.displayError(error) })
           const shareUrl = `${uiUrl}/#/workspaces/share/${workspace.accessToken}`
           copy(shareUrl)
+          this.message = 'URL copied to clipboard'
+          setTimeout(() => {
+            this.reset()
+          }, 2000)
           if (confirm(`The URL to the workspace is copied to your clipboard. Do you also want to open it in a new window?`)) {
-            window.open(shareUrl, 'blank')
+            window.open(shareUrl, '_blank')
           }
+        } else {
+          this.displayError('No scenarios selectable')
         }
       }
     }
@@ -140,5 +165,12 @@
 
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
+
+  .btn{
+    &.error {
+      color: #99242e;
+      border-color: #99242e;
+    }
+  }
 
 </style>
