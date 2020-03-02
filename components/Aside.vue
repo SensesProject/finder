@@ -82,7 +82,6 @@
   aside {
     display: grid;
     max-height: 40px;
-    overflow-y: hidden;
     grid-auto-flow: column;
     grid-column-gap: $spacing / 6;
 
