@@ -63,12 +63,9 @@ const actions = {
     commit('SET_FACETS', facets)
   },
   setInvisibleFacets ({ state, commit }) {
-    console.log('setInvisibleFacets', state.facets)
     const visibleFacets = compact(map(state.facets, facet => {
-      console.log({facet}, !get(facet, 'system', true))
       return get(facet, 'visible', false) && !get(facet, 'system', true) ? facet.id : false
     }))
-    console.log({ visibleFacets })
     commit('SET_VISIBLE_FACETS', visibleFacets)
   },
   loadFacets ({ commit, state, dispatch }, isForced = false) {
@@ -78,7 +75,6 @@ const actions = {
     const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
     const willReload = shouldReload ? true : isForced
     const url = get(state, 'url', null)
-    console.log({ willReload, url })
     if (willReload && url) {
       console.log('Facets data is too old or reload is forced. Will reload data')
       axios.get(url)
