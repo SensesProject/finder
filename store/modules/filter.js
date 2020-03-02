@@ -10,6 +10,12 @@ const getters = {
     return fromPairs(map(state.filter, filter => {
       return [filter.id, filter.values.join('|')]
     }))
+  },
+  urlString: (state, getters, rootState) => {
+    const link = map(getters.url, (value, key) => {
+      return `${key}=${value}`
+    }).join('&')
+    return `${link ? '?' : ''}${encodeURI(link)}`
   }
 }
 

@@ -5,6 +5,7 @@
 <script>
   import { mapState, mapGetters } from 'vuex'
   import { get, map, compact } from 'lodash'
+  import copy from 'copy-to-clipboard'
 
   const APP_NAME = 'IXSE_TEST_PUBLIC'
   const AUTH_API = 'https://db1.ene.iiasa.ac.at/EneAuth'
@@ -100,23 +101,23 @@
       }),
       ...mapGetters([
         'result',
-        'url'
-      ])
+        'urlString'
+      ]),
+      url () {
+        const getUrl = window.location
+        return `${getUrl.protocol}//${getUrl.host}${this.$router.options.base}${this.urlString}`
+      }
     },
     methods: {
-      openExplorer: function (event) {
-        console.log(this.result)
-        console.log(this.data)
-        console.log(this.datum)
+      openExplorer () {
+        console.log(this.url)
         this.onCreate()
       },
       async onCreate () {
-        console.log(this.result)
         const runs = compact(map(this.result, run => {
           return get(run, ['run-id', 'values'], false)
         }))
         if (runs.length) {
-          console.log({ runs })
           const username = 'scenario-finder'
           const password = 'g2qo@mBB!uPXsmwVAzJ-'
           if (!username || !password) return
@@ -127,7 +128,8 @@
 
           const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(this.url, runs))
           const shareUrl = `${uiUrl}/#/workspaces/share/${workspace.accessToken}`
-          if (confirm(`Open  ${shareUrl}`)) {
+          copy(shareUrl)
+          if (confirm(`The URL to the workspace is copied to your clipboard. Do you also want to open it in a new window?`)) {
             window.open(shareUrl, 'blank')
           }
         }
