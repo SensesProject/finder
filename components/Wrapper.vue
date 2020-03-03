@@ -42,6 +42,11 @@
   import Search from '~/components/Search.vue'
 
   export default {
+    head () {
+      return {
+        title: this.title
+      }
+    },
     props: {
       title: {
         type: String,
