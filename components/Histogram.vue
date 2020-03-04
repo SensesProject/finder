@@ -210,6 +210,11 @@
         if (!value) {
           this.resetHistogram()
         }
+      },
+      status (newStatus) {
+        if (newStatus === 'LOADING_SUCCESS') {
+          this.resetHistogram()
+        }
       }
     },
     mounted () {
