@@ -10,8 +10,8 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex'
-  import { get, size, isEqual } from 'lodash'
+  import { mapActions } from 'vuex'
+  import { get, size } from 'lodash'
   import Header from '~/components/Header.vue'
   import Popover from '~/components/Popover.vue'
   import Table from '~/components/Table.vue'
@@ -52,17 +52,6 @@
         default: false
       }
     },
-    computed: {
-      ...mapState([
-        'data'
-      ]),
-      ...mapState({
-        displayURL: state => get(state, 'options.displayURL', false)
-      }),
-      ...mapGetters([
-        'url'
-      ])
-    },
     methods: {
       ...mapActions([
         'setFacets',
@@ -74,20 +63,7 @@
         'setIsGoogleSheet',
         'setUrlFacets',
         'setInitFilter'
-      ]),
-      changeURL () {
-        const { displayURL, url } = this
-        let query
-        if (displayURL) {
-          query = url
-        } else {
-          query = {}
-        }
-        const current = get(this.$route, 'query', {})
-        if (!isEqual(current, query)) {
-          this.$router.replace({ query: query })
-        }
-      }
+      ])
     },
     components: {
       Header,
@@ -106,15 +82,6 @@
       this.setUrlData(this.urlData)
       if (this.urlAuth) {
         this.setUrlAuth(this.urlAuth)
-      }
-    },
-    watch: {
-      // whenever question changes, this function will run
-      url () {
-        this.changeURL()
-      },
-      displayURL () {
-        this.changeURL()
       }
     }
   }
