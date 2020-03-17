@@ -3,30 +3,25 @@
     class="facet"
     @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
-    <header>
-      <section>
-        <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
-        <aside v-if="isActive">
-          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
-          <span @click="resetFilter(id)" class="reset tag clickable">Reset</span>
-        </aside>
-      </section>
-      <section>
-        <span v-if="number !== 0">{{ number }} options</span>
-        <span v-else>&nbsp;</span>
-        <aside>
-          <span
-            v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`"
-            :class="{ active: rank, clickable: true }"
-            @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
-          <span class="spacer">/</span>
-          <span
-            v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`"
-            :class="{ active: !rank, clickable: true }"
-            @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
-        </aside>
-      </section>
-    </header>
+    <FacetHeader
+      :id="id"
+      :isInvert="isInvert"
+      :isActive="isActive"
+      :title="title"
+      :number="number"
+      :tooltip="tooltip">
+      <aside class="sort">
+        <span
+          v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`"
+          :class="['clickable', { active: rank }]"
+          @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
+        <span class="spacer">/</span>
+        <span
+          v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`"
+          :class="['clickable', { active: !rank }]"
+          @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
+      </aside>
+    </FacetHeader>
     <ul>
       <li v-if="number === 0"><Loading /></li>
       <li
@@ -83,6 +78,7 @@
   import { mapState, mapGetters, mapActions } from 'vuex'
   import { isUndefined, map, size, sortBy, reverse, get } from 'lodash'
   import Loading from '~/components/Loading.vue'
+  import FacetHeader from '~/components/FacetHeader.vue'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],
@@ -168,7 +164,8 @@
       }
     },
     components: {
-      Loading
+      Loading,
+      FacetHeader
     }
   }
 </script>
@@ -179,9 +176,39 @@
   header {
     color: palette(grey, 60);
     margin-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: 2rem 1.5rem auto;
 
     h3 {
-      text-transform: capitalize;
+      // min-height: 2rem;
+      align-items: end;
+      display: inline-block;
+      align-self: end;
+
+      h3 {
+        display: inline-block;
+        // align-self: end;
+      }
+    }
+
+    h3, .buttons {
+      grid-column-end: span 2;
+    }
+
+    .buttons {
+      width: 100%;
+      text-align: right;
+    }
+
+    .counter {
+      align-self: center;
+      justify-self: start;
+    }
+
+    .sort {
+      align-self: center;
+      justify-self: end;
     }
 
     span {
@@ -198,12 +225,13 @@
     }
 
     section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
       &:first-child {
         min-height: 2rem;
+      }
+
+      aside {
+        width: 100%;
+        text-align: right;
       }
     }
   }

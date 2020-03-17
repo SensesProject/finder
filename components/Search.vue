@@ -3,21 +3,13 @@
     class="facet"
     @mouseenter="setHoverKey({ id })"
     @mouseleave="resetHoverKey()">
-    <header>
-      <section>
-        <h3 :class="{ active: isActive }" v-tooltip="tooltip">{{ title }}</h3>
-        <aside v-if="isActive">
-          <span @click="invertFilter(id)" :class="{ 'reset': true, 'tag': true, 'clickable': true, 'active': isInvert }">Invert</span>
-          <span @click="resetSearch()" class="reset tag clickable">Reset</span>
-        </aside>
-      </section>
-      <section>
-        <aside>
-          <span v-if="status === 'LOADING_SUCCESS'">{{ number }} options</span>
-          <span v-else>&nbsp;</span>
-        </aside>
-      </section>
-    </header>
+    <FacetHeader
+      :id="id"
+      :isInvert="isInvert"
+      :isActive="isActive"
+      :title="title"
+      :number="number"
+      :tooltip="tooltip" />
     <div><input type="text" :class="{ active: isActive }" placeholder="Search …" v-model="inputTerm" :disabled="status !== 'LOADING_SUCCESS'" /></div>
   </section>
 </template>
@@ -25,6 +17,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import { isUndefined, find, get, size, trim } from 'lodash'
+  import FacetHeader from '~/components/FacetHeader.vue'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],
@@ -77,6 +70,9 @@
         this.term = ''
         this.resetFilter(this.id)
       }
+    },
+    components: {
+      FacetHeader
     }
   }
 </script>
