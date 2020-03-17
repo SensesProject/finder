@@ -23,11 +23,11 @@
       }
     },
     props: {
-      title: {
+      title: { // Title that is displayed in the header
         type: String,
         default: 'Finder'
       },
-      subtitle: {
+      subtitle: { // Subtitle that is displayed in the header
         type: String,
         default: 'Senses Finder Tool'
       },
@@ -37,7 +37,7 @@
       urlAuth: {
         type: String
       },
-      id: {
+      id: { // Must be a unique id. Is used by the local storage for storing the data
         type: String
       },
       facetsURL: {
