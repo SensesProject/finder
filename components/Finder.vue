@@ -54,13 +54,13 @@
     },
     methods: {
       ...mapActions([
-        'setUrlData',
-        'setUrlAuth',
-        'setID',
         'initFilter',
-        'setIsGoogleSheet',
-        'setUrlFacets',
+        'setID',
         'setInitFilter'
+        'setIsGoogleSheet',
+        'setUrlAuth',
+        'setUrlData',
+        'setUrlFacets',
       ])
     },
     components: {
@@ -69,17 +69,33 @@
       Table
     },
     created: function () {
-      const initFilter = get(this.$route, 'query', {})
+      const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth } = this
+
+      // INIT FILTERS can be passed down by URL
+      // First we extract the query
+      const initFilter = get($route, 'query', {})
+      // If elements were found, we clean the url
       if (size(initFilter)) {
         this.$router.replace({ params: {} })
       }
+      // Next we save these filters for later
       this.setInitFilter(initFilter)
-      this.setUrlFacets(this.facetsURL)
-      this.setIsGoogleSheet(this.isGoogleSheet)
-      this.setID(this.id)
-      this.setUrlData(this.urlData)
-      if (this.urlAuth) {
-        this.setUrlAuth(this.urlAuth)
+
+      // Save the url of the FACET informations
+      this.setUrlFacets(facetsURL)
+
+      // Set the ID. The id is used by the local storage. Just a unique id if multiple Finder are active
+      this.setID(id)
+
+      // Check if the DATA is stored in a Google spreadsheet
+      this.setIsGoogleSheet(isGoogleSheet)
+
+      // Set the url for the DATA
+      this.setUrlData(urlData)
+
+      // Some APIs might require an AUTHORISATION
+      if (urlAuth) {
+        this.setUrlAuth(urlAuth)
       }
     }
   }
