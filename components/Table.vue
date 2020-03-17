@@ -1,53 +1,55 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <td>
-          <div><span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span></div>
-        </td>
-        <td :colspan="facets.length">
-          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setFirstPage">&LeftArrowBar;</button>
-          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setPreviousPage">&ShortLeftArrow;</button>
-          <span class="space">Page {{ currentPage + 1 }} of {{ numberOfPages }}</span>
-          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setNextPage">&ShortRightArrow;</button>
-          <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setLastPage">&RightArrowBar;</button>
-        </td>
-      </tr>
-    </thead>
-    <tbody v-if="items.length">
-      <tr
-        v-for="(row, n) in items"
-        :class="{ 'hover': row.active }">
-        <td
-          v-for="cell in row.cells"
-          :class="{ 'active': hoverKey === cell.key }"
-          @mouseenter="setHoverValue({ key: cell.key, value: cell.label })"
-          @mouseleave="resetHoverValue()">
-          <div>
-            <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span>
-            <span v-else class="label">{{ cell.label || '—' }}</span>
-            <section>
-              <i
-                class="option icon-popup clickable"
-                @click="openPopover(cell)"
-                v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
-                v-if="cell.popover" />
-              <i
-                class="option icon-filter clickable"
-                @click="setFilter({ key: cell.key, value: cell.label })"
-                v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
-            </section>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-    <tbody v-else>
-      <tr>
-        <td v-if="status === 'STATUS_LOADING' || status === 'IDLE'" class="message" :colspan="1"><Loading /></td>
-        <td v-else class="message" :colspan="1">No scenarios found</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <div><span v-if="result.length !== data.length">{{ result.length }}/</span><span>{{ data.length }} scenarios</span></div>
+          </td>
+          <td :colspan="facets.length">
+            <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setFirstPage">&LeftArrowBar;</button>
+            <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage > 0 }" @click="setPreviousPage">&ShortLeftArrow;</button>
+            <span class="space">Page {{ currentPage + 1 }} of {{ numberOfPages }}</span>
+            <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setNextPage">&ShortRightArrow;</button>
+            <button :class="{ 'btn': true, 'btn--compact': true, 'clickable': currentPage < numberOfPages - 1 }" @click="setLastPage">&RightArrowBar;</button>
+          </td>
+        </tr>
+      </thead>
+      <tbody v-if="items.length">
+        <tr
+          v-for="(row, n) in items"
+          :class="{ 'hover': row.active }">
+          <td
+            v-for="cell in row.cells"
+            :class="{ 'active': hoverKey === cell.key }"
+            @mouseenter="setHoverValue({ key: cell.key, value: cell.label })"
+            @mouseleave="resetHoverValue()">
+            <div>
+              <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span>
+              <span v-else class="label">{{ cell.label || '—' }}</span>
+              <section>
+                <i
+                  class="option icon-popup clickable"
+                  @click="openPopover(cell)"
+                  v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
+                  v-if="cell.popover" />
+                <i
+                  class="option icon-filter clickable"
+                  @click="setFilter({ key: cell.key, value: cell.label })"
+                  v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" />
+              </section>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td v-if="status === 'STATUS_LOADING' || status === 'IDLE'" class="message" :colspan="1"><Loading /></td>
+          <td v-else class="message" :colspan="1">No scenarios found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -152,122 +154,126 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/variables";
 
-  table {
-    line-height: 1.2;
-    font-size: $size-smallest;
-    border-spacing: 0;
-    border-collapse: collapse;
-    table-layout: fixed;
+  .content {
+    padding: 0 0 1rem;
 
-    tr td, tr th {
-      transition: all 0.1s;
-      display: inline-block;
-      width: calc(#{$column-width} + #{$spacing / 2});
-      padding-left: $spacing / 4;
-      padding-right: $spacing / 4;
-      overflow: hidden;
-      white-space: nowrap;
+    table {
+      line-height: 1.2;
+      font-size: $size-smallest;
+      border-spacing: 0;
+      border-collapse: collapse;
+      table-layout: fixed;
 
-      &:first-child {
-        padding-left: 0;
-        width: calc(#{$column-width} + #{$spacing / 4} + 1rem);
-        padding-left: 1rem;
-      }
-
-      &:last-child {
-        padding-right: 0;
-        width: calc(#{$column-width});
-      }
-    }
-  }
-
-  th {
-    text-align: left;
-    padding: 0 0.1em;
-    vertical-align: top;
-  }
-
-  tbody tr:hover {
-    color: $color-violet;
-
-    .option {
-      opacity: 1;
-    }
-  }
-
-  tbody tr.hover {
-    color: #000;
-    background-color: rgba($color-green, 0.2)
-  }
-
-  th.active, td.active {
-    color: darken($color-green, 10);
-  }
-
-  tbody tr.hover td.active {
-    color: #000;
-  }
-
-  tr td {
-    border-bottom: 1px solid $color-bg-mute;
-    padding: $spacing / 8 0.1em;
-    white-space: nowrap;
-
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      .label {
-        text-overflow: ellipsis;
+      tr td, tr th {
+        transition: all 0.1s;
+        display: inline-block;
+        width: calc(#{$column-width} + #{$spacing / 2});
+        padding-left: $spacing / 4;
+        padding-right: $spacing / 4;
         overflow: hidden;
         white-space: nowrap;
-      }
 
-      .option {
-        display: inline-block;
-        color: rgba(0, 0, 0, 0.8);
-        transition: 0.2s;
-        opacity: 0.001;
-
-        &:hover {
-          color: rgba(0, 0, 0, 1);
+        &:first-child {
+          padding-left: 0;
+          width: calc(#{$column-width} + #{$spacing / 4} + 1rem);
+          padding-left: 1rem;
         }
-      }
-    }
-  }
-
-  tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .message {
-    text-align: center;
-    width: 100% !important;
-
-    & > * {
-      height: 2em;
-    }
-  }
-
-  thead {
-    tr {
-      border-bottom: 1px solid $color-bg-mute;
-
-      td {
-        margin: $spacing / 4 0;
-        vertical-align: middle;
 
         &:last-child {
-          width: auto !important;
+          padding-right: 0;
+          width: calc(#{$column-width});
+        }
+      }
+    }
+
+    th {
+      text-align: left;
+      padding: 0 0.1em;
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      color: $color-violet;
+
+      .option {
+        opacity: 1;
+      }
+    }
+
+    tbody tr.hover {
+      color: #000;
+      background-color: rgba($color-green, 0.2)
+    }
+
+    th.active, td.active {
+      color: darken($color-green, 10);
+    }
+
+    tbody tr.hover td.active {
+      color: #000;
+    }
+
+    tr td {
+      border-bottom: 1px solid $color-bg-mute;
+      padding: $spacing / 8 0.1em;
+      white-space: nowrap;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .label {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }
 
-        button, div, .space {
+        .option {
           display: inline-block;
-          margin: 0 $spacing / 4;
+          color: rgba(0, 0, 0, 0.8);
+          transition: 0.2s;
+          opacity: 0.001;
 
-          &:first-child {
-            margin-left: 0;
+          &:hover {
+            color: rgba(0, 0, 0, 1);
+          }
+        }
+      }
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .message {
+      text-align: center;
+      width: 100% !important;
+
+      & > * {
+        height: 2em;
+      }
+    }
+
+    thead {
+      tr {
+        border-bottom: 1px solid $color-bg-mute;
+
+        td {
+          margin: $spacing / 4 0;
+          vertical-align: middle;
+
+          &:last-child {
+            width: auto !important;
+          }
+
+          button, div, .space {
+            display: inline-block;
+            margin: 0 $spacing / 4;
+
+            &:first-child {
+              margin-left: 0;
+            }
           }
         }
       }

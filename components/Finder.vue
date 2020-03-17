@@ -4,9 +4,7 @@
       :title="title"
       :subtitle="subtitle"
       :showExplorer="showExplorer" />
-    <div class="content">
-      <Table />
-    </div>
+    <Table />
     <Popover><template v-slot:reference><slot name="reference" /></template></Popover>
   </div>
 </template>
@@ -133,9 +131,5 @@
 
   .reset {
     color: #DC3023;
-  }
-
-  .content {
-    padding: 0 0 1rem;
   }
 </style>
