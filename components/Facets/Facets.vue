@@ -16,7 +16,7 @@
 <script>
   import { mapGetters } from 'vuex'
   // Facet types
-  import Facet from '~/components/Facets/Facet.vue'
+  import List from '~/components/Facets/List.vue'
   import Histogram from '~/components/Facets/Histogram.vue'
   import Scatterplot from '~/components/Facets/Scatterplot.vue'
   import Search from '~/components/Facets/Search.vue'
@@ -28,7 +28,7 @@
       ])
     },
     components: {
-      Facet,
+      List,
       Search,
       Histogram,
       Scatterplot
