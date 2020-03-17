@@ -13,7 +13,7 @@
 
 <script>
   import Aside from '~/components/Aside/Aside.vue'
-  import Facets from '~/components/Facets.vue'
+  import Facets from '~/components/Facets/Facets.vue'
 
   export default {
     props: ['title', 'subtitle', 'showExplorer'],
