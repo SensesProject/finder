@@ -93,8 +93,4 @@
     display: grid;
     min-width: calc(100vw - #{$spacing});
   }
-
-  .reset {
-    color: #DC3023;
-  }
 </style>
