@@ -54,12 +54,10 @@
     },
     methods: {
       ...mapActions([
-        'setFacets',
         'setUrlData',
         'setUrlAuth',
         'setID',
         'initFilter',
-        'loadFacets',
         'setIsGoogleSheet',
         'setUrlFacets',
         'setInitFilter'
