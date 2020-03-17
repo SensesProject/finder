@@ -1,8 +1,9 @@
 # Scenario Finder
 
-[https://scenario-finder.netlify.com/](https://scenario-finder.netlify.com/)
-
-![Screenshot](screenshot.png)
+## Structure
+1. Pages use `components/Finder` as a starting point. They pass urls, titles, … to the Finder.
+2. The Finder safes these information on `created`.
+3. The loading of data for facets and data is started by the localStorage.
 
 ## Build Setup
 

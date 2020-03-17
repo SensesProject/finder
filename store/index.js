@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
+import crossfilter from 'crossfilter2'
 import auth from './modules/auth'
+import load from './modules/load'
 import data from './modules/data'
 import facets from './modules/facets'
 import filter from './modules/filter'
@@ -15,9 +17,12 @@ Vue.directive('tooltip', VTooltip)
 Vue.directive('close-popover', VClosePopover)
 Vue.component('v-popover', VPopover)
 
-const store = () => new Vuex.Store({
+export const basket = crossfilter([])
+
+export default () => new Vuex.Store({
   modules: {
     auth,
+    load,
     data,
     facets,
     filter,
@@ -27,5 +32,3 @@ const store = () => new Vuex.Store({
     popover
   }
 })
-
-export default store

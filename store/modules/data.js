@@ -1,28 +1,11 @@
-import axios from 'axios'
-import { includes, compact, get, isBoolean, replace, forEach, startsWith, isUndefined, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange, set, keys } from 'lodash'
-import { format } from 'timeago.js'
-
-const STATUS_IDLE = 'IDLE'
-
-const STATUS_LOADING = 'LOADING'
-const STATUS_LOADING_FAILED = 'LOADING_FAILED'
-const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
-
-const state = () => ({
-  data: [],
-  status: STATUS_IDLE,
-  message: false,
-  date: false,
-  url: false,
-  isGoogleSheet: false
-})
+import { includes, compact, get, isBoolean, map, fromPairs, round, countBy, flatten, indexOf, lowerCase, inRange } from 'lodash'
 
 const getters = {
   // Datum contains all relevant data. It loops over all data rows
   // and builds each object based on the facets
   datum: (state, getters, rootState) => {
     const facets = get(rootState, 'facets.facets', [])
-    return map(state.data, datum => {
+    return map(get(rootState, 'load.data', []), datum => {
       // Rebuild the data structure. Build an object from the data array
       return fromPairs(map(facets, facet => {
         const { id, key } = facet
@@ -136,106 +119,6 @@ const getters = {
   }
 }
 
-const mutations = {
-  SET_URL_DATA (state, url) {
-    state.url = url
-  },
-  SET_IS_GOOGLE_SHEET (state, value) {
-    state.isGoogleSheet = value
-  },
-  API_DATA (state, { status, message, data }) {
-    state.status = status
-    if (!isUndefined(message)) {
-      state.message = message
-    }
-    if (!isUndefined(data)) {
-      state.data = data
-      state.date = new Date()
-    }
-  }
-}
-
-function extractFromGoogleTable (data) {
-  return map(get(data, ['feed', 'entry']), entry => {
-    const obj = {}
-    forEach(keys(entry), key => {
-      if (startsWith(key, 'gsx$')) {
-        const path = replace(key, 'gsx$', '')
-        let value = get(entry, [key, '$t'])
-        switch (value) {
-          case 'TRUE':
-            value = true
-            break
-          case 'FALSE':
-            value = false
-            break
-        }
-        set(obj, path, value)
-      }
-    })
-    return obj
-  })
-}
-
-const actions = {
-  setIsGoogleSheet ({ commit }, value) {
-    commit('SET_IS_GOOGLE_SHEET', value)
-  },
-  setUrlData ({ commit }, url) {
-    commit('SET_URL_DATA', url)
-  },
-  loadData ({ state, dispatch }, isForced = false) {
-    console.log('Action: Check data', { isForced })
-    const ONE_DAY = 60 * 60 * 1000 * 24
-    const lastLoad = get(state, 'date', false)
-    const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
-    const willReload = shouldReload ? true : isForced
-    if (willReload) {
-      console.log('Data is too old or reload is forced. Will reload data')
-    }
-    dispatch('auth', { follower: { name: 'load' }, isForced: willReload })
-  },
-  load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
-    console.log('Action: Load data', { isForced })
-    if (isForced) {
-      commit('API_DATA', { status: STATUS_LOADING, data: [] })
-    }
-    if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
-      commit('API_DATA', { status: STATUS_LOADING })
-      const url = state.url
-      const config = {}
-      if (rootState.auth.url) {
-        set(config, 'headers.Authorization', `Bearer ${rootState.auth.token}`)
-      }
-      console.log('Load Request send')
-      axios.get(url, config)
-        .then(response => {
-          const { data } = response
-          console.log('Loading successfull')
-          let datum = data
-          if (state.isGoogleSheet) {
-            datum = extractFromGoogleTable(data)
-          }
-          commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
-        })
-        .catch(error => {
-          console.log('Loading failed', { error, isLoop })
-          commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
-          if (!isLoop) {
-            console.log('Trying to relogin')
-            dispatch('auth', { follower: { name: 'load' }, isForced: true })
-          }
-        })
-    } else {
-      console.log('Data already loaded', format(state.date))
-      commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
-    }
-  }
-}
-
 export default {
-  state,
-  getters,
-  mutations,
-  actions
+  getters
 }

@@ -26,7 +26,6 @@ const mutations = {
   },
   RESET_FILTER (state, id) {
     // Reset a single filter
-    // console.log('RESET_FILTER', id)
     state.filter = reject(state.filter, ['id', id])
   },
   SET_FILTER (state, { id, value, type, key }) {

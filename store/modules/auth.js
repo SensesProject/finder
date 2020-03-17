@@ -39,10 +39,11 @@ const actions = {
     commit('SET_URL_AUTH', url)
   },
   auth ({ state, commit, dispatch }, { isForced, follower }) {
-    // This method is called in two cases
+    // This method is called every time the Finder is loaded. The isForced may vary
+    // It is true if:
     // 1. The website is called brand new without a token in local storage
     // 2. The method is called by force to get a new token
-    // Parameters can be a function that is called afterwards
+    // Follower is a function that is called afterwards
     console.log('Action: Auth', { isForced })
     if ((isForced || state.token === false) && state.url) {
       const url = state.url
@@ -65,9 +66,12 @@ const actions = {
     }
   },
   callFollower ({ dispatch }, { follower, isForced }) {
+    // This function is called afterwards
     if (isObject(follower)) {
       const { name, params } = follower
-      dispatch(name, { ...params, isLoop: isForced, isForced }) // isLoop prevents a loop of calling the target in a loop
+      // Exctract possible params (TODO: Check if actually happening. Not sure anymore)
+      // isLoop prevents a loop of calling the target in a loop. (TODO: Explain how)
+      dispatch(name, { ...params, isLoop: isForced, isForced })
     }
   }
 }
