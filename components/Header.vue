@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import Aside from '~/components/Aside.vue'
+  import Aside from '~/components/Aside/Aside.vue'
   import Facets from '~/components/Facets.vue'
 
   export default {

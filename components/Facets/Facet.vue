@@ -78,7 +78,7 @@
   import { mapState, mapGetters, mapActions } from 'vuex'
   import { isUndefined, map, size, sortBy, reverse, get } from 'lodash'
   import Loading from '~/components/Loading.vue'
-  import FacetHeader from '~/components/FacetHeader.vue'
+  import FacetHeader from '~/components/Facets/FacetHeader.vue'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],

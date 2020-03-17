@@ -23,10 +23,10 @@
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
   import { get, map } from 'lodash'
-  import Options from '~/components/Options.vue'
-  import SelectFacets from '~/components/SelectFacets.vue'
+  import Options from '~/components/Aside/Options.vue'
+  import SelectFacets from '~/components/Aside/SelectFacets.vue'
   import Loading from '~/components/Loading.vue'
-  import ExplorerLink from '~/components/ExplorerLink.vue'
+  import ExplorerLink from '~/components/Aside/ExplorerLink.vue'
   import copy from 'copy-to-clipboard'
 
   export default {

@@ -17,7 +17,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import { isUndefined, find, get, size, trim } from 'lodash'
-  import FacetHeader from '~/components/FacetHeader.vue'
+  import FacetHeader from '~/components/Facets/FacetHeader.vue'
 
   export default {
     props: ['title', 'values', 'id', 'options', 'tooltip'],
