@@ -1,5 +1,5 @@
 <template>
-  <Wrapper
+  <Finder
     title="Co-Production Techniques"
     subtitle="Overview of different methods and tools for co-production objectives"
     :facetsURL="facetsURL"
@@ -10,11 +10,11 @@
     <template v-slot:reference>
       <h1>Reference</h1><p>Nienke Ansems</p>
     </template>
-  </Wrapper>
+  </Finder>
 </template>
 
 <script>
-  import Wrapper from '~/components/Wrapper.vue'
+  import Finder from '~/components/Finder.vue'
 
   export default {
     data: function () {
@@ -27,7 +27,7 @@
       }
     },
     components: {
-      Wrapper
+      Finder
     }
   }
 </script>
