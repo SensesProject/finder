@@ -10,7 +10,7 @@
           class="content"
           v-if="content && content !== 'reference'"
           v-html="content" />
-        <slot name="reference" v-else-if="content && content === 'reference'" />
+        <slot v-else-if="content && content === 'reference'" />
         <h2 v-else>Nothing found</h2>
       </div>
     </aside>

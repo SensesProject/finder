@@ -5,7 +5,7 @@
       :subtitle="subtitle"
       :showExplorer="showExplorer" />
     <Table />
-    <Popover><template v-slot:reference><slot name="reference" /></template></Popover>
+    <Popover><slot name="reference" /></Popover>
   </div>
 </template>
 
