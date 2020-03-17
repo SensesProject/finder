@@ -23,7 +23,7 @@
       }
     },
     props: {
-      title: { // Title that is displayed in the header
+      title: { // Title that is displayed in the header and in the title
         type: String,
         default: 'Finder'
       },
@@ -56,11 +56,11 @@
       ...mapActions([
         'initFilter',
         'setID',
-        'setInitFilter'
+        'setInitFilter',
         'setIsGoogleSheet',
         'setUrlAuth',
         'setUrlData',
-        'setUrlFacets',
+        'setUrlFacets'
       ])
     },
     components: {
