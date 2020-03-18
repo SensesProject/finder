@@ -11,7 +11,7 @@
       :number="number"
       :tooltip="tooltip" />
     <div class="vis-wrapper">
-      <svg ref="vis" v-if="number !== 0">
+      <svg ref="vis">
         <line
           class="axis"
           :x1="marginLeft - 5"
@@ -28,17 +28,17 @@
           v-tooltip="bar.tooltip" />
         <text
           :x="marginLeft - 10"
-          :y="yLow"
+          :y="yLow || 0"
           class="tick"
           text-anchor="end"
           ref="labelLow">{{ ticks.low.value }}</text>
         <text
           :x="marginLeft - 10"
-          :y="yHigh"
+          :y="yHigh || 0"
           class="tick"
           text-anchor="end">{{ ticks.high.value }}</text>
       </svg>
-      <no-ssr>
+      <client-only>
         <VueDragResize
           ref="dragElement"
           v-on:resizing="resize"
@@ -55,7 +55,7 @@
           :gridY="grid"
           :snapToGrid="true"
           :isDraggable="false" />
-      </no-ssr>
+      </client-only>
     </div>
   </section>
 </template>
@@ -205,10 +205,11 @@
           this.resetHistogram()
         }
       },
-      status (newStatus) {
-        if (newStatus === 'LOADING_SUCCESS') {
-          this.resetHistogram()
-        }
+      items () {
+        const labelLow = get(this.$refs, 'labelLow')
+        const height = labelLow ? get(this.$refs.labelLow.getBBox(), 'height') : 0
+        this.labelHeight = height
+        this.resetHistogram()
       }
     },
     mounted () {
@@ -217,10 +218,12 @@
       const height = labelLow ? get(this.$refs.labelLow.getBBox(), 'height') : 0
       this.labelHeight = height
       const [low, high] = scaleBins.domain()
-      this.brushing.low = low
-      this.brushing.high = high
-      this.yLow = scaleBins(low) + this.labelPlacement(low)
-      this.yHigh = scaleBins(high) + this.labelPlacement(high)
+      if (low && high) {
+        this.brushing.low = low || 0
+        this.brushing.high = high || 0
+        this.yLow = scaleBins(low) + this.labelPlacement(low)
+        this.yHigh = scaleBins(high) + this.labelPlacement(high)
+      }
     },
     components: {
       FacetHeader
