@@ -2,6 +2,7 @@ import axios from 'axios'
 import { get, replace, forEach, startsWith, isUndefined, map, set, keys } from 'lodash'
 import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS } from '../config'
+import { isTooOld } from '../../assets/js/utils'
 
 const state = () => ({
   data: [],
@@ -67,7 +68,7 @@ const actions = {
     console.log('Action: Check data', { isForced })
     const lastLoad = get(state, 'date', false)
     // Is the last loading time longer ago than one day ago or has been loaded before at all
-    const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > 60 * 60 * 1000 * 24
+    const shouldReload = !lastLoad || isTooOld(lastLoad)
     // If longer ago or forced (on hard reload)
     const willReload = shouldReload ? true : isForced
     if (willReload) {
