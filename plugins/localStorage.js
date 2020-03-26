@@ -12,6 +12,6 @@ export default ({ store }) => {
     // Load the facets (from the Google Sheet)
     dispatch('loadFacets') // facets/loadFacets
     // Then also load the data in parallel
-    dispatch('loadData') // data/loadData
+    dispatch('loadData') // load/loadData
   })
 }
