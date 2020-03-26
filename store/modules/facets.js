@@ -1,6 +1,7 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
 import { compact, get, map, set, forEach, kebabCase } from 'lodash'
 import axios from 'axios'
+import { isTooOld } from '../../assets/js/utils'
 
 // A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
@@ -78,12 +79,10 @@ const actions = {
   loadFacets ({ commit, state, dispatch }, isForced = false) {
     // This function loads the facets from the Google Sheet. It is called by the localStorage
     console.log('Action: Check facet data', { isForced })
-    // Get number of seconds of one day
-    const ONE_DAY = 60 * 60 * 1000 * 24
     // Try to get the time the data was loaded the last time
     const lastLoad = get(state, 'date', null)
     // Compare current date and last loaded data
-    const shouldReload = !lastLoad || ((new Date()) - new Date(lastLoad)) > ONE_DAY
+    const shouldReload = !lastLoad || isTooOld(lastLoad)
     // If data should reload or is forced, set to true
     const willReload = shouldReload ? true : isForced
     // Try to get the url. This is set as Finder prop.
