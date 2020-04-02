@@ -1,6 +1,6 @@
 module.exports = {
   head: {
-    title: 'Scenario Finder',
+    title: 'Finder',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -20,6 +20,9 @@ module.exports = {
     { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/vue-drag-resize', ssr: false }
   ],
+  router: {
+    base: '/finder/'
+  },
   build: {
     extend (config, ctx) {
       if (ctx.isDev && ctx.isClient) {

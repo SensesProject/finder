@@ -1,373 +1,267 @@
 <template>
-  <section
-    class="facet"
-    @mouseenter="setHoverKey({ id })"
-    @mouseleave="resetHoverKey()">
+  <div class="facet facet-list">
     <FacetHeader
-      :id="id"
-      :isInvert="isInvert"
-      :isActive="isActive"
       :title="title"
-      :number="number"
-      :tooltip="tooltip">
-      <aside class="sort">
-        <span
-          v-tooltip="`Sort by option name ${rank && !reverse ? 'descending' : 'ascending'}`"
-          :class="['clickable', { active: rank }]"
-          @click="setSortOption(true)">Name {{ rank && !reverse ? '↑' : '↓'}}</span>
-        <span class="spacer">/</span>
-        <span
-          v-tooltip="`Sort by option count ${rank && !reverse ? 'descending' : 'ascending'}`"
-          :class="['clickable', { active: !rank }]"
-          @click="setSortOption(false)">Count {{ !rank && !reverse ? '↑' : '↓'}}</span>
-      </aside>
-    </FacetHeader>
-    <ul>
-      <li v-if="number === 0"><Loading /></li>
+      :isFiltered="isFiltered"
+      :isInverted="isInverted"
+      :isReverse="isReverse"
+      :isAlphabetical="isAlphabetical"
+      :tooltip="tooltip"
+      :count="count"
+      @removeFacet="() => removeFacet(id)"
+      @toggleInvert="toggleInvert"
+      @toggleReverse="toggleReverse"
+      @toggleAlphabetical="toggleAlphabetical"
+      @reset="reset" />
+    <ul :class="['list-list', { isFiltered }]">
       <li
-        v-for="item in list"
-        v-if="item.isVisible"
-        :class="{ active: item.isActive, empty: item.isEmpty }"
-        v-tooltip="item.isActive || isActive ? false : `Set »${item.label}« as filter option`">
-        <svg>
-          <line
-            class="base"
-            x1="0%"
-            y1="90%"
-            x2="100%"
-            y2="90%" />
-          <line
-            x1="0%"
-            y1="90%"
-            :x2="item.percentage + '%'"
-            y2="90%" />
-          <line
-            v-if="filter.length"
-            class="filter"
-            x1="0%"
-            y1="90%"
-            :x2="item.filter"
-            y2="90%" />
-        </svg>
-        <div
-          @mouseenter="setHoverValue({ id, value: item.label })"
-          @mouseleave="resetHoverValue()"
-          @click="setFilter({ id, value: item.label })"
-          class="label">
-          <span>{{ item.label }}</span>
-        </div>
-        <span
-          v-tooltip="`Add »${item.label}« to filter options`"
-          v-if="isActive && !item.isActive"
-          class="include"
-          @click="addFilter({ id, value: item.label })">Include</span>
-        <span
-          v-tooltip="`Remove »${item.label}« from filter options`"
-          v-if="item.isActive" class="include"
-          @click="removeFilter({ id, value: item.label })">Exclude</span>
-        <span
-          :class="{ counter: true, hide: isActive }">
-          <span v-if="filter.length">{{ item.currentValue }}/</span>{{ item.value }}
-        </span>
+        v-for="{ key, count, total, isActive, nonRemaining, isLess } in elements"
+        :key="key"
+        :class="['option', { isActive, nonRemaining }]">
+        <span class="label" @click="() => selectItem(key)">{{ key }}</span>
+        <span class="counter"><span v-if="isLess">{{ count }}/</span>{{ total }}</span>
+        <span class="action action-add" @click="() => addItem(key)">Include</span>
+        <span class="action action-remove" @click="() => removeItem(key)">Remove</span>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex'
-  import { isUndefined, map, size, sortBy, reverse, get } from 'lodash'
-  import Loading from '~/components/Loading.vue'
-  import FacetHeader from '~/components/Facets/FacetHeader.vue'
+import FacetHeader from './FacetHeader.vue'
+import { mapActions } from 'vuex'
+import { pull, map, without, sortBy, reverse, isEqual, get } from 'lodash'
 
-  export default {
-    props: ['title', 'values', 'id', 'options', 'tooltip'],
-    data: function () {
-      return {
-        rank: false,
-        reverse: true
-      }
-    },
-    computed: {
-      ...mapState({
-        filter: state => get(state, 'filter.filter', []),
-        filterEmpty: state => get(state, 'options.filterEmpty', false),
-        sortRemaining: state => get(state, 'options.sortRemaining', false)
-      }),
-      ...mapState({
-        filterEmpty: state => get(state, 'options.filterEmpty', false),
-        sortRemaining: state => get(state, 'options.sortRemaining', false)
-      }),
-      ...mapGetters([
-        'counter'
-      ]),
-      active () {
-        const keys = this.filter.find(({ id }) => id === this.id)
-        return isUndefined(keys) ? [] : keys.values
-      },
-      isInvert () {
-        const keys = this.filter.find(({ id }) => id === this.id)
-        return isUndefined(keys) ? false : keys.invert
-      },
-      isActive () {
-        return this.active.length > 0
-      },
-      number () {
-        return size(this.options)
-      },
-      range () {
-        const values = map(this.options, value => { return value })
-        return Math.max(...values)
-      },
-      list () {
-        const { id, rank } = this
-        const counts = get(this.counter, [id], {})
-        const list = map(this.options, (value, label) => {
-          const currentValue = get(counts, [label], 0)
-          const percentage = 100 / this.range
-          const isEmpty = currentValue === 0
-          return {
-            filter: percentage * currentValue + '%',
-            label,
-            percentage: percentage * value,
-            value,
-            currentValue,
-            isActive: this.active.indexOf(label) > -1,
-            isEmpty,
-            isVisible: !(this.filterEmpty && isEmpty)
-          }
-        })
+const LIST_DEFAULT = []
+const INVERTED_DEFAULT = false
+const REVERSE_DEFAULT = false
+const SORTING_DEFAULT = false
 
-        const sorted = sortBy(list, rank ? 'label' : (this.sortRemaining ? ['currentValue', 'value', 'label'] : ['value', 'label']))
-        return (this.reverse && !rank) || (!this.reverse && rank) ? reverse(sorted) : sorted
-      }
+export default {
+  name: 'FacetList',
+  props: {
+    items: {
+      type: Array,
+      default: () => []
     },
-    methods: {
-      ...mapActions([
-        'addFilter',
-        'invertFilter',
-        'removeFilter',
-        'resetFilter',
-        'resetHoverKey',
-        'resetHoverValue',
-        'setFilter',
-        'setHoverKey',
-        'setHoverValue'
-      ]),
-      setSortOption: function (val) {
-        if (this.rank === val) {
-          this.reverse = !this.reverse
-        } else {
-          this.rank = val
-          this.reverse = true
+    init: {
+      type: Object,
+      default: () => {}
+    },
+    title: {
+      type: String
+    },
+    id: {
+      type: String
+    },
+    tooltip: {
+      type: String
+    }
+  },
+  components: {
+    FacetHeader
+  },
+  data: function () {
+    return {
+      selected: LIST_DEFAULT, // List of selected items
+      isInverted: INVERTED_DEFAULT, // Is the list of selection inverted
+      isReverse: REVERSE_DEFAULT, // Is the sorting of the items reverse
+      isAlphabetical: SORTING_DEFAULT // Sorting is alphabetical or by counts
+    }
+  },
+  computed: {
+    isFiltered () {
+      return this.selected !== LIST_DEFAULT
+    },
+    keys () {
+      // Get a list of all item to work with inverting
+      return map(this.items, ({ key }) => key)
+    },
+    count () {
+      // Count the number of options
+      return this.keys.length
+    },
+    elements () {
+      // TODO: Less computation
+      const { items, selected, isAlphabetical, isReverse, init } = this
+      let list = map(items, ({ key, value }) => {
+        const total = get(init, key, 0)
+        const isActive = selected.includes(key) // Is the item in the list of selected items
+        const nonRemaining = value === 0 // Is used to visually indicate the item
+        const isLess = value !== total // Is used to show/hide the count
+        return {
+          key,
+          count: value,
+          total,
+          isActive,
+          nonRemaining,
+          isLess
         }
+      })
+      list = isAlphabetical ? sortBy(list, ['key', 'total', 'count']) : sortBy(list, ['total', 'count', 'key'])
+      return isReverse ? list : reverse(list)
+    }
+  },
+  methods: {
+    ...mapActions('filter', [
+      'filter',
+      'removeFacet',
+      'resetFilter'
+    ]),
+    toggleInvert () {
+      this.isInverted = !this.isInverted
+      this.apply()
+    },
+    toggleReverse () {
+      this.isReverse = !this.isReverse
+    },
+    toggleAlphabetical () {
+      this.isAlphabetical = !this.isAlphabetical
+      this.isReverse = !this.isAlphabetical
+    },
+    reset () {
+      this.selected = LIST_DEFAULT
+      this.apply()
+    },
+    selectItem (value) {
+      if (isEqual(this.selected, [value])) {
+        this.reset()
+      } else {
+        this.selected = [value]
+        this.apply()
       }
     },
-    components: {
-      Loading,
-      FacetHeader
+    addItem (value) {
+      // Check if item is not already in the list
+      if (!this.selected.includes(value)) {
+        this.selected.push(value)
+        this.apply()
+      }
+    },
+    removeItem (value) {
+      // Check if item is in list
+      if (this.selected.includes(value)) {
+        pull(this.selected, value)
+        this.apply()
+      }
+    },
+    apply () {
+      // Creating a temporary list to handle inverted list
+      let items
+      if (this.isInverted) {
+        // If list is inverted, the list of all keys is subtracted by the selected list
+        items = without(this.keys, ...this.selected)
+      } else {
+        items = this.selected
+      }
+
+      // Check number of items
+      const n = items.length
+      switch (n) {
+        case 0:
+        case this.keys.length:
+          // If all or no key is selected, reset the filter
+          this.resetFilter(this.id)
+          break
+        case 1:
+          // If only one key is selected, we can use filterExact
+          this.filter({ key: this.id, value: items[0] })
+          break
+        default:
+          // Per default pass the whole array for filtering
+          this.filter({ key: this.id, value: items })
+          break
+      }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
+  @import "~@/assets/style/global";
 
-  header {
-    color: palette(grey, 60);
-    margin-bottom: 0;
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: 2rem 1.5rem auto;
-
-    h3 {
-      // min-height: 2rem;
-      align-items: end;
-      display: inline-block;
-      align-self: end;
-
-      h3 {
-        display: inline-block;
-        // align-self: end;
-      }
-    }
-
-    h3, .buttons {
-      grid-column-end: span 2;
-    }
-
-    .buttons {
-      width: 100%;
-      text-align: right;
-    }
-
-    .counter {
-      align-self: center;
-      justify-self: start;
-    }
-
-    .sort {
-      align-self: center;
-      justify-self: end;
-    }
-
-    span {
-      font-size: $size-smallest;
-
-      &.spacer {
-        display: inline-block;
-        margin: 0 0.2em;
-      }
-
-      &.active {
-        color: palette(grey, 10);
-      }
-    }
-
-    section {
-      &:first-child {
-        min-height: 2rem;
-      }
-
-      aside {
-        width: 100%;
-        text-align: right;
-      }
-    }
+  .isActive {
+    font-weight: bold;
+    cursor: default;
+  }
+  .nonRemaining {
+    text-decoration: line-through;
   }
 
-  ul {
-    background-color: #fff;
-    padding: 0.5rem;
-    border: 1px solid palette(grey, 80);
-    border-radius: $radius-default;
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-    overflow-y: scroll;
-    height: calc(1.5rem * 10);
+  .facet-list {
+    .list-list {
+      list-style: none;
+      background-color: #fff;
+      padding: 0.5rem;
+      border: 1px solid palette(grey, 80);
+      border-radius: $radius-default;
+      box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+      overflow-y: scroll;
+      height: calc(1.5rem * 10);
 
-    .active {
-      color: $color-green;
-    }
-
-    .empty {
-      .label, .counter {
-        opacity: 0.5;
-      }
-
-      .label span {
-        text-decoration: line-through;
-      }
-    }
-  }
-
-  svg {
-    position: absolute;
-    pointer-events: none;
-    width: 100%;
-    left: 0;
-    height: 100%;
-
-    line {
-      stroke: $color-green;
-      stroke-width: 1px;
-
-      &.base {
-        stroke: rgba(0, 0, 0, 0.1);
-      }
-
-      &.filter {
-        stroke: $color-green;
-      }
-    }
-  }
-
-  li {
-    font-size: $size-smallest;
-    display: block;
-    cursor: pointer;
-    color: palette(grey, 20);
-    transition-duration: 0.1s;
-    display: flex;
-    height: 1.3rem;
-    overflow: hidden;
-    position: relative;
-    letter-spacing: $spacing-default;
-
-    .label {
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 90%;
-      flex-grow: 1;
-      flex: 3;
-      display: block;
-
-      span {
-        z-index: 10;
-        position: absolute;
+      .option {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        white-space: nowrap;
         overflow: hidden;
-        max-width: 70%;
-        text-overflow: ellipsis;
-      }
-    }
-
-    span {
-      flex: 1;
-
-      &.counter, &.include {
-        text-align: right;
-      }
-
-      &.counter {
-        flex: 1;
         font-size: $size-smallest;
-      }
+        color: palette(grey, 20);
+        transition: color 0.2s;
+        height: 1.3rem;
 
-      &.include {
-        position: absolute;
-        z-index: 10;
-        right: 0;
-        font-size: $size-smallest;
-        opacity: 0;
-      }
-    }
+        .label {
+          overflow: hidden;
+          max-width: 70%;
+          text-overflow: ellipsis;
+          cursor: pointer;
+        }
 
-    &:hover {
-      .counter.hide {
-        opacity: 0;
-      }
+        .action {
+          cursor: pointer;
+        }
 
-      .include {
-        opacity: 1;
-        color: rgba(0, 0, 0, 0.6);
+        .action-add, .action-remove {
+          position: absolute;
+          right: 0;
+          opacity: 0;
+          pointer-events: none;
+        }
 
         &:hover {
-          color: rgba(0, 0, 0, 1);
+          color: $color-accent;
+
+          &.isActive {
+            .action-remove {
+              opacity: 1;
+              pointer-events: all;
+            }
+            .counter {
+              opacity: 0;
+            }
+          }
+        }
+
+        &.nonRemaining {
+          opacity: 0.5;
+
+          .label {
+            text-decoration: line-through;
+          }
         }
       }
-    }
 
-    &.active .label, &.active .counter {
-      font-weight: bold;
-    }
-  }
-
-  ul:hover li {
-    color: palette(grey, 60);
-
-    .label {
-      opacity: 1 !important;
-
-      span {
-        text-decoration: none !important;
+      &.isFiltered {
+        .option:hover:not(.isActive) {
+          .action-add {
+            opacity: 1;
+            pointer-events: all;
+          }
+          .counter {
+            opacity: 0;
+          }
+        }
       }
-    }
-
-    &:hover .label, &:hover .counter {
-      color: palette(grey, 0);
-    }
-
-    &.active .label {
-      color: $color-green !important;
     }
   }
 </style>

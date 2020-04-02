@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn', { clickable: isClickable }, { error: isError }]" v-tooltip="{ content: message ? message : 'Open selected scenarios in IIASA Explorer', placement: 'bottom', open: message, trigger: message ? 'manual' : 'hover focus' }" @click="openExplorer"><i class="icon-export" /> Open in Explorer</button>
+  <button :class="['btn', 'btn--light', { clickable: isClickable }, { error: isError }]" v-tooltip="{ content: message ? message : 'Open selected scenarios in IIASA Explorer', placement: 'bottom', open: message, trigger: message ? 'manual' : 'hover focus' }" @click="openExplorer"><i class="icon-export" /> Open in Explorer</button>
 </template>
 
 <script>
@@ -164,7 +164,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
+  @import "~@/assets/style/global";
 
   .btn{
     &.error {

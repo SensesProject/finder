@@ -4,18 +4,18 @@
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
     </section>
-    <button v-tooltip="'Load data from API instead of cache'" class="btn btn--icon clickable" @click="hardReload"><i class="icon-arrows-ccw" /></button>
-    <button v-tooltip="'View references for data'" class="btn btn--icon clickable" @click="openInfoBox"><i class="icon-info-circled" /></button>
+    <button v-tooltip="'Load data from API instead of cache'" class="btn btn--light btn--icon clickable" @click="hardReload"><i class="icon-arrows-ccw" /></button>
+    <button v-tooltip="'View references for data'" class="btn btn--light btn--icon clickable" @click="openInfoBox"><i class="icon-info-circled" /></button>
     <v-popover :autoHide="true">
-      <button class="btn btn--icon clickable" v-tooltip="'Show display options'"><i class="icon-cog" /></button>
+      <button class="btn btn--light btn--icon clickable" v-tooltip="'Show display options'"><i class="icon-cog" /></button>
       <Options slot="popover"/>
     </v-popover>
-    <button v-tooltip="'Click to copy link of current filter'" class="btn btn--icon clickable" @click="copyLink"><i class="icon-export" /></button>
+    <button v-tooltip="'Click to copy link of current filter'" class="btn btn--light btn--icon clickable" @click="copyLink"><i class="icon-export" /></button>
     <v-popover :autoHide="true">
-      <button class="btn clickable" v-tooltip="'Show facet options'"><i class="icon-list" /> Select filter</button>
+      <button class="btn btn--light clickable" v-tooltip="'Show facet options'"><i class="icon-list" /> Select filter</button>
       <SelectFacets slot="popover"/>
     </v-popover>
-    <button :class="{ btn: true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="icon-cancel-circled" /> Reset all filter</button>
+    <button :class="{ btn: true, 'btn--light': true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="icon-cancel-circled" /> Reset all filter</button>
     <ExplorerLink v-if="showExplorer" />
   </aside>
 </template>
@@ -55,6 +55,12 @@
         'loadData',
         'loadFacets'
       ]),
+      ...mapActions('load', [
+        'loadData'
+      ]),
+      ...mapActions('facets', [
+        'loadFacets'
+      ]),
       copyLink: function (event) {
         const link = map(this.url, (value, key) => {
           return `${key}=${value}`
@@ -77,7 +83,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
+  @import "~@/assets/style/global";
 
   aside {
     display: grid;

@@ -1,116 +1,103 @@
 <template>
-  <section
-    class="facet"
-    @mouseenter="setHoverKey({ id })"
-    @mouseleave="resetHoverKey()">
+  <div class="facet facet-search">
     <FacetHeader
-      :id="id"
-      :isInvert="isInvert"
-      :isActive="isActive"
       :title="title"
-      :number="number"
-      :tooltip="tooltip" />
-    <div><input type="text" :class="{ active: isActive }" placeholder="Search …" v-model="inputTerm" :disabled="status !== 'LOADING_SUCCESS'" /></div>
-  </section>
+      :isFiltered="isFiltered"
+      :isInverted="isInverted"
+      :tooltip="tooltip"
+      :count="count"
+      @removeFacet="() => removeFacet(id)"
+      @toggleInvert="toggleInvert"
+      @reset="reset" />
+    <input
+      type="text"
+      :class="['search-search', { isActive: isFiltered }]"
+      placeholder="Search …"
+      v-model="inputTerm" />
+  </div>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
-  import { isUndefined, find, get, size, trim } from 'lodash'
-  import FacetHeader from '~/components/Facets/FacetHeader.vue'
+  import { mapActions } from 'vuex'
+  import { trim } from 'lodash'
+  import FacetHeader from './FacetHeader.vue'
+
+  const TERM_DEFAULT = ''
+  const INVERTED_DEFAULT = false
 
   export default {
-    props: ['title', 'values', 'id', 'options', 'tooltip'],
+    name: 'FacetSearch',
+    props: {
+      items: {
+        type: Array,
+        default: () => []
+      },
+      title: {
+        type: String
+      },
+      id: {
+        type: String
+      },
+      tooltip: {
+        type: String
+      }
+    },
+    components: {
+      FacetHeader
+    },
     data: function () {
       return {
-        term: ''
+        term: TERM_DEFAULT, // List of selected items
+        isInverted: INVERTED_DEFAULT // Is the search inverted
       }
     },
     computed: {
-      ...mapState({
-        status: state => get(state, 'data.status', 'ERROR')
-      }),
-      ...mapState([
-        'filter'
-      ]),
-      isInvert () {
-        const keys = find(this.filter, ['id', this.id])
-        return isUndefined(keys) ? false : keys.invert
-      },
-      isActive () {
-        return this.term.length
-      },
-      number () {
-        return size(this.options)
+      isFiltered () {
+        return this.term !== TERM_DEFAULT
       },
       inputTerm: {
         get () {
           return this.term
         },
         set (input) {
-          const value = trim(input)
-          this.term = value
-          if (value.length) {
-            this.setFilter({ id: this.id, value: value })
-          } else {
-            this.resetSearch()
-          }
+          this.term = input
+          this.apply()
         }
+      },
+      count () {
+        // Count the number of options
+        return this.items.length
       }
     },
     methods: {
-      ...mapActions([
-        'resetFilter',
-        'setFilter',
-        'setHoverKey',
-        'resetHoverKey',
-        'invertFilter'
+      ...mapActions('filter', [
+        'filter',
+        'removeFacet',
+        'resetFilter'
       ]),
-      resetSearch: function () {
-        this.term = ''
-        this.resetFilter(this.id)
+      toggleInvert () {
+        this.isInverted = !this.isInverted
+        this.apply()
+      },
+      reset () {
+        this.term = TERM_DEFAULT
+        this.apply()
+      },
+      apply () {
+        const value = trim(this.term)
+
+        if (value !== '') {
+          this.filter({ key: this.id, value: value.toUpperCase(), isInverted: this.isInverted })
+        } else {
+          this.resetFilter(this.id)
+        }
       }
-    },
-    components: {
-      FacetHeader
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
-
-  header {
-    color: palette(grey, 60);
-    margin-bottom: 0;
-
-    h3 {
-      text-transform: capitalize;
-    }
-
-    span {
-      font-size: $size-smallest;
-
-      &.spacer {
-        display: inline-block;
-        margin: 0 0.2em;
-      }
-
-      &.active {
-        color: palette(grey, 10);
-      }
-    }
-
-    section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      &:first-child {
-        min-height: 2rem;
-      }
-    }
-  }
+  @import "~@/assets/style/global";
 
   input {
     background-color: #fff;

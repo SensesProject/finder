@@ -71,12 +71,13 @@ const actions = {
       const { name, params } = follower
       // Exctract possible params (TODO: Check if actually happening. Not sure anymore)
       // isLoop prevents a loop of calling the target in a loop. (TODO: Explain how)
-      dispatch(name, { ...params, isLoop: isForced, isForced })
+      dispatch(name, { ...params, isLoop: isForced, isForced }, { root: true })
     }
   }
 }
 
 export default {
+  namespaced: true,
   state,
   mutations,
   actions

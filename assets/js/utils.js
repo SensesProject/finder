@@ -1,4 +1,5 @@
-import { round, isBoolean, get } from 'lodash'
+import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace } from 'lodash'
+import { format } from 'timeago.js'
 
 export const getLabel = function (value, type, precision) {
   // The label can be different. It’s based on the type of the column
@@ -36,5 +37,51 @@ export const getPopover = function (pop, datum) {
 
 export const isTooOld = function (date) {
   const ONE_DAY = 60 * 60 * 1000 * 24
+  console.log(`Data was loaded ${format(date)}`)
   return ((new Date()) - new Date(date)) > ONE_DAY
+}
+
+export const extractFromGoogleTable = function (keys, data) {
+  // This function extracts the relevant data from the Google Sheet response
+  return map(get(data, ['feed', 'entry']), entry => {
+    const obj = {}
+    forEach(keys, key => {
+      let value = get(entry, [`gsx$${key}`, '$t'])
+      // Some reformatting if value is TRUE or FALSE
+      switch (value) {
+        case 'TRUE':
+          value = true
+          break
+        case 'FALSE':
+          value = false
+          break
+      }
+      set(obj, key, value)
+    })
+    // Generate a id for each facet. This is used to trigger each filter
+    set(obj, 'id', kebabCase(get(entry, [`gsx$label`, '$t'])))
+    return obj
+  })
+}
+
+export const extractFromGoogleTable2 = function (data) {
+  return map(get(data, ['feed', 'entry']), entry => {
+    const obj = {}
+    forEach(keys(entry), key => {
+      if (startsWith(key, 'gsx$')) {
+        const path = replace(key, 'gsx$', '')
+        let value = get(entry, [key, '$t'])
+        switch (value) {
+          case 'TRUE':
+            value = true
+            break
+          case 'FALSE':
+            value = false
+            break
+        }
+        set(obj, path, value)
+      }
+    })
+    return obj
+  })
 }

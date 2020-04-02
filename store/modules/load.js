@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { get, replace, forEach, startsWith, isUndefined, map, set, keys } from 'lodash'
+import { get, isUndefined, set } from 'lodash'
 import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS } from '../config'
-import { isTooOld } from '../../assets/js/utils'
+import { isTooOld, extractFromGoogleTable2 } from '../../assets/js/utils'
+import { basket } from '../index'
 
 const state = () => ({
   data: [],
@@ -21,38 +22,34 @@ const mutations = {
     state.isGoogleSheet = value
   },
   API_DATA (state, { status, message, data }) {
+    // Update the status
     state.status = status
+
+    // Add a message. This happens on error
     if (!isUndefined(message)) {
       state.message = message
     }
-    if (!isUndefined(data)) {
+
+    // Check if data is being passed and has length
+    if (!isUndefined(data) && data.length) {
+      console.log(`Got data with ${data.length} elements`)
+      // Set the new data in the state
       state.data = data
       // Safe the current date to get its age the next time
       state.date = new Date()
     }
-  }
-}
 
-function extractFromGoogleTable (data) {
-  return map(get(data, ['feed', 'entry']), entry => {
-    const obj = {}
-    forEach(keys(entry), key => {
-      if (startsWith(key, 'gsx$')) {
-        const path = replace(key, 'gsx$', '')
-        let value = get(entry, [key, '$t'])
-        switch (value) {
-          case 'TRUE':
-            value = true
-            break
-          case 'FALSE':
-            value = false
-            break
-        }
-        set(obj, path, value)
-      }
-    })
-    return obj
-  })
+    // Check if there is data in the state
+    // The data could be coming from a request or the localStorage
+    // Because it can come from the localStorage this needs to be seperate from the part above
+    if (state.data.length) {
+      // Remove all previous elements.
+      basket.remove(true)
+
+      // Add new data
+      basket.add(state.data)
+    }
+  }
 }
 
 const actions = {
@@ -69,13 +66,16 @@ const actions = {
     const lastLoad = get(state, 'date', false)
     // Is the last loading time longer ago than one day ago or has been loaded before at all
     const shouldReload = !lastLoad || isTooOld(lastLoad)
-    // If longer ago or forced (on hard reload)
-    const willReload = shouldReload ? true : isForced
+    // Check current data object
+    const currentData = get(state, ['data', 'length'], 0)
+    console.log({ currentData })
+    // If longer ago, empty or forced (on hard reload)
+    const willReload = (shouldReload || !currentData) ? true : isForced
     if (willReload) {
       console.log('Data is too old or reload is forced. Will reload data')
     }
     // The authorization is called in any case but with varying parameter. The follower is the function called afterwards
-    dispatch('auth', { follower: { name: 'load' }, isForced: willReload })
+    dispatch('auth/auth', { follower: { name: 'load/load' }, isForced: willReload }, { root: true })
   },
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
     // This function is called after authorization
@@ -99,25 +99,33 @@ const actions = {
           const { data } = response
           console.log('Loading successfull')
           // Check were data is coming from
-          const datum = state.isGoogleSheet ? extractFromGoogleTable(data) : data
+          const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
+          dispatch('filter/updateDimension', false, { root: true })
+
+          // Apply filtering
+          dispatch('apply', false, { root: true })
         })
         .catch(error => {
           console.log('Loading failed', { error, isLoop })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
             console.log('Trying to relogin')
-            dispatch('auth', { follower: { name: 'load' }, isForced: true })
+            dispatch('auth/auth', { follower: { name: 'load/load' }, isForced: true }, { root: true })
           }
         })
     } else {
       console.log('Data already loaded', format(state.date))
+      console.log('Data:', state.data)
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
+      dispatch('filter/updateDimension', false, { root: true })
+      dispatch('apply', false, { root: true })
     }
   }
 }
 
 export default {
+  namespaced: true,
   state,
   mutations,
   actions

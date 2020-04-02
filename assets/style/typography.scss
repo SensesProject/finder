@@ -37,6 +37,34 @@
   }
 }
 
+.facets {
+  .facet {
+    .header-title {
+      h3 {
+        font-size: $size-small;
+        font-weight: $font-weight-bold;
+        line-height: 1.2;
+        color: palette(grey, 20);
+        letter-spacing: $spacing-default;
+        line-height: 1em;
+
+        &.isActive {
+          color: $color-accent;
+        }
+      }
+    }
+
+    .header-aside {
+      font-size: $size-smallest;
+    }
+
+    .header-footer {
+      color: palette(grey, 60);
+      font-size: $size-smallest;
+    }
+  }
+}
+
 ::-moz-selection {
   background: $color-darker;
   color: $color-invert;
@@ -196,20 +224,61 @@ table {
 }
 
 .btn {
-  transition-duration: 0.5s;
-  color: palette(grey, 60);
-  border-radius: 4px;
-  text-align: center;
-  display: inline-block;
-  border: 1px solid palette(grey, 85);
-  background-color: transparent;
-  letter-spacing: $spacing-wide;
-  font-size: $size-small;
-  outline: none;
-  line-height: 1.3;
-  white-space: nowrap;
+  cursor: pointer;
+  transition: color $transition, background-color $transition;
 
-  padding: $spacing / 4 $spacing / 3;
+  &.btn--none {
+    background-color: transparent;
+  }
+
+  &.btn--remove, &.btn--sort, &.btn--small {
+    font-size: $size-smallest;
+    line-height: 1em;
+    color: $color-mute;
+
+    &.isActive {
+      color: $color-default;
+    }
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &.btn--small {
+    padding: 0.2em 0.4em;
+    color: palette(grey, 40);
+    background-color: palette(grey, 100);
+    border-radius: $radius-default;
+
+    &.isActive {
+      background-color: $color-accent;
+      color: $color-white;
+    }
+  }
+
+  &:disabled, &[disabled] {
+    cursor: default;
+    pointer-events: none;
+    color: palette(grey, 80);
+  }
+
+  &.btn--light {
+    transition-duration: 0.5s;
+    color: palette(grey, 60);
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid palette(grey, 85);
+    background-color: transparent;
+    letter-spacing: $spacing-wide;
+    font-size: $size-small;
+    outline: none;
+    line-height: 1.3;
+    white-space: nowrap;
+
+    padding: $spacing / 4 $spacing / 3;
+  }
 
   &.btn--compact {
     padding: $spacing / 10 $spacing / 6;

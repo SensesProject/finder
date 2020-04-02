@@ -1,15 +1,11 @@
 <template>
   <section
-    class="facet"
-    @mouseenter="setHoverKey({ id })"
-    @mouseleave="resetHoverKey()">
+    class="facet">
     <FacetHeader
-      :id="id"
-      :hasInvert="false"
-      :isActive="isActive"
       :title="title"
-      :number="number"
-      :tooltip="tooltip" />
+      :isFiltered="isFiltered"
+      :tooltip="tooltip"
+      @reset="reset" />
     <div class="vis-wrapper">
       <svg ref="vis">
         <line
@@ -19,146 +15,153 @@
           :y1="scaleY.range()[0]"
           :y2="scaleY.range()[1]" />
         <rect
-          v-for="(bar, i) in bars"
-          :class="{ bar: true, isActive: actives[i] }"
+          v-for="(bar, i) in totalBars"
+          :key="`total_${bar.key}`"
+          class="bar"
           :x="bar.x"
           :y="bar.y"
           :width="bar.width"
-          :height="bar.height"
-          v-tooltip="bar.tooltip" />
+          :height="bar.height" />
+        <rect
+          v-for="(bar, i) in totalBars"
+          :key="`remaining_${bar.key}`"
+          :class="['bar', 'value', { isActive: isFiltered && bars[bar.key][1] }]"
+          :x="bar.x"
+          :y="bar.y"
+          :width="bars[bar.key][0]"
+          :height="bar.height" />
         <text
           :x="marginLeft - 10"
-          :y="yLow || 0"
+          :y="y"
           class="tick"
           text-anchor="end"
-          ref="labelLow">{{ ticks.low.value }}</text>
+          dominant-baseline="hanging"
+          ref="labelLow">{{ brushLow.toFixed() }}</text>
         <text
           :x="marginLeft - 10"
-          :y="yHigh || 0"
+          :y="y + h"
           class="tick"
-          text-anchor="end">{{ ticks.high.value }}</text>
+          text-anchor="end">{{ brushHigh.toFixed() }}</text>
       </svg>
-      <client-only>
-        <VueDragResize
-          ref="dragElement"
-          v-on:resizing="resize"
-          :isActive="true"
-          :preventActiveBehavior="true"
-          :parentLimitation="true"
-          :parentH="height"
-          :parentW="width"
-          :w="width - marginLeft"
-          :x="marginLeft"
-          :h="height"
-          :sticks="['tm','bm']"
-          :minh="grid"
-          :gridY="grid"
-          :snapToGrid="true"
-          :isDraggable="false" />
-      </client-only>
+      <vue-draggable-resizable
+        :x="x"
+        :y="y"
+        :w="w"
+        :h="h"
+        :resizable="true"
+        :active="true"
+        :prevent-deactivation="preventDeactivation"
+        @dragging="onDrag"
+        @resizing="onResize"
+        :parent="true"
+        :min-width="width - marginLeft"
+        :handles="['tm','bm']"
+        axis="y"
+      />
     </div>
   </section>
 </template>
 
 <script>
-  import { histogram, extent } from 'd3-array'
+  import { extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
-  import { mapState, mapActions } from 'vuex'
-  import { get, size, map, maxBy, flatten, compact, inRange, throttle } from 'lodash'
+  import { mapActions } from 'vuex'
+  import { map, inRange, values, head, last, fromPairs, throttle } from 'lodash'
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
+  import VueDraggableResizable from 'vue-draggable-resizable'
 
   export default {
-    props: ['title', 'values', 'id', 'options', 'tooltip'],
+    name: 'FacetHistogram',
+    props: {
+      items: {
+        type: Array,
+        default: () => []
+      },
+      init: {
+        type: Object,
+        default: () => {}
+      },
+      title: {
+        type: String
+      },
+      id: {
+        type: String
+      },
+      tooltip: {
+        type: String
+      },
+      thresholds: {
+        type: Array,
+        default: () => []
+      }
+    },
     data: function () {
+      const marginLeft = 50
+      const width = 220
       return {
-        isActive: false,
-        width: 220,
+        width,
         height: 250,
-        barsCount: 60,
-        marginLeft: 50,
-        yLow: 0,
-        yHigh: 0,
+        marginLeft,
         labelHeight: 0,
-        brushing: {
-          low: -Infinity,
-          high: Infinity
-        }
+        brushLow: 0,
+        low: 0,
+        brushHigh: 0,
+        high: 0,
+        isFiltered: false,
+        // Properties of the brush
+        x: marginLeft,
+        y: 1,
+        w: width - marginLeft,
+        h: 1,
+        isActive: false,
+        preventDeactivation: true
       }
     },
     computed: {
-      ...mapState({
-        status: state => get(state, 'data.status', 'ERROR'),
-        filter: state => get(state, 'filter.filter', [])
-      }),
-      hasAnyActiveFilter () {
-        return this.filter.length > 0
+      domain () {
+        return extent(map(this.items, 'key'))
       },
-      number () {
-        return size(this.values)
+      range () {
+        return [head(this.thresholds), last(this.thresholds)]
       },
-      items () {
-        return compact(flatten(this.values))
-      },
-      scaleBins () {
-        return scaleLinear()
-          .domain(extent(this.items)).nice(this.barsCount)
-          .range([0, this.height])
-      },
-      list () {
-        const list = histogram()
-          .domain(this.scaleBins.domain())
-          .thresholds(this.scaleBins.ticks(this.barsCount))
-        return list(this.items)
-      },
-      step () {
-        return get(this.list, ['0', 'x1']) - get(this.list, ['0', 'x0'])
+      maxValue () {
+        return Math.max(...values(this.init))
       },
       scaleX () {
         return scaleLinear()
           .range([0, this.width - this.marginLeft])
-          .domain([0, maxBy(this.list, item => { return item.length }).length])
+          .domain([0, this.maxValue])
       },
       scaleY () {
         return scaleBand()
           .paddingInner(0.5)
           .range([0, this.height])
-          .domain(map(this.list, (item, n) => { return n }))
+          .domain(this.thresholds)
+      },
+      scaleBrush () {
+        return scaleLinear()
+          .range([0, this.height])
+          .domain(this.range)
+      },
+      totalBars () {
+        const height = this.scaleY.bandwidth()
+        const x = this.marginLeft
+        return map(this.init, (value, key) => {
+          return {
+            key,
+            x,
+            width: this.scaleX(value),
+            y: this.scaleY(key),
+            height,
+            tooltip: `${value} element${value === 1 ? ' is' : 's are'} between ${key} and ${key}`
+          }
+        })
       },
       bars () {
-        return map(this.list, (item, n) => {
-          // TODO: Does not include end
-          return {
-            x: this.marginLeft,
-            y: this.scaleY(n),
-            width: this.scaleX(item.length),
-            height: this.scaleY.bandwidth(),
-            tooltip: `${item.length} element${item.length === 1 ? ' is' : 's are'} between ${item.x0} and ${item.x1}`
-          }
-        })
-      },
-      actives () {
-        return map(this.list, (item) => {
-          return inRange(item.x0, this.brushing.low, this.brushing.high)
-        })
-      },
-      grid () {
-        return this.height / this.list.length
-      },
-      labelPlacement () {
-        return scaleLinear()
-          .range([this.labelHeight - 5, 0])
-          .domain(this.scaleBins.domain())
-      },
-      ticks () {
-        const { brushing } = this
-        return {
-          low: {
-            value: brushing.low.toFixed(0)
-          },
-          high: {
-            value: brushing.high.toFixed(0)
-          }
-        }
+        const { brushLow, brushHigh } = this
+        return fromPairs(map(this.items, ({ key, value }) => {
+          return [key, [this.scaleX(value), inRange(key, brushLow, brushHigh)]]
+        }))
       }
     },
     methods: {
@@ -169,84 +172,100 @@
         'resetHoverKey',
         'invertFilter'
       ]),
-      resetHistogram () {
-        this.$refs.dragElement.top = 0
-        this.$refs.dragElement.bottom = 0
-        this.resetFilter(this.id)
-        this.resize(this.$refs.dragElement, true)
+      ...mapActions('filter', [
+        'filter',
+        'removeFacet',
+        'resetFilter'
+      ]),
+      reset () {
+        const { height } = this
+        this.y = 0
+        this.h = height
+        this.brushLow = this.scaleBrush.invert(0)
+        this.brushHigh = this.scaleBrush.invert(height)
+        this.apply()
       },
-      applyFilter: throttle(function (reset) {
-        const [low, high] = this.scaleBins.domain()
-        this.isActive = this.brushing.low !== low || this.brushing.high !== high
-        if (!reset) {
-          this.setFilter({
-            id: this.id,
-            value: {
-              low: this.brushing.low,
-              high: this.brushing.high
-            }
-          })
+      apply: throttle(function () {
+        const { brushLow, brushHigh, id, range } = this
+        const [ low, high ] = range
+        if (brushLow === low && brushHigh === high) {
+          this.isFiltered = false
+          this.resetFilter(this.id)
+        } else {
+          this.isFiltered = true
+          this.filter({ key: id, value: [brushLow, brushHigh] })
         }
-      }, 500),
-      resize: throttle(function (newRect, reset = false) {
-        const { step, scaleBins } = this
-        const low = newRect.top
-        const high = newRect.top + newRect.height
-        this.brushing.low = Math.ceil(scaleBins.invert(low) / step) * step
-        this.brushing.high = Math.ceil(scaleBins.invert(high) / step) * step
-        this.yLow = low + this.labelPlacement(this.brushing.low)
-        this.yHigh = high + this.labelPlacement(this.brushing.high)
-        this.applyFilter(reset)
-      }, 100)
-    },
-    watch: {
-      hasAnyActiveFilter (value) {
-        if (!value) {
-          this.resetHistogram()
-        }
+      }, 200),
+      onResize (x, y, width, height) {
+        this.y = y
+        this.h = height
+        this.brushLow = this.scaleBrush.invert(y)
+        this.brushHigh = this.scaleBrush.invert(y + height)
+        this.apply()
       },
-      items () {
-        const labelLow = get(this.$refs, 'labelLow')
-        const height = labelLow ? get(this.$refs.labelLow.getBBox(), 'height') : 0
-        this.labelHeight = height
-        this.resetHistogram()
+      onDrag (x, y) {
+        this.y = y
+        this.brushLow = this.scaleBrush.invert(y)
+        this.brushHigh = this.scaleBrush.invert(y + this.h)
+        this.apply()
       }
     },
     mounted () {
-      const { scaleBins } = this
-      const labelLow = get(this.$refs, 'labelLow')
-      const height = labelLow ? get(this.$refs.labelLow.getBBox(), 'height') : 0
-      this.labelHeight = height
-      const [low, high] = scaleBins.domain()
-      if (low && high) {
-        this.brushing.low = low || 0
-        this.brushing.high = high || 0
-        this.yLow = scaleBins(low) + this.labelPlacement(low)
-        this.yHigh = scaleBins(high) + this.labelPlacement(high)
-      }
+      this.reset()
     },
     components: {
-      FacetHeader
+      FacetHeader,
+      VueDraggableResizable
     }
   }
 </script>
 
 <style lang="scss">
+@import "~@/assets/style/global";
 .vdr {
-  pointer-events: none;
-
-  & > * {
-    pointer-events: all;
-  }
+  touch-action: none;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 0;
+  cursor: ns-resize;
 }
 
-.vdr-stick {
-  pointer-events: all;
+$handle-height: 2px;
+
+.handle {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: $handle-height;
+  background: $color-accent;
+  border: 0;
+}
+.handle-tm {
+  top: -$handle-height;
+  left: 0;
+  margin-left: 0;
+  border-radius: 1px 1px 0 0;
+}
+.handle-bm {
+  bottom: -$handle-height;
+  left: 0;
+  margin-left: 0;
+}
+@media only screen and (max-width: 768px) {
+  [class*="handle-"]:before {
+    content: '';
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    top: -10px;
+    position: absolute;
+  }
 }
 </style>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
+  @import "~@/assets/style/global";
 
   header {
     color: palette(grey, 60);
@@ -311,10 +330,15 @@
 
   svg {
     .bar {
+      transition: width 0.05s, fill 0.2s;
       fill: rgba(0, 0, 0, .2);
 
+      &.value {
+        fill: rgb(100, 100, 100);
+      }
+
       &.isActive {
-        fill: #39C88A;
+        fill: $color-accent;
       }
     }
 

@@ -14,7 +14,7 @@
   import { get, size } from 'lodash'
   import Header from '~/components/Header.vue'
   import Popover from '~/components/Popover.vue'
-  import Table from '~/components/Table.vue'
+  import Table from '~/components/Table/Table.vue'
 
   export default {
     head () {
@@ -54,13 +54,22 @@
     },
     methods: {
       ...mapActions([
-        'initFilter',
         'setID',
-        'setInitFilter',
-        'setIsGoogleSheet',
-        'setUrlAuth',
-        'setUrlData',
+        'initFinder'
+      ]),
+      ...mapActions('facets', [
         'setUrlFacets'
+      ]),
+      ...mapActions('filter', [
+        'initFilter',
+        'setInitFilter'
+      ]),
+      ...mapActions('load', [
+        'setIsGoogleSheet',
+        'setUrlData'
+      ]),
+      ...mapActions('auth', [
+        'setUrlAuth'
       ])
     },
     components: {
@@ -70,6 +79,7 @@
     },
     created: function () {
       const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth } = this
+      this.initFinder()
 
       // INIT FILTERS can be passed down by URL
       // First we extract the query
@@ -77,9 +87,10 @@
       // If elements were found, we clean the url
       if (size(initFilter)) {
         this.$router.replace({ params: {} })
+
+        // Next we save these filters for later
+        this.setInitFilter(initFilter)
       }
-      // Next we save these filters for later
-      this.setInitFilter(initFilter)
 
       // Save the url of the FACET informations
       this.setUrlFacets(facetsURL)
@@ -102,7 +113,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/assets/style/variables";
+  @import "~@/assets/style/global";
 
   .wrapper {
     max-height: 100vh;
