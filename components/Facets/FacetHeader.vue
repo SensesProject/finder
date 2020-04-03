@@ -4,7 +4,7 @@
       <h3 :class="{ isActive: isFiltered }" v-tooltip="{ content: tooltip }">{{ title }}</h3>
       <button @click="removeFacet" class="btn btn--none btn--remove">&times;</button>
     </div>
-    <aside class="header-aside">
+    <aside :class="['header-aside', displayInvert ? 'double' : 'single']">
       <button :class="['btn', 'btn--small']" :disabled="!isFiltered" @click="reset">Reset</button>
       <button v-if="displayInvert" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
@@ -106,9 +106,14 @@ export default {
     }
 
     .header-aside {
-      grid-template-columns: 1fr auto;
       justify-items: end;
       align-items: center;
+      &.single { // If there is no invert button
+        grid-template-columns: auto;
+      }
+      &.double {
+        grid-template-columns: 1fr auto;
+      }
     }
 
     .header-footer {
