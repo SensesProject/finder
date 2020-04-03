@@ -3,25 +3,24 @@
     <table>
       <thead>
         <tr>
-          <td>
+          <th>
             <TableCounter />
-          </td>
-          <td :colspan="filter.length">
+          </th>
+          <th :colspan="filter.length">
             <TableNavigation />
-          </td>
+          </th>
         </tr>
       </thead>
       <tbody v-if="elements.length">
         <tr
           v-for="({ cells, row }, n) in elements"
-          :key="row"
-          :class="{ 'hover': false }">
+          :key="row">
           <td
             v-for="({ label, key, popoverContent }, i) in cells"
             :key="key">
             <div>
               <!-- <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span> -->
-              <span class="label">{{ label || '—' }}</span>
+              <span class="label">{{ label }}</span>
               <section>
                 <i
                   class="option icon-popup clickable"
@@ -112,8 +111,11 @@
       border-collapse: collapse;
       table-layout: fixed;
 
+      tr {
+        border-bottom: 1px solid $color-bg-mute;
+      }
+
       tr td, tr th {
-        transition: all 0.1s;
         display: inline-block;
         width: calc(#{$column-width} + #{$column-gap});
         padding-left: $spacing / 4;
@@ -129,91 +131,67 @@
 
         &:last-child {
           padding-right: 0;
-          width: calc(#{$column-width});
+          width: $column-width;
         }
-      }
-    }
-
-    th {
-      text-align: left;
-      padding: 0 0.1em;
-      vertical-align: top;
-    }
-
-    tbody tr:hover {
-      color: $color-violet;
-
-      .option {
-        opacity: 1;
-      }
-    }
-
-    tbody tr.hover {
-      color: #000;
-      background-color: rgba($color-green, 0.2)
-    }
-
-    th.active, td.active {
-      color: darken($color-green, 10);
-    }
-
-    tbody tr.hover td.active {
-      color: #000;
-    }
-
-    tr td {
-      border-bottom: 1px solid $color-bg-mute;
-      padding: $spacing / 8 0.1em;
-      white-space: nowrap;
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        .label {
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-
-        .option {
-          display: inline-block;
-          color: rgba(0, 0, 0, 0.8);
-          transition: 0.2s;
-          opacity: 0.001;
-
-          &:hover {
-            color: rgba(0, 0, 0, 1);
-          }
-        }
-      }
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .message {
-      text-align: center;
-      width: 100% !important;
-
-      & > * {
-        height: 2em;
       }
     }
 
     thead {
       tr {
-        border-bottom: 1px solid $color-bg-mute;
-
-        td {
+        th {
           margin: $spacing / 4 0;
           vertical-align: middle;
+          text-align: left;
+          padding: 0 0.1em;
+          vertical-align: top;
 
           &:last-child {
             width: auto !important;
           }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          color: $color-accent;
+
+          .option {
+            opacity: 1;
+          }
+        }
+
+        td {
+          padding: $spacing / 8 0.1em;
+          white-space: nowrap;
+
+          div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .label {
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+
+            .option {
+              display: inline-block;
+              color: $color-light-gray;
+              transition: opacity $transition, color $transition;
+              opacity: 0.001;
+
+              &:hover {
+                color: $color-black;
+              }
+            }
+          }
+        }
+
+        &:last-child td {
+          border-bottom: 0;
         }
       }
     }
