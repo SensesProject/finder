@@ -38,9 +38,9 @@ const mutations = {
     // This must be commited everytime a filter is applied.
     // This is called by the apply function the root store
     // This sets the new counting results
-    const total = basket.size()
-    state.count = [all.value(), total]
-    state.numberOfPages = Math.ceil((total || 0) / ITEMS_PER_PAGE)
+    const remaining = all.value()
+    state.count = [remaining, basket.size()]
+    state.numberOfPages = Math.ceil((remaining || 0) / ITEMS_PER_PAGE)
     // console.log('count:', total, state.count, state.numberOfPages)
   },
   SET_OFFSET (state, offset) {

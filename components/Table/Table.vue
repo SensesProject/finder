@@ -65,12 +65,10 @@
         'datum'
       ]),
       elements () {
-        // const facetIDs = map(this.facets, 'id')
         // Get the filtered data from the basket
         return map(this.datum, (datum) => {
           // Loop over the visible facets and build row
           const cells = map(this.filter, (filter) => {
-            console.log({ filter })
             const key = filter[KEY_PATH]
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
             return {
@@ -85,45 +83,9 @@
           }
         })
       }
-      // items () {
-      //   const facetIDs = map(this.facets, 'id')
-      //   return map(this.result, item => {
-      //     // For each row: build an array of values based on the visible headers
-      //     const cells = compact(map(facetIDs, id => {
-      //       return includes(this.visibleFacets, id) ? get(item, id) : false
-      //     }))
-
-      //     const hover = get(this, 'hoverValue', false)
-      //     const id = get(this, 'hoverValue.id', undefined)
-      //     const value = get(this, 'hoverValue.value', undefined)
-
-      //     let active = false // By default, the cell is not highlighted
-      //     if (hover && !isUndefined(id) && !isUndefined(value)) { // Check if hover is defined and if id and value is defined. The id defines the hovered column and value the (to be) highlighted value in this column
-      //       if (isArray(item[id])) { // If multiple ids are hovered
-      //         if (indexOf(item[id], value) >= 0) {
-      //           active = true
-      //         }
-      //       } else { // If a single id is hovered
-      //         if (item[id].label === value) {
-      //           active = true
-      //         }
-      //       }
-      //     }
-
-      //     return {
-      //       cells,
-      //       active
-      //     }
-      //   }).slice(...this.currentRange)
-      // },
-      // numberOfPages () {
-      //   return Math.ceil((this.result.length || 0) / this.itemsPerPage)
-      // }
     },
     methods: {
       ...mapActions([
-        'setHoverValue',
-        'resetHoverValue',
         'setFilter',
         'openPopover',
         'openContentPopover'

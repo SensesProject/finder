@@ -1,10 +1,10 @@
 <template>
   <nav v-if="numberOfPages" class="table-navigation">
-    <button :class="['btn', 'btn--compact', 'btn--light', { 'clickable': currentPage > 0 }]" @click="setFirstPage">&LeftArrowBar;</button>
-    <button :class="['btn', 'btn--compact', 'btn--light', { 'clickable': currentPage > 0 }]" @click="setPreviousPage">&ShortLeftArrow;</button>
+    <button class="btn btn--compact btn--light" :disabled="!(currentPage > 0)" @click="setFirstPage">&LeftArrowBar;</button>
+    <button class="btn btn--compact btn--light" :disabled="!(currentPage > 0)" @click="setPreviousPage">&ShortLeftArrow;</button>
     <span class="space">Page {{ currentPage + 1 }} of {{ numberOfPages }}</span>
-    <button :class="['btn', 'btn--compact', 'btn--light', { 'clickable': currentPage < numberOfPages - 1 }]" @click="setNextPage">&ShortRightArrow;</button>
-    <button :class="['btn', 'btn--compact', 'btn--light', { 'clickable': currentPage < numberOfPages - 1 }]" @click="setLastPage">&RightArrowBar;</button>
+    <button class="btn btn--compact btn--light" :disabled="!(currentPage < numberOfPages - 1)" @click="setNextPage">&ShortRightArrow;</button>
+    <button class="btn btn--compact btn--light" :disabled="!(currentPage < numberOfPages - 1)" @click="setLastPage">&RightArrowBar;</button>
   </nav>
 </template>
 

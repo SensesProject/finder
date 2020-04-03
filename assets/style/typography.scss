@@ -257,12 +257,6 @@ table {
     }
   }
 
-  &:disabled, &[disabled] {
-    cursor: default;
-    pointer-events: none;
-    color: palette(grey, 80);
-  }
-
   &.btn--light {
     transition-duration: 0.5s;
     color: palette(grey, 60);
@@ -278,6 +272,12 @@ table {
     white-space: nowrap;
 
     padding: $spacing / 4 $spacing / 3;
+  }
+
+  &:disabled, &[disabled] {
+    cursor: default;
+    pointer-events: none;
+    color: palette(grey, 80);
   }
 
   &.btn--compact {
