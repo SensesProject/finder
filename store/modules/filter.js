@@ -19,7 +19,7 @@ const state = () => ({
 })
 
 const mutations = {
-  CREATE_FACET (state, { key, type, tooltip, label, id }) {
+  CREATE_FACET (state, { key, type, tooltip, label, id, popover }) {
     // This mutation creates a facet by creating a dimension for this key
     // It also sets the type of the facet. This is used later for the filtering technique
     if (KEY_TYPE === KEY_FILTER_TYPE_HISTOGRAM) {
@@ -51,7 +51,8 @@ const mutations = {
         [KEY_DIMENSION]: dimension,
         facet: facet,
         init: facet.top(Infinity),
-        [KEY_TYPE]: type
+        [KEY_TYPE]: type,
+        popover
       }
     }
   },

@@ -32,6 +32,9 @@ const actions = {
   openInfoBox ({ commit }) {
     commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content: 'reference', id: 'info' })
   },
+  openContentPopover ({ commit }, content) {
+    commit('OPEN_POPOVER', { status: STATUS_LOADING_SUCCESS, content, id: 'content' })
+  },
   openPopover ({ getters, commit, rootState, dispatch }, obj) {
     const { popover: url, popoverKey: key, isLoop } = obj
     let { popoverID: id } = obj

@@ -21,20 +21,21 @@ const state = () => ({
 })
 
 // These keys are the one that should are relevant and should be extracted from the Google Sheet
-const KEYS = ['key', 'label', 'group', 'system', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
+const KEYS = ['key', 'label', 'group', 'system', 'popover.content', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
 
 const mutations = {
   FILTER (state, filter) {
     // TODO: Only new items. No other properties
     // console.log('facets/FILTER')
-    state[KEY_FACETS_FACETS] = fromPairs(map(filter, ({ init, facet, type, tooltip, label, thresholds }, key) => {
+    state[KEY_FACETS_FACETS] = fromPairs(map(filter, ({ init, facet, type, tooltip, label, thresholds, popover }, key) => {
       return [key, {
         items: facet.top(Infinity),
         init,
         label,
         tooltip,
         type,
-        thresholds
+        thresholds,
+        popover
       }]
     }))
   },

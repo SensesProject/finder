@@ -17,17 +17,17 @@
           :key="row"
           :class="{ 'hover': false }">
           <td
-            v-for="(cell, i) in cells"
-            :key="i">
+            v-for="({ label, key, popoverContent }, i) in cells"
+            :key="key">
             <div>
               <!-- <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span> -->
-              <span class="label">{{ cell || '—' }}</span>
+              <span class="label">{{ label || '—' }}</span>
               <section>
-               <!--  <i
+                <i
                   class="option icon-popup clickable"
-                  @click="openPopover(cell)"
-                  v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
-                  v-if="cell.popover" /> -->
+                  @click="openContentPopover(popoverContent)"
+                  v-tooltip="{ content: `Show more information about »${label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
+                  v-if="popoverContent" />
                 <!-- <i
                   class="option icon-filter clickable"
                   @click="setFilter({ key: cell.key, value: cell.label })"
@@ -48,8 +48,8 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex'
-  import { compact, map, get } from 'lodash'
+  import { mapState, mapActions } from 'vuex'
+  import { map, get } from 'lodash'
   import { KEY_PATH, KEY_FILTER } from '~/store/config'
   import Loading from '~/components/Loading.vue'
   import TableNavigation from '~/components/Table/TableNavigation.vue'
@@ -58,17 +58,9 @@
   export default {
     computed: {
       ...mapState({
-        // facets: state => get(state, 'facets.facets', []),
         status: state => get(state, 'data.status', 'ERROR'),
-        hoverValue: state => get(state, 'hover.hoverValue', false),
-        hoverKey: state => get(state, 'hover.hoverKey', false),
-        // data: state => get(state, 'data.data', []),
         filter: state => get(state, ['filter', KEY_FILTER], {})
-        // visibleFacets: state => get(state, ['facets', KEY_FACETS_VISIBLE], [])
       }),
-      ...mapGetters([
-        'result'
-      ]),
       ...mapState('datum', [
         'datum'
       ]),
@@ -77,9 +69,16 @@
         // Get the filtered data from the basket
         return map(this.datum, (datum) => {
           // Loop over the visible facets and build row
-          const cells = compact(map(this.filter, (filter) => {
-            return get(datum, filter[KEY_PATH], '–')
-          }))
+          const cells = map(this.filter, (filter) => {
+            console.log({ filter })
+            const key = filter[KEY_PATH]
+            const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
+            return {
+              label: get(datum, key, '–'),
+              popoverContent,
+              key
+            }
+          })
           return {
             row: datum.run_id,
             cells
@@ -126,7 +125,8 @@
         'setHoverValue',
         'resetHoverValue',
         'setFilter',
-        'openPopover'
+        'openPopover',
+        'openContentPopover'
       ])
     },
     components: {
