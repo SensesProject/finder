@@ -143,7 +143,6 @@
           vertical-align: middle;
           text-align: left;
           padding: 0 0.1em;
-          vertical-align: top;
 
           &:last-child {
             width: auto !important;
