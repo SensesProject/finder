@@ -102,8 +102,8 @@
   input {
     background-color: #fff;
     padding: 0.5rem;
-    border: 1px solid palette(grey, 80);
-    border-radius: $radius-default;
+    border: 1px solid $color-pale-gray;
+    border-radius: $border-radius;
     box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
     height: calc(1.5rem * 1);
@@ -111,15 +111,15 @@
     width: 100%;
     transition: 0.3s;
     font-size: $size-smallest;
-    color: palette(grey, 20);
+    color: $color-deep-gray;
 
     &:hover {
-      color: palette(grey, 0);
+      color: $color-black;
     }
 
     &:focus {
-      border-color: palette(grey, 70);
-      color: palette(grey, 0);
+      border-color: getColor(gray, 70);
+      color: $color-black;
     }
 
     &.active {

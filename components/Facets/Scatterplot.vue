@@ -203,7 +203,7 @@
   @import "~@/assets/style/global";
 
   header {
-    color: palette(grey, 60);
+    color: $color-light-gray;
     margin-bottom: 0;
 
     h3 {
@@ -219,7 +219,7 @@
       }
 
       &.active {
-        color: palette(grey, 10);
+        color: getColor(gray, 10);
       }
     }
 

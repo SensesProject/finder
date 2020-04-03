@@ -78,7 +78,7 @@
     max-width: 1000px;
 
     li {
-      color: palette(grey, 10);
+      color: getColor(gray, 10);
       font-size: $size-smallest;
       align-self: start;
       display: flex;

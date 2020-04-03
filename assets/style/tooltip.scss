@@ -101,7 +101,7 @@ button {
     .popover-inner {
       opacity: 1;
       background: #fff;
-      color: palette(grey, 0);
+      color: $color-black;
       padding: $spacing / 2 $spacing / 2;
       border-radius: 2px;
       box-shadow: 0 5px 30px rgba(black, .1);

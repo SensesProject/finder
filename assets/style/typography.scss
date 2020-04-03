@@ -2,7 +2,7 @@
   h1 {
     font-size: $size-big;
     line-height: 1.2;
-    color: $color-invert;
+    color: $color-white;
   }
 
   small {
@@ -25,7 +25,7 @@
 }
 
 .page-footer {
-  color: $color-invert;
+  color: $color-white;
   font-size: $size-smaller;
 
   a {
@@ -44,7 +44,7 @@
         font-size: $size-small;
         font-weight: $font-weight-bold;
         line-height: 1.2;
-        color: palette(grey, 20);
+        color: $color-deep-gray;
         letter-spacing: $spacing-default;
         line-height: 1em;
 
@@ -59,7 +59,7 @@
     }
 
     .header-footer {
-      color: palette(grey, 60);
+      color: $color-light-gray;
       font-size: $size-smallest;
     }
   }
@@ -67,23 +67,23 @@
 
 ::-moz-selection {
   background: $color-darker;
-  color: $color-invert;
+  color: $color-white;
 }
 
 ::selection {
   background: $color-darker;
-  color: $color-invert;
+  color: $color-white;
 }
 
 .page-header, .page-footer {
   ::-moz-selection {
-    background: $color-invert;
-    color: $color-default;
+    background: $color-white;
+    color: $color-black;
   }
 
   ::selection {
-    background: $color-invert;
-    color: $color-default;
+    background: $color-white;
+    color: $color-black;
   }
 }
 
@@ -97,11 +97,11 @@ h1 {
 h2 {
   font-size: $size-default;
   line-height: 1.2em;
-  color: palette(grey, 20);
+  color: $color-deep-gray;
   font-weight: $font-weight-bold;
 
   small {
-    font-weight: $font-weight-default;
+    font-weight: $font-weight-regular;
   }
 }
 
@@ -109,7 +109,7 @@ h3 {
   font-size: $size-small;
   font-weight: $font-weight-bold;
   line-height: 1.2;
-  color: palette(grey, 20);
+  color: $color-deep-gray;
   letter-spacing: $spacing-default;
   line-height: 1em;
 
@@ -128,29 +128,29 @@ h4 {
 
 time {
   font-size: $size-smaller;
-  font-weight: $font-weight-default;
+  font-weight: $font-weight-regular;
   letter-spacing: $spacing-wider;
   color: $color-mute;
 }
 
 h5 {
   font-size: $size-smaller;
-  font-weight: $font-weight-default;
+  font-weight: $font-weight-regular;
   letter-spacing: $spacing-wider;
   color: $color-mute;
 }
 
 .reference {
   font-size: $size-smaller;
-  font-weight: $font-weight-default;
-  color: $color-default;
+  font-weight: $font-weight-regular;
+  color: $color-black;
 }
 
 p {
   max-width: 800px;
   font-size: $size-small;
   line-height: 1.9;
-  color: $color-default;
+  color: $color-black;
 
   &.small {
     font-size: $size-small;
@@ -217,7 +217,7 @@ table {
     }
 
     &.nuxt-link-exact-active {
-      color: $color-default;
+      color: $color-black;
       cursor: default;
     }
   }
@@ -237,7 +237,7 @@ table {
     color: $color-mute;
 
     &.isActive {
-      color: $color-default;
+      color: $color-black;
     }
 
     &:hover {
@@ -247,9 +247,9 @@ table {
 
   &.btn--small {
     padding: 0.2em 0.4em;
-    color: palette(grey, 40);
-    background-color: palette(grey, 100);
-    border-radius: $radius-default;
+    color: $color-dark-gray;
+    background-color: $color-white;
+    border-radius: $border-radius;
 
     &.isActive {
       background-color: $color-accent;
@@ -259,11 +259,11 @@ table {
 
   &.btn--light {
     transition: color $transition, border-color $transition;
-    color: palette(grey, 60);
+    color: $color-light-gray;
     border-radius: 4px;
     text-align: center;
     display: inline-block;
-    border: 1px solid palette(grey, 85);
+    border: 1px solid $color-pale-gray;
     background-color: transparent;
     letter-spacing: $spacing-wide;
     font-size: $size-small;
@@ -281,7 +281,7 @@ table {
   &:disabled, &[disabled] {
     cursor: default;
     pointer-events: none;
-    color: palette(grey, 80);
+    color: $color-pale-gray;
   }
 
   &.btn--compact {
@@ -294,18 +294,18 @@ table {
 
   &.clickable {
     cursor: pointer;
-    color: palette(grey, 20);
+    color: $color-deep-gray;
 
     &:hover {
-      border-color: palette(grey, 70);
-      color: palette(grey, 0);
+      border-color: getColor(gray, 70);
+      color: $color-black;
     }
   }
 }
 
 .btn-bold {
   margin: $spacing 0;
-  color: $color-invert !important;
+  color: $color-white !important;
   background-color: $color-accent;
   padding: $spacing / 2 $spacing;
   font-weight: $font-weight-bold;
@@ -314,37 +314,37 @@ table {
   width: 80%;
 
   &:hover {
-    color: $color-invert;
+    color: $color-white;
     background-color: darken($color-accent, 5%);
   }
 }
 
 .tag {
   padding: 0.1em 0.4em;
-  color: palette(grey, 80);
-  background-color: palette(grey, 100);
-  // border: 1px solid palette(grey, 80);
-  border-radius: $radius-default;
+  color: $color-pale-gray;
+  background-color: $color-white;
+  // border: 1px solid $color-pale-gray;
+  border-radius: $border-radius;
   font-size: $size-smallest;
   margin-left: $spacing / 4;
 
   &.clickable {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.02);
-    // border: 1px solid palette(grey, 80);
+    // border: 1px solid $color-pale-gray;
     // background-color: #fff;
     cursor: pointer;
-    border-radius: $radius-default;
-    color: palette(accent, base);
+    border-radius: $border-radius;
+    color: $color-accent;
 
     &:hover, &:focus {
       background-color: #fff;
       // background-color: $color-bg-lighter;
-      color: $color-default;
+      color: $color-black;
     }
 
     &.active {
       background-color: $color-bg-dark;
-      color: $color-invert;
+      color: $color-white;
     }
   }
 }

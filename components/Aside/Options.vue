@@ -83,7 +83,7 @@
 
   .options {
     li {
-      color: palette(grey, 10);
+      color: getColor(gray, 10);
       font-size: $size-smallest;
       margin-bottom: $spacing / 4;
 

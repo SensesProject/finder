@@ -30,8 +30,8 @@
   $navigation-height: 50px;
 
   .navigation {
-    background-color: palette(grey, 90);
-    border-bottom: 1px solid palette(grey, 85);
+    background-color: $color-bg-header;
+    border-bottom: 1px solid $color-border-header;
     padding: $spacing / 2;
     display: grid;
     grid-template-rows: $navigation-height auto;
@@ -66,7 +66,7 @@
     }
 
     h2 {
-      color: palette(grey, 0);
+      color: $color-black;
     }
   }
 </style>

@@ -1,73 +1,10 @@
-$font-sans: "IBM Plex Sans", "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", Helvetica, sans-serif !default;
-$font-mono: "IBM Plex Mono", monospace !default;
-$font-serif: "IBM Plex Serif", "Georgia", serif !default;
-$font-weight-default: 400 !default;
-$font-weight-bold: 700 !default;
-$base-line-height: 1.7 !default;
-
-$spacing:     2rem !default;
-
-$palettes: (
-  primary: (
-    lightest: #03A6DC,
-    lighter:  #1797c6,
-    light:    #1f89b0,
-    base:     hsl(196, 63%, 37%),
-    dark:     #1e6480,
-    darker:   #0d4357,
-    darkest:  #012632
-  ),
-  secondary: (
-  	lightest: #03A6DC,
-    lighter:  #1797c6,
-    light:    #1f89b0,
-    base:     #eb9700,
-    dark:     #1e6480,
-    darker:   #0d4357,
-    darkest:  #012632
-  ),
-  accent: (
-    lightest: hsl(354, 63%, 80%),
-    lighter:  hsl(358, 49%, 66%),
-    light:    hsl(359, 40%, 53%),
-    base:     hsl(355, 62%, 37%),
-    dark:     hsl(355, 60%, 28%),
-    darker:   hsl(355, 58%, 19%),
-    darkest:  hsl(356, 61%, 10%)
-  ),
-  grey: (
-    100: hsl(240, 5%, 100%),
-    90:  hsl(240, 5%, 97%),
-    85:  hsl(240, 5%, 92%),
-    80:  hsl(240, 5%, 88%),
-    70:  hsl(240, 5%, 74%),
-    60:  hsl(240, 5%, 65%),
-    50:  hsl(240, 5%, 56%),
-    40:  hsl(240, 5%, 47%),
-    30:  hsl(240, 5%, 39%),
-    20:  hsl(240, 5%, 30%),
-    10:  hsl(240, 5%, 22%),
-    0:   hsl(240, 5%, 13%)
-  )
-);
-
-@function palette($palette, $tone: '50') {
-  @return map-get(map-get($palettes, $palette), $tone);
-}
-
-$color-default:   #222222 !default;
 $color-darker:		#626C76 !default;
 $color-dark:			#D0CFCE !default;
-$color-accent:    $color-neon !default;
 $color-important:	#D58882 !default;
 $color-mute:      #919AA1 !default;
-$color-invert:		#ffffff !default;
 
-$color-green:			#39C88A !default;
-$color-blue:			#00A5D5 !default;
-$color-violet:		#8665C7 !default;
-$color-red:				#C8005F !default;
-$color-yellow:		#FEAE00 !default;
+$color-bg-header: hsl(240, 5%, 97%) !default;
+$color-border-header: hsl(240, 5%, 92%) !default;
 
 $color-bg-dark:		#2b2f32 !default;
 $color-bg-mute:		#f1f1f1 !default;
@@ -87,24 +24,5 @@ $spacing-wide:		0.02em !default;
 $spacing-wider:		0.05em !default;
 $spacing-widest:	0.10em !default;
 
-$radius-default:	2px !default;
-
-$transition-default: 0.5s !default;
-
-$on-palm:          320px !default;
-$on-laptop:        768px !default;
-$on-desktop:       1224px !default;
-
 $column-width:		220px !default;
 $column-gap:      $spacing !default;
-
-$narrow: 600px !default;
-$medium: 900px !default;
-$wide: 1200px !default;
-$extra-wide: 1700px !default;
-
-@mixin media-query($device) {
-  @media screen and (min-width: $device) {
-    @content;
-  }
-}

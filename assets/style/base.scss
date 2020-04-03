@@ -29,7 +29,7 @@ html {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
-  color: $color-default;
+  color: $color-black;
 }
 
 .mobile-invisible {
@@ -37,7 +37,7 @@ html {
   display: none;
 }
 
-@include media-query($on-palm) {
+@include media-query($narrow) {
   .mobile-invisible {
   	visibility: visible;
     display: inherit;

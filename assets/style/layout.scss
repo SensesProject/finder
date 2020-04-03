@@ -70,7 +70,7 @@ body {
   }
 }
 
-@include media-query($on-desktop) {
+@include media-query($wide) {
   .columns, .topics .columns {
     flex-direction: row;
   }

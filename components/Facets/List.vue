@@ -193,8 +193,8 @@ export default {
       list-style: none;
       background-color: #fff;
       padding: 0.5rem;
-      border: 1px solid palette(grey, 80);
-      border-radius: $radius-default;
+      border: 1px solid $color-pale-gray;
+      border-radius: $border-radius;
       box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
       overflow-y: scroll;
       height: calc(1.5rem * 10);
@@ -206,7 +206,7 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         font-size: $size-smallest;
-        color: palette(grey, 20);
+        color: $color-deep-gray;
         transition: color 0.2s;
         height: 1.3rem;
 
