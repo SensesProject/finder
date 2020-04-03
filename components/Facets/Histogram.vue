@@ -330,7 +330,7 @@ $handle-height: 2px;
 
   svg {
     .bar {
-      transition: width 0.05s, fill 0.2s;
+      transition: width 0.1s, fill 0.2s;
       fill: rgba(0, 0, 0, .2);
 
       &.value {
