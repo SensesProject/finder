@@ -27,10 +27,6 @@
                   @click="openContentPopover(popoverContent)"
                   v-tooltip="{ content: `Show more information about »${label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
                   v-if="popoverContent" />
-                <!-- <i
-                  class="option icon-filter clickable"
-                  @click="setFilter({ key: cell.key, value: cell.label })"
-                  v-tooltip="{ content: `Set »${cell.label || '—'}« as filter option`, placement: 'bottom', delay: { show: 100, hide: 0 } }" /> -->
               </section>
             </div>
           </td>
@@ -85,7 +81,6 @@
     },
     methods: {
       ...mapActions([
-        'setFilter',
         'openPopover',
         'openContentPopover'
       ])
