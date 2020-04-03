@@ -22,9 +22,6 @@ const mutations = {
   CREATE_FACET (state, { key, type, tooltip, label, id, popover }) {
     // This mutation creates a facet by creating a dimension for this key
     // It also sets the type of the facet. This is used later for the filtering technique
-    if (KEY_TYPE === KEY_FILTER_TYPE_HISTOGRAM) {
-      scaleLinear().domain()
-    }
     const dimension = basket.dimension((d) => get(d, key, false))
     // Facets need different types of lists of options
     let facet
@@ -50,7 +47,7 @@ const mutations = {
         [KEY_LABEL]: label,
         [KEY_DIMENSION]: dimension,
         facet: facet,
-        init: facet.top(Infinity),
+        init: facet.all(),
         [KEY_TYPE]: type,
         popover
       }
@@ -168,7 +165,7 @@ const actions = {
     dispatch('apply', false, { root: true })
   },
   updateDimension ({ commit, dispatch, state }) {
-    console.log('updateDimension')
+    // console.log('updateDimension')
     forEach(state[KEY_FILTER], ({ type, facet, dimension, [KEY_PATH]: path }, key) => {
       if (type === KEY_FILTER_TYPE_HISTOGRAM) {
         // console.log(dimension, facet)
@@ -183,7 +180,7 @@ const actions = {
         state[KEY_FILTER][key].thresholds = thresholds
         // console.log(state[KEY_FILTER][key].facet.top(Infinity))
       }
-      state[KEY_FILTER][key].init = makeDict(state[KEY_FILTER][key].facet.top(Infinity))
+      state[KEY_FILTER][key].init = makeDict(state[KEY_FILTER][key].facet.all())
     })
   },
   addFacet ({ commit, dispatch }, options) {

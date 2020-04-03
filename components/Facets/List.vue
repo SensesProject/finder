@@ -15,11 +15,11 @@
       @reset="reset" />
     <ul :class="['list-list', { isFiltered }]">
       <li
-        v-for="{ key, count, total, isActive, nonRemaining, isLess } in elements"
+        v-for="{ key, total, isActive, n } in elements"
         :key="key"
-        :class="['option', { isActive, nonRemaining }]">
+        :class="['option', { isActive: selected.includes(key), nonRemaining: items[n].value === 0 }]">
         <span class="label" @click="() => selectItem(key)">{{ key }}</span>
-        <span class="counter"><span v-if="isLess">{{ count }}/</span>{{ total }}</span>
+        <span class="counter"><span v-if="items[n].value !== total">{{ items[n].value }}/</span>{{ total }}</span>
         <span class="action action-add" @click="() => addItem(key)">Include</span>
         <span class="action action-remove" @click="() => removeItem(key)">Remove</span>
       </li>
@@ -30,7 +30,7 @@
 <script>
 import FacetHeader from './FacetHeader.vue'
 import { mapActions } from 'vuex'
-import { pull, map, without, sortBy, reverse, isEqual, get } from 'lodash'
+import { pull, map, without, sortBy, reverse, isEqual } from 'lodash'
 
 const LIST_DEFAULT = []
 const INVERTED_DEFAULT = false
@@ -82,23 +82,21 @@ export default {
       return this.keys.length
     },
     elements () {
-      // TODO: Less computation
-      const { items, selected, isAlphabetical, isReverse, init } = this
-      let list = map(items, ({ key, value }) => {
-        const total = get(init, key, 0)
-        const isActive = selected.includes(key) // Is the item in the list of selected items
-        const nonRemaining = value === 0 // Is used to visually indicate the item
-        const isLess = value !== total // Is used to show/hide the count
+      const { isAlphabetical, isReverse, init } = this
+      // This is important: we get the position in the array by counting
+      // Because later we will sort the array, but the original position is saved in the counter
+      // This way, we can easily access the current value in the items
+      // By doing this, we can safe time because we do not need to loop over this array all the time
+      let n = -1
+      let list = map(init, (total, key) => {
+        n++
         return {
+          n,
           key,
-          count: value,
-          total,
-          isActive,
-          nonRemaining,
-          isLess
+          total
         }
       })
-      list = isAlphabetical ? sortBy(list, ['key', 'total', 'count']) : sortBy(list, ['total', 'count', 'key'])
+      list = isAlphabetical ? sortBy(list, ['key', 'total']) : sortBy(list, ['total', 'key'])
       return isReverse ? list : reverse(list)
     }
   },

@@ -1,5 +1,5 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
-import { get, map, fromPairs, forEach } from 'lodash'
+import { get, map, forEach } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
 // import { getList, getHistogram } from '../../assets/js/facets'
@@ -27,17 +27,8 @@ const mutations = {
   FILTER (state, filter) {
     // TODO: Only new items. No other properties
     // console.log('facets/FILTER')
-    state[KEY_FACETS_FACETS] = fromPairs(map(filter, ({ init, facet, type, tooltip, label, thresholds, popover }, key) => {
-      return [key, {
-        items: facet.top(Infinity),
-        init,
-        label,
-        tooltip,
-        type,
-        thresholds,
-        popover
-      }]
-    }))
+    const lists = map(filter, ({ facet }) => facet.all())
+    state[KEY_FACETS_FACETS] = lists
   },
   SET_FACETS (state, facets) {
     // Recieves the list of keys from the Google Sheet

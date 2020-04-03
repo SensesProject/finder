@@ -1,13 +1,13 @@
 <template>
   <div class="facets">
     <component
-      v-for="{ title, id, component, items, tooltip, thresholds, init } in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init }, n) in elements"
       v-bind:is="component"
       :key="id"
       :tooltip="tooltip"
       :id="id"
       :title="title"
-      :items="items"
+      :items="lists[n]"
       :thresholds="thresholds"
       :init="init" />
   </div>
@@ -15,7 +15,7 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { KEY_FACETS_FACETS } from '~/store/config'
+  import { KEY_FACETS_FACETS, KEY_FILTER } from '~/store/config'
   import { map, capitalize } from 'lodash'
   // Facet types
   import List from '~/components/Facets/List.vue'
@@ -25,19 +25,20 @@
 
   export default {
     computed: {
-      ...mapState('facets', [
-        KEY_FACETS_FACETS
+      ...mapState('facets', {
+        lists: KEY_FACETS_FACETS
+      }),
+      ...mapState('filter', [
+        KEY_FILTER
       ]),
       elements () {
-        return map(this[KEY_FACETS_FACETS], ({ init, type, items, tooltip, label, thresholds }, id) => {
-          const component = capitalize(type)
-          const title = label
+        return map(this[KEY_FILTER], ({ init, type, tooltip, label, thresholds, key }, id) => {
+          console.log({ init })
           return {
-            title,
+            title: label,
             tooltip,
             id,
-            component,
-            items,
+            component: capitalize(type),
             thresholds,
             init
           }
