@@ -26,3 +26,7 @@ export const KEY_FACETS_FACETS = 'facets'
 export const KEY_PATH = 'path'
 export const KEY_TOOLTIP = 'tooltip'
 export const KEY_LABEL = 'label'
+
+export const KEY_HAS_ACTIVE_FILTERS = 'hasActiveFilters'
+
+export const RESET_CODE = 'reset'

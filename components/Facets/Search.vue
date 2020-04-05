@@ -19,8 +19,9 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import { trim } from 'lodash'
+  import { trim, get } from 'lodash'
   import FacetHeader from './FacetHeader.vue'
+  import { RESET_CODE } from '~/store/config'
 
   const TERM_DEFAULT = ''
   const INVERTED_DEFAULT = false
@@ -40,6 +41,9 @@
       },
       tooltip: {
         type: String
+      },
+      forcedValue: {
+        type: [String, Object]
       }
     },
     components: {
@@ -81,15 +85,39 @@
       },
       reset () {
         this.term = TERM_DEFAULT
+        this.isInverted = INVERTED_DEFAULT
         this.apply()
       },
       apply () {
         const value = trim(this.term)
 
-        if (value !== '') {
+        if (value !== TERM_DEFAULT) {
           this.filter({ key: this.id, value: value.toUpperCase(), isInverted: this.isInverted })
         } else {
           this.resetFilter(this.id)
+        }
+      },
+      forceSelected (value) {
+        if (value) {
+          console.log(`Setting selected to ${value} in ${this.id}`)
+          this.term = value
+          this.apply()
+        }
+      }
+    },
+    mounted () {
+      const value = get(this.forcedValue, ['value', 0])
+      this.forceSelected(value)
+    },
+    watch: {
+      forcedValue (newValue) {
+        if (newValue === RESET_CODE) {
+          console.log(`Resetting ${this.id}`)
+          this.reset()
+        } else {
+          console.log(`Got a forced input at ${this.id}`)
+          const value = get(newValue, ['value', 0])
+          this.forceSelected(value)
         }
       }
     }

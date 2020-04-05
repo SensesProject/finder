@@ -1,12 +1,12 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { get, isArray, unset, set, has, forEach, map } from 'lodash'
+import { get, unset, set, has, forEach, map } from 'lodash'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
 import { getList, makeDict } from '../../assets/js/facets'
 
 // import { reject, clone, find, pull, isUndefined, get, forEach, isArray, set } from 'lodash'
-import { KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
+import { RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
 import { basket } from '../index'
 // import { getList } from '../../assets/js/facets'
 
@@ -24,21 +24,8 @@ const mutations = {
     // It also sets the type of the facet. This is used later for the filtering technique
     const dimension = basket.dimension((d) => get(d, key, false))
     // Facets need different types of lists of options
-    let facet
-    switch (type) {
-      // case KEY_FILTER_TYPE_HISTOGRAM:
-      //   // The histogram groups values und sorts by key
-      //   // TODO Pass rounding values
-      //   facet = getHistogram(dimension)
-      //   break
-      case KEY_FILTER_TYPE_LIST:
-        // The list counts every item and sorts by value (can be resorted in the component)
-        facet = getList(dimension)
-        break
-      default:
-        // The search facet doesnt need any listings
-        facet = dimension.group()
-    }
+    const facet = type === KEY_FILTER_TYPE_LIST ? getList(dimension) : dimension.group()
+
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
       [id]: {
@@ -46,15 +33,18 @@ const mutations = {
         [KEY_TOOLTIP]: tooltip,
         [KEY_LABEL]: label,
         [KEY_DIMENSION]: dimension,
+        id,
         facet: facet,
         init: facet.all(),
         [KEY_TYPE]: type,
-        popover
+        popover,
+        // This is used to pass down settings or for a reset
+        forcedValue: undefined,
+        // These values are set on change, but a only needed for the url
+        value: undefined,
+        isInverted: undefined
       }
     }
-  },
-  UPDATE_DIMENSIONS (state) {
-
   },
   APPLY_FILTER (state, { key, value, isInverted }) {
     // This mutation actually filters items along the selected dimension
@@ -66,12 +56,12 @@ const mutations = {
     const type = get(state, [KEY_FILTER, key, KEY_TYPE])
     // Apply different filtering techniques according to the type
     if (type === KEY_FILTER_TYPE_LIST) {
-      if (isArray(value)) {
+      if (value.length > 1) {
         // If multiple options are selected in the list
         state[KEY_FILTER][key][KEY_DIMENSION].filter((d) => value.includes(d))
       } else {
         // If only a single option is selected in the list
-        state[KEY_FILTER][key][KEY_DIMENSION].filterExact(value)
+        state[KEY_FILTER][key][KEY_DIMENSION].filterExact(value[0])
       }
       // Note: For list filtering, we do not care about inverting as this is done by the ListFacet
     } else if (type === KEY_FILTER_TYPE_SEARCH) {
@@ -84,6 +74,8 @@ const mutations = {
     } else if (type === KEY_FILTER_TYPE_HISTOGRAM) {
       state[KEY_FILTER][key][KEY_DIMENSION].filterRange(value)
     }
+    state[KEY_FILTER][key].value = value
+    state[KEY_FILTER][key].isInverted = isInverted
   },
   REMOVE_FACET (state, key) {
     // This mutation removes the dimension
@@ -100,10 +92,13 @@ const mutations = {
     }
   },
   // OLD MUTATIONS
-  // RESET_FILTERS (state) {
-  //   // Resets all filter
-  //   set(state, 'filter', [])
-  // },
+  RESET_FILTERS (state) {
+    // Resets all filter
+    forEach(state[KEY_FILTER], (filter) => {
+      console.log(RESET_CODE)
+      filter.forcedValue = RESET_CODE // null triggers a reset
+    })
+  },
   // RESET_FILTER (state, id) {
   //   // Reset a single filter
   //   state.filter = reject(state.filter, ['id', id])
@@ -150,12 +145,6 @@ const mutations = {
     set(state, KEY_FILTER_INIT, initFilter)
   }
 }
-
-// const TYPES = {
-//   'Facet': 'key-value',
-//   'Search': 'term',
-//   'Histogram': 'range'
-// }
 
 const actions = {
   apply ({ dispatch }) {
@@ -245,13 +234,23 @@ const actions = {
     commit('SET_INIT_FILTER', initFilter)
   },
   initFilter ({ dispatch, commit, state }) {
-    console.log('filter/initFilter (Nothing)')
+    console.log('filter/initFilter')
     // TODO
-    // forEach(state.initFilter, (value, id) => {
-    //   dispatch('setFilter', { id, value: value.split('|') })
-    // })
+    forEach(state.initFilter, (value, key) => {
+      // TODO: Create filter if not present. Make visible if invisible
+      const filter = get(state[KEY_FILTER], key)
+      if (filter) {
+        filter.forcedValue = {
+          value: value.split('|')
+        }
+        console.log(`Filter ${key} set to ${value.split('|')}`)
+        console.log({ filter })
+      } else {
+        console.log(`Filter ${key} not found`)
+      }
+    })
     // Reset state.initFilter to null
-    // commit('SET_INIT_FILTER', null)
+    commit('SET_INIT_FILTER', null)
   }
 }
 

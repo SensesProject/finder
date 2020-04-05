@@ -12,22 +12,23 @@
     </v-popover>
     <button v-tooltip="'Click to copy link of current filter'" class="btn btn--light btn--icon clickable" @click="copyLink"><i class="icon-export" /></button>
     <v-popover :autoHide="true">
-      <button class="btn btn--light clickable" v-tooltip="'Show facet options'"><i class="icon-list" /> Select filter</button>
+      <button class="btn btn--light clickable" v-tooltip="'Show facet options'"><i class="icon-list" /> Select facets</button>
       <SelectFacets slot="popover"/>
     </v-popover>
-    <button :class="{ btn: true, 'btn--light': true, reset: true, clickable: filter.length }" @click="resetFilters"><i class="icon-cancel-circled" /> Reset all filter</button>
+    <button :class="['btn', 'btn--light', 'reset', { hasActiveFilters }]" :disabled="!hasActiveFilters" @click="resetFilters"><i class="icon-cancel-circled" /> Reset all filter</button>
     <ExplorerLink v-if="showExplorer" />
   </aside>
 </template>
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { get, map } from 'lodash'
+  import { get, forEach, isArray } from 'lodash'
   import Options from '~/components/Aside/Options.vue'
   import SelectFacets from '~/components/Aside/SelectFacets.vue'
   import Loading from '~/components/Loading.vue'
   import ExplorerLink from '~/components/Aside/ExplorerLink.vue'
   import copy from 'copy-to-clipboard'
+  import { KEY_FILTER, KEY_HAS_ACTIVE_FILTERS } from '~/store/config'
 
   export default {
     props: {
@@ -38,10 +39,15 @@
     },
     computed: {
       ...mapState({
-        filter: state => get(state, 'filter.filter', []),
         statusData: state => get(state, 'data.status', 'ERROR'),
         statusAuth: state => get(state, 'auth.status', 'ERROR'),
         data: state => get(state, 'data.data', [])
+      }),
+      ...mapState('facets', {
+        hasActiveFilters: [KEY_HAS_ACTIVE_FILTERS]
+      }),
+      ...mapState('filter', {
+        filter: [KEY_FILTER]
       }),
       ...mapGetters([
         'result',
@@ -50,10 +56,12 @@
     },
     methods: {
       ...mapActions([
-        'resetFilters',
         'openInfoBox',
         'loadData',
         'loadFacets'
+      ]),
+      ...mapActions('filter', [
+        'resetFilters'
       ]),
       ...mapActions('load', [
         'loadData'
@@ -61,12 +69,17 @@
       ...mapActions('facets', [
         'loadFacets'
       ]),
-      copyLink: function (event) {
-        const link = map(this.url, (value, key) => {
-          return `${key}=${value}`
-        }).join('&')
+      copyLink () {
+        let link = []
+        forEach(this.filter, ({ value, id }) => {
+          if (value) {
+            const values = isArray(value) ? value.join('|') : value
+            link.push(`${id}=${values}`)
+          }
+          // TODO: add inverted
+        })
         const getUrl = window.location
-        copy(`${getUrl.protocol}//${getUrl.host}${this.$router.options.base}?${encodeURI(link)}`)
+        copy(`${getUrl.protocol}//${getUrl.host}${this.$router.options.base}?${encodeURI(link.join('&'))}`)
       },
       hardReload () {
         this.loadFacets(true)
@@ -141,8 +154,8 @@
       justify-content: center;
     }
 
-    .reset.clickable {
-      color: #99242e;
+    .reset.hasActiveFilters {
+      color: $color-accent;
     }
   }
 </style>

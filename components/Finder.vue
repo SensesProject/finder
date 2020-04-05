@@ -84,6 +84,7 @@
       // INIT FILTERS can be passed down by URL
       // First we extract the query
       const initFilter = get($route, 'query', {})
+      console.log({ initFilter })
       // If elements were found, we clean the url
       if (size(initFilter)) {
         this.$router.replace({ params: {} })

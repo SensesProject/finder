@@ -3,7 +3,7 @@ import { get, map, forEach } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
 // import { getList, getHistogram } from '../../assets/js/facets'
-import { KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL } from '../config'
+import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL } from '../config'
 
 // A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
@@ -17,7 +17,8 @@ const state = () => ({
   // Date the data was fetched
   [KEY_DATE]: null,
   // Url where the information of the facets is stored
-  [KEY_URL]: null
+  [KEY_URL]: null,
+  [KEY_HAS_ACTIVE_FILTERS]: false
 })
 
 // These keys are the one that should are relevant and should be extracted from the Google Sheet
@@ -25,10 +26,17 @@ const KEYS = ['key', 'label', 'group', 'system', 'popover.content', 'popover.key
 
 const mutations = {
   FILTER (state, filter) {
-    // TODO: Only new items. No other properties
     // console.log('facets/FILTER')
-    const lists = map(filter, ({ facet }) => facet.all())
+    let hasActiveFilters
+    const lists = map(filter, ({ facet, [KEY_DIMENSION]: dimension, [KEY_PATH]: key }) => {
+      // As we loop over each filter, we check if they have any filters
+      if (dimension.hasCurrentFilter()) {
+        hasActiveFilters = true
+      }
+      return facet.all()
+    })
     state[KEY_FACETS_FACETS] = lists
+    state[KEY_HAS_ACTIVE_FILTERS] = hasActiveFilters
   },
   SET_FACETS (state, facets) {
     // Recieves the list of keys from the Google Sheet

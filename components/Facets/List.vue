@@ -30,7 +30,8 @@
 <script>
 import FacetHeader from './FacetHeader.vue'
 import { mapActions } from 'vuex'
-import { pull, map, without, sortBy, reverse, isEqual } from 'lodash'
+import { get, pull, map, without, sortBy, reverse, isEqual } from 'lodash'
+import { RESET_CODE } from '~/store/config'
 
 const LIST_DEFAULT = []
 const INVERTED_DEFAULT = false
@@ -56,6 +57,9 @@ export default {
     },
     tooltip: {
       type: String
+    },
+    forcedValue: {
+      type: [String, Object]
     }
   },
   components: {
@@ -119,6 +123,7 @@ export default {
     },
     reset () {
       this.selected = LIST_DEFAULT
+      this.isInverted = INVERTED_DEFAULT
       this.apply()
     },
     selectItem (value) {
@@ -161,14 +166,38 @@ export default {
           // If all or no key is selected, reset the filter
           this.resetFilter(this.id)
           break
-        case 1:
-          // If only one key is selected, we can use filterExact
-          this.filter({ key: this.id, value: items[0] })
-          break
+        // case 1:
+        //   // If only one key is selected, we can use filterExact
+        //   this.filter({ key: this.id, value: items[0] })
+        //   break
         default:
           // Per default pass the whole array for filtering
           this.filter({ key: this.id, value: items })
           break
+      }
+    },
+    forceSelected (value) {
+      if (value) {
+        console.log(`Setting selected to ${value} in ${this.id}`)
+        this.selected = value
+        this.apply()
+      }
+    }
+  },
+  mounted () {
+    const value = get(this.forcedValue, 'value')
+    this.forceSelected(value)
+  },
+  watch: {
+    forcedValue (newValue) {
+      console.log(`New forcedValue detected in ${this.id}`)
+      if (newValue === RESET_CODE) {
+        console.log(`Resetting ${this.id}`)
+        this.reset()
+      } else {
+        console.log(`Got a forced input at ${this.id}`)
+        const value = get(newValue, 'value')
+        this.forceSelected(value)
       }
     }
   }

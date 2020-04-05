@@ -66,9 +66,10 @@
   import { extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapActions } from 'vuex'
-  import { map, inRange, values, head, last, fromPairs, throttle } from 'lodash'
+  import { get, map, inRange, values, head, last, fromPairs, throttle } from 'lodash'
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
   import VueDraggableResizable from 'vue-draggable-resizable'
+  import { RESET_CODE } from '~/store/config'
 
   export default {
     name: 'FacetHistogram',
@@ -93,6 +94,9 @@
       thresholds: {
         type: Array,
         default: () => []
+      },
+      forcedValue: {
+        type: [String, Object]
       }
     },
     data: function () {
@@ -178,16 +182,18 @@
         'resetFilter'
       ]),
       reset () {
-        const { height } = this
+        const { height, range } = this
         this.y = 0
         this.h = height
-        this.brushLow = this.scaleBrush.invert(0)
-        this.brushHigh = this.scaleBrush.invert(height)
+        const [ low, high ] = range
+        this.brushLow = low
+        this.brushHigh = high
         this.apply()
       },
       apply: throttle(function () {
         const { brushLow, brushHigh, id, range } = this
         const [ low, high ] = range
+        console.log('APPLY', brushLow, low, brushHigh, high, id)
         if (brushLow === low && brushHigh === high) {
           this.isFiltered = false
           this.resetFilter(this.id)
@@ -208,14 +214,43 @@
         this.brushLow = this.scaleBrush.invert(y)
         this.brushHigh = this.scaleBrush.invert(y + this.h)
         this.apply()
+      },
+      forceSelected (value) {
+        if (value) {
+          const low = parseFloat(value[0])
+          const high = parseFloat(value[1])
+          console.log(`Setting selected to ${low}/${high} in ${this.id}`)
+          this.brushLow = low
+          this.brushHigh = high
+          this.y = this.scaleBrush(low)
+          this.h = this.scaleBrush(high) - this.scaleBrush(low)
+          this.apply()
+        }
       }
     },
     mounted () {
+      console.log(`Mounted ${this.id}`)
       this.reset()
+      console.log(`Mounted ${this.id}`)
+      // TODO: Not working properly
+      const value = get(this.forcedValue, 'value')
+      this.forceSelected(value)
     },
     components: {
       FacetHeader,
       VueDraggableResizable
+    },
+    watch: {
+      forcedValue (newValue) {
+        if (newValue === RESET_CODE) {
+          console.log(`Resetting ${this.id}`)
+          this.reset()
+        } else {
+          console.log(`Got a forced input at ${this.id}`)
+          const value = get(newValue, 'value')
+          this.forceSelected(value)
+        }
+      }
     }
   }
 </script>

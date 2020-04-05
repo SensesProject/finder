@@ -1,7 +1,7 @@
 <template>
   <div class="facets">
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init }, n) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue }, n) in elements"
       v-bind:is="component"
       :key="id"
       :tooltip="tooltip"
@@ -9,7 +9,8 @@
       :title="title"
       :items="lists[n]"
       :thresholds="thresholds"
-      :init="init" />
+      :init="init"
+      :forcedValue="forcedValue" />
   </div>
 </template>
 
@@ -28,19 +29,19 @@
       ...mapState('facets', {
         lists: KEY_FACETS_FACETS
       }),
-      ...mapState('filter', [
-        KEY_FILTER
-      ]),
+      ...mapState('filter', {
+        filters: KEY_FILTER
+      }),
       elements () {
-        return map(this[KEY_FILTER], ({ init, type, tooltip, label, thresholds, key }, id) => {
-          console.log({ init })
+        return map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue }, id) => {
           return {
             title: label,
             tooltip,
             id,
             component: capitalize(type),
             thresholds,
-            init
+            init,
+            forcedValue
           }
         })
       }

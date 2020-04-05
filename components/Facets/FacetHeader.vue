@@ -9,7 +9,7 @@
       <button v-if="displayInvert" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
     <footer class="header-footer">
-      <div><span v-if="displayCount">{{ count }} option{{ count === 1 ? '' : 's' }}</span></div>
+      <div><span v-if="displayCount">{{ count }} option{{ count === 1 ? '' : 's' }}</span>&thinsp;</div>
       <div><button v-if="displaySorting" @click="clickName" :class="['btn', 'btn--none', 'btn--sort', { isActive: isAlphabetical }]">Name <i>{{ isReverse ? '↓' : '↑'}}</i></button></div>
       <div><button v-if="displaySorting" @click="clickCount" :class="['btn', 'btn--none', 'btn--sort', { isActive: !isAlphabetical }]">Count <i>{{ isReverse ? '↓' : '↑'}}</i></button></div>
     </footer>
