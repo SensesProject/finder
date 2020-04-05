@@ -6,15 +6,15 @@
     </section>
     <button v-tooltip="'Load data from API instead of cache'" class="btn btn--light btn--icon clickable" @click="hardReload"><i class="icon-arrows-ccw" /></button>
     <button v-tooltip="'View references for data'" class="btn btn--light btn--icon clickable" @click="openInfoBox"><i class="icon-info-circled" /></button>
-    <v-popover :autoHide="true">
+    <!-- <v-popover :autoHide="true">
       <button class="btn btn--light btn--icon clickable" v-tooltip="'Show display options'"><i class="icon-cog" /></button>
       <Options slot="popover"/>
-    </v-popover>
+    </v-popover> -->
     <button v-tooltip="'Click to copy link of current filter'" class="btn btn--light btn--icon clickable" @click="copyLink"><i class="icon-export" /></button>
-    <v-popover :autoHide="true">
+    <!-- <v-popover :autoHide="true">
       <button class="btn btn--light clickable" v-tooltip="'Show facet options'"><i class="icon-list" /> Select facets</button>
       <SelectFacets slot="popover"/>
-    </v-popover>
+    </v-popover> -->
     <button :class="['btn', 'btn--light', 'reset', { hasActiveFilters }]" :disabled="!hasActiveFilters" @click="resetFilters"><i class="icon-cancel-circled" /> Reset all filter</button>
     <ExplorerLink v-if="showExplorer" />
   </aside>
