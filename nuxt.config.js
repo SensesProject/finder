@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   head: {
     title: 'Finder',
     meta: [
@@ -25,21 +26,6 @@ module.exports = {
   },
   build: {
     extend (config, ctx) {
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-      if (ctx.isServer) {
-        config.externals = [
-          require('webpack-node-externals')({
-            whitelist: [/^vue-slick/]
-          })
-        ]
-      }
     }
   }
 }
