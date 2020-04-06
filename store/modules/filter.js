@@ -26,6 +26,8 @@ const mutations = {
     // Facets need different types of lists of options
     const facet = type === KEY_FILTER_TYPE_LIST ? getList(dimension) : dimension.group()
 
+    const init = makeDict(facet.all())
+
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
       [id]: {
@@ -34,8 +36,8 @@ const mutations = {
         [KEY_LABEL]: label,
         [KEY_DIMENSION]: dimension,
         id,
-        facet: facet,
-        init: facet.all(),
+        facet,
+        init,
         [KEY_TYPE]: type,
         popover,
         // This is used to pass down settings or for a reset
@@ -91,7 +93,6 @@ const mutations = {
       console.log(`Dimension for ${key} should be there`, state[KEY_FILTER][key])
     }
   },
-  // OLD MUTATIONS
   RESET_FILTERS (state) {
     // Resets all filter
     forEach(state[KEY_FILTER], (filter) => {

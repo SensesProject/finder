@@ -4,7 +4,7 @@
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
     </section>
-    <button v-tooltip="'Load data from API instead of cache'" class="btn btn--light btn--icon clickable" @click="hardReload"><i class="icon-arrows-ccw" /></button>
+    <button v-tooltip="'Load data from API instead of cache'" class="btn btn--light btn--icon clickable" @click="hardReload" ref="hardReload"><i class="icon-arrows-ccw" /></button>
     <button v-tooltip="'View references for data'" class="btn btn--light btn--icon clickable" @click="openInfoBox"><i class="icon-info-circled" /></button>
     <!-- <v-popover :autoHide="true">
       <button class="btn btn--light btn--icon clickable" v-tooltip="'Show display options'"><i class="icon-cog" /></button>
@@ -81,7 +81,8 @@
         const getUrl = window.location
         copy(`${getUrl.protocol}//${getUrl.host}${this.$router.options.base}?${encodeURI(link.join('&'))}`)
       },
-      hardReload () {
+      hardReload (event) {
+        event.currentTarget.blur()
         this.loadFacets(true)
         this.loadData(true)
       }
