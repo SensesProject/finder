@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <SensesMenu :id="id" />
     <Header
       :title="title"
       :subtitle="subtitle"
@@ -12,6 +13,8 @@
 <script>
   import { mapActions } from 'vuex'
   import { get, size } from 'lodash'
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  import SensesMenu from 'library/src/components/SensesMenu.vue'
   import Header from '~/components/Header.vue'
   import Popover from '~/components/Popover.vue'
   import Table from '~/components/Table/Table.vue'
@@ -75,7 +78,8 @@
     components: {
       Header,
       Popover,
-      Table
+      Table,
+      SensesMenu
     },
     created: function () {
       const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth } = this
