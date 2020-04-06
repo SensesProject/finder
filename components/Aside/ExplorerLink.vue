@@ -3,9 +3,11 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
   import { get, map, compact } from 'lodash'
   import copy from 'copy-to-clipboard'
+
+  import { basket } from '~/store/index'
 
   const APP_NAME = 'IXSE_SR15'
   const AUTH_API = 'https://db1.ene.iiasa.ac.at/EneAuth'
@@ -41,7 +43,7 @@
     }).then(asJson)
   }
 
-  function generateTemplate (url, runs) {
+  function generateTemplate (runs) {
     return {
       'name': 'Senses Scenario Finder Workspace',
       'description': 'Workspace created by the Senses Scenario Finder selection',
@@ -54,7 +56,7 @@
             'description': '',
             'showAs': 'text',
             'size': 'half',
-            'markdown': `# Senses Scenario Finder workspace\n\nFind the selection of scenarios at [${url}](${url})`
+            'markdown': `# Senses Scenario Finder workspace`
           }
         },
         {
@@ -100,20 +102,16 @@
       }
     },
     computed: {
-      ...mapState({
-        filter: state => get(state, 'filter.filter', []),
-        statusData: state => get(state, 'data.status', 'ERROR'),
-        statusAuth: state => get(state, 'auth.status', 'ERROR'),
-        data: state => get(state, 'data.data', [])
-      }),
-      ...mapGetters([
-        'result',
-        'urlString'
-      ]),
-      url () {
-        const getUrl = window.location
-        return `${getUrl.protocol}//${getUrl.host}${this.$router.options.base}${this.urlString}`
-      }
+      ...mapState('datum', [
+        'datum'
+      ])
+      // ...mapGetters([
+      //   'urlString'
+      // ]),
+      // url () {
+      //   const getUrl = window.location
+      //   return `${getUrl.protocol}//${getUrl.host}${this.$router.options.base}${this.urlString}`
+      // }
     },
     methods: {
       openExplorer () {
@@ -134,8 +132,8 @@
         }, 2000)
       },
       async onCreate () {
-        const runs = compact(map(this.result, run => {
-          return get(run, ['run-id', 'values'], false)
+        const runs = compact(map(basket.all(), run => {
+          return get(run, 'run_id', false)
         }))
         if (runs.length) {
           const username = 'scenario-finder'
@@ -145,7 +143,7 @@
           const config = await getAppConfig(authToken, APP_NAME).catch((error) => { this.displayError(error) })
           const baseUrl = config.find(e => e.path === 'baseUrl').value
           const uiUrl = config.find(e => e.path === 'uiUrl').value
-          const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(this.url, runs)).catch((error) => { this.displayError(error) })
+          const workspace = await createWorkspace(baseUrl, authToken, generateTemplate(runs)).catch((error) => { this.displayError(error) })
           const shareUrl = `${uiUrl}/#/workspaces/share/${workspace.accessToken}`
           copy(shareUrl)
           this.message = 'URL copied to clipboard'
