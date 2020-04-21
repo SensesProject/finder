@@ -36,12 +36,12 @@
           class="tick"
           text-anchor="end"
           dominant-baseline="hanging"
-          ref="labelLow">{{ brushLow.toFixed() }}</text>
+          ref="labelLow">{{ (brushLow || 0).toFixed() }}</text>
         <text
           :x="marginLeft - 10"
           :y="y + h"
           class="tick"
-          text-anchor="end">{{ brushHigh.toFixed() }}</text>
+          text-anchor="end">{{ (brushHigh || 0).toFixed() }}</text>
       </svg>
       <vue-draggable-resizable
         :x="x"
