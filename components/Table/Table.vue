@@ -23,7 +23,7 @@
               <span class="label">{{ label }}</span>
               <section>
                 <i
-                  class="option icon-popup clickable"
+                  class="option glyph-finder-popup clickable"
                   @click="openContentPopover(popoverContent)"
                   v-tooltip="{ content: `Show more information about »${label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }"
                   v-if="popoverContent" />

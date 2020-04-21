@@ -3,7 +3,7 @@
     v-tooltip="'Click to copy link of current filter'"
     class="btn btn--icon clickable"
     @click="copyLink">
-    <i class="icon-export" />
+    <i class="glyph-finder-export" />
   </button>
 </template>
 
