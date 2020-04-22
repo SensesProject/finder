@@ -1,12 +1,11 @@
+const { getHead } = require('library/src/assets/js/head.js')
+
 module.exports = {
   mode: 'spa',
-  head: {
-    title: 'Finder',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-    ]
-  },
+  head: getHead({
+    title: 'Scenario Finder',
+    description: 'This explore module allows you to quickly filter all avialable scenarios from the IAMC 1.5 database.'
+  }),
   css: [
     'normalize-scss',
     '@/assets/style/base.scss'
@@ -16,7 +15,6 @@ module.exports = {
       style: 'assets/style'
     }
   },
-  loading: { color: '#3B8070' },
   plugins: [
     { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/vue-drag-resize', ssr: false }
