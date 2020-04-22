@@ -43,8 +43,8 @@ export const isTooOld = function (date) {
 
 export const extractFromGoogleTable = function (keys, data) {
   // This function extracts the relevant data from the Google Sheet response
-  return map(get(data, ['feed', 'entry']), entry => {
-    const obj = {}
+  return map(get(data, ['feed', 'entry']), (entry, i) => {
+    const obj = { i }
     forEach(keys, key => {
       let value = get(entry, [`gsx$${key}`, '$t'])
       // Some reformatting if value is TRUE or FALSE

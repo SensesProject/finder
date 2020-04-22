@@ -1,14 +1,14 @@
 <template>
   <div class="facets">
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit }, n) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit }) in elements"
       v-bind:is="component"
       :key="id"
       :unit="unit"
       :tooltip="tooltip"
       :id="id"
       :title="title"
-      :items="lists[n]"
+      :items="lists[id]"
       :thresholds="thresholds"
       :init="init"
       :forcedValue="forcedValue" />
@@ -18,7 +18,7 @@
 <script>
   import { mapState } from 'vuex'
   import { KEY_FACETS_FACETS, KEY_FILTER } from '~/store/config'
-  import { map, capitalize } from 'lodash'
+  import { map, capitalize, sortBy } from 'lodash'
   // Facet types
   import List from '~/components/Facets/List.vue'
   import Histogram from '~/components/Facets/Histogram.vue'
@@ -34,18 +34,19 @@
         filters: KEY_FILTER
       }),
       elements () {
-        return map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit }, id) => {
+        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i }, id) => {
           return {
             title: label,
             tooltip,
             id,
+            i,
             component: capitalize(type),
             thresholds,
             init,
             forcedValue,
             unit
           }
-        })
+        }), 'i')
       }
     },
     components: {

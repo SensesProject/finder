@@ -1,64 +1,52 @@
 <template>
-  <ul class="options" :style="{ 'grid-template-columns': `repeat(${columns.length}, 1fr)` }">
-    <li v-for="header in headers" :style="{ 'grid-column-start': header.position }">
-      <strong>{{ header.label }}</strong>
-    </li>
-    <li v-for="facet in elements" :style="{ 'grid-column-start': facet.position }">
-      <input
-        v-model="tempVisibleFacets"
-        type="checkbox"
-        v-bind:value="facet.id"
-        :id="facet.label" />
-      <label
-        :for="facet.label"
-        v-html="facet.label" />
-    </li>
-  </ul>
+  <div class="groups" :style="{ 'grid-template-columns': `repeat(${columns}, 1fr)`}">
+    <ul v-for="(options, key) in elements" class="options">
+      <li><strong>{{ key }}</strong></li>
+      <li v-for="option in options" :style="{ 'grid-column-start': option.position }">
+        <input
+          v-model="tempVisibleFacets"
+          type="checkbox"
+          v-bind:value="option.id"
+          :id="option.label" />
+        <label
+          :for="option.label"
+          v-html="option.label" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import { get, uniq, map, compact } from 'lodash'
+  import { get, uniq, map, compact, groupBy, size, keys, filter } from 'lodash'
+  import { KEY_FACETS_ALL, KEY_FACETS_VISIBLE, KEY_FILTER } from '~/store/config'
 
   export default {
     computed: {
-      ...mapState({
-        visibleFacets: state => state.facets.visibleFacets,
-        facets: state => get(state, 'facets.facets', [])
+      ...mapState('facets', {
+        facets: KEY_FACETS_ALL
+      }),
+      ...mapState('filter', {
+        visibleFacets: KEY_FILTER
       }),
       tempVisibleFacets: {
-        get: function () {
-          return this.visibleFacets
+        get () {
+          return keys(this.visibleFacets)
         },
-        set: function (val) {
-          this.setVisibleFacets(val)
+        set (val) {
+          this.checkVisibleFacetList(val)
         }
       },
-      columns () {
-        return uniq(compact(map(this.facets, (facet) => { return get(facet, 'system', true) ? false : get(facet, 'group', false) })))
-      },
-      headers () {
-        return map(this.columns, (column, i) => {
-          return {
-            position: i + 1,
-            label: column
-          }
-        })
-      },
       elements () {
-        return compact(map(this.facets, facet => {
-          if (get(facet, 'system', true)) return false
-          const position = this.columns.indexOf(facet.group) + 1
-          return {
-            position,
-            ...facet
-          }
-        }))
+        return groupBy(filter(this.facets, facet => !get(facet, 'system', true)), 'group')
+      },
+      columns () {
+        return size(this.elements)
       }
     },
     methods: {
-      ...mapActions([
-        'setVisibleFacets'
+      ...mapActions('filter', [
+        'checkVisibleFacetList'
       ])
     }
   }
@@ -71,11 +59,18 @@
     display: none;
   }
 
-  .options {
+  .groups {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: $spacing / 4 $spacing;
+    column-gap: $spacing;
     max-width: 1000px;
+
+    .options {
+      display: grid;
+      grid-auto-flow: row;
+      row-gap: $spacing / 2;
+      align-content: start;
+    }
 
     li {
       color: getColor(gray, 10);

@@ -1,12 +1,12 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { get, unset, set, has, forEach, map } from 'lodash'
+import { get, unset, set, has, forEach, map, keys, difference, find } from 'lodash'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
 import { getList, makeDict } from '../../assets/js/facets'
 
 // import { reject, clone, find, pull, isUndefined, get, forEach, isArray, set } from 'lodash'
-import { RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
+import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
 import { basket } from '../index'
 // import { getList } from '../../assets/js/facets'
 
@@ -19,7 +19,8 @@ const state = () => ({
 })
 
 const mutations = {
-  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover }) {
+  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i }) {
+    console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
     // It also sets the type of the facet. This is used later for the filtering technique
     const dimension = basket.dimension((d) => get(d, key, false))
@@ -36,6 +37,7 @@ const mutations = {
         [KEY_LABEL]: label,
         [KEY_DIMENSION]: dimension,
         id,
+        i,
         facet,
         init,
         unit,
@@ -81,10 +83,15 @@ const mutations = {
     state[KEY_FILTER][key].isInverted = isInverted
   },
   REMOVE_FACET (state, key) {
+    console.log('REMOVE_FACET', {key})
     // This mutation removes the dimension
     state[KEY_FILTER][key][KEY_DIMENSION].dispose()
     // It also cleans up the whole filter
-    unset(state, [KEY_FILTER, key])
+    // Vue.delete(state[KEY_FILTER], key)
+    const filter = { ...state[KEY_FILTER] }
+    delete filter[key]
+    state[KEY_FILTER] = filter
+    console.log(state[KEY_FILTER] )
   },
   RESET_FACET (state, key) {
     // This mutation resets all applyed filtering on this dimension
@@ -204,6 +211,28 @@ const actions = {
   resetFilters ({ commit }) {
     console.log('filter/resetFilters')
     commit('RESET_FILTERS')
+  },
+  checkVisibleFacetList ({ dispatch, state, rootState }, next) {
+    console.log('filter/checkVisibleFacetList')
+    const current = keys(state[KEY_FILTER])
+    // forEach(list, (key) => {
+    console.log({ current })
+    console.log({ next })
+    console.log({ rootState })
+    forEach(difference(next, current), (add) => {
+      const facet = find(get(rootState, ['facets', KEY_FACETS_ALL]), { id: add })
+      console.log(get(rootState, ['facets', KEY_FACETS_ALL]))
+      console.log(add, facet)
+      dispatch('addFacet', facet)
+      // commit('CREATE_FACET', { facet })
+    })
+    forEach(difference(current, next), (remove) => {
+      dispatch('removeFacet', remove)
+      // commit('REMOVE_FACET', remove)
+      console.log(remove)
+    })
+    dispatch('facets/filter', null, { root: true })
+    // })
   },
   // resetFilter ({ commit }, id) {
   //   // console.log('resetFilter')

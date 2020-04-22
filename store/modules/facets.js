@@ -1,5 +1,5 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
-import { get, map, forEach } from 'lodash'
+import { get, map, forEach, fromPairs } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
 // import { getList, getHistogram } from '../../assets/js/facets'
@@ -10,8 +10,8 @@ import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, 
 const state = () => ({
   // These are all facet options as they are coming from the Google Sheet
   [KEY_FACETS_ALL]: [],
-  // These are the facets that are currently visible
-  [KEY_FACETS_VISIBLE]: [],
+  // // These are the facets that are currently visible
+  // [KEY_FACETS_VISIBLE]: [],
   // This holds the actually facet information (counting, dimension, …)
   [KEY_FACETS_FACETS]: {},
   // Date the data was fetched
@@ -28,27 +28,27 @@ const mutations = {
   FILTER (state, filter) {
     // console.log('facets/FILTER')
     let hasActiveFilters
-    const lists = map(filter, ({ facet, [KEY_DIMENSION]: dimension, [KEY_PATH]: key }) => {
+    const lists = fromPairs(map(filter, ({ facet, [KEY_DIMENSION]: dimension, id }) => {
       // As we loop over each filter, we check if they have any filters
       if (dimension.hasCurrentFilter()) {
         hasActiveFilters = true
       }
-      return facet.all()
-    })
+      return [id, facet.all()]
+    }))
     state[KEY_FACETS_FACETS] = lists
     state[KEY_HAS_ACTIVE_FILTERS] = hasActiveFilters
   },
   SET_FACETS (state, facets) {
     // Recieves the list of keys from the Google Sheet
     state[KEY_FACETS_ALL] = facets
-    // console.log({ facets })
+    console.log({ facets })
     // Saves the current date
     state[KEY_DATE] = new Date()
   },
-  SET_VISIBLE_FACETS (state, visibleFacets) {
-    // Set the keys of visible facts.
-    state[KEY_FACETS_VISIBLE] = visibleFacets
-  },
+  // SET_VISIBLE_FACETS (state, visibleFacets) {
+  //   // Set the keys of visible facts.
+  //   state[KEY_FACETS_VISIBLE] = visibleFacets
+  // },
   SET_URL_FACETS (state, url) {
     // Sets the url where the facets are stored
     state[KEY_URL] = url
@@ -73,25 +73,21 @@ const actions = {
     // The init values for visible facets are stored in the facet list
     commit('SET_FACETS', facets)
   },
-  setVisibleFacets ({ commit }, value) {
-    // console.log('facets/setVisibleFacets')
-    // This action is used by the popover to change the visble facets
-    commit('SET_VISIBLE_FACETS', value)
-  },
+  // setVisibleFacets ({ commit }, value) {
+  //   // console.log('facets/setVisibleFacets')
+  //   // This action is used by the popover to change the visble facets
+  //   commit('SET_VISIBLE_FACETS', value)
+  // },
   setInvisibleFacets ({ state, commit, dispatch }) {
     // console.log('facets/setInvisibleFacets')
     // For every visible facet, we initiate a filter
     forEach(state[KEY_FACETS_ALL], (facet) => {
+      console.log({ facet })
       if (get(facet, 'visible', false) && !get(facet, 'system', true)) {
         dispatch('filter/addFacet', facet, { root: true })
       }
     })
-    // This function is called after facets are loaded
-    // const visibleFacets = compact(map(state[KEY_FACETS_ALL], (facet) => {
-    //   // Only facets that are visible should be listed as filter. Also facets that have the system tags should not be visible. They are used for other things.
-    //   console.log({ facet })
-    //   return get(facet, 'visible', false) && !get(facet, 'system', true) ? facet.id : false
-    // }))
+    // Set the list of visible filter for the popover
     // commit('SET_VISIBLE_FACETS', visibleFacets)
   },
   loadFacets ({ commit, state, dispatch }, isForced = false) {

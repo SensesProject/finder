@@ -18,9 +18,9 @@
       <li
         v-for="{ key, total, isActive, n } in elements"
         :key="key"
-        :class="['option', { isActive: selected.includes(key), nonRemaining: items[n].value === 0 }]">
+        :class="['option', { isActive: selected.includes(key), nonRemaining: (items[n] || {}).value === 0 }]">
         <span class="label" @click="() => selectItem(key)">{{ key }}</span>
-        <span class="counter"><span v-if="items[n].value !== total">{{ items[n].value }}/</span>{{ total }}</span>
+        <span class="counter"><span v-if="(items[n] || {}).value !== total">{{ (items[n] || {}).value }}/</span>{{ total }}</span>
         <span class="action action-add" @click="() => addItem(key)">Include</span>
         <span class="action action-remove" @click="() => removeItem(key)">Remove</span>
       </li>
@@ -82,6 +82,7 @@ export default {
       return this.selected !== LIST_DEFAULT
     },
     keys () {
+      console.log('inside', this.id, this.items)
       // Get a list of all item to work with inverting
       return map(this.items, ({ key }) => key)
     },

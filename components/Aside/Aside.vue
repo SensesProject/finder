@@ -11,10 +11,10 @@
       <Options slot="popover"/>
     </v-popover> -->
     <button v-tooltip="'Click to copy link of current filter'" class="btn btn--light btn--icon clickable" @click="copyLink"><i class="glyph-finder-export" /></button>
-    <!-- <v-popover :autoHide="true">
+    <v-popover :autoHide="true">
       <button class="btn btn--light clickable" v-tooltip="'Show facet options'"><i class="glyph-finder-list" /> Select facets</button>
       <SelectFacets slot="popover"/>
-    </v-popover> -->
+    </v-popover>
     <button :class="['btn', 'btn--light', 'reset', { hasActiveFilters }]" :disabled="!hasActiveFilters" @click="resetFilters"><i class="glyph-finder-cancel-circled" /> Reset all filter</button>
     <ExplorerLink v-if="showExplorer" />
   </aside>

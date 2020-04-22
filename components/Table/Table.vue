@@ -44,7 +44,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
-  import { map, get } from 'lodash'
+  import { map, get, sortBy } from 'lodash'
   import { KEY_PATH, KEY_FILTER } from '~/store/config'
   import Loading from '~/components/Loading.vue'
   import TableNavigation from '~/components/Table/TableNavigation.vue'
@@ -60,10 +60,11 @@
         'datum'
       ]),
       elements () {
+        const filters = sortBy(map(this.filter), 'i')
         // Get the filtered data from the basket
         return map(this.datum, (datum) => {
           // Loop over the visible facets and build row
-          const cells = map(this.filter, (filter) => {
+          const cells = map(filters, (filter) => {
             const key = filter[KEY_PATH]
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
             return {

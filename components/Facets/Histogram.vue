@@ -26,10 +26,10 @@
         <rect
           v-for="(bar, i) in totalBars"
           :key="`remaining_${bar.key}`"
-          :class="['bar', 'value', { isActive: isFiltered && bars[bar.key][1] }]"
+          :class="['bar', 'value', { isActive: isFiltered && (bars[bar.key] || [])[1] }]"
           :x="bar.x"
           :y="bar.y"
-          :width="bars[bar.key][0]"
+          :width="(bars[bar.key] || [])[0]"
           :height="bar.height" />
         <text
           :x="marginLeft - 10"
