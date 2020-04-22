@@ -5,6 +5,7 @@
       :title="title"
       :isFiltered="isFiltered"
       :tooltip="tooltip"
+      :unit="unit"
       @reset="reset" />
     <div class="vis-wrapper">
       <svg ref="vis">
@@ -83,6 +84,9 @@
         default: () => {}
       },
       title: {
+        type: String
+      },
+      unit: {
         type: String
       },
       id: {

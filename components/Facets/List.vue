@@ -8,6 +8,7 @@
       :isAlphabetical="isAlphabetical"
       :tooltip="tooltip"
       :count="count"
+      :unit="unit"
       @removeFacet="() => removeFacet(id)"
       @toggleInvert="toggleInvert"
       @toggleReverse="toggleReverse"
@@ -53,6 +54,9 @@ export default {
       type: String
     },
     id: {
+      type: String
+    },
+    unit: {
       type: String
     },
     tooltip: {

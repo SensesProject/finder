@@ -22,7 +22,7 @@ const state = () => ({
 })
 
 // These keys are the one that should are relevant and should be extracted from the Google Sheet
-const KEYS = ['key', 'label', 'group', 'system', 'popover.content', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
+const KEYS = ['key', 'label', 'unit', 'group', 'system', 'popover.content', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
 
 const mutations = {
   FILTER (state, filter) {

@@ -1,9 +1,10 @@
 <template>
   <div class="facets">
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue }, n) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit }, n) in elements"
       v-bind:is="component"
       :key="id"
+      :unit="unit"
       :tooltip="tooltip"
       :id="id"
       :title="title"
@@ -33,7 +34,7 @@
         filters: KEY_FILTER
       }),
       elements () {
-        return map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue }, id) => {
+        return map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit }, id) => {
           return {
             title: label,
             tooltip,
@@ -41,7 +42,8 @@
             component: capitalize(type),
             thresholds,
             init,
-            forcedValue
+            forcedValue,
+            unit
           }
         })
       }

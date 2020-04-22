@@ -1,7 +1,10 @@
 <template>
   <header class="facet-header">
     <div class="header-title">
-      <h3 :class="{ isActive: isFiltered }" v-tooltip="{ content: tooltip }">{{ title }}</h3>
+      <hgroup v-tooltip="{ content: tooltip }">
+        <h3 :class="{ isActive: isFiltered }">{{ title }}</h3>
+        <small v-if="unit">{{ unit }}</small>
+      </hgroup>
       <button @click="removeFacet" class="btn btn--none btn--remove">&times;</button>
     </div>
     <aside :class="['header-aside', displayInvert ? 'double' : 'single']">
@@ -38,6 +41,9 @@ export default {
       default: undefined
     },
     title: {
+      type: String
+    },
+    unit: {
       type: String
     },
     tooltip: {

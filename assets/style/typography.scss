@@ -47,10 +47,15 @@
         color: $color-deep-gray;
         letter-spacing: $spacing-default;
         line-height: 1em;
+        display: inline-block;
 
         &.isActive {
           color: $color-accent;
         }
+      }
+
+      small {
+        font-size: $size-smallest;
       }
     }
 
