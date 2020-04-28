@@ -82,7 +82,6 @@ export default {
       return this.selected !== LIST_DEFAULT
     },
     keys () {
-      console.log('inside', this.id, this.items)
       // Get a list of all item to work with inverting
       return map(this.items, ({ key }) => key)
     },
@@ -224,12 +223,12 @@ export default {
     .list-list {
       list-style: none;
       background-color: #fff;
-      padding: 0.5rem;
+      padding: 0 0.5rem;
       border: 1px solid $color-pale-gray;
       border-radius: $border-radius;
       box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.05);
       overflow-y: scroll;
-      height: calc(1.5rem * 10);
+      height: 250px;
 
       .option {
         display: flex;
@@ -241,6 +240,10 @@ export default {
         color: $color-deep-gray;
         transition: color 0.2s;
         height: 1.3rem;
+
+        &:first-child {
+          margin-top: 0.5rem;
+        }
 
         .label {
           overflow: hidden;
