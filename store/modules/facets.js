@@ -41,7 +41,6 @@ const mutations = {
   SET_FACETS (state, facets) {
     // Recieves the list of keys from the Google Sheet
     state[KEY_FACETS_ALL] = facets
-    console.log({ facets })
     // Saves the current date
     state[KEY_DATE] = new Date()
   },
@@ -82,7 +81,6 @@ const actions = {
     // console.log('facets/setInvisibleFacets')
     // For every visible facet, we initiate a filter
     forEach(state[KEY_FACETS_ALL], (facet) => {
-      console.log({ facet })
       if (get(facet, 'visible', false) && !get(facet, 'system', true)) {
         dispatch('filter/addFacet', facet, { root: true })
       }
@@ -91,9 +89,9 @@ const actions = {
     // commit('SET_VISIBLE_FACETS', visibleFacets)
   },
   loadFacets ({ commit, state, dispatch }, isForced = false) {
-    console.log('facets/loadFacets')
+    // console.log('facets/loadFacets')
     // This function loads the facets from the Google Sheet. It is called by the localStorage
-    console.log('Action: Check facet data', { isForced })
+    // console.log('Action: Check facet data', { isForced })
     // Try to get the time the data was loaded the last time
     const lastLoad = get(state, KEY_DATE, null)
     // Compare current date and last loaded data
@@ -104,7 +102,7 @@ const actions = {
     const url = get(state, KEY_URL, null)
     // If should reload and url is found
     if (willReload && url) {
-      console.log('Facets data is too old or reload is forced. Will reload data')
+      // console.log('Facets data is too old or reload is forced. Will reload data')
       axios.get(url)
         .then((response) => {
           // Extract the data from the Google Table structure
@@ -118,7 +116,7 @@ const actions = {
           console.error('error', error)
         })
     } else { // If url false or loading not necessary or forced
-      console.log('Using facets from localStorage')
+      // console.log('Using facets from localStorage')
       // Set the visible facets
       dispatch('setInvisibleFacets')
       // Initiate the filter. This action is in the filter module

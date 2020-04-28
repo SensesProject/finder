@@ -68,7 +68,7 @@ const actions = {
     const shouldReload = !lastLoad || isTooOld(lastLoad)
     // Check current data object
     const currentData = get(state, ['data', 'length'], 0)
-    console.log({ currentData })
+    // console.log({ currentData })
     // If longer ago, empty or forced (on hard reload)
     const willReload = (shouldReload || !currentData) ? true : isForced
     if (willReload) {
@@ -116,7 +116,7 @@ const actions = {
         })
     } else {
       console.log('Data already loaded', format(state.date))
-      console.log('Data:', state.data)
+      // console.log('Data:', state.data)
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
       dispatch('filter/updateDimension', false, { root: true })
       dispatch('apply', false, { root: true })

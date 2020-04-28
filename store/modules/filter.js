@@ -20,7 +20,7 @@ const state = () => ({
 
 const mutations = {
   CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i }) {
-    console.log('CREATE_FACET', id)
+    // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
     // It also sets the type of the facet. This is used later for the filtering technique
     const dimension = basket.dimension((d) => get(d, key, false))
@@ -83,7 +83,7 @@ const mutations = {
     state[KEY_FILTER][key].isInverted = isInverted
   },
   REMOVE_FACET (state, key) {
-    console.log('REMOVE_FACET', {key})
+    // console.log('REMOVE_FACET', {key})
     // This mutation removes the dimension
     state[KEY_FILTER][key][KEY_DIMENSION].dispose()
     // It also cleans up the whole filter
@@ -91,7 +91,7 @@ const mutations = {
     const filter = { ...state[KEY_FILTER] }
     delete filter[key]
     state[KEY_FILTER] = filter
-    console.log(state[KEY_FILTER] )
+    // console.log(state[KEY_FILTER] )
   },
   RESET_FACET (state, key) {
     // This mutation resets all applyed filtering on this dimension
@@ -104,7 +104,7 @@ const mutations = {
   RESET_FILTERS (state) {
     // Resets all filter
     forEach(state[KEY_FILTER], (filter) => {
-      console.log(RESET_CODE)
+      // console.log(RESET_CODE)
       filter.forcedValue = RESET_CODE // null triggers a reset
     })
   },
@@ -182,7 +182,7 @@ const actions = {
     })
   },
   addFacet ({ commit, dispatch }, options) {
-    console.log('filter/addFacet', options)
+    // console.log('filter/addFacet', options)
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     commit('CREATE_FACET', options)
@@ -190,13 +190,13 @@ const actions = {
   },
   removeFacet ({ commit, dispatch }, key) {
     // This function is called when a facet becomes invisible (is set hidden by the user)
-    console.log('filter/removeFacet', key)
+    // console.log('filter/removeFacet', key)
     commit('REMOVE_FACET', key)
     dispatch('apply')
   },
   resetFilter ({ commit, dispatch }, key) {
     // This function is called when a filter is resetted by the user
-    console.log('filter/resetFilter', key)
+    // console.log('filter/resetFilter', key)
     commit('RESET_FACET', key)
     dispatch('apply')
   },
@@ -207,65 +207,30 @@ const actions = {
     commit('APPLY_FILTER', options)
     dispatch('apply')
   },
-  // OLD ACTIONS
   resetFilters ({ commit }) {
-    console.log('filter/resetFilters')
+    // console.log('filter/resetFilters')
     commit('RESET_FILTERS')
   },
   checkVisibleFacetList ({ dispatch, state, rootState }, next) {
-    console.log('filter/checkVisibleFacetList')
+    // console.log('filter/checkVisibleFacetList')
     const current = keys(state[KEY_FILTER])
-    // forEach(list, (key) => {
-    console.log({ current })
-    console.log({ next })
-    console.log({ rootState })
     forEach(difference(next, current), (add) => {
       const facet = find(get(rootState, ['facets', KEY_FACETS_ALL]), { id: add })
-      console.log(get(rootState, ['facets', KEY_FACETS_ALL]))
-      console.log(add, facet)
       dispatch('addFacet', facet)
       // commit('CREATE_FACET', { facet })
     })
     forEach(difference(current, next), (remove) => {
       dispatch('removeFacet', remove)
-      // commit('REMOVE_FACET', remove)
-      console.log(remove)
     })
     dispatch('facets/filter', null, { root: true })
     // })
   },
-  // resetFilter ({ commit }, id) {
-  //   // console.log('resetFilter')
-  //   commit('RESET_FILTER', id)
-  // },
-  // setFilter ({ commit, rootState }, { id, value }) {
-  //   const facets = get(rootState, ['facets', 'facets'])
-  //   const facet = find(facets, { id })
-  //   const type = get(TYPES, get(facet, 'type')) // The type of the filter (range, key-value, term)
-  //   const key = get(facet, 'key') // The »address« of the value
-  //   if (!isUndefined(type) && !isUndefined(id) && !isUndefined(value) && !isUndefined(key)) {
-  //     commit('RESET_FILTER', id)
-  //     commit('SET_FILTER', { id, value, type, key })
-  //   }
-  // },
-  // addFilter ({ commit }, { id, value }) {
-  //   // console.log('addFilter', id, value)
-  //   commit('ADD_FILTER', { id, value })
-  // },
-  // removeFilter ({ commit }, { id, value }) {
-  //   // console.log('removeFilter', id, value)
-  //   commit('REMOVE_FILTER', { id, value })
-  // },
-  // invertFilter ({ commit }, id) {
-  //   // console.log('invertFilter', id)
-  //   commit('INVERT_FILTER', { id })
-  // },
   setInitFilter ({ commit }, initFilter) {
-    console.log('filter/setInitFilter', initFilter)
+    // console.log('filter/setInitFilter', initFilter)
     commit('SET_INIT_FILTER', initFilter)
   },
   initFilter ({ dispatch, commit, state }) {
-    console.log('filter/initFilter')
+    // console.log('filter/initFilter')
     // TODO
     forEach(state.initFilter, (value, key) => {
       // TODO: Create filter if not present. Make visible if invisible
@@ -274,10 +239,6 @@ const actions = {
         filter.forcedValue = {
           value: value.split('|')
         }
-        console.log(`Filter ${key} set to ${value.split('|')}`)
-        console.log({ filter })
-      } else {
-        console.log(`Filter ${key} not found`)
       }
     })
     // Reset state.initFilter to null
