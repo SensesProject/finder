@@ -113,7 +113,7 @@
 
       tr td, tr th {
         display: inline-block;
-        width: calc(#{$column-width} + #{$column-gap});
+        width: calc(#{$facet-width} + #{$facet-gap});
         padding-left: $spacing / 4;
         padding-right: $spacing / 4;
         overflow: hidden;
@@ -121,13 +121,13 @@
 
         &:first-child {
           padding-left: 0;
-          width: calc(#{$column-width} + #{$column-gap} + #{$spacing / 4});
+          width: calc(#{$facet-width} + #{$facet-gap} + #{$spacing / 4});
           padding-left: 1rem;
         }
 
         &:last-child {
           padding-right: 0;
-          width: $column-width;
+          width: $facet-width;
         }
       }
     }

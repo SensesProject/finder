@@ -64,12 +64,12 @@
   .facets {
     display: grid;
     grid-auto-flow: column;
-    grid-column-gap: $column-gap;
+    grid-column-gap: $facet-gap;
     justify-items: start;
-    grid-template-columns: repeat(auto-fill, #{$column-width});
+    grid-template-columns: repeat(auto-fill, #{$facet-width});
 
     .facet, .options {
-      width: $column-width;
+      width: $facet-width;
     }
   }
 </style>

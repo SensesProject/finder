@@ -47,7 +47,7 @@
       width: calc(100vw - #{$spacing});
 
       @include media-query($wide) {
-        grid-template-columns: $column-width * 3 auto;
+        grid-template-columns: $facet-width * 3 auto;
       }
 
       hgroup {
