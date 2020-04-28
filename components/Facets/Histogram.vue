@@ -118,9 +118,9 @@
         isFiltered: false,
         // Properties of the brush
         x: marginLeft,
-        y: 1,
-        w: width - marginLeft,
-        h: 1,
+        y: 1, // Lower position
+        w: width - marginLeft, // Width
+        h: 1, // Height
         isActive: false,
         preventDeactivation: true
       }
@@ -233,9 +233,7 @@
       }
     },
     mounted () {
-      console.log(`Mounted ${this.id}`)
       this.reset()
-      console.log(`Mounted ${this.id}`)
       // TODO: Not working properly
       const value = get(this.forcedValue, 'value')
       this.forceSelected(value)
@@ -247,10 +245,10 @@
     watch: {
       forcedValue (newValue) {
         if (newValue === RESET_CODE) {
-          console.log(`Resetting ${this.id}`)
+          // console.log(`Resetting ${this.id}`)
           this.reset()
         } else {
-          console.log(`Got a forced input at ${this.id}`)
+          // console.log(`Got a forced input at ${this.id}`)
           const value = get(newValue, 'value')
           this.forceSelected(value)
         }
