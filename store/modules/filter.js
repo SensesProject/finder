@@ -162,30 +162,39 @@ const actions = {
     // It calls the root apply action that triggers filtering and counting
     dispatch('apply', false, { root: true })
   },
-  updateDimension ({ commit, dispatch, state }) {
-    // console.log('updateDimension')
-    forEach(state[KEY_FILTER], ({ type, facet, dimension, [KEY_PATH]: path }, key) => {
-      if (type === KEY_FILTER_TYPE_HISTOGRAM) {
-        // console.log(dimension, facet)
-        const values = map(dimension.top(Infinity), (d) => get(d, path))
-        // console.log({values})
-        const domain = extent(values)
-        const scale = scaleLinear().domain(domain).nice()
-        const thresholds = scale.ticks(40)
-        const bin = scaleThreshold().domain(thresholds).range(thresholds)
-        // console.log(1, '->', bin(1), 100, '->', bin(100), 200, '->', bin(200), 1000, '->', bin(1000))
-        state[KEY_FILTER][key].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
-        state[KEY_FILTER][key].thresholds = thresholds
-        // console.log(state[KEY_FILTER][key].facet.top(Infinity))
-      }
-      state[KEY_FILTER][key].init = makeDict(state[KEY_FILTER][key].facet.all())
+  updateDimensions ({ commit, dispatch, state }) {
+    // console.log('updateDimensions')
+    forEach(state[KEY_FILTER], (filter, key) => {
+      dispatch('updateDimension', key)
     })
+  },
+  updateDimension ({ state }, key) {
+    // console.log('updateDimensions')
+    console.log({ key }, state[KEY_FILTER][key], state[KEY_FILTER])
+    const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][key]
+    if (type === KEY_FILTER_TYPE_HISTOGRAM) {
+      // console.log(dimension, facet)
+      const values = map(dimension.top(Infinity), (d) => get(d, path))
+      // console.log({values})
+      const domain = extent(values)
+      const scale = scaleLinear().domain(domain).nice()
+      const thresholds = scale.ticks(40)
+      const bin = scaleThreshold().domain(thresholds).range(thresholds)
+      // console.log(1, '->', bin(1), 100, '->', bin(100), 200, '->', bin(200), 1000, '->', bin(1000))
+      state[KEY_FILTER][key].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
+      state[KEY_FILTER][key].thresholds = thresholds
+      // console.log(state[KEY_FILTER][key].facet.top(Infinity))
+    }
+    state[KEY_FILTER][key].init = makeDict(state[KEY_FILTER][key].facet.all())
   },
   addFacet ({ commit, dispatch }, options) {
     // console.log('filter/addFacet', options)
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     commit('CREATE_FACET', options)
+    console.log({ options })
+    const { id } = options
+    dispatch('updateDimension', id)
     dispatch('apply')
   },
   removeFacet ({ commit, dispatch }, key) {

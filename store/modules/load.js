@@ -101,7 +101,7 @@ const actions = {
           // Check were data is coming from
           const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
-          dispatch('filter/updateDimension', false, { root: true })
+          dispatch('filter/updateDimensions', false, { root: true })
 
           // Apply filtering
           dispatch('apply', false, { root: true })
@@ -118,7 +118,7 @@ const actions = {
       console.log('Data already loaded', format(state.date))
       // console.log('Data:', state.data)
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
-      dispatch('filter/updateDimension', false, { root: true })
+      dispatch('filter/updateDimensions', false, { root: true })
       dispatch('apply', false, { root: true })
     }
   }
