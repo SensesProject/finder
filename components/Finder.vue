@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <SensesMenu :id="id" />
+    <SensesMenu :id="id" :min-width="768"/>
     <Header
       :title="title"
       :subtitle="subtitle"
