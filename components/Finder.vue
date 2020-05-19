@@ -120,6 +120,11 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/global";
 
+  .senses-menu {
+    max-width: 100vw;
+    left: 0;
+  }
+
   .wrapper {
     max-height: 100vh;
     display: grid;
