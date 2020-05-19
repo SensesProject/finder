@@ -64,6 +64,9 @@
     h1, h2, h3 {
       display: inline-block;
     }
+    h1 {
+      width: 220px;
+    }
 
     h2 {
       color: $color-black;
