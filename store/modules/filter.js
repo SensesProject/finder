@@ -19,7 +19,7 @@ const state = () => ({
 })
 
 const mutations = {
-  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i }) {
+  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group }) {
     // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
     // It also sets the type of the facet. This is used later for the filtering technique
@@ -41,6 +41,7 @@ const mutations = {
         facet,
         init,
         unit,
+        group,
         [KEY_TYPE]: type,
         popover,
         // This is used to pass down settings or for a reset
