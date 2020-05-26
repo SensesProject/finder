@@ -32,7 +32,7 @@ const mutations = {
 
     // Check if data is being passed and has length
     if (!isUndefined(data) && data.length) {
-      console.log(`Got data with ${data.length} elements`)
+      // console.log(`Got data with ${data.length} elements`)
       // Set the new data in the state
       state.data = data
       // Safe the current date to get its age the next time
@@ -62,7 +62,7 @@ const actions = {
   // This starts the loading process. It is triggered by the localStorage or on hard reload
   // This only checks how old the current data from the local storage is
   loadData ({ state, dispatch }, isForced = false) {
-    console.log('Action: Check data', { isForced })
+    // console.log('Action: Check data', { isForced })
     const lastLoad = get(state, 'date', false)
     // Is the last loading time longer ago than one day ago or has been loaded before at all
     const shouldReload = !lastLoad || isTooOld(lastLoad)
@@ -71,16 +71,16 @@ const actions = {
     // console.log({ currentData })
     // If longer ago, empty or forced (on hard reload)
     const willReload = (shouldReload || !currentData) ? true : isForced
-    if (willReload) {
-      console.log('Data is too old or reload is forced. Will reload data')
-    }
+    // if (willReload) {
+    //   console.log('Data is too old or reload is forced. Will reload data')
+    // }
     // The authorization is called in any case but with varying parameter. The follower is the function called afterwards
     dispatch('auth/auth', { follower: { name: 'load/load' }, isForced: willReload }, { root: true })
   },
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
     // This function is called after authorization
     // This is the actual function to load data
-    console.log('Action: Load data', { isForced })
+    // console.log('Action: Load data', { isForced })
     if (isForced) {
       commit('API_DATA', { status: STATUS_LOADING, data: [] })
     }
@@ -93,13 +93,14 @@ const actions = {
       if (get(rootState, ['auth', 'url'], false)) {
         set(config, 'headers.Authorization', `Bearer ${rootState.auth.token}`)
       }
-      console.log('Load Request send')
+      // console.log('Load Request send')
       axios.get(url, config)
         .then(response => {
           const { data } = response
-          console.log('Loading successfull')
+          // console.log('Loading successfull')
           // Check were data is coming from
           const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
+          // console.log({ datum })
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
           dispatch('filter/updateDimensions', false, { root: true })
 
@@ -107,15 +108,15 @@ const actions = {
           dispatch('apply', false, { root: true })
         })
         .catch(error => {
-          console.log('Loading failed', { error, isLoop })
+          // console.log('Loading failed', { error, isLoop })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
-            console.log('Trying to relogin')
+            // console.log('Trying to relogin')
             dispatch('auth/auth', { follower: { name: 'load/load' }, isForced: true }, { root: true })
           }
         })
     } else {
-      console.log('Data already loaded', format(state.date))
+      // console.log('Data already loaded', format(state.date))
       // console.log('Data:', state.data)
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
       dispatch('filter/updateDimensions', false, { root: true })
