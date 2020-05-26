@@ -56,8 +56,8 @@
             'description': '',
             'showAs': 'text',
             'size': 'half',
-            'markdown': `# Senses Scenario Finder workspace`
-          }
+            'markdown': '# Senses Scenario Finder workspace',
+          },
         },
         {
           'id': 2,
@@ -65,17 +65,17 @@
             'metadata': [],
             'runs': runs,
             'ranges': {
-              'years': [2023, 2076]
+              'years': [2023, 2076], // <-- restrict x-axis (years, client-side)
             },
             'characteristics': {
               'parameters': [],
               'variables': [],
-              'timeseries': [1]
+              'timeseries': [1], // <-- timeseries variable identifiers
             },
             'regions': [0],
             'units': [],
             'minMaxTimeseries': [1],
-            'scales': null
+            'scales': null,
           },
           'options': {
             'name': 'Chart panel',
@@ -84,12 +84,12 @@
             'size': 'half',
             'stackedCharts': false,
             'crossPanelLinking': [],
-            'showSelectedOnly': null
-          }
-        }
+            'showSelectedOnly': null,
+          },
+        },
       ],
       'publishType': 'UNLISTED',
-      'hasPreview': true
+      'hasPreview': true,
     }
   }
 
@@ -105,13 +105,6 @@
       ...mapState('datum', [
         'datum'
       ])
-      // ...mapGetters([
-      //   'urlString'
-      // ]),
-      // url () {
-      //   const getUrl = window.location
-      //   return `${getUrl.protocol}//${getUrl.host}${this.$router.options.base}${this.urlString}`
-      // }
     },
     methods: {
       openExplorer () {
@@ -132,7 +125,7 @@
         }, 2000)
       },
       async onCreate () {
-        const runs = compact(map(basket.all(), run => {
+        const runs = compact(map(this.datum, run => {
           return get(run, 'run_id', false)
         }))
         if (runs.length) {
