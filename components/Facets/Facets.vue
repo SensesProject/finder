@@ -1,5 +1,8 @@
 <template>
   <div class="facets">
+    <section v-for="(number, key) in categories" :style="{ 'grid-column-end': `span ${number}`}" class="group">
+      <h4>{{ key }}</h4>
+    </section>
     <component
       v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit }) in elements"
       v-bind:is="component"
@@ -18,7 +21,7 @@
 <script>
   import { mapState } from 'vuex'
   import { KEY_FACETS_FACETS, KEY_FILTER } from '~/store/config'
-  import { map, capitalize, sortBy } from 'lodash'
+  import { map, capitalize, sortBy, groupBy, fromPairs } from 'lodash'
   // Facet types
   import List from '~/components/Facets/List.vue'
   import Histogram from '~/components/Facets/Histogram.vue'
@@ -34,7 +37,7 @@
         filters: KEY_FILTER
       }),
       elements () {
-        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i }, id) => {
+        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i, group }, id) => {
           return {
             title: label,
             tooltip,
@@ -44,9 +47,13 @@
             thresholds,
             init,
             forcedValue,
-            unit
+            unit,
+            group
           }
         }), 'i')
+      },
+      categories () {
+        return fromPairs(map(groupBy(this.elements, 'group'), (list, key) => [key, list.length]))
       }
     },
     components: {
@@ -63,13 +70,35 @@
 
   .facets {
     display: grid;
-    grid-auto-flow: column;
     grid-column-gap: $facet-gap;
-    justify-items: start;
+    justify-items: stretch;
     grid-template-columns: repeat(auto-fill, #{$facet-width});
 
     .facet, .options {
       width: $facet-width;
+    }
+
+    .facet {
+      grid-row-start: 2;
+    }
+
+    .group {
+      justify-items: stretch;
+      align-self: end;
+
+      h4 {
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        font-size: $size-smaller;
+        color: rgba(0, 0, 0, .4);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: $facet-gap / 4;
+        padding-bottom: $facet-gap / 8;
+        width: 100%;
+        font-weight: normal;
+        display: block;
+        line-height: 1.2;
+      }
     }
   }
 </style>
