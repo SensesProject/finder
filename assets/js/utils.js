@@ -37,7 +37,7 @@ export const getPopover = function (pop, datum) {
 
 export const isTooOld = function (date) {
   const ONE_DAY = 60 * 60 * 1000 * 24
-  console.log(`Data was loaded ${format(date)}`)
+  // console.log(`Data was loaded ${format(date)}`)
   return ((new Date()) - new Date(date)) > ONE_DAY
 }
 
@@ -73,10 +73,10 @@ export const extractFromGoogleTable2 = function (data) {
         let value = get(entry, [key, '$t'])
         switch (value) {
           case 'TRUE':
-            value = true
+            value = 'Yes'
             break
           case 'FALSE':
-            value = false
+            value = 'No'
             break
         }
         set(obj, path, value)
