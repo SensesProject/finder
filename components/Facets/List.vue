@@ -182,7 +182,7 @@ export default {
     },
     forceSelected (value) {
       if (value) {
-        console.log(`Setting selected to ${value} in ${this.id}`)
+        // console.log(`Setting selected to ${value} in ${this.id}`)
         this.selected = value
         this.apply()
       }
@@ -194,12 +194,12 @@ export default {
   },
   watch: {
     forcedValue (newValue) {
-      console.log(`New forcedValue detected in ${this.id}`)
+      // console.log(`New forcedValue detected in ${this.id}`)
       if (newValue === RESET_CODE) {
-        console.log(`Resetting ${this.id}`)
+        // console.log(`Resetting ${this.id}`)
         this.reset()
       } else {
-        console.log(`Got a forced input at ${this.id}`)
+        // console.log(`Got a forced input at ${this.id}`)
         const value = get(newValue, 'value')
         this.forceSelected(value)
       }
@@ -211,10 +211,6 @@ export default {
 <style lang="scss" scoped>
   @import "~@/assets/style/global";
 
-  .isActive {
-    font-weight: bold;
-    cursor: default;
-  }
   .nonRemaining {
     text-decoration: line-through;
   }
@@ -240,6 +236,12 @@ export default {
         color: $color-deep-gray;
         transition: color 0.2s;
         height: 1.3rem;
+
+        &.isActive {
+          font-weight: bold;
+          cursor: default;
+          color: $color-accent;
+        }
 
         &:first-child {
           margin-top: 0.5rem;
