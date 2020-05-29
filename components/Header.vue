@@ -1,10 +1,8 @@
 <template>
   <nav class="navigation">
     <header class="header">
-      <hgroup>
-        <h1>{{ title }}</h1>
-        <h2>{{ subtitle }}</h2>
-      </hgroup>
+      <h1>{{ title }}</h1>
+      <slot />
       <Aside :showExplorer="showExplorer" />
     </header>
     <Facets />
@@ -34,7 +32,7 @@
     border-bottom: 1px solid $color-border-header;
     padding: $spacing / 2;
     display: grid;
-    grid-template-rows: $navigation-height auto;
+    grid-template-rows: auto auto;
     grid-row-gap: $spacing / 2;
 
     .header {
@@ -42,34 +40,30 @@
       grid-auto-flow: column;
       grid-template-columns: auto auto;
       align-items: center;
-      grid-column-gap: $spacing / 2;
+      grid-column-gap: $spacing;
       justify-content: space-between;
       width: calc(100vw - #{$spacing});
+      align-items: start;
 
       @include media-query($wide) {
-        grid-template-columns: $facet-width * 3 auto;
-      }
-
-      hgroup {
-        display: flex;
-        flex-direction: column;
-
-        @include media-query($wide) {
-          align-items: flex-end;
-          flex-direction: row;
-        }
+        grid-template-columns: calc(#{$facet-width * 1.5}) calc(#{$facet-width * 3.5} + #{$spacing * 2}) 1fr;
       }
     }
 
     h1, h2, h3 {
       display: inline-block;
     }
-    h1 {
-      width: 220px;
-    }
 
     h2 {
       color: $color-black;
+    }
+
+    p {
+      font-size: $size-smaller;
+
+      i {
+        font-size: 0.8em;
+      }
     }
   }
 </style>

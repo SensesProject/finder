@@ -35,7 +35,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "~@/assets/style/global";
 
   .fade-enter-active, .fade-leave-active {
@@ -68,7 +68,7 @@
 
     .popover {
       width: 50vw;
-      height: 50vh;
+      height: 80vh;
       background-color: rgba(255, 255, 255, 1);
       box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
       padding: $spacing * 1.5;
@@ -84,8 +84,9 @@
         line-height: 1;
       }
 
-      p, ul {
+      & > * {
         font-size: $size-small;
+        max-width: 700px;
       }
 
       .content {
@@ -95,25 +96,7 @@
         }
 
         ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          margin-left: $spacing / 3;
           margin: $spacing / 2 0 $spacing / 2 $spacing / 3;
-
-          li {
-            padding: 0.2em 1em 0.2em 1.6em;
-            list-style-position: inside;
-            text-indent: -1.6em;
-            line-height: 1.5em;
-            max-width: 800px;
-
-            &:before {
-              content: "— ";
-              color: $color-green;
-              margin-right: 0.3em;
-            }
-          }
         }
       }
     }

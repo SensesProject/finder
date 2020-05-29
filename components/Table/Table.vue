@@ -20,7 +20,7 @@
             :key="key">
             <div>
               <!-- <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span> -->
-              <span class="label">{{ label }}</span>
+              <span :class="['label', { popoverContent }]" @click="popoverContent ? openContentPopover(popoverContent) : false">{{ label || '—' }}</span>
               <section>
                 <i
                   class="option glyph-finder-popup clickable"
@@ -170,6 +170,10 @@
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap;
+
+              &.popoverContent {
+                cursor: pointer;
+              }
             }
 
             .option {

@@ -100,7 +100,7 @@ const actions = {
           // console.log('Loading successfull')
           // Check were data is coming from
           const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
-          // console.log({ datum })
+          console.log({ datum })
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
           dispatch('filter/updateDimensions', false, { root: true })
 

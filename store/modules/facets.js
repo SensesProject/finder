@@ -68,6 +68,7 @@ const actions = {
   },
   setFacets ({ commit }, facets) {
     // console.log('facets/setFacets')
+    console.log({ facets })
     // Sets the columns of the Finder.
     // The init values for visible facets are stored in the facet list
     commit('SET_FACETS', facets)

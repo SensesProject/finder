@@ -4,7 +4,9 @@
     <Header
       :title="title"
       :subtitle="subtitle"
-      :showExplorer="showExplorer" />
+      :showExplorer="showExplorer">
+      <slot name="intro" />
+    </Header>
     <Table />
     <Popover><slot name="reference" /></Popover>
   </div>

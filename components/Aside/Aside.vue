@@ -104,6 +104,7 @@
     max-height: 40px;
     grid-auto-flow: column;
     grid-column-gap: $spacing / 6;
+    justify-content: end;
 
     @include media-query($narrow) {
       grid-column-gap: $spacing / 4;
