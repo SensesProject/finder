@@ -8,7 +8,7 @@
     :label="label"
     :id="id">
     <template v-slot:reference>
-      <h1>Reference</h1><p>Nienke Ansems</p>
+      <h1>Reference</h1><p>Nienke Ansems, Sara Talebian, Henrik Carlsen, Eric Kemp-Benedict, Lotte de Jong, Simona Pedde, Kasper Kok</p>
     </template>
     <template v-slot:intro>
       <p>
