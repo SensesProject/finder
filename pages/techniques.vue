@@ -35,6 +35,8 @@
     },
     head () {
       return {
+        title: 'Co-Creation Technique Finder',
+        description: 'This explore module allows you to quickly filter all avialable co-creation techniques.',
         images: 'https://dev.climatescenarios.org/share/og-technique-finder.jpg'
       }
     },

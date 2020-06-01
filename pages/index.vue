@@ -33,6 +33,8 @@
     },
     head () {
       return {
+        title: 'Scenario Finder',
+        description: 'This explore module allows you to quickly filter all avialable scenarios from the IAMC 1.5 database.',
         images: 'https://dev.climatescenarios.org/share/og-scenario-finder.jpg'
       }
     },

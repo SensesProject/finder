@@ -2,10 +2,7 @@ const { getHead } = require('library/src/assets/js/head.js')
 
 module.exports = {
   mode: 'spa',
-  head: getHead({
-    title: 'Scenario Finder',
-    description: 'This explore module allows you to quickly filter all avialable scenarios from the IAMC 1.5 database.'
-  }),
+  head: getHead(),
   css: [
     'normalize-scss',
     '@/assets/style/base.scss'
