@@ -1,8 +1,8 @@
 <template>
-  <nav v-if="numberOfPages" class="table-navigation">
+  <nav class="table-navigation">
     <button class="btn btn--compact btn--light" :disabled="!(currentPage > 0)" @click="setFirstPage">&LeftArrowBar;</button>
     <button class="btn btn--compact btn--light" :disabled="!(currentPage > 0)" @click="setPreviousPage">&ShortLeftArrow;</button>
-    <span class="space">Page {{ currentPage + 1 }} of {{ numberOfPages }}</span>
+    <span class="space">Page {{ currentPage + (numberOfPages ? 1 : 0) }} of {{ numberOfPages }}</span>
     <button class="btn btn--compact btn--light" :disabled="!(currentPage < numberOfPages - 1)" @click="setNextPage">&ShortRightArrow;</button>
     <button class="btn btn--compact btn--light" :disabled="!(currentPage < numberOfPages - 1)" @click="setLastPage">&RightArrowBar;</button>
   </nav>
@@ -26,29 +26,29 @@
       ...mapActions('datum', [
         'setOffset'
       ]),
-      setNextPage: function () {
+      setNextPage () {
         if (this.currentPage + 1 < this.numberOfPages) {
           this.currentPage += 1
           this.setOffset(this.currentPage)
         }
       },
-      setPreviousPage: function () {
+      setPreviousPage () {
         if (this.currentPage > 0) {
           this.currentPage -= 1
           this.setOffset(this.currentPage)
         }
       },
-      setLastPage: function () {
+      setLastPage () {
         this.currentPage = this.numberOfPages - 1
         this.setOffset(this.currentPage)
       },
-      setFirstPage: function () {
+      setFirstPage () {
         this.currentPage = 0
         this.setOffset(this.currentPage)
       }
     },
     watch: {
-      filter: function () {
+      filter () {
         // TODO: Go back to first page on data load and filter change
         this.setFirstPage()
       }
