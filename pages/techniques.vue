@@ -33,6 +33,11 @@
         label: 'technique'
       }
     },
+    head () {
+      return {
+        images: 'https://dev.climatescenarios.org/share/og-technique-finder.jpg'
+      }
+    },
     components: {
       Finder
     }
