@@ -7,7 +7,7 @@
       :showExplorer="showExplorer">
       <slot name="intro" />
     </Header>
-    <Table />
+    <Table :label="label" />
     <Popover><slot name="reference" /></Popover>
   </div>
 </template>
@@ -55,6 +55,10 @@
       showExplorer: {
         type: Boolean,
         default: false
+      },
+      label: {
+        type: String,
+        default: 'item'
       }
     },
     methods: {

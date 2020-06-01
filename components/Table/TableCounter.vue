@@ -1,5 +1,5 @@
 <template>
-  <div><span v-if="countFiltered !== countTotal">{{ countFiltered }}/</span><span>{{ countTotal }} scenarios</span></div>
+  <div><span v-if="countFiltered !== countTotal">{{ countFiltered }}/</span><span>{{ countTotal }} {{ label }}{{ countTotal === 1 ? '' : 's' }}</span></div>
 </template>
 
 <script>
@@ -7,6 +7,12 @@
   import { get } from 'lodash'
 
   export default {
+    props: {
+      label: {
+        type: String,
+        default: 'item'
+      }
+    },
     computed: {
       ...mapState('datum', [
         'count',

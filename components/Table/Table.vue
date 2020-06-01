@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>
-            <TableCounter />
+            <TableCounter :label="label" />
           </th>
           <th :colspan="filter.length">
             <TableNavigation />
@@ -35,7 +35,7 @@
       <tbody v-else>
         <tr>
           <td v-if="status === 'STATUS_LOADING' || status === 'IDLE'" class="message" :colspan="1"><Loading /></td>
-          <td v-else class="message" :colspan="1">No scenarios found</td>
+          <td v-else class="message" :colspan="1">No {{ label }}s found</td>
         </tr>
       </tbody>
     </table>
@@ -51,6 +51,12 @@
   import TableCounter from '~/components/Table/TableCounter.vue'
 
   export default {
+    props: {
+      label: {
+        type: String,
+        default: 'item'
+      }
+    },
     computed: {
       ...mapState({
         status: state => get(state, 'data.status', 'ERROR'),
