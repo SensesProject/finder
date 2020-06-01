@@ -11,7 +11,7 @@
       <h1>Reference</h1><p>Nienke Ansems, Sara Talebian, Henrik Carlsen, Eric Kemp-Benedict, Lotte de Jong, Simona Pedde, Kasper Kok</p>
     </template>
     <template v-slot:intro>
-      <p>
+      <p class="page-description">
         In the right upper corner, you can select the facets <i class="glyph-finder-list" /> you would like to search with. You can select co-production techniques and/or methodologies based on general characteristics, your project goal and the type of scenario knowledge generation. The co-production technique and/or methodology that match your criteria will appear at the bottom of the page. Hover over the co-production name and click the <i class="glyph-finder-popup" /> icon to find a summary.<br>
         Not familiar with the terminology? Stay tuned for the launch of the scenario co-production learn module.
       </p>

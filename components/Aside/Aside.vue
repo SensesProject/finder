@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <aside class="page-option">
     <section class="counter" v-if="false">
       <Loading v-if="data.length === 0 || statusData === 'IDLE' || statusData === 'LOADING'" />
       <span v-else-if="statusAuth === 'AUTH_FAILED' || statusData === 'LOADING_FAILED' || statusData === 'ERROR'">—</span>
