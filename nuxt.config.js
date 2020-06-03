@@ -1,7 +1,6 @@
 const { getHead } = require('library/src/assets/js/head.js')
 
 module.exports = {
-  mode: 'spa',
   head: getHead(),
   css: [
     'normalize-scss',
