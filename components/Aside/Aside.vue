@@ -121,6 +121,7 @@
     & > * {
       display: inline-block;
       text-align: center;
+      max-height: 35px;
 
       &.counter {
         min-width: 120px;
