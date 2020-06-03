@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  const { getHead } = require('library/src/assets/js/head.js')
   import { mapActions } from 'vuex'
   import { get, size } from 'lodash'
   // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -23,14 +24,22 @@
 
   export default {
     head () {
-      return {
-        title: this.title
-      }
+      return getHead({
+        title: this.title,
+        description: this.description,
+        image: this.image
+      })
     },
     props: {
       title: { // Title that is displayed in the header and in the title
         type: String,
         default: 'Finder'
+      },
+      description: { // Title that is displayed in the header and in the title
+        type: String
+      },
+      image: { // Title that is displayed in the header and in the title
+        type: String
       },
       subtitle: { // Subtitle that is displayed in the header
         type: String,

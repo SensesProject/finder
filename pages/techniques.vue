@@ -1,12 +1,14 @@
 <template>
   <Finder
-    title="Methods and tools for scenario co‑production"
+    :title="title"
     :facetsURL="facetsURL"
     :urlData="urlData"
     :urlAuth="urlAuth"
     :isGoogleSheet="isGoogleSheet"
     :label="label"
-    :id="id">
+    :id="id"
+    :description="description"
+    :image="image">
     <template v-slot:reference>
       <h1>Reference</h1><p>Nienke Ansems, Sara Talebian, Henrik Carlsen, Eric Kemp-Benedict, Lotte de Jong, Simona Pedde, Kasper Kok</p>
     </template>
@@ -30,14 +32,10 @@
         urlAuth: '',
         facetsURL: 'https://spreadsheets.google.com/feeds/list/1-VC4MqVQX_kPAhJf1FC_lApyj4TX12I84rnr86IOv2g/od6/public/values?alt=json',
         isGoogleSheet: true,
-        label: 'technique'
-      }
-    },
-    head () {
-      return {
-        title: 'Co-Creation Technique Finder',
+        label: 'technique',
+        title: 'Methods and tools for scenario co‑production',
         description: 'This explore module allows you to quickly filter all avialable co-creation techniques.',
-        images: 'https://dev.climatescenarios.org/share/og-technique-finder.jpg'
+        image: 'https://climatescenarios.org/share/og-technique-finder.jpg'
       }
     },
     components: {
