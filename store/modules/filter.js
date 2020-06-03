@@ -171,7 +171,7 @@ const actions = {
   },
   updateDimension ({ state }, key) {
     // console.log('updateDimensions')
-    console.log({ key }, state[KEY_FILTER][key], state[KEY_FILTER])
+    // console.log({ key }, state[KEY_FILTER][key], state[KEY_FILTER])
     const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][key]
     if (type === KEY_FILTER_TYPE_HISTOGRAM) {
       // console.log(dimension, facet)
@@ -193,7 +193,7 @@ const actions = {
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     commit('CREATE_FACET', options)
-    console.log({ options })
+    // console.log({ options })
     const { id } = options
     dispatch('updateDimension', id)
     dispatch('apply')
