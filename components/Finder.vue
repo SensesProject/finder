@@ -71,7 +71,7 @@
       label: {
         type: String,
         default: 'item'
-      }
+      },
     },
     methods: {
       ...mapActions([
@@ -90,6 +90,9 @@
       ]),
       ...mapActions('auth', [
         'setUrlAuth'
+      ]),
+      ...mapActions('details', [
+        'setUrlDetails'
       ])
     },
     components: {
@@ -99,7 +102,7 @@
       SensesMenu
     },
     created: function () {
-      const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth } = this
+      const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth, urlDetails } = this
       this.initFinder()
 
       // INIT FILTERS can be passed down by URL
@@ -129,6 +132,10 @@
       // Some APIs might require an AUTHORISATION
       if (urlAuth) {
         this.setUrlAuth(urlAuth)
+      }
+
+      if (urlDetails) {
+        this.setUrlDetails(urlDetails)
       }
 
       // The loading of the data is triggered by the local storage -> plugins/localStorage.js

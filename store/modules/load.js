@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { get, isUndefined, set } from 'lodash'
+import { get, isUndefined, set, forEach, find } from 'lodash'
 import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE } from '../config'
 import { isTooOld, extractFromGoogleTable2 } from '../../assets/js/utils'
@@ -7,6 +7,7 @@ import { basket } from '../index'
 
 const state = () => ({
   data: [],
+  details: [],
   status: STATUS_IDLE,
   message: false,
   date: false,
@@ -21,7 +22,7 @@ const mutations = {
   SET_IS_GOOGLE_SHEET (state, value) {
     state.isGoogleSheet = value
   },
-  API_DATA (state, { status, message, data }) {
+  API_DATA (state, { status, message, data, details = [] }) {
     // Update the status
     state.status = status
 
@@ -45,6 +46,14 @@ const mutations = {
     if (state.data.length) {
       // Remove all previous elements.
       basket.remove(true)
+
+      forEach(details, ({ runId, variable, year, region, value }) => {
+        const entry = find(state.data, { run_id: runId })
+        if (entry) {
+          entry[`${variable}-${year}-${region}`] = value
+        }
+      })
+      console.log(state.data)
 
       // Add new data
       basket.add(state.data)
@@ -106,6 +115,8 @@ const actions = {
 
           // Apply filtering
           dispatch('apply', false, { root: true })
+          // We need to load the details after appling filters since we need it the run ids from the data
+          dispatch('details/initDetails', false, { root: true })
         })
         .catch(error => {
           // console.log('Loading failed', { error, isLoop })
@@ -121,7 +132,16 @@ const actions = {
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
       dispatch('filter/updateDimensions', false, { root: true })
       dispatch('apply', false, { root: true })
+      // We need to load the details after appling filters since we need it the run ids from the data
+      dispatch('details/initDetails', false, { root: true })
     }
+  },
+  mergeWithDetails ({ commit, rootState, dispatch }, { data = [] }) {
+    console.log('merge with Details')
+    commit('API_DATA', { details: data })
+    dispatch('filter/updateDimensions', false, { root: true })
+    dispatch('apply', false, { root: true })
+    // commit('SET_IS_GOOGLE_SHEET')
   }
 }
 

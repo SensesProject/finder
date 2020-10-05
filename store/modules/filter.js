@@ -18,8 +18,10 @@ const mutations = {
   CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group }) {
     // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
+    console.log({ key, type, label })
+    const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
     // It also sets the type of the facet. This is used later for the filtering technique
-    const dimension = basket.dimension((d) => get(d, key, false))
+    const dimension = basket.dimension((d) => get(d, path, false))
     // Facets need different types of lists of options
     const facet = type === KEY_FILTER_TYPE_LIST ? getList(dimension) : dimension.group()
 
@@ -28,7 +30,7 @@ const mutations = {
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
       [id]: {
-        [KEY_PATH]: key,
+        [KEY_PATH]: path,
         [KEY_TOOLTIP]: tooltip,
         [KEY_LABEL]: label,
         [KEY_DIMENSION]: dimension,
@@ -122,12 +124,13 @@ const actions = {
       dispatch('updateDimension', key)
     })
   },
-  updateDimension ({ state }, key) {
+  updateDimension ({ state }, id) {
     // console.log('updateDimensions')
-    // console.log({ key }, state[KEY_FILTER][key], state[KEY_FILTER])
-    const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][key]
-    if (type === KEY_FILTER_TYPE_HISTOGRAM) {
+    // console.log({ id }, state[KEY_FILTER][id], state[KEY_FILTER])
+    const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][id]
+    if (type === KEY_FILTER_TYPE_HISTOGRAM || type === 'Details') {
       // console.log(dimension, facet)
+      // const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
       const values = map(dimension.top(Infinity), (d) => get(d, path))
       // console.log({values})
       const domain = extent(values)
@@ -135,11 +138,11 @@ const actions = {
       const thresholds = scale.ticks(40)
       const bin = scaleThreshold().domain(thresholds).range(thresholds)
       // console.log(1, '->', bin(1), 100, '->', bin(100), 200, '->', bin(200), 1000, '->', bin(1000))
-      state[KEY_FILTER][key].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
-      state[KEY_FILTER][key].thresholds = thresholds
-      // console.log(state[KEY_FILTER][key].facet.top(Infinity))
+      state[KEY_FILTER][id].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
+      state[KEY_FILTER][id].thresholds = thresholds
+      // console.log(state[KEY_FILTER][id].facet.top(Infinity))
     }
-    state[KEY_FILTER][key].init = makeDict(state[KEY_FILTER][key].facet.all())
+    state[KEY_FILTER][id].init = makeDict(state[KEY_FILTER][id].facet.all())
   },
   addFacet ({ commit, dispatch }, options) {
     // console.log('filter/addFacet', options)

@@ -14,6 +14,7 @@ import options from './modules/options'
 import popover from './modules/popover'
 import datum from './modules/datum'
 import url from './modules/url'
+import details from './modules/details'
 
 Vue.use(Vuex)
 Vue.directive('tooltip', VTooltip)
@@ -35,7 +36,8 @@ export default () => new Vuex.Store({
     options,
     popover,
     datum,
-    url
+    url,
+    details
   },
   actions: {
     initFinder ({ commit }) {

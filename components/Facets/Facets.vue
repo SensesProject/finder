@@ -38,12 +38,13 @@
       }),
       elements () {
         return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i, group }, id) => {
+          const isDetails = type === 'Details'
           return {
             title: label,
             tooltip,
             id,
             i,
-            component: capitalize(type),
+            component: capitalize(isDetails ? 'Histogram' : type),
             thresholds,
             init,
             forcedValue,

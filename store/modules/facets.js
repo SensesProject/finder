@@ -69,7 +69,7 @@ const actions = {
   setFacets ({ commit }, facets) {
     // console.log('facets/setFacets')
     // console.log({ facets })
-    const validFacets = filter(facets, ({ type }) => ['Search', 'List', 'Histogram', ''].includes(type))
+    const validFacets = filter(facets, ({ type }) => ['Search', 'List', 'Histogram', '', 'Details'].includes(type))
     // console.log({ validFacets })
     // Sets the columns of the Finder.
     // The init values for visible facets are stored in the facet list
