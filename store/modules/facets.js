@@ -1,8 +1,8 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
-import { get, map, forEach, fromPairs } from 'lodash'
+import { get, map, forEach, fromPairs, filter } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
-// import { getList, getHistogram } from '../../assets/js/facets'
+import { format } from 'timeago.js'
 import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL } from '../config'
 
 // A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
@@ -27,7 +27,7 @@ const KEYS = ['key', 'label', 'unit', 'group', 'system', 'popover.content', 'pop
 const mutations = {
   FILTER (state, filter) {
     // console.log('facets/FILTER')
-    let hasActiveFilters
+    let hasActiveFilters = false // This is used for the reset button
     const lists = fromPairs(map(filter, ({ facet, [KEY_DIMENSION]: dimension, id }) => {
       // As we loop over each filter, we check if they have any filters
       if (dimension.hasCurrentFilter()) {
@@ -68,10 +68,12 @@ const actions = {
   },
   setFacets ({ commit }, facets) {
     // console.log('facets/setFacets')
-    console.log({ facets })
+    // console.log({ facets })
+    const validFacets = filter(facets, ({ type }) => ['Search', 'List', 'Histogram', ''].includes(type))
+    // console.log({ validFacets })
     // Sets the columns of the Finder.
     // The init values for visible facets are stored in the facet list
-    commit('SET_FACETS', facets)
+    commit('SET_FACETS', validFacets)
   },
   // setVisibleFacets ({ commit }, value) {
   //   // console.log('facets/setVisibleFacets')
@@ -96,10 +98,10 @@ const actions = {
     // Try to get the time the data was loaded the last time
     const lastLoad = get(state, KEY_DATE, null)
     // Compare current date and last loaded data
-    const shouldReload = !lastLoad || isTooOld(lastLoad)
+    const shouldReload = isTooOld(lastLoad)
     // If data should reload or is forced, set to true
     const willReload = shouldReload ? true : isForced
-    // Try to get the url. This is set as Finder prop.
+    // Try to get the url for fetching the facets. This is set as Finder prop.
     const url = get(state, KEY_URL, null)
     // If should reload and url is found
     if (willReload && url) {
@@ -116,7 +118,13 @@ const actions = {
         .catch((error) => {
           console.error('error', error)
         })
-    } else { // If url false or loading not necessary or forced
+    } else { // If url is false or loading not necessary or forced
+      if (!shouldReload) {
+        console.log('Already loaded facets', format(get(state, KEY_DATE, null)))
+      }
+      if (!url) {
+        console.log('URL for recieving facets not found')
+      }
       // console.log('Using facets from localStorage')
       // Set the visible facets
       dispatch('setInvisibleFacets')

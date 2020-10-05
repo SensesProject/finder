@@ -4,18 +4,14 @@ import { get, unset, set, has, forEach, map, keys, difference, find } from 'loda
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
 import { getList, makeDict } from '../../assets/js/facets'
-
-// import { reject, clone, find, pull, isUndefined, get, forEach, isArray, set } from 'lodash'
 import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
 import { basket } from '../index'
-// import { getList } from '../../assets/js/facets'
 
 const state = () => ({
-  // filter: [],
-  // This hold the filter that are passed by the url
+  // This holds the filter that are passed by the url
   [KEY_FILTER_INIT]: null,
   // This holds the currently applied filter settings
-  [KEY_FILTER]: {} // The filter settings
+  [KEY_FILTER]: {}
 })
 
 const mutations = {
@@ -88,7 +84,6 @@ const mutations = {
     // This mutation removes the dimension
     state[KEY_FILTER][key][KEY_DIMENSION].dispose()
     // It also cleans up the whole filter
-    // Vue.delete(state[KEY_FILTER], key)
     const filter = { ...state[KEY_FILTER] }
     delete filter[key]
     state[KEY_FILTER] = filter
@@ -109,48 +104,6 @@ const mutations = {
       filter.forcedValue = RESET_CODE // null triggers a reset
     })
   },
-  // RESET_FILTER (state, id) {
-  //   // Reset a single filter
-  //   state.filter = reject(state.filter, ['id', id])
-  // },
-  // SET_FILTER (state, { id, value, type, key }) {
-  //   // This initiates a filter for one column/key
-  //   // The column is filtered by items in values
-  //   if (!isUndefined(type) && !isUndefined(id) && !isUndefined(value) && !isUndefined(key)) {
-  //     const filter = clone(state.filter)
-  //     filter.push({
-  //       id,
-  //       'values': isArray(value) ? value : [value],
-  //       'invert': false,
-  //       type,
-  //       key
-  //     })
-  //     state.filter = filter
-  //   }
-  // },
-  // ADD_FILTER (state, { id, value }) {
-  //   // This adds a value to an existing filter
-  //   const filter = clone(state.filter)
-  //   const facet = find(filter, ['id', id])
-  //   facet.values.push(value)
-  //   state.filter = filter
-  // },
-  // INVERT_FILTER (state, { id }) {
-  //   const filter = clone(state.filter)
-  //   const facet = find(filter, ['id', id])
-  //   facet.invert = !facet.invert
-  //   state.filter = filter
-  // },
-  // REMOVE_FILTER (state, { id, value }) {
-  //   const filter = clone(state.filter)
-  //   const facet = find(filter, ['id', id])
-  //   pull(facet.values, value)
-  //   if (facet.values.length === 0) {
-  //     state.filter = reject(state.filter, ['id', id])
-  //   } else {
-  //     state.filter = filter
-  //   }
-  // },
   SET_INIT_FILTER (state, initFilter) {
     set(state, KEY_FILTER_INIT, initFilter)
   }
@@ -236,23 +189,41 @@ const actions = {
     // })
   },
   setInitFilter ({ commit }, initFilter) {
+    // This function is called by the Finder component when the application starts
+    // It just saves the filters passed by the url to the state
     // console.log('filter/setInitFilter', initFilter)
     commit('SET_INIT_FILTER', initFilter)
   },
-  initFilter ({ dispatch, commit, state }) {
+  initFilter ({ dispatch, commit, state, rootState }) {
+    // This function is called by the facet module after the facet information is loaded
+    // This function loops over the filter that were passed by the url (init filter) and applies them
     // console.log('filter/initFilter')
-    // TODO
-    forEach(state.initFilter, (value, key) => {
+    forEach(get(state, KEY_FILTER_INIT, []), (value, key) => {
       // TODO: Create filter if not present. Make visible if invisible
-      const filter = get(state[KEY_FILTER], key)
-      if (filter) {
-        filter.forcedValue = {
-          value: value.split('|')
+      let filter = get(state[KEY_FILTER], key)
+      if (!filter) {
+        console.log(`Filter ${key} not found. Will create it.`)
+        const facet = find(get(rootState, ['facets', KEY_FACETS_ALL]), { id: key })
+        if (facet) {
+          dispatch('filter/addFacet', facet, { root: true })
+        } else {
+          console.log(`Could not create filter ${key}. Facet not found.`)
         }
+      }
+      filter = get(state[KEY_FILTER], key)
+      if (filter) {
+        const values = value.split('|')
+        filter.forcedValue = {
+          value: values
+        }
+        console.log(`Filter ${key} found and applied with values ${values}.`)
+      } else {
+        console.log(`Filter ${key} not found.`)
       }
     })
     // Reset state.initFilter to null
     commit('SET_INIT_FILTER', null)
+    dispatch('facets/filter', null, { root: true })
   }
 }
 

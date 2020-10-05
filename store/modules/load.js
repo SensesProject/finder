@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { get, isUndefined, set } from 'lodash'
 import { format } from 'timeago.js'
-import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS } from '../config'
+import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE } from '../config'
 import { isTooOld, extractFromGoogleTable2 } from '../../assets/js/utils'
 import { basket } from '../index'
 
@@ -63,9 +63,9 @@ const actions = {
   // This only checks how old the current data from the local storage is
   loadData ({ state, dispatch }, isForced = false) {
     // console.log('Action: Check data', { isForced })
-    const lastLoad = get(state, 'date', false)
+    const lastLoad = get(state, KEY_DATE, null)
     // Is the last loading time longer ago than one day ago or has been loaded before at all
-    const shouldReload = !lastLoad || isTooOld(lastLoad)
+    const shouldReload = isTooOld(lastLoad)
     // Check current data object
     const currentData = get(state, ['data', 'length'], 0)
     // console.log({ currentData })
@@ -84,7 +84,7 @@ const actions = {
     if (isForced) {
       commit('API_DATA', { status: STATUS_LOADING, data: [] })
     }
-    if (isForced || (state.status !== STATUS_LOADING && state.data.length === 0)) {
+    if (isForced || (state.status !== STATUS_LOADING && get(state, ['data', 'length'], 0) === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
       const { url } = state
       const config = {}
@@ -97,7 +97,7 @@ const actions = {
       axios.get(url, config)
         .then(response => {
           const { data } = response
-          // console.log('Loading successfull')
+          console.log('Loading successfull')
           // Check were data is coming from
           const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
           console.log({ datum })

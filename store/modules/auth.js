@@ -1,12 +1,7 @@
 import axios from 'axios'
-import { isUndefined, isObject } from 'lodash'
+import { isUndefined, isObject, get } from 'lodash'
 import { format } from 'timeago.js'
-
-const STATUS_IDLE = 'IDLE'
-
-const STATUS_AUTH = 'AUTH'
-const STATUS_AUTH_FAILED = 'AUTH_FAILED'
-const STATUS_AUTH_SUCCESS = 'AUTH_SUCCESS'
+import { KEY_DATE, STATUS_IDLE, STATUS_AUTH, STATUS_AUTH_FAILED, STATUS_AUTH_SUCCESS } from '../config'
 
 const state = () => ({
   token: false,
@@ -44,7 +39,7 @@ const actions = {
     // 1. The website is called brand new without a token in local storage
     // 2. The method is called by force to get a new token
     // Follower is a function that is called afterwards
-    console.log('Action: Auth', { isForced })
+    // console.log('Action: Auth', { isForced })
     if ((isForced || state.token === false) && state.url) {
       const url = state.url
       console.log('Auth Request send')
@@ -61,7 +56,7 @@ const actions = {
           commit('API_AUTH', { status: STATUS_AUTH_FAILED, message: error })
         })
     } else {
-      console.log('Already logged in', format(state.date))
+      console.log('Already logged in', format(get(state, KEY_DATE, null)))
       dispatch('callFollower', { follower, isForced })
     }
   },

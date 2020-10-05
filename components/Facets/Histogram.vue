@@ -194,10 +194,10 @@
         this.brushHigh = high
         this.apply()
       },
-      apply: throttle(function () {
+      apply () {
         const { brushLow, brushHigh, id, range } = this
         const [ low, high ] = range
-        console.log('APPLY', brushLow, low, brushHigh, high, id)
+        // console.log('APPLY', brushLow, low, brushHigh, high, id)
         if (brushLow === low && brushHigh === high) {
           this.isFiltered = false
           this.resetFilter(this.id)
@@ -205,25 +205,28 @@
           this.isFiltered = true
           this.filter({ key: id, value: [brushLow, brushHigh] })
         }
+      },
+      throttledApply: throttle(function () {
+        this.apply()
       }, 200),
       onResize (x, y, width, height) {
         this.y = y
         this.h = height
         this.brushLow = this.scaleBrush.invert(y)
         this.brushHigh = this.scaleBrush.invert(y + height)
-        this.apply()
+        this.throttledApply()
       },
       onDrag (x, y) {
         this.y = y
         this.brushLow = this.scaleBrush.invert(y)
         this.brushHigh = this.scaleBrush.invert(y + this.h)
-        this.apply()
+        this.throttledApply()
       },
       forceSelected (value) {
-        if (value) {
+        if (value && value.length) {
           const low = parseFloat(value[0])
           const high = parseFloat(value[1])
-          console.log(`Setting selected to ${low}/${high} in ${this.id}`)
+          // console.log(`Setting selected to ${low}/${high} in ${this.id}`)
           this.brushLow = low
           this.brushHigh = high
           this.y = this.scaleBrush(low)
@@ -268,7 +271,7 @@
   cursor: ns-resize;
 }
 
-$handle-height: 2px;
+$handle-height: 3px;
 
 .handle {
   box-sizing: border-box;

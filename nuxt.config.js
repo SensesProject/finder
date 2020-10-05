@@ -20,6 +20,9 @@ module.exports = {
   },
   build: {
     extend (config, ctx) {
-    }
+    },
+    transpile: [
+      'library'
+    ]
   }
 }

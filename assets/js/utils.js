@@ -36,6 +36,7 @@ export const getPopover = function (pop, datum) {
 }
 
 export const isTooOld = function (date) {
+  if (!date) { return false }
   const ONE_DAY = 60 * 60 * 1000 * 24
   // console.log(`Data was loaded ${format(date)}`)
   return ((new Date()) - new Date(date)) > ONE_DAY

@@ -13,6 +13,10 @@ export const KEY_FILTER_TYPE_LIST = 'List'
 export const KEY_FILTER_TYPE_SEARCH = 'Search'
 export const KEY_FILTER_TYPE_HISTOGRAM = 'Histogram'
 
+export const STATUS_AUTH = 'AUTH'
+export const STATUS_AUTH_FAILED = 'AUTH_FAILED'
+export const STATUS_AUTH_SUCCESS = 'AUTH_SUCCESS'
+
 export const KEY_FILTER = 'newfilter'
 export const KEY_FILTER_INIT = 'initFilter'
 

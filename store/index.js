@@ -21,7 +21,7 @@ Vue.directive('close-popover', VClosePopover)
 Vue.component('v-popover', VPopover)
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
-export const basket = crossfilter([])
+export const basket = crossfilter([]) // Globally used crossfilter instance
 
 export default () => new Vuex.Store({
   modules: {
@@ -39,12 +39,10 @@ export default () => new Vuex.Store({
   },
   actions: {
     initFinder ({ commit }) {
-      // console.log('/initFinder')
       // This initiates the Finder »engine«. This is called from the Finder component after creation
       commit('datum/INIT')
     },
     apply ({ commit, dispatch }) {
-      // console.log('+++ APPLY ROOT +++')
       // This is called everytime the filter change
       // This applies the filter to the elements
       commit('datum/FILTER')

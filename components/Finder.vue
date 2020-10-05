@@ -51,6 +51,9 @@
       urlAuth: {
         type: String
       },
+      urlDetails: {
+        type: String
+      },
       id: { // Must be a unique id. Is used by the local storage for storing the data
         type: String
       },
@@ -79,7 +82,6 @@
         'setUrlFacets'
       ]),
       ...mapActions('filter', [
-        'initFilter',
         'setInitFilter'
       ]),
       ...mapActions('load', [
@@ -103,7 +105,7 @@
       // INIT FILTERS can be passed down by URL
       // First we extract the query
       const initFilter = get($route, 'query', {})
-      // console.log({ initFilter })
+
       // If elements were found, we clean the url
       if (size(initFilter)) {
         this.$router.replace({ params: {} })
@@ -128,6 +130,8 @@
       if (urlAuth) {
         this.setUrlAuth(urlAuth)
       }
+
+      // The loading of the data is triggered by the local storage -> plugins/localStorage.js
     }
   }
 </script>

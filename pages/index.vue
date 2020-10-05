@@ -4,6 +4,7 @@
     :facetsURL="facetsURL"
     :urlData="urlData"
     :urlAuth="urlAuth"
+    :urlDetails="urlDetails"
     :id="id"
     :showExplorer="true"
     :label="label"
@@ -29,6 +30,7 @@
       return {
         id: 'scenarioFinder',
         urlData: 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs?getOnlyDefaultRuns=false&includeMetadata=true',
+        urlDetails: 'https://db1.ene.iiasa.ac.at/iamc15-api/rest/v2.1/runs/bulk/ts',
         urlAuth: 'https://db1.ene.iiasa.ac.at/EneAuth/config/v1/anonym/IXSE_SR15',
         facetsURL: 'https://spreadsheets.google.com/feeds/list/1HHopMARCGuVQQ6sxefW08hTxTLajr4Qj2ck6a3bUvGY/od6/public/values?alt=json',
         label: 'scenario',
