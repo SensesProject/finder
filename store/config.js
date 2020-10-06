@@ -12,6 +12,9 @@ export const ITEMS_PER_PAGE = 50
 export const KEY_FILTER_TYPE_LIST = 'List'
 export const KEY_FILTER_TYPE_SEARCH = 'Search'
 export const KEY_FILTER_TYPE_HISTOGRAM = 'Histogram'
+export const KEY_FILTER_TYPE_DETAILS = 'Details'
+
+export const KEY_FILTER_VALID = [KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_FILTER_TYPE_HISTOGRAM, KEY_FILTER_TYPE_DETAILS, '']
 
 export const STATUS_AUTH = 'AUTH'
 export const STATUS_AUTH_FAILED = 'AUTH_FAILED'
@@ -34,3 +37,8 @@ export const KEY_LABEL = 'label'
 export const KEY_HAS_ACTIVE_FILTERS = 'hasActiveFilters'
 
 export const RESET_CODE = 'reset'
+
+export const DEFAULT_REGION = 'World'
+export const DEFAULT_YEAR = 2030
+
+export const SELECTION_YEARS = [2030, 2050, 2100]

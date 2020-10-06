@@ -3,7 +3,7 @@ import { get, map, forEach, fromPairs, filter } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
 import { format } from 'timeago.js'
-import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL } from '../config'
+import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL, KEY_FILTER_VALID, KEY_FILTER_TYPE_DETAILS, DEFAULT_REGION, DEFAULT_YEAR } from '../config'
 
 // A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
@@ -67,13 +67,27 @@ const actions = {
     commit('SET_URL_FACETS', url)
   },
   setFacets ({ commit }, facets) {
-    // console.log('facets/setFacets')
+    console.log('facets/setFacets')
     // console.log({ facets })
-    const validFacets = filter(facets, ({ type }) => ['Search', 'List', 'Histogram', '', 'Details'].includes(type))
+    const validFacets = filter(facets, ({ type }) => KEY_FILTER_VALID.includes(type))
+    forEach(validFacets, facet => {
+      console.log(facet)
+    })
+    const definedFacets = map(validFacets, (facet) => {
+      if (facet.type !== KEY_FILTER_TYPE_DETAILS) {
+        return facet
+      } else {
+        return {
+          ...facet,
+          region: DEFAULT_REGION,
+          year: DEFAULT_YEAR
+        }
+      }
+    })
     // console.log({ validFacets })
     // Sets the columns of the Finder.
     // The init values for visible facets are stored in the facet list
-    commit('SET_FACETS', validFacets)
+    commit('SET_FACETS', definedFacets)
   },
   // setVisibleFacets ({ commit }, value) {
   //   // console.log('facets/setVisibleFacets')

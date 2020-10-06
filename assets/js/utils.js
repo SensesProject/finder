@@ -2,11 +2,12 @@ import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, 
 import { format } from 'timeago.js'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
+import { KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
 
 export const getLabel = function (value, type, precision) {
   // The label can be different. It’s based on the type of the column
   let label = value
-  if (type === 'Facet' || type === 'Search') {
+  if (type === 'Facet' || type === KEY_FILTER_TYPE_SEARCH) {
     if (isBoolean(label)) {
       label = label ? 'Yes' : 'No'
     } else {
@@ -18,7 +19,7 @@ export const getLabel = function (value, type, precision) {
           .replace(/1p5/g, '1.5')
       }
     }
-  } else if (type === 'Histogram' || type === 'Scatterplot') {
+  } else if (type === KEY_FILTER_TYPE_HISTOGRAM || type === 'Scatterplot') {
     label = round(label, precision || 0)
   }
   return label
@@ -94,7 +95,7 @@ export const detailPath = function (key, year, region) {
 }
 
 export const buildPath = function (type, key, year, region) {
-  if (type === 'Details') {
+  if (type === KEY_FILTER_TYPE_DETAILS) {
     return detailPath(key, year, region)
   } else {
     return key

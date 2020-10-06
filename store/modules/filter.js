@@ -2,7 +2,7 @@
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
 import { get, unset, set, has, forEach, map, keys, difference, find } from 'lodash'
 import { getList, makeDict } from '../../assets/js/facets'
-import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
+import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
 import { buildPath, buildHistogram } from '../../assets/js/utils'
 import { basket } from '../index'
 
@@ -14,17 +14,19 @@ const state = () => ({
 })
 
 const mutations = {
-  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group }) {
+  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group, region, year }) {
     // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
     // console.log({ key, type, label })
-    const path = buildPath(type, key, 2030, 'World')
+    const path = buildPath(type, key, year, region)
     // It also sets the type of the facet. This is used later for the filtering technique
     const dimension = basket.dimension((d) => get(d, path, false))
     // Facets need different types of lists of options
     const facet = type === KEY_FILTER_TYPE_LIST ? getList(dimension) : dimension.group()
 
     const init = makeDict(facet.all())
+
+    console.log({ id })
 
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
@@ -39,7 +41,10 @@ const mutations = {
         init,
         unit,
         group,
+        year, // Used for details
+        region, // Used for details
         [KEY_TYPE]: type,
+        key,
         popover,
         // This is used to pass down settings or for a reset
         forcedValue: undefined,
@@ -90,6 +95,21 @@ const mutations = {
     state[KEY_FILTER] = filter
     // console.log(state[KEY_FILTER] )
   },
+  CHANGE_FACET_YEAR (state, { id, year }) {
+    if (has(state, [KEY_FILTER, id])) {
+      const type = get(state, [KEY_FILTER, id, KEY_TYPE])
+      const region = get(state, [KEY_FILTER, id, 'region'])
+      const key = get(state, [KEY_FILTER, id, 'key'])
+      state[KEY_FILTER][id]['year'] = year
+      const path = buildPath(type, key, year, region)
+      state[KEY_FILTER][id][KEY_PATH] = path
+      state[KEY_FILTER][id][KEY_DIMENSION].dispose()
+      state[KEY_FILTER][id][KEY_DIMENSION] = basket.dimension((d) => get(d, path, false))
+      console.log({ id, path, type, region, key, year })
+    } else {
+      console.log(`Facet for ${id} should be there`)
+    }
+  },
   RESET_FACET (state, key) {
     // This mutation resets all applyed filtering on this dimension
     if (has(state, [KEY_FILTER, key, KEY_DIMENSION])) {
@@ -127,7 +147,7 @@ const actions = {
     // console.log('updateDimensions')
     // console.log({ id }, state[KEY_FILTER][id], state[KEY_FILTER])
     const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][id]
-    if (type === KEY_FILTER_TYPE_HISTOGRAM || type === 'Details') {
+    if (type === KEY_FILTER_TYPE_HISTOGRAM || type === KEY_FILTER_TYPE_DETAILS) {
       // console.log(dimension, facet)
       // const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
       const values = map(dimension.top(Infinity), (d) => get(d, path))
@@ -161,6 +181,15 @@ const actions = {
     // console.log('filter/resetFilter', key)
     commit('RESET_FACET', key)
     dispatch('apply')
+  },
+  changeFilterYear ({ commit, dispatch, state }, { id, year }) {
+    console.log('changeFilterYear', id, year)
+    commit('CHANGE_FACET_YEAR', { id, year })
+    const region = get(state, [KEY_FILTER, id, 'region'])
+    const key = get(state, [KEY_FILTER, id, 'key'])
+    console.log({ region })
+    dispatch('apply')
+    dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
   },
   filter ({ commit, dispatch }, options) {
     // console.log('filter/filter')

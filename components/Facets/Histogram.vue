@@ -6,7 +6,10 @@
       :isFiltered="isFiltered"
       :tooltip="tooltip"
       :unit="unit"
-      @reset="reset" />
+      @reset="reset"
+      @changeYear="onChangeYear"
+      :year="year"
+      :region="region" />
     <div class="vis-wrapper">
       <svg ref="vis">
         <line
@@ -93,6 +96,12 @@
         type: String
       },
       tooltip: {
+        type: String
+      },
+      year: { // Used for details
+        type: Number
+      },
+      region: { // Used for details
         type: String
       },
       thresholds: {
@@ -183,7 +192,8 @@
       ...mapActions('filter', [
         'filter',
         'removeFacet',
-        'resetFilter'
+        'resetFilter',
+        'changeFilterYear'
       ]),
       reset () {
         const { height, range } = this
@@ -233,6 +243,9 @@
           this.h = this.scaleBrush(high) - this.scaleBrush(low)
           this.apply()
         }
+      },
+      onChangeYear (value) {
+        this.changeFilterYear({ id: this.id, year: value })
       }
     },
     mounted () {

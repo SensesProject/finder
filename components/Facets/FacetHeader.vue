@@ -2,12 +2,15 @@
   <header class="facet-header">
     <div class="header-title">
       <hgroup v-tooltip="{ content: tooltip }">
-        <h3 :class="{ isActive: isFiltered }">{{ title }}</h3>
+        <h3 :class="{ isActive: isFiltered }">{{ title }}<span v-if="region"> ({{ region }})</span></h3>
         <small v-if="unit">{{ unit }}</small>
       </hgroup>
       <button @click="removeFacet" class="btn btn--none btn--remove">&times;</button>
     </div>
-    <aside :class="['header-aside', displayInvert ? 'double' : 'single']">
+    <aside :class="['header-aside', displayInvert || year ? 'double' : 'single']">
+      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2030 }]" @click="() => changeYear(2030)">2030</button>
+      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2050 }]" @click="() => changeYear(2050)">2050</button>
+      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2100 }]" @click="() => changeYear(2100)">2100</button>
       <button :class="['btn', 'btn--small']" :disabled="!isFiltered" @click="reset">Reset</button>
       <button v-if="displayInvert" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
@@ -46,6 +49,12 @@ export default {
     unit: {
       type: String
     },
+    year: { // Used for details
+      type: Number
+    },
+    region: { // Used for details
+      type: String
+    },
     tooltip: {
       type: String
     },
@@ -66,6 +75,9 @@ export default {
     }
   },
   methods: {
+    changeYear (value) { // For details facets
+      this.$emit('changeYear', value)
+    },
     removeFacet () {
       this.$emit('removeFacet')
     },

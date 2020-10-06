@@ -4,7 +4,7 @@
       <h4>{{ key }}</h4>
     </section>
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit }) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit, year, region }) in elements"
       v-bind:is="component"
       :key="id"
       :unit="unit"
@@ -14,7 +14,9 @@
       :items="lists[id]"
       :thresholds="thresholds"
       :init="init"
-      :forcedValue="forcedValue" />
+      :forcedValue="forcedValue"
+      :year="year"
+      :region="region" />
   </div>
 </template>
 
@@ -37,7 +39,8 @@
         filters: KEY_FILTER
       }),
       elements () {
-        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i, group }, id) => {
+        console.log(this.filters)
+        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, key, forcedValue, unit, i, group, year, region }, id) => {
           const isDetails = type === 'Details'
           return {
             title: label,
@@ -49,7 +52,9 @@
             init,
             forcedValue,
             unit,
-            group
+            group,
+            year,
+            region
           }
         }), 'i')
       },
