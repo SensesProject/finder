@@ -9,6 +9,7 @@
       :tooltip="tooltip"
       :count="count"
       :unit="unit"
+      :facetType="type"
       @removeFacet="() => removeFacet(id)"
       @toggleInvert="toggleInvert"
       @toggleReverse="toggleReverse"
@@ -64,6 +65,9 @@ export default {
     },
     forcedValue: {
       type: [String, Object]
+    },
+    type: {
+      type: String
     }
   },
   components: {

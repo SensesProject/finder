@@ -2,17 +2,16 @@
   <header class="facet-header">
     <div class="header-title">
       <hgroup v-tooltip="{ content: tooltip }">
-        <h3 :class="{ isActive: isFiltered }">{{ title }}<span v-if="region"> ({{ region }})</span></h3>
+        <h3 :class="{ isActive: isFiltered }">{{ title }}</h3>
         <small v-if="unit">{{ unit }}</small>
       </hgroup>
       <button @click="removeFacet" class="btn btn--none btn--remove">&times;</button>
     </div>
-    <aside :class="['header-aside', displayInvert || year ? 'double' : 'single']">
-      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2030 }]" @click="() => changeYear(2030)">2030</button>
-      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2050 }]" @click="() => changeYear(2050)">2050</button>
-      <button v-if="year" :class="['btn', 'btn--small', { isActive: year === 2100 }]" @click="() => changeYear(2100)">2100</button>
+    <aside :class="['header-aside', { list: isList }, { details: isDetails }]">
+      <SensesSelect :options="years" v-if="isDetails" v-model="selectedYear" />
+      <SensesSelect :options="regions" v-if="isDetails" v-model="selectedRegion" />
       <button :class="['btn', 'btn--small']" :disabled="!isFiltered" @click="reset">Reset</button>
-      <button v-if="displayInvert" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
+      <button v-if="isList" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
     <footer class="header-footer">
       <div><span v-if="displayCount">{{ count }} option{{ count === 1 ? '' : 's' }}</span>&thinsp;</div>
@@ -23,10 +22,15 @@
 </template>
 
 <script>
+import SensesSelect from 'library/src/components/SensesSelect.vue'
+import { KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_LIST } from '~/store/config'
 import { isUndefined } from 'lodash'
 
 export default {
   name: 'FacetHeader',
+  components: {
+    SensesSelect
+  },
   props: {
     isFiltered: {
       type: Boolean
@@ -61,9 +65,59 @@ export default {
     count: {
       type: Number,
       default: 0
+    },
+    facetType: {
+      type: String
+    }
+  },
+  data () {
+    return {
+      years: [
+        2030,
+        2050,
+        2100
+      ],
+      regions: [{
+        label: 'World',
+        value: 'World'
+      }, {
+        label: 'Asia',
+        value: 'R5ASIA'
+      }, {
+        label: 'R5LAM',
+        value: 'R5LAM'
+      }, {
+        label: 'R5MAF',
+        value: 'R5MAF'
+      }, {
+        label: 'R5OECD90+EU',
+        value: 'R5OECD90+EU'
+      }, {
+        label: 'R5ROWO',
+        value: 'R5ROWO'
+      }, {
+        label: 'R5REF',
+        value: 'R5REF'
+      }]
     }
   },
   computed: {
+    selectedYear: {
+      get () {
+        return this.year
+      },
+      set (value) {
+        this.$emit('changeYear', value)
+      }
+    },
+    selectedRegion: {
+      get () {
+        return this.region
+      },
+      set (value) {
+        this.$emit('changeRegion', value)
+      }
+    },
     displaySorting () {
       return !isUndefined(this.isReverse) && !isUndefined(this.isAlphabetical)
     },
@@ -72,12 +126,15 @@ export default {
     },
     displayCount () {
       return this.count > 0
+    },
+    isDetails () {
+      return this.facetType === KEY_FILTER_TYPE_DETAILS
+    },
+    isList () {
+      return this.facetType === KEY_FILTER_TYPE_LIST
     }
   },
   methods: {
-    changeYear (value) { // For details facets
-      this.$emit('changeYear', value)
-    },
     removeFacet () {
       this.$emit('removeFacet')
     },
@@ -126,11 +183,15 @@ export default {
     .header-aside {
       justify-items: end;
       align-items: center;
+
       &.single { // If there is no invert button
         grid-template-columns: auto;
       }
-      &.double {
+      &.list {
         grid-template-columns: 1fr auto;
+      }
+      &.details {
+        grid-template-columns: 1fr auto auto;
       }
     }
 

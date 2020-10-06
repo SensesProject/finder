@@ -8,8 +8,10 @@
       :unit="unit"
       @reset="reset"
       @changeYear="onChangeYear"
+      @changeRegion="onChangeRegion"
       :year="year"
-      :region="region" />
+      :region="region"
+      :facetType="type" />
     <div class="vis-wrapper">
       <svg ref="vis">
         <line
@@ -96,6 +98,9 @@
         type: String
       },
       tooltip: {
+        type: String
+      },
+      type: {
         type: String
       },
       year: { // Used for details
@@ -194,7 +199,8 @@
         'filter',
         'removeFacet',
         'resetFilter',
-        'changeFilterYear'
+        'changeFilterYear',
+        'changeFilterRegion'
       ]),
       reset () {
         const { height, range } = this
@@ -247,6 +253,9 @@
       },
       onChangeYear (value) {
         this.changeFilterYear({ id: this.id, year: value })
+      },
+      onChangeRegion (value) {
+        this.changeFilterRegion({ id: this.id, region: value })
       },
       calcHeight () {
         const { vis: el } = this.$refs
@@ -371,6 +380,7 @@ $handle-height: 3px;
 
   .vis-wrapper, svg {
     height: 100%;
+    max-height: 250px;
     flex: 1;
     position: relative;
   }

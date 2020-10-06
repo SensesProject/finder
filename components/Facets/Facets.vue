@@ -4,7 +4,7 @@
       <h4>{{ key }}</h4>
     </section>
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit, year, region }) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit, year, region, type }) in elements"
       v-bind:is="component"
       :key="id"
       :unit="unit"
@@ -16,7 +16,8 @@
       :init="init"
       :forcedValue="forcedValue"
       :year="year"
-      :region="region" />
+      :region="region"
+      :type="type" />
   </div>
 </template>
 
@@ -44,6 +45,7 @@
           const isDetails = type === 'Details'
           return {
             title: label,
+            type,
             tooltip,
             id,
             i,

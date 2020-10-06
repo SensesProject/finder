@@ -112,6 +112,23 @@ const mutations = {
       console.log(`Facet for ${id} should be there`)
     }
   },
+  CHANGE_FACET_REGION (state, { id, region }) {
+    if (has(state, [KEY_FILTER, id])) {
+      const type = get(state, [KEY_FILTER, id, KEY_TYPE])
+      const year = get(state, [KEY_FILTER, id, 'year'])
+      const key = get(state, [KEY_FILTER, id, 'key'])
+
+      const path = buildPath(type, key, year, region)
+
+      state[KEY_FILTER][id]['region'] = region
+      state[KEY_FILTER][id][KEY_PATH] = path
+      state[KEY_FILTER][id][KEY_DIMENSION].dispose()
+      state[KEY_FILTER][id][KEY_DIMENSION] = basket.dimension((d) => get(d, path, false))
+      console.log({ id, path, type, region, key, year })
+    } else {
+      console.log(`Facet for ${id} should be there`)
+    }
+  },
   RESET_FACET (state, key) {
     // This mutation resets all applyed filtering on this dimension
     if (has(state, [KEY_FILTER, key, KEY_DIMENSION])) {
@@ -190,6 +207,16 @@ const actions = {
     const region = get(state, [KEY_FILTER, id, 'region'])
     const key = get(state, [KEY_FILTER, id, 'key'])
     console.log({ region })
+    dispatch('updateDimension', id)
+    dispatch('apply')
+    dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
+  },
+  changeFilterRegion ({ commit, dispatch, state }, { id, region }) {
+    console.log('changeFilterRegion', id, region)
+    commit('CHANGE_FACET_REGION', { id, region })
+    const year = get(state, [KEY_FILTER, id, 'year'])
+    const key = get(state, [KEY_FILTER, id, 'key'])
+    console.log({ year })
     dispatch('updateDimension', id)
     dispatch('apply')
     dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
