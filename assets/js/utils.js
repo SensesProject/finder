@@ -1,5 +1,7 @@
 import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace } from 'lodash'
 import { format } from 'timeago.js'
+import { extent } from 'd3-array'
+import { scaleLinear, scaleThreshold } from 'd3-scale'
 
 export const getLabel = function (value, type, precision) {
   // The label can be different. It’s based on the type of the column
@@ -85,4 +87,58 @@ export const extractFromGoogleTable2 = function (data) {
     })
     return obj
   })
+}
+
+export const detailPath = function (key, year, region) {
+  return `${key}-${year}-${region}`
+}
+
+export const buildPath = function (type, key, year, region) {
+  if (type === 'Details') {
+    return detailPath(key, year, region)
+  } else {
+    return key
+  }
+}
+
+export const buildHistogram = function (values) {
+  const domain = extent(values)
+  const scale = scaleLinear().domain(domain).nice()
+  const thresholds = scale.ticks(40)
+  const bin = scaleThreshold().domain(thresholds).range(thresholds)
+  return { thresholds, bin }
+}
+
+export const extractDetailsFromBody = function (body) {
+  const region = get(body, ['filters', 'regions', 0], false)
+  const variable = get(body, ['filters', 'variables', 0], false)
+  const year = get(body, ['filters', 'years', 0], false)
+
+  return { region, variable, year }
+}
+
+export const buildBodyFromDetails = function (runs, year, region, variable) {
+  return {
+    filters: {
+      runs,
+      years: [year],
+      regions: [region],
+      variables: [variable]
+    }
+  }
+}
+
+export const getRunIds = function (basket) {
+  return map(basket.dimension((d) => get(d, 'run_id', false)).group().all(), 'key')
+}
+
+export const buildConfigForRequest = function (rootState) {
+  const config = {}
+
+  // Check if there is a url for authorization
+  if (get(rootState, ['auth', 'url'], false)) {
+    set(config, 'headers.Authorization', `Bearer ${rootState.auth.token}`)
+  }
+
+  return config
 }

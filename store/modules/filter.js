@@ -1,10 +1,9 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
 import { get, unset, set, has, forEach, map, keys, difference, find } from 'lodash'
-import { extent } from 'd3-array'
-import { scaleLinear, scaleThreshold } from 'd3-scale'
 import { getList, makeDict } from '../../assets/js/facets'
 import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT } from '../config'
+import { buildPath, buildHistogram } from '../../assets/js/utils'
 import { basket } from '../index'
 
 const state = () => ({
@@ -18,8 +17,8 @@ const mutations = {
   CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group }) {
     // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
-    console.log({ key, type, label })
-    const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
+    // console.log({ key, type, label })
+    const path = buildPath(type, key, 2030, 'World')
     // It also sets the type of the facet. This is used later for the filtering technique
     const dimension = basket.dimension((d) => get(d, path, false))
     // Facets need different types of lists of options
@@ -133,10 +132,7 @@ const actions = {
       // const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
       const values = map(dimension.top(Infinity), (d) => get(d, path))
       // console.log({values})
-      const domain = extent(values)
-      const scale = scaleLinear().domain(domain).nice()
-      const thresholds = scale.ticks(40)
-      const bin = scaleThreshold().domain(thresholds).range(thresholds)
+      const { thresholds, bin } = buildHistogram(values)
       // console.log(1, '->', bin(1), 100, '->', bin(100), 200, '->', bin(200), 1000, '->', bin(1000))
       state[KEY_FILTER][id].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
       state[KEY_FILTER][id].thresholds = thresholds

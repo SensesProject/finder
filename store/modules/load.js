@@ -2,7 +2,7 @@ import axios from 'axios'
 import { get, isUndefined, set, forEach, find } from 'lodash'
 import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE } from '../config'
-import { isTooOld, extractFromGoogleTable2 } from '../../assets/js/utils'
+import { isTooOld, extractFromGoogleTable2, buildConfigForRequest, detailPath } from '../../assets/js/utils'
 import { basket } from '../index'
 
 const state = () => ({
@@ -50,7 +50,7 @@ const mutations = {
       forEach(details, ({ runId, variable, year, region, value }) => {
         const entry = find(state.data, { run_id: runId })
         if (entry) {
-          entry[`${variable}-${year}-${region}`] = value
+          entry[detailPath(variable, year, region)] = value
         }
       })
       console.log(state.data)
@@ -96,12 +96,8 @@ const actions = {
     if (isForced || (state.status !== STATUS_LOADING && get(state, ['data', 'length'], 0) === 0)) {
       commit('API_DATA', { status: STATUS_LOADING })
       const { url } = state
-      const config = {}
+      const config = buildConfigForRequest(rootState)
 
-      // Check if there is a url for authorization
-      if (get(rootState, ['auth', 'url'], false)) {
-        set(config, 'headers.Authorization', `Bearer ${rootState.auth.token}`)
-      }
       // console.log('Load Request send')
       axios.get(url, config)
         .then(response => {
