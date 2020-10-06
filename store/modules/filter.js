@@ -100,8 +100,10 @@ const mutations = {
       const type = get(state, [KEY_FILTER, id, KEY_TYPE])
       const region = get(state, [KEY_FILTER, id, 'region'])
       const key = get(state, [KEY_FILTER, id, 'key'])
-      state[KEY_FILTER][id]['year'] = year
+
       const path = buildPath(type, key, year, region)
+
+      state[KEY_FILTER][id]['year'] = year
       state[KEY_FILTER][id][KEY_PATH] = path
       state[KEY_FILTER][id][KEY_DIMENSION].dispose()
       state[KEY_FILTER][id][KEY_DIMENSION] = basket.dimension((d) => get(d, path, false))
@@ -188,6 +190,7 @@ const actions = {
     const region = get(state, [KEY_FILTER, id, 'region'])
     const key = get(state, [KEY_FILTER, id, 'key'])
     console.log({ region })
+    dispatch('updateDimension', id)
     dispatch('apply')
     dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
   },

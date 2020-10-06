@@ -139,6 +139,7 @@
         return extent(map(this.items, 'key'))
       },
       range () {
+        console.log([head(this.thresholds), last(this.thresholds)])
         return [head(this.thresholds), last(this.thresholds)]
       },
       maxValue () {
@@ -268,6 +269,9 @@
           const value = get(newValue, 'value')
           this.forceSelected(value)
         }
+      },
+      year () {
+        this.reset()
       }
     }
   }

@@ -70,7 +70,7 @@ const actions = {
       console.log(`Sending out ${requests.length} requests`)
       dispatch('auth/auth', { follower: { name: 'details/load', params: { requests } }, isForced: false }, { root: true })
     } else {
-      console.log('No requests necessary')
+      console.log('No request necessary')
     }
   },
   load ({ state, commit, dispatch, rootState }, { requests }) {
