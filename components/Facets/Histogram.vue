@@ -36,7 +36,7 @@
           :height="bar.height" />
         <text
           :x="marginLeft - 10"
-          :y="y"
+          :y="Math.max(y, 1)"
           class="tick"
           text-anchor="end"
           dominant-baseline="hanging"
@@ -70,7 +70,7 @@
   import { extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapActions } from 'vuex'
-  import { get, map, inRange, values, head, last, fromPairs, throttle } from 'lodash'
+  import { get, map, inRange, values, head, last, fromPairs, throttle, isUndefined } from 'lodash'
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
   import VueDraggableResizable from 'vue-draggable-resizable'
   import { RESET_CODE } from '~/store/config'
@@ -247,9 +247,17 @@
       },
       onChangeYear (value) {
         this.changeFilterYear({ id: this.id, year: value })
-      }
+      },
+      calcHeight () {
+        const { vis: el } = this.$refs
+        if (!isUndefined(el)) {
+          this.height = el.clientHeight
+        }
+      },
     },
     mounted () {
+      this.calcHeight()
+      window.addEventListener('resize', this.calcHeight, false)
       this.reset()
       // TODO: Not working properly
       const value = get(this.forcedValue, 'value')
