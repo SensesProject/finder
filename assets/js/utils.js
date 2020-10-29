@@ -110,10 +110,14 @@ export const buildHistogram = function (values) {
   return { thresholds, bin }
 }
 
+const KEY_REGIONS = 'regions'
+const KEY_VARIABLES = 'variables'
+const KEY_YEARS = 'years'
+
 export const extractDetailsFromBody = function (body) {
-  const region = get(body, ['filters', 'regions', 0], false)
-  const variable = get(body, ['filters', 'variables', 0], false)
-  const year = get(body, ['filters', 'years', 0], false)
+  const region = get(body, ['filters', KEY_REGIONS, 0], false)
+  const variable = get(body, ['filters', KEY_VARIABLES, 0], false)
+  const year = get(body, ['filters', KEY_YEARS, 0], false)
 
   return { region, variable, year }
 }
@@ -122,9 +126,9 @@ export const buildBodyFromDetails = function (runs, year, region, variable) {
   return {
     filters: {
       runs,
-      years: [year],
-      regions: [region],
-      variables: [variable]
+      [KEY_YEARS]: [year],
+      [KEY_REGIONS]: [region],
+      [KEY_VARIABLES]: [variable]
     }
   }
 }
