@@ -9,7 +9,7 @@
     </div>
     <aside :class="['header-aside', { list: isList }, { details: isDetails }]">
       <SensesSelect :options="years" v-if="isDetails" v-model="selectedYear" />
-      <SensesSelect :options="regions" v-if="isDetails" v-model="selectedRegion" />
+      <SensesSelect :options="regions" v-if="isDetails" v-model="selectedRegion" previewKey="value" />
       <button :class="['btn', 'btn--small']" :disabled="!isFiltered" @click="reset">Reset</button>
       <button v-if="isList" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
@@ -81,23 +81,23 @@ export default {
         label: 'World',
         value: 'World'
       }, {
-        label: 'Asia',
+        label: 'Asian countries except Japan',
         value: 'R5ASIA'
       }, {
-        label: 'R5LAM',
+        label: 'Latin American countries',
         value: 'R5LAM'
       }, {
-        label: 'R5MAF',
+        label: 'Countries of the Middle East and Africa',
         value: 'R5MAF'
       }, {
-        label: 'R5OECD90+EU',
+        label: 'OECD90 and EU countries',
         value: 'R5OECD90+EU'
       }, {
-        label: 'R5ROWO',
-        value: 'R5ROWO'
-      }, {
-        label: 'R5REF',
+        label: 'Countries of the Former Soviet Union',
         value: 'R5REF'
+      }, {
+        label: 'Rest of the World',
+        value: 'R5ROWO'
       }]
     }
   },
