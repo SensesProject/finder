@@ -79,7 +79,7 @@ const mutations = {
         // For the SearchFacet, we need to check if search is inverted or not as this can’t be handled by the Facet
         return isInverted ? !has : has
       })
-    } else if (type === KEY_FILTER_TYPE_HISTOGRAM) {
+    } else if (type === KEY_FILTER_TYPE_HISTOGRAM || type === KEY_FILTER_TYPE_DETAILS) {
       state[KEY_FILTER][key][KEY_DIMENSION].filterRange(value)
     }
     state[KEY_FILTER][key].value = value
