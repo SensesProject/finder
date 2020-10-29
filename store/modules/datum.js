@@ -22,7 +22,6 @@ const mutations = {
     // This function must be called in the beginning
     // It initiates the basket by creating new dimension
     datum = basket.dimension(d => get(d, KEY_ID))
-    console.log(datum)
     // This defines a group of results that hold all items
     all = basket.groupAll()
   },
