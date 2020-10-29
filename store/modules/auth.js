@@ -1,14 +1,16 @@
+// This module is for authentication.
+
 import axios from 'axios'
 import { isUndefined, isObject, get } from 'lodash'
 import { format } from 'timeago.js'
 import { KEY_DATE, STATUS_IDLE, STATUS_AUTH, STATUS_AUTH_FAILED, STATUS_AUTH_SUCCESS } from '../config'
 
 const state = () => ({
-  token: false,
+  token: false, // This hold the authentication token
   status: STATUS_IDLE,
   message: false,
-  date: false,
-  url: false
+  // date: false,
+  url: false // This holds the url for authentication
 })
 
 const mutations = {
@@ -21,7 +23,7 @@ const mutations = {
     }
     if (!isUndefined(token)) {
       state.token = token
-      state.date = new Date()
+      // state.date = new Date()
     }
     if (!isUndefined(message)) {
       state.message = message
@@ -31,6 +33,7 @@ const mutations = {
 
 const actions = {
   setUrlAuth ({ commit }, url) {
+    // This function is called by the Finder module, when the Finder is intialised
     commit('SET_URL_AUTH', url)
   },
   auth ({ state, commit, dispatch }, { isForced, follower }) {
