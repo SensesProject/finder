@@ -22,7 +22,7 @@
 
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
-  import { get, forEach, isArray } from 'lodash'
+  import { map, get, forEach, isArray } from 'lodash'
   import Options from '~/components/Aside/Options.vue'
   import SelectFacets from '~/components/Aside/SelectFacets.vue'
   import Loading from '~/components/Loading.vue'
@@ -79,7 +79,9 @@
           // TODO: add inverted
         })
         const getUrl = window.location
-        copy(`${getUrl.protocol}//${getUrl.host}${this.$router.options.base}?${encodeURI(link.join('&'))}`)
+        const path = map(this.$router.options.routes, 'path').join('')
+        const query = encodeURI(link.join('&'))
+        copy(`${getUrl.protocol}//${getUrl.host}/${this.$router.options.base.replaceAll('/', '')}${path}${ query.lenghth ? '?' : ''}${query}`)
       },
       hardReload (event) {
         event.currentTarget.blur()

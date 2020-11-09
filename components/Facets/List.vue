@@ -73,7 +73,7 @@ export default {
   components: {
     FacetHeader
   },
-  data: function () {
+  data () {
     return {
       selected: LIST_DEFAULT, // List of selected items
       isInverted: INVERTED_DEFAULT, // Is the list of selection inverted
@@ -152,7 +152,7 @@ export default {
     removeItem (value) {
       // Check if item is in list
       if (this.selected.includes(value)) {
-        pull(this.selected, value)
+        this.selected = [...pull(this.selected, value)]
         this.apply()
       }
     },

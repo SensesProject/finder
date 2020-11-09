@@ -130,6 +130,7 @@ const mutations = {
     }
   },
   RESET_FACET (state, key) {
+    state[KEY_FILTER][key].value = undefined
     // This mutation resets all applyed filtering on this dimension
     if (has(state, [KEY_FILTER, key, KEY_DIMENSION])) {
       state[KEY_FILTER][key][KEY_DIMENSION].filter(null)
