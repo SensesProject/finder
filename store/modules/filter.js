@@ -1,10 +1,11 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { get, unset, set, has, forEach, map, keys, difference, find } from 'lodash'
+import { get, unset, set, has, forEach, map, keys, difference, find, deburr, trim } from 'lodash'
 import { getList, makeDict } from '../../assets/js/facets'
 import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
 import { buildPath, buildHistogram } from '../../assets/js/utils'
 import { basket } from '../index'
+import levenshtein from 'js-levenshtein';
 
 const state = () => ({
   // This holds the filter that are passed by the url
@@ -26,7 +27,7 @@ const mutations = {
 
     const init = makeDict(facet.all())
 
-    console.log({ id })
+    // console.log({ id })
 
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
@@ -75,7 +76,11 @@ const mutations = {
     } else if (type === KEY_FILTER_TYPE_SEARCH) {
       state[KEY_FILTER][key][KEY_DIMENSION].filter((d) => {
         // Convert the search cell content to uppercase and check if it contains the search term
-        const has = d.toUpperCase().includes(value)
+        const term = deburr(trim(d).toLowerCase())
+        let has = term.includes(value)
+        if (!has) {
+          has = levenshtein(term, value) < 3
+        }
         // For the SearchFacet, we need to check if search is inverted or not as this can’t be handled by the Facet
         return isInverted ? !has : has
       })

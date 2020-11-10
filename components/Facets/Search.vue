@@ -20,7 +20,7 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import { trim, get } from 'lodash'
+  import { trim, get, deburr } from 'lodash'
   import FacetHeader from './FacetHeader.vue'
   import { RESET_CODE } from '~/store/config'
 
@@ -93,10 +93,10 @@
         this.apply()
       },
       apply () {
-        const value = trim(this.term)
+        const value = deburr(trim(this.term).toLowerCase())
 
         if (value !== TERM_DEFAULT) {
-          this.filter({ key: this.id, value: value.toUpperCase(), isInverted: this.isInverted })
+          this.filter({ key: this.id, value, isInverted: this.isInverted })
         } else {
           this.resetFilter(this.id)
         }
