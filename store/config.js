@@ -42,3 +42,20 @@ export const DEFAULT_REGION = 'World'
 export const DEFAULT_YEAR = 2030
 
 export const SELECTION_YEARS = [2030, 2050, 2100]
+
+export const FACET_KEYS = [
+  'key', // The path to the value in the object
+  'label', // The label that is displayed above the facet
+  'unit', // The unit of the column in displayed after the label
+  'group', // This organises the elements in the facet select popover
+  'regions', // This defines the regions that can be requested for the detail facet
+  'title', // This is only used for the first column (TODO)
+  'system', // This is only used for the key (TODO)
+  'tooltip', // This information is displayed when hovering the tooltip
+  'type', // This defines the type of the facet
+  'visible', // This defines whether the facet is visible on default
+  'popover.content',
+  'popover.key',
+  'popover.path',
+  'popover.url'
+]
