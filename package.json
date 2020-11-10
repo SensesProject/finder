@@ -19,6 +19,7 @@
     "d3-array": "^2.4.0",
     "d3-format": "^1.4.4",
     "d3-scale": "^3.2.1",
+    "js-levenshtein": "^1.1.6",
     "library": "github:SensesProject/library",
     "lodash": "^4.17.15",
     "nuxt": "^2.13.0",
