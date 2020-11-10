@@ -24,5 +24,8 @@ module.exports = {
     transpile: [
       'library'
     ]
+  },
+  generate: {
+    crawler: false
   }
 }
