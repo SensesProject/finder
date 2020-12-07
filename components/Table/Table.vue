@@ -16,9 +16,9 @@
           v-for="({ cells, row }, n) in elements"
           :key="row">
           <td
-            v-for="({ label, key, popoverContent }, i) in cells"
+            v-for="({ label, key, popoverContent, isNumber }, i) in cells"
             :key="key">
-            <div>
+            <div :class="{ isNumber }">
               <!-- <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span> -->
               <span :class="['label', { popoverContent }]" @click="popoverContent ? openContentPopover(popoverContent) : false">{{ label || '—' }}</span>
               <section>
@@ -45,7 +45,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import { map, get, sortBy } from 'lodash'
-  import { KEY_PATH, KEY_FILTER } from '~/store/config'
+  import { KEY_PATH, KEY_FILTER, KEY_FILTER_TYPE_HISTOGRAM, KEY_FILTER_TYPE_DETAILS } from '~/store/config'
   import Loading from '~/components/Loading.vue'
   import TableNavigation from '~/components/Table/TableNavigation.vue'
   import TableCounter from '~/components/Table/TableCounter.vue'
@@ -73,10 +73,12 @@
           const cells = map(filters, (filter) => {
             const key = filter[KEY_PATH]
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
+            const isNumber = get(filter, 'type') === KEY_FILTER_TYPE_HISTOGRAM || get(filter, 'type') === KEY_FILTER_TYPE_DETAILS
             return {
               label: get(datum, key, '–'),
               popoverContent,
-              key
+              key,
+              isNumber
             }
           })
           return {
@@ -127,8 +129,8 @@
 
         &:first-child {
           padding-left: 0;
-          width: calc(#{$facet-width} + #{$facet-gap} + #{$spacing / 4});
-          padding-left: 1rem;
+          width: calc(#{$facet-width} + #{$facet-gap});
+          margin-left: 1rem;
         }
 
         &:last-child {
@@ -156,7 +158,7 @@
     tbody {
       tr {
         &:hover {
-          color: $color-accent;
+          color: $color-interactive;
 
           .option {
             opacity: 1;
@@ -164,18 +166,25 @@
         }
 
         td {
-          padding: $spacing / 8 0.1em;
+          padding: $spacing / 8 0;
           white-space: nowrap;
 
           div {
+            padding: 0 0.1em;
+            padding-right: $facet-gap;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+
+            &.isNumber {
+              padding-left: 50px;
+            }
 
             .label {
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap;
+              display: inline-block;
 
               &.popoverContent {
                 cursor: pointer;
