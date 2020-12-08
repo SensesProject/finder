@@ -35,16 +35,18 @@
           this.$router.replace({ query: query })
         }
       },
-      copyLink: function (event) {
+      copyLink (event) {
+        // console.log(this.url)
         const link = map(this.url, (value, key) => {
           return `${key}=${value}`
         }).join('&')
         const getUrl = window.location
+        // console.log(this.$router)
         copy(`${getUrl.protocol}//${getUrl.host}${this.$router.options.base}?${encodeURI(link)}`)
       }
     },
     watch: {
-      // whenever question changes, this function will run
+      // whenever url changes, this function will run
       url () {
         this.changeURL()
       },
