@@ -1,3 +1,5 @@
+// This module holds the options set by the user
+
 const state = () => ({
   filterEmpty: false, // Hide empty options
   sortRemaining: false, // Sort by remaining amount
