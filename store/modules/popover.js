@@ -1,11 +1,6 @@
 import axios from 'axios'
 import { isUndefined, get } from 'lodash'
-
-const STATUS_IDLE = 'IDLE'
-
-const STATUS_LOADING = 'LOADING'
-const STATUS_LOADING_FAILED = 'LOADING_FAILED'
-const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
+import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS } from '../config'
 
 const state = () => ({
   popover: false,
