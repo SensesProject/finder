@@ -46,6 +46,7 @@ export const isTooOld = function (date) {
 }
 
 export const extractFromGoogleTable = function (keys, data) {
+  // This function extracts facet data from a Google Sheet
   // This function extracts the relevant data from the Google Sheet response
   return map(get(data, ['feed', 'entry']), (entry, i) => {
     const obj = { i }
@@ -60,6 +61,9 @@ export const extractFromGoogleTable = function (keys, data) {
           value = false
           break
       }
+      if (key === 'regions') {
+        value = value.split(',')
+      }
       set(obj, key, value)
     })
     // Generate a id for each facet. This is used to trigger each filter
@@ -69,6 +73,7 @@ export const extractFromGoogleTable = function (keys, data) {
 }
 
 export const extractFromGoogleTable2 = function (data) {
+  // This function extracts table data from a Google Sheet
   return map(get(data, ['feed', 'entry']), entry => {
     const obj = {}
     forEach(keys(entry), key => {

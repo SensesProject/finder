@@ -15,7 +15,7 @@ const state = () => ({
 })
 
 const mutations = {
-  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group, region, year }) {
+  CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group, region, year, regions }) {
     // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
     // console.log({ key, type, label })
@@ -44,6 +44,7 @@ const mutations = {
         group,
         year, // Used for details
         region, // Used for details
+        regions, // Used for details
         [KEY_TYPE]: type,
         key,
         popover,
@@ -186,7 +187,7 @@ const actions = {
     state[KEY_FILTER][id].init = makeDict(state[KEY_FILTER][id].facet.all())
   },
   addFacet ({ commit, dispatch }, options) {
-    // console.log('filter/addFacet', options)
+    console.log('filter/addFacet', options)
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     commit('CREATE_FACET', options)

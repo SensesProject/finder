@@ -9,7 +9,7 @@
     </div>
     <aside :class="['header-aside', { list: isList }, { details: isDetails }]">
       <SensesSelect :options="years" v-if="isDetails" v-model="selectedYear" />
-      <SensesSelect :options="regions" v-if="isDetails" v-model="selectedRegion" previewKey="value" />
+      <SensesSelect :options="selectableRegions" v-if="isDetails" v-model="selectedRegion" previewKey="value" />
       <button :class="['btn', 'btn--small']" :disabled="!isFiltered" @click="reset">Reset</button>
       <button v-if="isList" :class="['btn', 'btn--small', { isActive: isInverted }]" :disabled="!isFiltered" @click="toggleInvert">Invert</button>
     </aside>
@@ -23,8 +23,8 @@
 
 <script>
 import SensesSelect from 'library/src/components/SensesSelect.vue'
-import { KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_LIST } from '~/store/config'
-import { isUndefined } from 'lodash'
+import { KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_LIST, SELECTION_YEARS, REGION_MAPPING } from '~/store/config'
+import { isUndefined, map, get } from 'lodash'
 
 export default {
   name: 'FacetHeader',
@@ -59,6 +59,9 @@ export default {
     region: { // Used for details
       type: String
     },
+    regions: {
+      type: Array
+    },
     tooltip: {
       type: String
     },
@@ -70,38 +73,19 @@ export default {
       type: String
     }
   },
-  data () {
-    return {
-      years: [
-        2030,
-        2050,
-        2100
-      ],
-      regions: [{
-        label: 'World',
-        value: 'World'
-      }, {
-        label: 'Asian countries except Japan',
-        value: 'R5ASIA'
-      }, {
-        label: 'Latin American countries',
-        value: 'R5LAM'
-      }, {
-        label: 'Countries of the Middle East and Africa',
-        value: 'R5MAF'
-      }, {
-        label: 'OECD90 and EU countries',
-        value: 'R5OECD90+EU'
-      }, {
-        label: 'Countries of the Former Soviet Union',
-        value: 'R5REF'
-      }, {
-        label: 'Rest of the World',
-        value: 'R5ROWO'
-      }]
-    }
-  },
   computed: {
+    years () {
+      // TODO: get from options
+      return SELECTION_YEARS
+    },
+    selectableRegions () {
+      return map(this.regions, (region) => {
+        return {
+          value: region,
+          label: get(REGION_MAPPING, region, region)
+        }
+      })
+    },
     selectedYear: {
       get () {
         return this.year
@@ -168,7 +152,8 @@ export default {
   .facet-header {
     display: grid;
     grid-template-rows: $size-small * 2 auto auto;
-    grid-row-gap: $spacing / 4;
+    align-content: space-between;
+    // grid-row-gap: $spacing / 4;
 
     .header-title, .header-aside, .header-footer {
       display: grid;

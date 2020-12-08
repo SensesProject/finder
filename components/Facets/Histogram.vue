@@ -11,6 +11,7 @@
       @changeRegion="onChangeRegion"
       :year="year"
       :region="region"
+      :regions="regions"
       :facetType="type" />
     <div class="vis-wrapper">
       <div class="message" v-if="message">
@@ -116,6 +117,9 @@
       },
       region: { // Used for details
         type: String
+      },
+      regions: { // Used for details
+        type: Array
       },
       path: { // Used for details
         type: String
@@ -428,8 +432,8 @@ $handle-height: 3px;
   }
 
   .vis-wrapper, svg {
-    height: 100%;
-    max-height: 250px;
+    height: 250px;
+    // max-height: 250px;
     flex: 1;
     position: relative;
   }
