@@ -49,7 +49,7 @@ const mutations = {
         popover,
         // This is used to pass down settings or for a reset
         forcedValue: undefined,
-        // These values are set on change, but a only needed for the url
+        // These values are set on change, but are only needed for the url
         value: undefined,
         isInverted: undefined
       }
@@ -112,7 +112,7 @@ const mutations = {
       state[KEY_FILTER][id][KEY_PATH] = path
       state[KEY_FILTER][id][KEY_DIMENSION].dispose()
       state[KEY_FILTER][id][KEY_DIMENSION] = basket.dimension((d) => get(d, path, false))
-      console.log({ id, path, type, region, key, year })
+      // console.log({ id, path, type, region, key, year })
     } else {
       console.log(`Facet for ${id} should be there`)
     }
@@ -129,7 +129,7 @@ const mutations = {
       state[KEY_FILTER][id][KEY_PATH] = path
       state[KEY_FILTER][id][KEY_DIMENSION].dispose()
       state[KEY_FILTER][id][KEY_DIMENSION] = basket.dimension((d) => get(d, path, false))
-      console.log({ id, path, type, region, key, year })
+      // console.log({ id, path, type, region, key, year })
     } else {
       console.log(`Facet for ${id} should be there`)
     }
@@ -208,21 +208,21 @@ const actions = {
     dispatch('apply')
   },
   changeFilterYear ({ commit, dispatch, state }, { id, year }) {
-    console.log('changeFilterYear', id, year)
+    // console.log('changeFilterYear', id, year)
     commit('CHANGE_FACET_YEAR', { id, year })
     const region = get(state, [KEY_FILTER, id, 'region'])
     const key = get(state, [KEY_FILTER, id, 'key'])
-    console.log({ region })
+    // console.log({ region })
     dispatch('updateDimension', id)
     dispatch('apply')
     dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
   },
   changeFilterRegion ({ commit, dispatch, state }, { id, region }) {
-    console.log('changeFilterRegion', id, region)
+    // console.log('changeFilterRegion', id, region)
     commit('CHANGE_FACET_REGION', { id, region })
     const year = get(state, [KEY_FILTER, id, 'year'])
     const key = get(state, [KEY_FILTER, id, 'key'])
-    console.log({ year })
+    // console.log({ year })
     dispatch('updateDimension', id)
     dispatch('apply')
     dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
