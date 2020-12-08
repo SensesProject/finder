@@ -1,13 +1,13 @@
-// This module handles detail requests. For the scenario database, some field allow the user to request more data
+// This module handles detail requests. For the scenario database, some fields allow the user to request more data
 import axios from 'axios'
-import { get, isUndefined, set, filter, map, forEach, find } from 'lodash'
+import { assign, get, isUndefined, set, filter, map, forEach, find } from 'lodash'
 import { format } from 'timeago.js'
-import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE, KEY_ID, KEY_FACETS_ALL, KEY_FILTER_TYPE_DETAILS } from '../config'
-import { isTooOld, extractDetailsFromBody, buildBodyFromDetails, getRunIds, buildConfigForRequest } from '../../assets/js/utils'
+import { KEY_STATUS, STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, STATUS_EMPTY, KEY_DATE, KEY_ID, KEY_FACETS_ALL, KEY_FILTER_TYPE_DETAILS } from '../config'
+import { isTooOld, extractDetailsFromBody, buildBodyFromDetails, getRunIds, buildConfigForRequest, detailPath } from '../../assets/js/utils'
 import { basket } from '../index'
 
 const state = () => ({
-  data: [],
+  data: {},
   url: false
 })
 
@@ -15,27 +15,82 @@ const mutations = {
   SET_URL_DETAILS (state, url) {
     state.url = url
   },
-  API_DETAILS (state, { data, body }) {
-    // Check if data is being passed and has length
-    if (!isUndefined(data) && data.length) {
-      // console.log(`Got data with ${data.length} elements`)
-      // Set the new data in the state
+  API_DETAILS (state, { data, body, message }) {
+    const { region, variable, year } = extractDetailsFromBody(body)
+    console.log('API_DETAILS', message)
 
-      const { region, variable, year } = extractDetailsFromBody(body)
+    if (message === STATUS_LOADING_FAILED || message === STATUS_LOADING) {
+      state.data = assign(
+        {},
+        state.data,
+        {
+          [detailPath(variable, year, region)]: {
+            [KEY_DATE]: new Date(),
+            [KEY_STATUS]: message
+          }
+        }
+      )
+    } else {
+      // This function is called, when we get new data
+      if (!isUndefined(data) && data.length) {
+        // Check if data is being passed and has length
+        // This is false if no data is available
 
-      console.log({region, variable, year})
+        console.log(`Got data with ${data.length} elements`)
+        // First, we extract the information from the request to correctly place it in the state
 
-      if (region && variable && year) {
-        state.data.push({
-          [KEY_DATE]: new Date(),
-          data,
-          region,
-          variable,
-          year
-        })
+        // console.log({region, variable, year})
+
+        if (region && variable && year) {
+          detailPath(variable, year, region)
+          state.data = assign(
+            {},
+            state.data,
+            {
+              [detailPath(variable, year, region)]: {
+                [KEY_DATE]: new Date(),
+                [KEY_STATUS]: STATUS_LOADING_SUCCESS,
+                data
+                // region,
+                // variable,
+                // year
+              }
+            }
+          )
+
+          // state.data.push({
+          //   [KEY_DATE]: new Date(),
+          //   data,
+          //   region,
+          //   variable,
+          //   year,
+          //   [KEY_STATUS]: STATUS_LOADING_SUCCESS
+          // })
+        }
+      } else {
+        state.data = assign(
+          {},
+          state.data,
+          {
+            [detailPath(variable, year, region)]: {
+              [KEY_DATE]: new Date(),
+              [KEY_STATUS]: STATUS_EMPTY
+            }
+          }
+        )
+        // state.data.push({
+        //   [KEY_DATE]: new Date(),
+        //   [KEY_STATUS]: STATUS_LOADING_FAILED
+        // })
       }
     }
-    console.log(state.data)
+  },
+  FILTER_OLD_DATA (state) {
+    // TODO: Not used yet
+    // This function could be used to call at the very beginning to clear out old data
+    state.data = filter(state.data, (datum) => {
+      return !isTooOld(get(datum, KEY_DATE))
+    })
   }
 }
 
@@ -45,7 +100,7 @@ const actions = {
   },
   initDetails ({ state, dispatch, rootState }, isForced = false) {
     const facets = filter(get(rootState, ['facets', KEY_FACETS_ALL]), { type: KEY_FILTER_TYPE_DETAILS })
-    console.log(facets)
+    // console.log(facets)
     dispatch('loadDetails', { list: facets, isForced })
   },
   // This starts the loading process. It is triggered by the localStorage or on hard reload
@@ -53,13 +108,16 @@ const actions = {
   loadDetails ({ state, dispatch, rootState }, payload) {
     const list = get(payload, 'list', [])
     const isForced = get(payload, 'isForced', false)
-    console.log('load Details', list, isForced)
-    const requests = isForced ? list : filter(list, item => {
-      const cache = find(state.data, { variable: item.key, year: item.year, region: item.region })
+    // console.log('load Details', list, isForced)
+    const requests = isForced ? list : filter(list, ({ key, year, region }) => {
+      console.log({ key }, detailPath(key, year, region))
+      const cache = get(state.data, detailPath(key, year, region))
+      // const cache = find(state.data, { variable: key, year: year, region: region })
       const lastLoad = get(cache, KEY_DATE, null)
+      const hasFailed = get(cache, KEY_STATUS) === STATUS_LOADING_FAILED || get(cache, KEY_STATUS) === STATUS_EMPTY
       if (!cache) {
         console.log('Is not in cache')
-        console.log(item.key, item.year, item.region, state.data)
+        console.log(key, year, region, hasFailed)
       } else if (isTooOld(lastLoad)) {
         console.log('Is too old')
       }
@@ -84,6 +142,7 @@ const actions = {
     forEach(requests, ({ key, year, region }) => {
       const body = buildBodyFromDetails(runs, year, region, key)
       console.log(year, key, region)
+      commit('API_DETAILS', { body, message: STATUS_LOADING })
       axios.post(url, body, config)
         .then(response => {
           const { data } = response
@@ -92,6 +151,7 @@ const actions = {
           dispatch('load/mergeWithDetails', { data }, { root: true })
         })
         .catch(error => {
+          commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
           console.log('Loading failed', { error })
         })
     })

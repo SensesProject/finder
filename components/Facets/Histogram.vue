@@ -13,41 +13,46 @@
       :region="region"
       :facetType="type" />
     <div class="vis-wrapper">
+      <div class="message" v-if="message">
+        <span>{{ message }}</span>
+      </div>
       <svg ref="vis">
-        <line
-          class="axis"
-          :x1="marginLeft - 5"
-          :x2="marginLeft - 5"
-          :y1="scaleY.range()[0]"
-          :y2="scaleY.range()[1]" />
-        <rect
-          v-for="(bar, i) in totalBars"
-          :key="`total_${bar.key}`"
-          class="bar"
-          :x="bar.x"
-          :y="bar.y"
-          :width="bar.width"
-          :height="bar.height" />
-        <rect
-          v-for="(bar, i) in totalBars"
-          :key="`remaining_${bar.key}`"
-          :class="['bar', 'value', { isActive: isFiltered && (bars[bar.key] || [])[1] }]"
-          :x="bar.x"
-          :y="bar.y"
-          :width="(bars[bar.key] || [])[0]"
-          :height="bar.height" />
-        <text
-          :x="marginLeft - 10"
-          :y="Math.max(y, 1)"
-          class="tick"
-          text-anchor="end"
-          dominant-baseline="hanging"
-          ref="labelLow">{{ (brushLow || 0).toFixed() }}</text>
-        <text
-          :x="marginLeft - 10"
-          :y="y + h"
-          class="tick"
-          text-anchor="end">{{ (brushHigh || 0).toFixed() }}</text>
+        <g :class="{ isVisible: !message }">
+          <line
+            class="axis"
+            :x1="marginLeft - 5"
+            :x2="marginLeft - 5"
+            :y1="scaleY.range()[0]"
+            :y2="scaleY.range()[1]" />
+          <rect
+            v-for="(bar, i) in totalBars"
+            :key="`total_${bar.key}`"
+            class="bar"
+            :x="bar.x"
+            :y="bar.y"
+            :width="bar.width"
+            :height="bar.height" />
+          <rect
+            v-for="(bar, i) in totalBars"
+            :key="`remaining_${bar.key}`"
+            :class="['bar', 'value', { isActive: isFiltered && (bars[bar.key] || [])[1] }]"
+            :x="bar.x"
+            :y="bar.y"
+            :width="(bars[bar.key] || [])[0]"
+            :height="bar.height" />
+          <text
+            :x="marginLeft - 10"
+            :y="Math.max(y, 1)"
+            class="tick"
+            text-anchor="end"
+            dominant-baseline="hanging"
+            ref="labelLow">{{ (brushLow || 0).toFixed() }}</text>
+          <text
+            :x="marginLeft - 10"
+            :y="y + h"
+            class="tick"
+            text-anchor="end">{{ (brushHigh || 0).toFixed() }}</text>
+        </g>
       </svg>
       <vue-draggable-resizable
         :x="x"
@@ -63,6 +68,7 @@
         :min-width="width - marginLeft"
         :handles="['tm','bm']"
         axis="y"
+        v-if="!message"
       />
     </div>
   </section>
@@ -71,11 +77,13 @@
 <script>
   import { extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
-  import { mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
   import { get, map, inRange, values, head, last, fromPairs, throttle, isUndefined } from 'lodash'
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
   import VueDraggableResizable from 'vue-draggable-resizable'
   import { RESET_CODE } from '~/store/config'
+  import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, KEY_STATUS, STATUS_EMPTY, KEY_FILTER_TYPE_DETAILS } from '~/store/config'
+  import { detailPath } from '~/assets/js/utils'
 
   export default {
     name: 'FacetHistogram',
@@ -109,6 +117,9 @@
       region: { // Used for details
         type: String
       },
+      path: { // Used for details
+        type: String
+      },
       thresholds: {
         type: Array,
         default: () => []
@@ -121,6 +132,7 @@
       const marginLeft = 50
       const width = 220
       return {
+        // status: STATUS_LOADING,
         width,
         height: 250,
         marginLeft,
@@ -140,11 +152,36 @@
       }
     },
     computed: {
+      ...mapState('details', {
+        details: 'data'
+      }),
+      status () {
+        if (this.type === KEY_FILTER_TYPE_DETAILS) {
+          return get(this.details, [detailPath(this.path, this.year, this.region), KEY_STATUS], STATUS_LOADING_FAILED)
+        } else {
+          return false
+        }
+        // console.log(this.details)
+        // console.log(get(this.details, [detailPath(this.path, this.year, this.region), KEY_STATUS]), detailPath(this.path, this.year, this.region))
+      },
+      message () {
+        // console.log('id:', this.id, detailPath(this.id, this.year, this.region))
+        if (this.status === STATUS_LOADING) {
+          return 'Loading…'
+        } else if (this.status === STATUS_EMPTY) {
+          return 'No data available'
+        } else if (this.status === STATUS_LOADING_FAILED) {
+          return 'An error occurred'
+        } else {
+          // If no status is present. Should only be the case for regular histograms not details.
+          return false
+        }
+      },
       domain () {
         return extent(map(this.items, 'key'))
       },
       range () {
-        console.log([head(this.thresholds), last(this.thresholds)])
+        // console.log([head(this.thresholds), last(this.thresholds)])
         return [head(this.thresholds), last(this.thresholds)]
       },
       maxValue () {
@@ -253,9 +290,11 @@
       },
       onChangeYear (value) {
         this.changeFilterYear({ id: this.id, year: value })
+        // this.status = STATUS_LOADING
       },
       onChangeRegion (value) {
         this.changeFilterRegion({ id: this.id, region: value })
+        // this.status = STATUS_LOADING
       },
       calcHeight () {
         const { vis: el } = this.$refs
@@ -290,6 +329,16 @@
       year () {
         this.reset()
       }
+      // items (values) {
+      //   console.log(values)
+      //   if (values.length) {
+      //     this.status = STATUS_IDLE
+      //     console.log('alles gut')
+      //   } else {
+      //     this.status = STATUS_LOADING_FAILED
+      //     console.log('Empty')
+      //   }
+      // }
     }
   }
 </script>
@@ -312,7 +361,7 @@ $handle-height: 3px;
   position: absolute;
   width: 100%;
   height: $handle-height;
-  background: $color-accent;
+  background: $color-interactive;
   border: 0;
 }
 .handle-tm {
@@ -389,21 +438,28 @@ $handle-height: 3px;
     display: flex;
     width: 100%;
 
-    ul {
+    .message {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-
-      li {
-        text-align: right;
-        font-size: 0.7rem;
-        line-height: 0.7rem;
-        color: #494950;
-      }
+      align-items: center;
+      justify-content: center;
+      color: $color-light-gray;
+      font-size: $size-small;
     }
   }
 
   svg {
+    & > g {
+      opacity: 0;
+      transition: opacity 0.3s;
+
+      &.isVisible {
+        opacity: 1;
+      }
+    }
+
     .bar {
       transition: width 0.1s, fill 0.2s;
       fill: rgba(0, 0, 0, .2);
@@ -413,7 +469,7 @@ $handle-height: 3px;
       }
 
       &.isActive {
-        fill: $color-accent;
+        fill: $color-interactive;
       }
     }
 
