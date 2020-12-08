@@ -46,6 +46,16 @@ export const DEFAULT_YEAR = 2030
 
 export const SELECTION_YEARS = [2030, 2050, 2100]
 
+export const REGION_MAPPING = {
+  'World': 'World',
+  'Asian countries except Japan': 'R5ASIA',
+  'Latin American countries': 'R5LAM',
+  'Countries of the Middle East and Africa': 'R5MAF',
+  'OECD90 and EU countries': 'R5OECD90+EU',
+  'Countries of the Former Soviet Union': 'R5REF',
+  'Rest of the World': 'R5ROWO'
+}
+
 export const FACET_KEYS = [
   'key', // The path to the value in the object
   'label', // The label that is displayed above the facet
