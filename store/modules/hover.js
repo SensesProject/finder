@@ -1,5 +1,6 @@
 // HoverValue is defined key and a value. This is used for single cells
 // Hover key is a key. This is used for columns
+// TODO
 
 import { get } from 'lodash'
 
