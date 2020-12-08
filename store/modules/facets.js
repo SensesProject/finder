@@ -3,7 +3,7 @@ import { get, map, forEach, fromPairs, filter } from 'lodash'
 import axios from 'axios'
 import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
 import { format } from 'timeago.js'
-import { KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL, KEY_FILTER_VALID, KEY_FILTER_TYPE_DETAILS, DEFAULT_REGION, DEFAULT_YEAR } from '../config'
+import { FACET_KEYS, KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL, KEY_FILTER_VALID, KEY_FILTER_TYPE_DETAILS, DEFAULT_REGION, DEFAULT_YEAR } from '../config'
 
 // A list of possible facts is set in the Wrapper component. It is stored with all options in the facts state.
 // The visibleFacets state contains only a list of keys that are used
@@ -20,9 +20,6 @@ const state = () => ({
   [KEY_URL]: null,
   [KEY_HAS_ACTIVE_FILTERS]: false
 })
-
-// These keys are the one that should are relevant and should be extracted from the Google Sheet
-const KEYS = ['key', 'label', 'unit', 'group', 'system', 'popover.content', 'popover.key', 'popover.path', 'popover.url', 'title', 'tooltip', 'type', 'visible']
 
 const mutations = {
   FILTER (state, filter) {
@@ -68,12 +65,13 @@ const actions = {
   },
   setFacets ({ commit }, facets) {
     console.log('facets/setFacets')
-    // console.log({ facets })
+    // This function organises the facets before saving them
+
+    // Filter out valid facet types
     const validFacets = filter(facets, ({ type }) => KEY_FILTER_VALID.includes(type))
-    forEach(validFacets, facet => {
-      console.log(facet)
-    })
+
     const definedFacets = map(validFacets, (facet) => {
+      // This is only necessary for facet of the type "details"
       if (facet.type !== KEY_FILTER_TYPE_DETAILS) {
         return facet
       } else {
@@ -123,7 +121,7 @@ const actions = {
       axios.get(url)
         .then((response) => {
           // Extract the data from the Google Table structure
-          dispatch('setFacets', extractFromGoogleTable(KEYS, response.data))
+          dispatch('setFacets', extractFromGoogleTable(FACET_KEYS, response.data))
           // Set the visible facets
           dispatch('setInvisibleFacets')
           // Initiate the filter. This action is in the filter module
