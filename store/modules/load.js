@@ -1,3 +1,5 @@
+// This module organises the loading of the data
+
 import axios from 'axios'
 import { get, isUndefined, set, forEach, find } from 'lodash'
 import { format } from 'timeago.js'
@@ -43,6 +45,7 @@ const mutations = {
     // Check if there is data in the state
     // The data could be coming from a request or the localStorage
     // Because it can come from the localStorage this needs to be seperate from the part above
+    // We need the data which stores the list of scenarios in order to add the values from each detail request
     if (state.data.length) {
       // Remove all previous elements.
       basket.remove(true)
@@ -53,7 +56,7 @@ const mutations = {
           entry[detailPath(variable, year, region)] = value
         }
       })
-      console.log(state.data)
+      // console.log(state.data)
 
       // Add new data
       basket.add(state.data)
@@ -133,11 +136,12 @@ const actions = {
     }
   },
   mergeWithDetails ({ commit, rootState, dispatch }, { data = [] }) {
+    // This function is called by the details module
+    // After the successfull request the details data must be merged with the rest of the data
     console.log('merge with Details')
     commit('API_DATA', { details: data })
     dispatch('filter/updateDimensions', false, { root: true })
     dispatch('apply', false, { root: true })
-    // commit('SET_IS_GOOGLE_SHEET')
   }
 }
 
