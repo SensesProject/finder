@@ -160,7 +160,7 @@
     }
 
     .reset.hasActiveFilters {
-      color: $color-accent;
+      color: $color-interactive;
     }
   }
 </style>

@@ -16,6 +16,52 @@ table {
   }
 }
 
+.highlight {
+  border: 1px solid $color-pale-gray !important;
+  background-color: transparent !important;
+  color: $color-deep-gray !important;
+
+  svg g path {
+    stroke: $color-deep-gray !important;
+  }
+
+  &:hover {
+    color: $color-interactive !important;
+    border-color: $color-interactive !important;
+    background-color: transparent !important;
+
+    svg g path {
+      stroke: $color-interactive !important;
+    }
+  }
+}
+
+.tooltip.popover .popover-inner {
+  padding: 0.5rem;
+}
+
+.senses-tooltip-select .tooltip-inner .option {
+  padding: 0.2rem 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &.active {
+    background-color: transparent !important;
+    color: $color-interactive !important;
+  }
+
+  &:hover {
+    background-color: transparent !important;
+    color: rgba($color-interactive, 0.8) !important;
+  }
+}
+
 @import
   "typography",
   "layout",

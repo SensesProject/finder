@@ -25,8 +25,6 @@
 <style lang="scss">
   @import "~@/assets/style/global";
 
-  $navigation-height: 50px;
-
   .navigation {
     background-color: $color-bg-header;
     border-bottom: 1px solid $color-border-header;
@@ -74,7 +72,7 @@
     }
 
     h2 {
-      color: $color-black;
+      color: $color-default;
     }
 
     p {

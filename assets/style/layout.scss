@@ -2,23 +2,10 @@ body {
   background-color: #fff;
 }
 
-.page, .page-header, .page-nav, .page-footer, .columns {
+.page, .page-header, .page-nav, .page-footer {
   display: inline-flex;
   justify-content: space-between;
   flex-direction: column;
-}
-
-.columns > * {
-  margin-top: $spacing / 2;
-  margin-bottom: $spacing / 2;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &:first-child {
-    margin-top: 0;
-  }
 }
 
 .page {
@@ -33,6 +20,8 @@ body {
 .page-header {
   max-height: 30vw;
   align-items: center;
+  min-height: 100px;
+  height: 14vh;
 
   .page-logo {
     flex: 1;
@@ -49,22 +38,8 @@ body {
   }
 }
 
-.page-header {
-  align-items: center;
-}
-
 .page-footer {
   align-items: flex-start;
-}
-
-.page-header {
-  min-height: 100px;
-  height: 14vh; /* size is based on the height of the device */
-  max-height: 30vw;
-}
-
-.page-footer {
   margin-top: $spacing * 2;
   margin-bottom: $spacing;
 }
-

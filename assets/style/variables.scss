@@ -3,6 +3,10 @@ $color-dark:			#D0CFCE !default;
 $color-important:	#D58882 !default;
 $color-mute:      #919AA1 !default;
 
+$color-interactive: $color-neon !default;
+
+$color-default: $color-black !default;
+
 $color-bg-header: hsl(240, 5%, 97%) !default;
 $color-border-header: hsl(240, 5%, 92%) !default;
 

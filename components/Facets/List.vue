@@ -244,7 +244,7 @@ export default {
         &.isActive {
           font-weight: bold;
           cursor: default;
-          color: $color-accent;
+          color: $color-interactive;
         }
 
         &:first-child {
@@ -270,7 +270,7 @@ export default {
         }
 
         &:hover {
-          color: $color-accent;
+          color: $color-interactive;
 
           &.isActive {
             .action-remove {

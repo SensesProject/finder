@@ -8,20 +8,6 @@
   small {
     color: rgba(255, 255, 255, 0.8);
   }
-
-  .page-nav a {
-    padding: 0 5px 2px;
-    color: rgba(255, 255, 255, 0.8);
-
-    &:hover, &:focus {
-      border-bottom: 1px solid #fff;
-    }
-
-    &.nuxt-link-exact-active {
-      color: rgba(255, 255, 255, 1);
-      border-bottom: 1px solid rgba(255, 255, 255, 1);
-    }
-  }
 }
 
 .page-footer {
@@ -50,7 +36,7 @@
         display: inline-block;
 
         &.isActive {
-          color: $color-accent;
+          color: $color-interactive;
         }
       }
 
@@ -67,28 +53,6 @@
       color: $color-light-gray;
       font-size: $size-smallest;
     }
-  }
-}
-
-::-moz-selection {
-  background: $color-darker;
-  color: $color-white;
-}
-
-::selection {
-  background: $color-darker;
-  color: $color-white;
-}
-
-.page-header, .page-footer {
-  ::-moz-selection {
-    background: $color-white;
-    color: $color-black;
-  }
-
-  ::selection {
-    background: $color-white;
-    color: $color-black;
   }
 }
 
@@ -115,11 +79,6 @@ h3 {
   color: $color-deep-gray;
   letter-spacing: $spacing-default;
   line-height: 1em;
-
-  &.active .label {
-    color: #94F676;
-    font-weight: bold;
-  }
 }
 
 h4 {
@@ -127,20 +86,6 @@ h4 {
   letter-spacing: $spacing-wide;
   font-weight: $font-weight-bold;
   color: $color-important;
-}
-
-time {
-  font-size: $size-smaller;
-  font-weight: $font-weight-regular;
-  letter-spacing: $spacing-wider;
-  color: $color-mute;
-}
-
-h5 {
-  font-size: $size-smaller;
-  font-weight: $font-weight-regular;
-  letter-spacing: $spacing-wider;
-  color: $color-mute;
 }
 
 .reference {
@@ -166,11 +111,6 @@ p {
   strong {
     color: darken($color-darker, 10%);
   }
-}
-
-figcaption {
-  font-size: $size-smaller;
-  color: $color-mute;
 }
 
 .download {
@@ -209,14 +149,14 @@ table {
 
 .page-content {
   a {
-    color: $color-accent;
+    color: $color-interactive;
 
     &[href^='#'], &:not([href]) {
-      color: $color-accent;
+      color: $color-interactive;
     }
 
     &:hover, &:focus {
-      color: darken($color-accent, 20%);
+      color: darken($color-interactive, 20%);
     }
 
     &.nuxt-link-exact-active {
@@ -244,7 +184,7 @@ table {
     }
 
     &:hover {
-      color: $color-accent;
+      color: $color-interactive;
     }
   }
 
@@ -255,7 +195,7 @@ table {
     border-radius: $border-radius;
 
     &.isActive {
-      background-color: $color-accent;
+      background-color: $color-interactive;
       color: $color-white;
     }
   }
@@ -276,8 +216,8 @@ table {
     padding: $spacing / 4 $spacing / 3;
 
     &:hover, &:focus {
-      color: $color-accent;
-      border-color: $color-accent;
+      color: $color-interactive;
+      border-color: $color-interactive;
     }
   }
 
@@ -300,8 +240,8 @@ table {
     color: $color-deep-gray;
 
     &:hover {
-      border-color: getColor(gray, 70);
-      color: $color-black;
+      border-color: $color-interactive;
+      color: $color-interactive;
     }
   }
 }
@@ -309,7 +249,7 @@ table {
 .btn-bold {
   margin: $spacing 0;
   color: $color-white !important;
-  background-color: $color-accent;
+  background-color: $color-interactive;
   padding: $spacing / 2 $spacing;
   font-weight: $font-weight-bold;
   cursor: pointer;
@@ -318,7 +258,7 @@ table {
 
   &:hover {
     color: $color-white;
-    background-color: darken($color-accent, 5%);
+    background-color: darken($color-interactive, 5%);
   }
 }
 
@@ -337,7 +277,7 @@ table {
     // background-color: #fff;
     cursor: pointer;
     border-radius: $border-radius;
-    color: $color-accent;
+    color: $color-interactive;
 
     &:hover, &:focus {
       background-color: #fff;
