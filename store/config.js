@@ -1,11 +1,13 @@
 export const KEY_DIMENSION = 'dimension'
 export const KEY_TYPE = 'type'
 export const KEY_ID = 'id'
+export const KEY_STATUS = 'status'
 
 export const STATUS_IDLE = 'IDLE'
 export const STATUS_LOADING = 'LOADING'
 export const STATUS_LOADING_FAILED = 'LOADING_FAILED'
 export const STATUS_LOADING_SUCCESS = 'LOADING_SUCCESS'
+export const STATUS_EMPTY = 'EMPTY'
 
 export const ITEMS_PER_PAGE = 50
 
@@ -38,6 +40,7 @@ export const KEY_HAS_ACTIVE_FILTERS = 'hasActiveFilters'
 
 export const RESET_CODE = 'reset'
 
+// Details config
 export const DEFAULT_REGION = 'World'
 export const DEFAULT_YEAR = 2030
 
