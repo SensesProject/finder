@@ -1,6 +1,6 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { get, unset, set, has, forEach, map, keys, difference, find, deburr, trim } from 'lodash'
+import { get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
 import { getList, makeDict } from '../../assets/js/facets'
 import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
 import { buildPath, buildHistogram } from '../../assets/js/utils'
@@ -187,18 +187,18 @@ const actions = {
     state[KEY_FILTER][id].init = makeDict(state[KEY_FILTER][id].facet.all())
   },
   addFacet ({ commit, dispatch }, options) {
-    console.log('filter/addFacet', options)
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
-    commit('CREATE_FACET', options)
-    // console.log({ options })
-    const { id } = options
+    const id = uniqueId(options.id)
+    const params = Object.assign(options, { id })
+    console.log('filter/addFacet', params)
+    commit('CREATE_FACET', params)
     dispatch('updateDimension', id)
     dispatch('apply')
   },
   removeFacet ({ commit, dispatch }, key) {
     // This function is called when a facet becomes invisible (is set hidden by the user)
-    // console.log('filter/removeFacet', key)
+    console.log('filter/removeFacet', key)
     commit('REMOVE_FACET', key)
     dispatch('apply')
   },
