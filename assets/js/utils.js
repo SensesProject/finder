@@ -1,4 +1,4 @@
-import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace } from 'lodash'
+import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace, isString } from 'lodash'
 import { format } from 'timeago.js'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
@@ -62,7 +62,7 @@ export const extractFromGoogleTable = function (keys, data) {
           break
       }
       if (key === 'regions') {
-        value = value.split(',')
+        value = isString(value) ? value.split(',') : value
       }
       set(obj, key, value)
     })
