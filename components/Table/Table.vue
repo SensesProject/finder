@@ -19,7 +19,6 @@
             v-for="({ label, key, popoverContent, isNumber }, i) in cells"
             :key="key">
             <div :class="{ isNumber }">
-              <!-- <span v-if="cell.popover" class="label clickable" @click="openPopover(cell)" v-tooltip="{ content: `Show more information about »${cell.label || '—'}« in popover`, placement: 'bottom', delay: { show: 100, hide: 0 } }">{{ cell.label || '—' }}</span> -->
               <span :class="['label', { popoverContent }]" @click="popoverContent ? openContentPopover(popoverContent) : false">{{ label || '—' }}</span>
               <section>
                 <i
@@ -71,18 +70,21 @@
         return map(this.datum, (datum) => {
           // Loop over the visible facets and build row
           const cells = map(filters, (filter) => {
-            const path = filter[KEY_PATH]
+            // Check if the cell has a popover
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
+
+            // The text alignment is different for histograms
             const isNumber = get(filter, 'type') === KEY_FILTER_TYPE_HISTOGRAM || get(filter, 'type') === KEY_FILTER_TYPE_DETAILS
+
             return {
-              label: get(datum, path, '–'),
+              label: get(datum, filter[KEY_PATH], '–'),
               popoverContent,
-              key: get(datum, 'id'),
+              key: get(datum, 'id'), // We use the id to have unique keys for each element
               isNumber
             }
           })
           return {
-            row: datum.run_id,
+            row: datum.run_id, // We use the scenario id as unique row id
             cells
           }
         })
