@@ -6,6 +6,7 @@
       :isFiltered="isFiltered"
       :tooltip="tooltip"
       :unit="unit"
+      @removeFacet="() => removeFacet(id)"
       @reset="reset"
       @changeYear="onChangeYear"
       @changeRegion="onChangeRegion"
