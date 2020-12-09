@@ -79,9 +79,8 @@
           // TODO: add inverted
         })
         const getUrl = window.location
-        const path = map(this.$router.options.routes, 'path').join('')
         const query = encodeURI(link.join('&'))
-        copy(`${getUrl.protocol}//${getUrl.host}/${this.$router.options.base.replaceAll('/', '')}${path}${ query.length ? '?' : ''}${query}`)
+        copy(`${getUrl.protocol}//${getUrl.host}/${this.$router.options.base.replaceAll('/', '')}${$nuxt.$route.fullPath}${ query.length ? '?' : ''}${query}`)
       },
       hardReload (event) {
         event.currentTarget.blur()
