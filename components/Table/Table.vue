@@ -71,13 +71,13 @@
         return map(this.datum, (datum) => {
           // Loop over the visible facets and build row
           const cells = map(filters, (filter) => {
-            const key = filter[KEY_PATH]
+            const path = filter[KEY_PATH]
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
             const isNumber = get(filter, 'type') === KEY_FILTER_TYPE_HISTOGRAM || get(filter, 'type') === KEY_FILTER_TYPE_DETAILS
             return {
-              label: get(datum, key, '–'),
+              label: get(datum, path, '–'),
               popoverContent,
-              key,
+              key: get(datum, 'id'),
               isNumber
             }
           })
