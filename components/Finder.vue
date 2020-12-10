@@ -134,6 +134,7 @@
         this.setUrlAuth(urlAuth)
       }
 
+      // Some facets allow further request with different regions or years
       if (urlDetails) {
         this.setUrlDetails(urlDetails)
       }
