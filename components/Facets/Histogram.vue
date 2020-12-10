@@ -60,7 +60,7 @@
         :x="x"
         :y="y"
         :w="w"
-        :h="h"
+        :h="Math.max(h, 1)"
         :resizable="true"
         :active="true"
         :prevent-deactivation="preventDeactivation"
