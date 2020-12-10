@@ -17,6 +17,7 @@
     "d3-array": "^2.9.0",
     "d3-format": "^2.0.0",
     "d3-scale": "^3.2.3",
+    "export-to-csv": "^0.2.1",
     "js-levenshtein": "^1.1.6",
     "library": "github:SensesProject/library",
     "lodash": "^4.17.20",
