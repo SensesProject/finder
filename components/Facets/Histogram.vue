@@ -48,12 +48,12 @@
             class="tick"
             text-anchor="end"
             dominant-baseline="hanging"
-            ref="labelLow">{{ (brushLow || 0).toFixed() }}</text>
+            ref="labelLow">{{ brushLowLabel }}</text>
           <text
             :x="marginLeft - 10"
             :y="y + h"
             class="tick"
-            text-anchor="end">{{ (brushHigh || 0).toFixed() }}</text>
+            text-anchor="end">{{ brushHighLabel }}</text>
         </g>
       </svg>
       <vue-draggable-resizable
@@ -81,12 +81,12 @@
   import { extent } from 'd3-array'
   import { scaleLinear, scaleBand } from 'd3-scale'
   import { mapState, mapActions } from 'vuex'
-  import { get, map, inRange, values, head, last, fromPairs, throttle, isUndefined } from 'lodash'
+  import { round, get, map, inRange, values, head, last, fromPairs, throttle, isUndefined } from 'lodash'
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
   import VueDraggableResizable from 'vue-draggable-resizable'
   import { RESET_CODE } from '~/store/config'
   import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, KEY_STATUS, STATUS_EMPTY, KEY_FILTER_TYPE_DETAILS } from '~/store/config'
-  import { detailPath } from '~/assets/js/utils'
+  import { detailPath, niceRound } from '~/assets/js/utils'
 
   export default {
     name: 'FacetHistogram',
@@ -181,6 +181,12 @@
           // If no status is present. Should only be the case for regular histograms not details.
           return false
         }
+      },
+      brushLowLabel () {
+        return niceRound(this.brushLow, 3)
+      },
+      brushHighLabel () {
+        return niceRound(this.brushHigh, 3)
       },
       domain () {
         return extent(map(this.items, 'key'))

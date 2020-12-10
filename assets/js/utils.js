@@ -152,3 +152,9 @@ export const buildConfigForRequest = function (rootState) {
 
   return config
 }
+
+export const niceRound = function (value, max) {
+  const v = value || 0
+  const d = Math.max(max - get(v.toString().split('.'), 0, '').length || 0, 0)
+  return round(v, d)
+}
