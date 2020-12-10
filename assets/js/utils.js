@@ -2,7 +2,7 @@ import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, 
 import { format } from 'timeago.js'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
-import { KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
+import { NUMBERIC_FACET_TYPES, KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
 
 export const getLabel = function (value, type, precision) {
   // The label can be different. It’s based on the type of the column
@@ -157,4 +157,8 @@ export const niceRound = function (value, max) {
   const v = value || 0
   const d = Math.max(max - get(v.toString().split('.'), 0, '').length || 0, 0)
   return round(v, d)
+}
+
+export const isNumericFacet = function (type) {
+  return NUMBERIC_FACET_TYPES.includes(type)
 }

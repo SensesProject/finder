@@ -48,6 +48,7 @@
   import Loading from '~/components/Loading.vue'
   import TableNavigation from '~/components/Table/TableNavigation.vue'
   import TableCounter from '~/components/Table/TableCounter.vue'
+  import { isNumericFacet } from '~/assets/js/utils'
 
   export default {
     props: {
@@ -74,7 +75,7 @@
             const popoverContent = get(datum, get(filter, ['popover', 'content'], false), false)
 
             // The text alignment is different for histograms
-            const isNumber = get(filter, 'type') === KEY_FILTER_TYPE_HISTOGRAM || get(filter, 'type') === KEY_FILTER_TYPE_DETAILS
+            const isNumber = isNumericFacet(get(filter, 'type'))
 
             return {
               label: get(datum, filter[KEY_PATH], '–'),
