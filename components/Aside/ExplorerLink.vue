@@ -101,11 +101,6 @@
         isError: false
       }
     },
-    computed: {
-      ...mapState('datum', [
-        'datum'
-      ])
-    },
     methods: {
       openExplorer () {
         this.isClickable = false
@@ -125,7 +120,7 @@
         }, 2000)
       },
       async onCreate () {
-        const runs = compact(map(this.datum, run => {
+        const runs = compact(map(basket.allFiltered(), run => {
           return get(run, 'run_id', false)
         }))
         if (runs.length) {
