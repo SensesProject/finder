@@ -48,18 +48,24 @@ const mutations = {
     // We need the data which stores the list of scenarios in order to add the values from each detail request
     if (state.data.length) {
       // Remove all previous elements.
-      basket.remove(true)
-
+      basket.remove()
+      console.log('We have data')
+      console.log('will loop over details', details.length)
+      // We loop over the details which contains each result separately
       forEach(details, ({ runId, variable, year, region, value }) => {
+        // We search for the entry in the data
         const entry = find(state.data, { run_id: runId })
+        // If we found that item, we add the details to it
         if (entry) {
           entry[detailPath(variable, year, region)] = value
         }
       })
-      // console.log(state.data)
+
+      console.log('LOAD API_DATA', details.length, state.data.length)
 
       // Add new data
       basket.add(state.data)
+      console.log('size', basket.size())
     }
   }
 }
@@ -80,7 +86,6 @@ const actions = {
     const shouldReload = isTooOld(lastLoad)
     // Check current data object
     const currentData = get(state, ['data', 'length'], 0)
-    // console.log({ currentData })
     // If longer ago, empty or forced (on hard reload)
     const willReload = (shouldReload || !currentData) ? true : isForced
     // if (willReload) {
@@ -92,7 +97,6 @@ const actions = {
   load ({ state, commit, dispatch, rootState }, { isForced, isLoop }) {
     // This function is called after authorization
     // This is the actual function to load data
-    // console.log('Action: Load data', { isForced })
     if (isForced) {
       commit('API_DATA', { status: STATUS_LOADING, data: [] })
     }
@@ -105,10 +109,8 @@ const actions = {
       axios.get(url, config)
         .then(response => {
           const { data } = response
-          console.log('Loading successfull')
           // Check were data is coming from
           const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
-          console.log({ datum })
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
           dispatch('filter/updateDimensions', false, { root: true })
 
@@ -140,8 +142,11 @@ const actions = {
     // After the successfull request the details data must be merged with the rest of the data
     console.log('merge with Details')
     commit('API_DATA', { details: data })
+    console.log('mergeWithDetails: filter/updateDimensions')
     dispatch('filter/updateDimensions', false, { root: true })
+    console.log('mergeWithDetails: apply')
     dispatch('apply', false, { root: true })
+    console.log('mergeWithDetails: end')
   }
 }
 

@@ -1,6 +1,6 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
+import { isUndefined, get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
 import { getList, makeDict } from '../../assets/js/facets'
 import { KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
 import { buildPath, buildHistogram } from '../../assets/js/utils'
@@ -57,6 +57,8 @@ const mutations = {
     }
   },
   APPLY_FILTER (state, { key, value, isInverted }) {
+    // console.log({ key, value, isInverted })
+    // console.log(state[KEY_FILTER][key])
     // This mutation actually filters items along the selected dimension
     // The dimension is selected by the key.
     // Value is the search term, the list of options or a value range
@@ -86,6 +88,8 @@ const mutations = {
         return isInverted ? !has : has
       })
     } else if (type === KEY_FILTER_TYPE_HISTOGRAM || type === KEY_FILTER_TYPE_DETAILS) {
+      // console.log(state[KEY_FILTER][key]['year'])
+      // console.log(state[KEY_FILTER][key][KEY_PATH])
       state[KEY_FILTER][key][KEY_DIMENSION].filterRange(value)
     }
     state[KEY_FILTER][key].value = value
@@ -107,6 +111,7 @@ const mutations = {
       const region = get(state, [KEY_FILTER, id, 'region'])
       const key = get(state, [KEY_FILTER, id, 'key'])
 
+      // We also provide the type to build a more complex path if it is for details
       const path = buildPath(type, key, year, region)
 
       state[KEY_FILTER][id]['year'] = year
@@ -124,6 +129,7 @@ const mutations = {
       const year = get(state, [KEY_FILTER, id, 'year'])
       const key = get(state, [KEY_FILTER, id, 'key'])
 
+      // We also provide the type to build a more complex path if it is for details
       const path = buildPath(type, key, year, region)
 
       state[KEY_FILTER][id]['region'] = region
@@ -136,13 +142,18 @@ const mutations = {
     }
   },
   RESET_FACET (state, key) {
+    console.log('RESET_FACET')
+    console.log(key)
     state[KEY_FILTER][key].value = undefined
-    // This mutation resets all applyed filtering on this dimension
+    // console.log(state[KEY_FILTER][key])
+    // This mutation resets all applied filtering on this dimension
+    // console.log(state[KEY_FILTER])
     if (has(state, [KEY_FILTER, key, KEY_DIMENSION])) {
-      state[KEY_FILTER][key][KEY_DIMENSION].filter(null)
+      state[KEY_FILTER][key][KEY_DIMENSION].filterAll()
     } else {
       console.log(`Dimension for ${key} should be there`, state[KEY_FILTER][key])
     }
+    console.log('RESET_FACET finished')
   },
   RESET_FILTERS (state) {
     // Resets all filter
@@ -164,18 +175,20 @@ const actions = {
     dispatch('apply', false, { root: true })
   },
   updateDimensions ({ commit, dispatch, state }) {
-    // console.log('updateDimensions')
+    // console.log('updateDimensions', state[KEY_FILTER])
     forEach(state[KEY_FILTER], (filter, key) => {
+      // console.log({ filter, key })
       dispatch('updateDimension', key)
     })
   },
   updateDimension ({ state }, id) {
-    // console.log('updateDimensions')
+    // console.log('updateDimension')
     // console.log({ id }, state[KEY_FILTER][id], state[KEY_FILTER])
     const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][id]
     if (type === KEY_FILTER_TYPE_HISTOGRAM || type === KEY_FILTER_TYPE_DETAILS) {
       // console.log(dimension, facet)
       // const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
+      // console.log({ path })
       const values = map(dimension.top(Infinity), (d) => get(d, path))
       // console.log({values})
       const { thresholds, bin } = buildHistogram(values)
@@ -185,6 +198,7 @@ const actions = {
       // console.log(state[KEY_FILTER][id].facet.top(Infinity))
     }
     state[KEY_FILTER][id].init = makeDict(state[KEY_FILTER][id].facet.all())
+    // console.log('updateDimension finished')
   },
   addFacet ({ commit, dispatch }, options) {
     // This function is called for each visible facet
@@ -198,35 +212,53 @@ const actions = {
   },
   removeFacet ({ commit, dispatch }, key) {
     // This function is called when a facet becomes invisible (is set hidden by the user)
+    // Or if we are hard resetting the facets and want to delete all
+    // Or if the visibility check removes it
     console.log('filter/removeFacet', key)
     commit('REMOVE_FACET', key)
     dispatch('apply')
   },
+  removeFilters ({ state, dispatch }) {
+    console.log('removing all filters')
+    const facets = keys(state[KEY_FILTER])
+    forEach(facets, (key) => {
+      dispatch('removeFacet', key)
+    })
+    console.log('removing all filters end:')
+    console.log(state[KEY_FILTER])
+  },
   resetFilter ({ commit, dispatch }, key) {
     // This function is called when a filter is resetted by the user
-    // console.log('filter/resetFilter', key)
+    console.log('filter/resetFilter', key)
     commit('RESET_FACET', key)
     dispatch('apply')
   },
-  changeFilterYear ({ commit, dispatch, state }, { id, year }) {
-    // console.log('changeFilterYear', id, year)
-    commit('CHANGE_FACET_YEAR', { id, year })
-    const region = get(state, [KEY_FILTER, id, 'region'])
-    const key = get(state, [KEY_FILTER, id, 'key'])
-    // console.log({ region })
-    dispatch('updateDimension', id)
-    dispatch('apply')
-    dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
+  resetFacets ({ state, commit, dispatch }) {
+    forEach(state[KEY_FILTER], (dimension, id) => {
+      commit('RESET_FACET', id)
+    })
   },
-  changeFilterRegion ({ commit, dispatch, state }, { id, region }) {
-    // console.log('changeFilterRegion', id, region)
-    commit('CHANGE_FACET_REGION', { id, region })
-    const year = get(state, [KEY_FILTER, id, 'year'])
+  changeFilterDetail ({ commit, dispatch, state }, { id, region, year }) {
+    // For now, we need to reset all the filters because Crossfilter cannot remove just all the data
+    // It can only delete the data that is currently filtered. So in order to remove really all the data we need to delete all current filter.
+    // One idea to fix that would be to store the current filter in the init filters just like the url parameters
+    dispatch('filter/resetFacets', null, { root: true })
+
     const key = get(state, [KEY_FILTER, id, 'key'])
-    // console.log({ year })
-    dispatch('updateDimension', id)
-    dispatch('apply')
-    dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
+
+    // Are we changing the region?
+    if (!isUndefined(region)) {
+      commit('CHANGE_FACET_REGION', { id, region })
+      const year = get(state, [KEY_FILTER, id, 'year'])
+      dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
+    }
+
+    // Are we changing the year?
+    if (!isUndefined(year)) {
+      commit('CHANGE_FACET_YEAR', { id, year })
+      const region = get(state, [KEY_FILTER, id, 'region'])
+      dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
+    }
   },
   filter ({ commit, dispatch }, options) {
     // console.log('filter/filter')

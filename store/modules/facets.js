@@ -23,19 +23,24 @@ const state = () => ({
 
 const mutations = {
   FILTER (state, filter) {
-    // console.log('facets/FILTER')
+    console.log('facets/FILTER')
+    console.log({filter})
     let hasActiveFilters = false // This is used for the reset button
     const lists = fromPairs(map(filter, ({ facet, [KEY_DIMENSION]: dimension, id }) => {
       // As we loop over each filter, we check if they have any filters
+      // console.log('facets/FILTER:', id, facet.all())
       if (dimension.hasCurrentFilter()) {
         hasActiveFilters = true
       }
       return [id, facet.all()]
     }))
+    console.log({ lists })
     state[KEY_FACETS_FACETS] = lists
     state[KEY_HAS_ACTIVE_FILTERS] = hasActiveFilters
+    // console.log('finished')
   },
   SET_FACETS (state, facets) {
+    console.log('SET_FACETS', facets.length)
     // Recieves the list of keys from the Google Sheet
     state[KEY_FACETS_ALL] = facets
     // Saves the current date
@@ -56,6 +61,7 @@ const actions = {
     // console.log('facets/Filter')
     // This function calls the filter mutation with the list of filter currently active
     // This function is called every time a filter is applied
+    console.log('filter', get(rootState, ['filter', KEY_FILTER], []))
     commit('FILTER', get(rootState, ['filter', KEY_FILTER], []))
   },
   setUrlFacets ({ commit }, url) {
@@ -71,6 +77,7 @@ const actions = {
     const validFacets = filter(facets, ({ type }) => KEY_FILTER_VALID.includes(type))
 
     const definedFacets = map(validFacets, (facet) => {
+      // console.log({facet})
       // This is only necessary for facet of the type "details"
       if (facet.type !== KEY_FILTER_TYPE_DETAILS) {
         return facet
@@ -82,6 +89,7 @@ const actions = {
         }
       }
     })
+    console.log('setting ', definedFacets.length, 'facets')
     // console.log({ validFacets })
     // Sets the columns of the Finder.
     // The init values for visible facets are stored in the facet list
@@ -93,10 +101,12 @@ const actions = {
   //   commit('SET_VISIBLE_FACETS', value)
   // },
   setInvisibleFacets ({ state, commit, dispatch }) {
-    // console.log('facets/setInvisibleFacets')
+    console.log('facets/setInvisibleFacets')
     // For every visible facet, we initiate a filter
+    console.log(state[KEY_FACETS_ALL].length)
     forEach(state[KEY_FACETS_ALL], (facet) => {
       if (get(facet, 'visible', false) && !get(facet, 'system', true)) {
+        console.log('visible', facet.label)
         dispatch('filter/addFacet', facet, { root: true })
       }
     })
@@ -120,6 +130,8 @@ const actions = {
       // console.log('Facets data is too old or reload is forced. Will reload data')
       axios.get(url)
         .then((response) => {
+          console.log('removing filters')
+          dispatch('filter/removeFilters', false, { root: true })
           // Extract the data from the Google Table structure
           dispatch('setFacets', extractFromGoogleTable(FACET_KEYS, response.data))
           // Set the visible facets
