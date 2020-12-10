@@ -1,9 +1,9 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
 import { groupBy, isUndefined, get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
-import { getList, makeDict } from '../../assets/js/facets'
+import { getList, makeDict } from '~/assets/js/facets'
 import { KEY_ID, KEY_UNIQ_ID, KEY_INIT, KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
-import { buildPath, buildHistogram } from '../../assets/js/utils'
+import { buildPath, buildHistogram, isNumericFacet } from '~/assets/js/utils'
 import { basket } from '../index'
 import levenshtein from 'js-levenshtein';
 
@@ -22,7 +22,8 @@ const mutations = {
     const path = buildPath(type, key, year, region)
     console.log('CREATE_FACET CREATE_FACET CREATE_FACET', { uniqID, id, path, type, key, year, region })
     // It also sets the type of the facet. This is used later for the filtering technique
-    const dimension = basket.dimension((d) => get(d, path, false))
+    const defaultValue = isNumericFacet(type) ? 0 : ''
+    const dimension = basket.dimension((d) => get(d, path, defaultValue) || defaultValue)
     // Facets need different types of lists of options
     const facet = type === KEY_FILTER_TYPE_LIST ? getList(dimension) : dimension.group()
 
@@ -113,6 +114,7 @@ const mutations = {
     // console.log(state[KEY_FILTER] )
   },
   CHANGE_FACET_YEAR (state, { [KEY_UNIQ_ID]: uniqID, year }) {
+    // TODO: Merge with CHANGE_FACET_REGION
     if (has(state, [KEY_FILTER, uniqID])) {
       const type = get(state, [KEY_FILTER, uniqID, KEY_TYPE])
       const region = get(state, [KEY_FILTER, uniqID, 'region'])
@@ -235,8 +237,6 @@ const actions = {
     forEach(facets, (key) => {
       dispatch('removeFacet', key)
     })
-    // console.log('removing all filters end:')
-    // console.log(state[KEY_FILTER])
   },
   resetFilter ({ commit, dispatch }, uniqID) {
     // This function is called when a filter is resetted by the user
@@ -259,14 +259,14 @@ const actions = {
 
     // Are we changing the region?
     if (!isUndefined(region)) {
-      commit('CHANGE_FACET_REGION', { uniqID, region })
+      commit('CHANGE_FACET_REGION', { [KEY_UNIQ_ID]: uniqID, region })
       const year = get(state, [KEY_FILTER, uniqID, 'year'])
       dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
     }
 
     // Are we changing the year?
     if (!isUndefined(year)) {
-      commit('CHANGE_FACET_YEAR', { uniqID, year })
+      commit('CHANGE_FACET_YEAR', { [KEY_UNIQ_ID]: uniqID, year })
       const region = get(state, [KEY_FILTER, uniqID, 'region'])
       dispatch('details/loadDetails', { list: [{ key, year, region }]}, { root: true })
     }
