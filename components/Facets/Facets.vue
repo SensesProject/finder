@@ -44,7 +44,7 @@
       }),
       elements () {
         return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, forcedValue, unit, i, group, year, region, regions, key, [KEY_UNIQ_ID]: uniqID }, id) => {
-          const isDetails = type === 'Details'
+          const component = capitalize(type === 'Details' ? 'Histogram' : type)
           return {
             uniqID,
             title: label,
@@ -52,7 +52,7 @@
             tooltip,
             id,
             i,
-            component: capitalize(isDetails ? 'Histogram' : type),
+            component,
             thresholds,
             init,
             forcedValue,
