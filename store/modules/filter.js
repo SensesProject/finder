@@ -16,12 +16,11 @@ const state = () => ({
 
 const mutations = {
   CREATE_FACET (state, { key, type, tooltip, label, unit, id, popover, i, group, region, year, regions, [KEY_UNIQ_ID]: uniqID }) {
-    // console.log('CREATE_FACET', id)
     // This mutation creates a facet by creating a dimension for this key
-    // console.log({ key, type, label })
+    // The path to the data depends on the type of the facet
     const path = buildPath(type, key, year, region)
-    console.log('CREATE_FACET CREATE_FACET CREATE_FACET', { uniqID, id, path, type, key, year, region })
-    // It also sets the type of the facet. This is used later for the filtering technique
+
+    // We need a proper default value, because of https://github.com/crossfilter/crossfilter/wiki/Crossfilter-Gotchas#natural-ordering-of-dimension-and-group-values
     const defaultValue = isNumericFacet(type) ? 0 : ''
     const dimension = basket.dimension((d) => get(d, path, defaultValue) || defaultValue)
     // Facets need different types of lists of options
@@ -32,9 +31,6 @@ const mutations = {
     // This will be empty if the data still needs to be loaded. It will be filled out later by `updateDimension`
     // If the user adds a facet by selecting it from the dropdown, the `makeDict` function already works as expected
     const init = makeDict(facet.all())
-    console.log('Facet all:', facet.all())
-
-    // console.log({ id })
 
     state[KEY_FILTER] = {
       ...state[KEY_FILTER],
@@ -195,21 +191,11 @@ const actions = {
     // console.log({ uniqID }, state[KEY_FILTER][uniqID], state[KEY_FILTER])
     const { type, facet, dimension, [KEY_PATH]: path } = state[KEY_FILTER][uniqID]
     if (type === KEY_FILTER_TYPE_HISTOGRAM || type === KEY_FILTER_TYPE_DETAILS) {
-      // console.log(dimension, facet)
-      // const path = type === 'Details' ? `${key}-${2030}-${'World'}` : key
-      // console.log({ path })
       const values = map(dimension.top(Infinity), (d) => get(d, path))
-      // console.log({values})
       const { thresholds, bin } = buildHistogram(values)
-      // console.log(1, '->', bin(1), 100, '->', bin(100), 200, '->', bin(200), 1000, '->', bin(1000))
       state[KEY_FILTER][uniqID].facet = dimension.group((d) => bin(d))// .reduce(...customReducer())
       state[KEY_FILTER][uniqID].thresholds = thresholds
-      // console.log(state[KEY_FILTER][id].facet.top(Infinity))
     }
-    console.log({ uniqID }, basket.all().length)
-    console.log('makeDict:', makeDict(state[KEY_FILTER][uniqID].facet.all()))
-    console.log('all', state[KEY_FILTER][uniqID].facet.all())
-    console.log('groupBy', groupBy(basket.all(), item => get(item, 'metadata.baseline')))
     state[KEY_FILTER][uniqID][KEY_INIT] = makeDict(state[KEY_FILTER][uniqID].facet.all())
     // console.log('updateDimension finished')
   },
@@ -313,7 +299,7 @@ const actions = {
         dispatch('removeFacet', uniqID)
       } else {
         // This should not happen. Could not think of a reason why it would.
-        console.log(`Could not remove facet ${remove}. It was note found.`)
+        console.log(`Could not remove facet ${remove}. It was not found.`)
       }
     })
     dispatch('facets/filter', null, { root: true })
@@ -328,27 +314,32 @@ const actions = {
     // This function is called by the facet module after the facet information is loaded
     // This function loops over the filter that were passed by the url (init filter) and applies them
     // console.log('filter/initFilter')
-    forEach(get(state, KEY_FILTER_INIT, []), (value, key) => {
+    // console.log('initFilter', get(state, KEY_FILTER_INIT, []))
+    forEach(get(state, KEY_FILTER_INIT, []), (value, id) => {
       // TODO: Create filter if not present. Make visible if invisible
-      let filter = get(state[KEY_FILTER], key)
+      // let filter = get(state[KEY_FILTER], id)
+      let filter = find(state[KEY_FILTER], { [KEY_ID]: id })
       if (!filter) {
-        // console.log(`Filter ${key} not found. Will create it.`)
-        const facet = find(get(rootState, ['facets', KEY_FACETS_ALL]), { id: key })
+        // console.log(`Filter ${id} not found`)
+        // console.log(`Filter ${id} not found. Will create it.`)
+        const facet = find(get(rootState, ['facets', KEY_FACETS_ALL]), { [KEY_ID]: id })
         if (facet) {
           dispatch('filter/addFacet', facet, { root: true })
         } else {
-          console.log(`Could not create filter ${key}. Facet not found.`)
+          console.log(`Could not create filter ${id}. Facet not found.`)
         }
       }
-      filter = get(state[KEY_FILTER], key)
+      // Filter should exist now since we have created it above
+      filter = find(state[KEY_FILTER], { [KEY_ID]: id })
       if (filter) {
+        // console.log(`Found filter ${id}`)
         const values = value.split('|')
         filter.forcedValue = {
           value: values
         }
-        // console.log(`Filter ${key} found and applied with values ${values}.`)
+        // console.log(`Filter ${id} found and applied with values ${values}.`)
       } else {
-        console.log(`Filter ${key} not found.`)
+        console.log(`Filter ${id} not found.`)
       }
     })
     // Reset state.initFilter to null
