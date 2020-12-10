@@ -4,7 +4,6 @@ import { KEY_ID, ITEMS_PER_PAGE } from '../config'
 import { get } from 'lodash'
 
 let datum
-let all
 
 // This module organises the filtered data in the table
 const state = () => {
@@ -22,8 +21,6 @@ const mutations = {
     // This function must be called in the beginning
     // It initiates the basket by creating new dimension
     datum = basket.dimension(d => get(d, KEY_ID))
-    // This defines a group of results that hold all items
-    all = basket.groupAll()
   },
   FILTER (state) {
     // console.log('datum/FILTER')
@@ -38,7 +35,7 @@ const mutations = {
     // This must be commited everytime a filter is applied.
     // This is called by the apply function the root store
     // This sets the new counting results
-    const remaining = all.value()
+    const remaining = basket.allFiltered().length
     state.count = [remaining, basket.size()]
     state.numberOfPages = Math.ceil((remaining || 0) / ITEMS_PER_PAGE)
     // console.log('count:', total, state.count, state.numberOfPages)
