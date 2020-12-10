@@ -17,7 +17,7 @@ const mutations = {
   },
   API_DETAILS (state, { data, body, message }) {
     const { region, variable, year } = extractDetailsFromBody(body)
-    console.log('API_DETAILS', message)
+    // console.log('API_DETAILS', message)
 
     if (message === STATUS_LOADING_FAILED || message === STATUS_LOADING) {
       state.data = assign(
@@ -30,16 +30,14 @@ const mutations = {
           }
         }
       )
-    } else {
+    } else { // If the message is sucess
       // This function is called, when we get new data
       if (!isUndefined(data) && data.length) {
         // Check if data is being passed and has length
         // This is false if no data is available
 
-        console.log(`Got data with ${data.length} elements`)
+        // console.log(`Got data with ${data.length} elements`)
         // First, we extract the information from the request to correctly place it in the state
-
-        // console.log({region, variable, year})
 
         if (region && variable && year) {
           detailPath(variable, year, region)
@@ -57,17 +55,8 @@ const mutations = {
               }
             }
           )
-
-          // state.data.push({
-          //   [KEY_DATE]: new Date(),
-          //   data,
-          //   region,
-          //   variable,
-          //   year,
-          //   [KEY_STATUS]: STATUS_LOADING_SUCCESS
-          // })
         }
-      } else {
+      } else { // If no new data was coming in
         state.data = assign(
           {},
           state.data,
@@ -78,10 +67,6 @@ const mutations = {
             }
           }
         )
-        // state.data.push({
-        //   [KEY_DATE]: new Date(),
-        //   [KEY_STATUS]: STATUS_LOADING_FAILED
-        // })
       }
     }
   },
@@ -105,19 +90,19 @@ const actions = {
   },
   // This starts the loading process. It is triggered by the localStorage or on hard reload
   // This only checks how old the current data from the local storage is
-  loadDetails ({ state, dispatch, rootState }, payload) {
+  loadDetails ({ state, dispatch, rootState, commit }, payload) {
     const list = get(payload, 'list', [])
     const isForced = get(payload, 'isForced', false)
     // console.log('load Details', list, isForced)
     const requests = isForced ? list : filter(list, ({ key, year, region }) => {
-      console.log({ key }, detailPath(key, year, region))
+      // console.log({ key }, detailPath(key, year, region))
       const cache = get(state.data, detailPath(key, year, region))
       // const cache = find(state.data, { variable: key, year: year, region: region })
       const lastLoad = get(cache, KEY_DATE, null)
       const hasFailed = get(cache, KEY_STATUS) === STATUS_LOADING_FAILED || get(cache, KEY_STATUS) === STATUS_EMPTY
       if (!cache) {
         console.log('Is not in cache')
-        console.log(key, year, region, hasFailed)
+        // console.log(key, year, region, hasFailed)
       } else if (isTooOld(lastLoad)) {
         console.log('Is too old')
       }
@@ -125,14 +110,16 @@ const actions = {
     })
     // console.log('result:', requests)
     if (requests.length) {
-      console.log(`Sending out ${requests.length} requests`)
+      // console.log(`Sending out ${requests.length} requests`)
       dispatch('auth/auth', { follower: { name: 'details/load', params: { requests } }, isForced: false }, { root: true })
     } else {
-      console.log('No request necessary')
+      // console.log('No request necessary')
+      // commit('API_DETAILS', { message: STATUS_LOADING_SUCCESS })
+      dispatch('filter/updateDimensions', false, { root: true })
     }
   },
   load ({ state, commit, dispatch, rootState }, { requests }) {
-    console.log('loaddetails', requests)
+    // console.log('loaddetails', requests)
 
     const runs = getRunIds(basket)
 
@@ -141,18 +128,19 @@ const actions = {
 
     forEach(requests, ({ key, year, region }) => {
       const body = buildBodyFromDetails(runs, year, region, key)
-      console.log(year, key, region)
+      // console.log(year, key, region)
       commit('API_DETAILS', { body, message: STATUS_LOADING })
       axios.post(url, body, config)
         .then(response => {
           const { data } = response
-          console.log('Loading successfull')
-          commit('API_DETAILS', { data, body })
+          // console.log('Loading successfull')
+          commit('API_DETAILS', { data, body, message: STATUS_LOADING_SUCCESS })
+          // console.log('details -> mergeWithDetails')
           dispatch('load/mergeWithDetails', { data }, { root: true })
         })
         .catch(error => {
           commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
-          console.log('Loading failed', { error })
+          console.log('Loading failed', { error, body, config })
         })
     })
   }
