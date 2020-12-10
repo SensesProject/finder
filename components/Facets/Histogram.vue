@@ -70,6 +70,7 @@
         :min-width="width - marginLeft"
         :handles="['tm','bm']"
         axis="y"
+        :draggable="!isFullsize"
         v-if="!message"
       />
     </div>
@@ -137,7 +138,6 @@
       const marginLeft = 50
       const width = 220
       return {
-        // status: STATUS_LOADING,
         width,
         height: 250,
         marginLeft,
@@ -227,22 +227,19 @@
         return fromPairs(map(this.items, ({ key, value }) => {
           return [key, [this.scaleX(value), inRange(key, brushLow, brushHigh)]]
         }))
+      },
+      isFullsize () {
+        const { brushLow, brushHigh, range } = this
+        const [ low, high ] = range
+        return brushLow === low && brushHigh === high
       }
     },
     methods: {
-      ...mapActions([
-        'resetFilter',
-        'setFilter',
-        'setHoverKey',
-        'resetHoverKey',
-        'invertFilter'
-      ]),
       ...mapActions('filter', [
         'filter',
         'removeFacet',
         'resetFilter',
-        'changeFilterYear',
-        'changeFilterRegion'
+        'changeFilterDetail'
       ]),
       reset () {
         const { height, range } = this
@@ -254,15 +251,14 @@
         this.apply()
       },
       apply () {
-        const { brushLow, brushHigh, id, range } = this
-        const [ low, high ] = range
-        // console.log('APPLY', brushLow, low, brushHigh, high, id)
-        if (brushLow === low && brushHigh === high) {
+        if (this.isFullsize) {
           this.isFiltered = false
+          // console.log('reset 1')
           this.resetFilter(this.id)
         } else {
           this.isFiltered = true
-          this.filter({ key: id, value: [brushLow, brushHigh] })
+          // console.log('reset 2')
+          this.filter({ key: this.id, value: [this.brushLow, this.brushHigh] })
         }
       },
       throttledApply: throttle(function () {
@@ -276,10 +272,15 @@
         this.throttledApply()
       },
       onDrag (x, y) {
+        const [ low, high ] = this.range
         this.y = y
-        this.brushLow = this.scaleBrush.invert(y)
-        this.brushHigh = this.scaleBrush.invert(y + this.h)
-        this.throttledApply()
+        const brushLow = this.scaleBrush.invert(y)
+        const brushHigh = this.scaleBrush.invert(y + this.h)
+        this.brushLow = brushLow
+        this.brushHigh = brushHigh
+        if (brushLow !== low && brushHigh !== high) {
+          this.throttledApply()
+        }
       },
       forceSelected (value) {
         if (value && value.length) {
@@ -294,11 +295,13 @@
         }
       },
       onChangeYear (value) {
-        this.changeFilterYear({ id: this.id, year: value })
+        this.changeFilterDetail({ id: this.id, year: value })
+        this.reset()
         // this.status = STATUS_LOADING
       },
       onChangeRegion (value) {
-        this.changeFilterRegion({ id: this.id, region: value })
+        this.changeFilterDetail({ id: this.id, region: value })
+        this.reset()
         // this.status = STATUS_LOADING
       },
       calcHeight () {
@@ -331,19 +334,12 @@
           this.forceSelected(value)
         }
       },
-      year () {
-        this.reset()
+      range (oldV, newV) {
+        // console.log('range updated', oldV, newV)
+        if (oldV !== newV) {
+          this.reset()
+        }
       }
-      // items (values) {
-      //   console.log(values)
-      //   if (values.length) {
-      //     this.status = STATUS_IDLE
-      //     console.log('alles gut')
-      //   } else {
-      //     this.status = STATUS_LOADING_FAILED
-      //     console.log('Empty')
-      //   }
-      // }
     }
   }
 </script>
@@ -356,10 +352,13 @@
   box-sizing: border-box;
   border-radius: 2px;
   border: 0;
-  cursor: ns-resize;
+
+  &.draggable {
+    cursor: ns-resize;
+  }
 }
 
-$handle-height: 3px;
+$handle-height: 4px;
 
 .handle {
   box-sizing: border-box;
