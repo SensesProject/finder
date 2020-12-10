@@ -4,9 +4,10 @@
       <h4>{{ key }}</h4>
     </section>
     <component
-      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit, year, region, regions, key, type }) in elements"
+      v-for="({ title, id, component, items, tooltip, thresholds, init, forcedValue, unit, year, region, regions, key, type, uniqID }) in elements"
       v-bind:is="component"
-      :key="id"
+      :key="uniqID"
+      :uniqID="uniqID"
       :unit="unit"
       :tooltip="tooltip"
       :id="id"
@@ -25,7 +26,7 @@
 
 <script>
   import { mapState } from 'vuex'
-  import { KEY_FACETS_FACETS, KEY_FILTER } from '~/store/config'
+  import { KEY_UNIQ_ID, KEY_FACETS_FACETS, KEY_FILTER } from '~/store/config'
   import { map, capitalize, sortBy, groupBy, fromPairs } from 'lodash'
   // Facet types
   import List from '~/components/Facets/List.vue'
@@ -42,10 +43,10 @@
         filters: KEY_FILTER
       }),
       elements () {
-        // console.log(this.filters)
-        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, forcedValue, unit, i, group, year, region, regions, key }, id) => {
+        return sortBy(map(this.filters, ({ init, type, tooltip, label, thresholds, forcedValue, unit, i, group, year, region, regions, key, [KEY_UNIQ_ID]: uniqID }, id) => {
           const isDetails = type === 'Details'
           return {
+            uniqID,
             title: label,
             type,
             tooltip,

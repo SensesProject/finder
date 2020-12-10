@@ -85,12 +85,16 @@
   import FacetHeader from '~/components/Facets/FacetHeader.vue'
   import VueDraggableResizable from 'vue-draggable-resizable'
   import { RESET_CODE } from '~/store/config'
-  import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, KEY_STATUS, STATUS_EMPTY, KEY_FILTER_TYPE_DETAILS } from '~/store/config'
+  import { KEY_UNIQ_ID, KEY_FILTER, STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, KEY_STATUS, STATUS_EMPTY, KEY_FILTER_TYPE_DETAILS } from '~/store/config'
   import { detailPath, niceRound } from '~/assets/js/utils'
 
   export default {
     name: 'FacetHistogram',
     props: {
+      uniqID: {
+        type: String,
+        required: true
+      },
       items: {
         type: Array,
         default: () => []
@@ -98,9 +102,6 @@
       init: {
         type: Object,
         default: () => {}
-      },
-      title: {
-        type: String
       },
       unit: {
         type: String
@@ -159,6 +160,10 @@
     computed: {
       ...mapState('details', {
         details: 'data'
+      }),
+      ...mapState('filter', {
+        // TODO: Use this instead of props
+        title (state) { return get(state, [KEY_FILTER, this.uniqID, 'label']) }
       }),
       status () {
         if (this.type === KEY_FILTER_TYPE_DETAILS) {
@@ -301,12 +306,12 @@
         }
       },
       onChangeYear (value) {
-        this.changeFilterDetail({ id: this.id, year: value })
+        this.changeFilterDetail({ [KEY_UNIQ_ID]: this.uniqID, year: value })
         this.reset()
         // this.status = STATUS_LOADING
       },
       onChangeRegion (value) {
-        this.changeFilterDetail({ id: this.id, region: value })
+        this.changeFilterDetail({ [KEY_UNIQ_ID]: this.uniqID, region: value })
         this.reset()
         // this.status = STATUS_LOADING
       },

@@ -1,19 +1,19 @@
 <template>
   <div class="groups" :style="{ 'grid-template-columns': `repeat(${columns}, 1fr)`}">
-    <div v-for="(options, key) in elements" class="options">
+    <div v-for="(facets, key) in defaultFacets" class="options">
       <header>
         <strong>{{ key }}</strong>
       </header>
       <ul>
-        <li v-for="option in options" class="option">
+        <li v-for="({ id, uniqID, label }) in facets" class="option">
           <input
             v-model="tempVisibleFacets"
             type="checkbox"
-            v-bind:value="option.id"
-            :id="option.label" />
+            v-bind:value="id"
+            :id="uniqID" />
           <label
-            :for="option.label"
-            v-html="option.label" />
+            :for="uniqID"
+            v-html="label" />
         </li>
       </ul>
     </div>
@@ -33,7 +33,7 @@
 <script>
   import { mapState, mapActions } from 'vuex'
   import { get, uniq, map, compact, groupBy, size, keys, filter } from 'lodash'
-  import { KEY_FACETS_ALL, KEY_FACETS_VISIBLE, KEY_FILTER, KEY_FILTER_TYPE_DETAILS, SELECTION_YEARS } from '~/store/config'
+  import { KEY_ID, KEY_TYPE, KEY_UNIQ_ID, KEY_FACETS_ALL, KEY_FACETS_VISIBLE, KEY_FILTER, KEY_FILTER_TYPE_DETAILS, SELECTION_YEARS } from '~/store/config'
   import SelectDetails from '~/components/Aside/SelectDetails.vue'
 
   export default {
@@ -47,23 +47,45 @@
       ...mapState('filter', {
         visibleFacets: KEY_FILTER
       }),
+      visibleFacetsKeys () {
+        // We use the non-unique ids here. Have a look at `checkVisibleFacetList` function in `modules/filter` for more information
+        return map(this.visibleFacets, KEY_ID)
+      },
       tempVisibleFacets: {
         get () {
-          return keys(this.visibleFacets)
+          return this.visibleFacetsKeys
         },
         set (val) {
+          // This takes the list of soon to be visible facets/filter ids
           this.checkVisibleFacetList(val)
         }
       },
-      elements () {
-        return groupBy(filter(this.facets, facet => !get(facet, 'system', true) && get(facet, 'type') !== KEY_FILTER_TYPE_DETAILS), 'group')
+      toggleableFacets () {
+        return filter(this.facets, facet => !get(facet, 'system', true))
+      },
+      defaultFacets () {
+        const nonDetailsFacets = filter(this.toggleableFacets, facet => get(facet, KEY_TYPE) !== KEY_FILTER_TYPE_DETAILS)
+        const options = map(nonDetailsFacets, ({ group, label, [KEY_UNIQ_ID]: uniqID, [KEY_ID]: id }) => {
+          // We need both the unique id and the non unique id
+          // The unique id is just used for safety as the dom id
+          // Since we are using non-details facets here, we don’t use the id
+          // That’s because the filters (in comparison to the facets) don’t have a unique id
+          // The unique id is only created once the filter has a facet instance
+          // So if we add a facet from the popover we need the id of the facet to find it in the list
+          return {
+            id,
+            uniqID,
+            label,
+            group
+          }
+        })
+        return groupBy(options, 'group')
       },
       details () {
-        // console.log(this.facets)
-        return groupBy(filter(this.facets, facet => !get(facet, 'system', true) && get(facet, 'type') === KEY_FILTER_TYPE_DETAILS), 'group')
+        return groupBy(filter(this.toggleableFacets, facet => get(facet, KEY_TYPE) === KEY_FILTER_TYPE_DETAILS), 'group')
       },
       columns () {
-        return size(this.elements) + size(this.details)
+        return size(this.defaultFacets) + size(this.details)
       }
     },
     methods: {

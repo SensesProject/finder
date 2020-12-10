@@ -1,7 +1,9 @@
 export const KEY_DIMENSION = 'dimension'
 export const KEY_TYPE = 'type'
 export const KEY_ID = 'id'
+export const KEY_UNIQ_ID = 'uniqueID'
 export const KEY_STATUS = 'status'
+export const KEY_INIT = 'init'
 
 export const STATUS_IDLE = 'IDLE'
 export const STATUS_LOADING = 'LOADING'
