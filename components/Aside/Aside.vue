@@ -28,7 +28,7 @@
   import Loading from '~/components/Loading.vue'
   import ExplorerLink from '~/components/Aside/ExplorerLink.vue'
   import copy from 'copy-to-clipboard'
-  import { KEY_FILTER, KEY_HAS_ACTIVE_FILTERS } from '~/store/config'
+  import { KEY_ID, KEY_FILTER, KEY_HAS_ACTIVE_FILTERS } from '~/store/config'
 
   export default {
     props: {
@@ -71,7 +71,7 @@
       ]),
       copyLink () {
         let link = []
-        forEach(this.filter, ({ value, id }) => {
+        forEach(this.filter, ({ value, [KEY_ID]: id }) => {
           if (value) {
             const values = isArray(value) ? value.join('|') : value
             link.push(`${id}=${values}`)
