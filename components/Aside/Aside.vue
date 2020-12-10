@@ -16,6 +16,7 @@
       <SelectFacets slot="popover"/>
     </v-popover>
     <button :class="['btn', 'btn--light', 'reset', { hasActiveFilters }]" :disabled="!hasActiveFilters" @click="resetFilters"><i class="glyph-finder-cancel-circled" /> Reset all filter</button>
+    <!-- <CSVLink /> -->
     <ExplorerLink v-if="showExplorer" />
   </aside>
 </template>
@@ -27,6 +28,7 @@
   import SelectFacets from '~/components/Aside/SelectFacets.vue'
   import Loading from '~/components/Loading.vue'
   import ExplorerLink from '~/components/Aside/ExplorerLink.vue'
+  import CSVLink from '~/components/Aside/CSVLink.vue'
   import copy from 'copy-to-clipboard'
   import { KEY_ID, KEY_FILTER, KEY_HAS_ACTIVE_FILTERS } from '~/store/config'
 
@@ -82,6 +84,9 @@
         const query = encodeURI(link.join('&'))
         copy(`${getUrl.protocol}//${getUrl.host}/${this.$router.options.base.replaceAll('/', '')}${$nuxt.$route.fullPath}${ query.length ? '?' : ''}${query}`)
       },
+      exportToCSV () {
+
+      },
       hardReload (event) {
         event.currentTarget.blur()
         this.loadFacets(true)
@@ -92,7 +97,8 @@
       Options,
       SelectFacets,
       Loading,
-      ExplorerLink
+      ExplorerLink,
+      CSVLink
     }
   }
 </script>
