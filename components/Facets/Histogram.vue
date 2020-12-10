@@ -171,14 +171,11 @@
         } else {
           return false
         }
-        // console.log(this.details)
-        // console.log(get(this.details, [detailPath(this.path, this.year, this.region), KEY_STATUS]), detailPath(this.path, this.year, this.region))
       },
       message () {
-        // console.log('id:', this.id, detailPath(this.id, this.year, this.region))
         if (this.status === STATUS_LOADING) {
           return 'Loading…'
-        } else if (this.status === STATUS_EMPTY) {
+        } else if (this.items.length === 0 || this.status === STATUS_EMPTY) {
           return 'No data available'
         } else if (this.status === STATUS_LOADING_FAILED) {
           return 'An error occurred'
@@ -197,7 +194,6 @@
         return extent(map(this.items, 'key'))
       },
       range () {
-        // console.log([head(this.thresholds), last(this.thresholds)])
         return [head(this.thresholds), last(this.thresholds)]
       },
       maxValue () {
