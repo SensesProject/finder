@@ -5,7 +5,6 @@ import VueDraggableResizable from 'vue-draggable-resizable'
 import crossfilter from 'crossfilter2'
 import auth from './modules/auth'
 import load from './modules/load'
-import data from './modules/data'
 import facets from './modules/facets'
 import filter from './modules/filter'
 import hover from './modules/hover'
@@ -28,7 +27,6 @@ export default () => new Vuex.Store({
   modules: {
     auth,
     load,
-    data,
     facets,
     filter,
     hover,
