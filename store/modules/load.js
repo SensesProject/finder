@@ -50,8 +50,6 @@ const mutations = {
       // Careful! This is only removing the filtered items not all!
       // This is why we remove all filters before loading a new detail.
       basket.remove()
-      // console.log('We have data')
-      // console.log('will loop over details', details.length)
       // We loop over the details which contains each result separately
       forEach(details, ({ runId, variable, year, region, value }) => {
         // We search for the entry in the data
