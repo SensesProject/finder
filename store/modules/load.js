@@ -118,7 +118,7 @@ const actions = {
           // Apply filtering
           dispatch('apply', false, { root: true })
           // We need to load the details after appling filters since we need it the run ids from the data
-          dispatch('details/initDetails', false, { root: true })
+          dispatch('details/initDetails', { isForced }, { root: true })
         })
         .catch(error => {
           // console.log('Loading failed', { error, isLoop })
