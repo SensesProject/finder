@@ -7,6 +7,7 @@
       :showExplorer="showExplorer">
       <slot name="intro" />
     </Header>
+    <Facets />
     <Table :label="label" />
     <Popover><slot name="reference" /></Popover>
   </div>
@@ -21,6 +22,7 @@
   import Header from '~/components/Header.vue'
   import Popover from '~/components/Popover.vue'
   import Table from '~/components/Table/Table.vue'
+  import Facets from '~/components/Facets/Facets.vue'
 
   export default {
     head () {
@@ -99,7 +101,8 @@
       Header,
       Popover,
       Table,
-      SensesMenu
+      SensesMenu,
+      Facets
     },
     created: function () {
       const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth, urlDetails } = this

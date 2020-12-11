@@ -5,19 +5,16 @@
       <slot />
       <Aside :showExplorer="showExplorer" />
     </header>
-    <Facets />
   </nav>
 </template>
 
 <script>
   import Aside from '~/components/Aside/Aside.vue'
-  import Facets from '~/components/Facets/Facets.vue'
 
   export default {
     props: ['title', 'subtitle', 'showExplorer'],
     components: {
-      Aside,
-      Facets
+      Aside
     }
   }
 </script>
@@ -26,8 +23,6 @@
   @import "~@/assets/style/global";
 
   .navigation {
-    background-color: $color-bg-header;
-    border-bottom: 1px solid $color-border-header;
     padding: $spacing / 2;
     display: grid;
     grid-template-rows: auto auto;
@@ -54,7 +49,7 @@
       }
 
       @include media-query(#{$facet-width * 6}) {
-        grid-template-columns: calc(#{$facet-width * 1.5}) calc(#{$facet-width * 2.5} + #{$spacing * 2}) 1fr;
+        grid-template-columns: $facet-width auto auto;
 
         .page-description {
           grid-row-start: auto;
@@ -63,7 +58,7 @@
       }
 
       @include media-query(#{$facet-width * 7}) {
-        grid-template-columns: calc(#{$facet-width * 1.5}) calc(#{$facet-width * 3.5} + #{$spacing * 2}) 1fr;
+        grid-template-columns: $facet-width auto auto;
       }
     }
 

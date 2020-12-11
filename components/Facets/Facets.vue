@@ -86,6 +86,10 @@
     grid-column-gap: $facet-gap;
     justify-items: stretch;
     grid-template-columns: repeat(auto-fill, #{$facet-width});
+    padding: 1rem;
+    background-color: $color-bg-header;
+    border-bottom: 1px solid $color-border-header;
+    border-top: 1px solid $color-border-header;
 
     .facet, .options {
       width: $facet-width;

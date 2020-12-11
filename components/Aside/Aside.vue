@@ -58,9 +58,7 @@
     },
     methods: {
       ...mapActions([
-        'openInfoBox',
-        'loadData',
-        'loadFacets'
+        'openInfoBox'
       ]),
       ...mapActions('filter', [
         'resetFilters'
