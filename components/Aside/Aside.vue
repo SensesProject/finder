@@ -76,7 +76,6 @@
             const values = isArray(value) ? value.join('|') : value
             link.push(`${id}=${values}`)
           }
-          // TODO: add inverted
         })
         const getUrl = window.location
         const query = encodeURI(link.join('&'))

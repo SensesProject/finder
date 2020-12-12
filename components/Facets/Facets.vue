@@ -31,7 +31,6 @@
   // Facet types
   import List from '~/components/Facets/List.vue'
   import Histogram from '~/components/Facets/Histogram.vue'
-  import Scatterplot from '~/components/Facets/Scatterplot.vue'
   import Search from '~/components/Facets/Search.vue'
 
   export default {
@@ -72,8 +71,7 @@
     components: {
       List,
       Search,
-      Histogram,
-      Scatterplot
+      Histogram
     }
   }
 </script>
