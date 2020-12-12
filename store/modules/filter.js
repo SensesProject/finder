@@ -1,6 +1,6 @@
 // This module organises the applied filters
 // Filter are the dimensions to filter by. Facets are the displayed lists of options
-import { groupBy, isUndefined, get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
+import { fromPairs, compact, groupBy, isUndefined, get, unset, set, has, forEach, map, keys, difference, find, deburr, trim, uniqueId } from 'lodash'
 import { getList, makeDict } from '~/assets/js/facets'
 import { KEY_ID, KEY_UNIQ_ID, KEY_INIT, KEY_FACETS_ALL, RESET_CODE, KEY_FILTER_TYPE_HISTOGRAM, KEY_TOOLTIP, KEY_LABEL, KEY_PATH, KEY_FILTER_TYPE_LIST, KEY_FILTER_TYPE_SEARCH, KEY_DIMENSION, KEY_TYPE, KEY_FILTER, KEY_FILTER_INIT, KEY_FILTER_TYPE_DETAILS } from '../config'
 import { buildPath, buildHistogram, isNumericFacet } from '~/assets/js/utils'
@@ -98,6 +98,8 @@ const mutations = {
     }
     state[KEY_FILTER][key].value = value
     state[KEY_FILTER][key].isInverted = isInverted
+    // This could have come from the forced value. We need to reset it.
+    state[KEY_FILTER][key].forcedValue = undefined
   },
   REMOVE_FACET (state, key) {
     // console.log('REMOVE_FACET', {key})
@@ -230,17 +232,12 @@ const actions = {
     commit('RESET_FACET', uniqID)
     dispatch('apply')
   },
-  resetFacets ({ state, commit, dispatch }) {
-    forEach(state[KEY_FILTER], (dimension, uniqID) => {
-      commit('RESET_FACET', uniqID)
-    })
-  },
+  // resetFacets ({ state, commit, dispatch }) {
+  //   forEach(state[KEY_FILTER], (dimension, uniqID) => {
+  //     commit('RESET_FACET', uniqID)
+  //   })
+  // },
   changeFilterDetail ({ commit, dispatch, state }, { [KEY_UNIQ_ID]: uniqID, region, year }) {
-    // For now, we need to reset all the filters because Crossfilter cannot remove just all the data
-    // It can only delete the data that is currently filtered. So in order to remove really all the data we need to delete all current filter.
-    // One idea to fix that would be to store the current filter in the init filters just like the url parameters
-    dispatch('filter/resetFacets', null, { root: true })
-
     const key = get(state, [KEY_FILTER, uniqID, 'key'])
 
     // Are we changing the region?
@@ -307,15 +304,38 @@ const actions = {
   setInitFilter ({ commit }, initFilter) {
     // This function is called by the Finder component when the application starts
     // It just saves the filters passed by the url to the state
-    // console.log('filter/setInitFilter', initFilter)
-    commit('SET_INIT_FILTER', initFilter)
+    const filters = fromPairs(compact(map(initFilter, (value, id) => {
+      const values = value.split('|')
+      if (values.length) {
+        return [id, {
+            value: values
+          }]
+      } else {
+        return false
+      }
+    })))
+    commit('SET_INIT_FILTER', filters)
+  },
+  setCurrentAsInitFilter ({ state, commit }) {
+    const filters = fromPairs(compact(map(state[KEY_FILTER], ({ value, [KEY_ID]: id, isInverted }) => {
+      if (value) {
+        return [id, {
+          value,
+          isInverted
+        }]
+      } else {
+        return false
+      }
+    })))
+    console.log({ filters })
+    commit('SET_INIT_FILTER', filters)
   },
   initFilter ({ dispatch, commit, state, rootState }) {
     // This function is called by the facet module after the facet information is loaded
     // This function loops over the filter that were passed by the url (init filter) and applies them
     // console.log('filter/initFilter')
     // console.log('initFilter', get(state, KEY_FILTER_INIT, []))
-    forEach(get(state, KEY_FILTER_INIT, []), (value, id) => {
+    forEach(get(state, KEY_FILTER_INIT, []), ({ value, isInverted }, id) => {
       // TODO: Create filter if not present. Make visible if invisible
       // let filter = get(state[KEY_FILTER], id)
       let filter = find(state[KEY_FILTER], { [KEY_ID]: id })
@@ -332,11 +352,11 @@ const actions = {
       // Filter should exist now since we have created it above
       filter = find(state[KEY_FILTER], { [KEY_ID]: id })
       if (filter) {
-        // console.log(`Found filter ${id}`)
-        const values = value.split('|')
-        filter.forcedValue = {
-          value: values
-        }
+        console.log(`Found filter ${id}`)
+        // console.log({ value })
+        // const values = value.split('|')
+        filter.forcedValue = { value }
+        filter.isInverted = isInverted
         // console.log(`Filter ${id} found and applied with values ${values}.`)
       } else {
         console.log(`Filter ${id} not found.`)

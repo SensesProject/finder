@@ -84,8 +84,8 @@ const actions = {
     commit('SET_URL_DETAILS', url)
   },
   initDetails ({ state, dispatch, rootState }, isForced = false) {
-    const facets = filter(get(rootState, ['facets', KEY_FACETS_ALL]), { type: KEY_FILTER_TYPE_DETAILS })
-    // console.log(facets)
+    const facets = filter(get(rootState, ['facets', KEY_FACETS_ALL]), { type: KEY_FILTER_TYPE_DETAILS, visible: true })
+    console.log('initDetails', facets.length)
     dispatch('loadDetails', { list: facets, isForced })
   },
   // This starts the loading process. It is triggered by the localStorage or on hard reload
@@ -101,7 +101,7 @@ const actions = {
       const lastLoad = get(cache, KEY_DATE, null)
       const hasFailed = get(cache, KEY_STATUS) === STATUS_LOADING_FAILED || get(cache, KEY_STATUS) === STATUS_EMPTY
       if (!cache) {
-        console.log('Is not in cache')
+        console.log(`${key} is not in cache`)
         // console.log(key, year, region, hasFailed)
       } else if (isTooOld(lastLoad)) {
         console.log('Is too old')
@@ -121,28 +121,41 @@ const actions = {
   load ({ state, commit, dispatch, rootState }, { requests }) {
     // console.log('loaddetails', requests)
 
-    const runs = getRunIds(basket)
+    if (requests.length) {
+      // For now, we need to reset all the filters because Crossfilter cannot remove just all the data
+      // It can only delete the data that is currently filtered. So in order to remove really all the data we need to delete all current filter.
+      // One idea to fix that would be to store the current filter in the init filters just like the url parameters
+      dispatch('filter/setCurrentAsInitFilter', false, { root: true })
+      dispatch('filter/resetFilters', false, { root: true })
+      // setCurrentAsInitFilter
+      console.log('resetFilters in details’ load')
 
-    const { url } = state
-    const config = buildConfigForRequest(rootState)
+      const runs = getRunIds(basket)
 
-    forEach(requests, ({ key, year, region }) => {
-      const body = buildBodyFromDetails(runs, year, region, key)
-      // console.log(year, key, region)
-      commit('API_DETAILS', { body, message: STATUS_LOADING })
-      axios.post(url, body, config)
-        .then(response => {
-          const { data } = response
-          // console.log('Loading successfull')
-          commit('API_DETAILS', { data, body, message: STATUS_LOADING_SUCCESS })
-          // console.log('details -> mergeWithDetails')
-          dispatch('load/mergeWithDetails', { data }, { root: true })
-        })
-        .catch(error => {
-          commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
-          console.log('Loading failed', { error, body, config })
-        })
-    })
+      const { url } = state
+      const config = buildConfigForRequest(rootState)
+
+      forEach(requests, ({ key, year, region }) => {
+        const body = buildBodyFromDetails(runs, year, region, key)
+        // console.log(year, key, region)
+        commit('API_DETAILS', { body, message: STATUS_LOADING })
+        axios.post(url, body, config)
+          .then(response => {
+            const { data } = response
+            // console.log('Loading successfull')
+            commit('API_DETAILS', { data, body, message: STATUS_LOADING_SUCCESS })
+            // console.log('details -> mergeWithDetails')
+            dispatch('load/mergeWithDetails', { data }, { root: true })
+          })
+          .catch(error => {
+            commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
+            console.log('Loading failed', { error, body, config })
+          })
+          .then(() => {
+            dispatch('filter/initFilter', false, { root: true })
+          })
+      })
+    }
   }
 }
 

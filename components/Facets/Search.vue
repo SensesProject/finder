@@ -115,13 +115,15 @@
     },
     watch: {
       forcedValue (newValue) {
-        if (newValue === RESET_CODE) {
-          console.log(`Resetting ${this.id}`)
-          this.reset()
-        } else {
-          console.log(`Got a forced input at ${this.id}`)
-          const value = get(newValue, ['value', 0])
-          this.forceSelected(value)
+        if (newValue) {
+          if (newValue === RESET_CODE) {
+            console.log(`Resetting ${this.id}`)
+            this.reset()
+          } else {
+            // console.log(`Got a forced input at ${this.id}`)
+            const value = get(newValue, 'value')
+            this.forceSelected(value)
+          }
         }
       }
     }
