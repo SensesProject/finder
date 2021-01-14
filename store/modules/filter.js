@@ -202,7 +202,7 @@ const actions = {
     // console.log('updateDimension finished')
   },
   addFacet ({ commit, dispatch }, options) {
-    console.log('addFacet')
+    // console.log('addFacet')
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     const uniqID = uniqueId(options.id)
@@ -332,7 +332,6 @@ const actions = {
         return false
       }
     })))
-    console.log({ filters })
     commit('SET_INIT_FILTER', filters)
   },
   initFilter ({ dispatch, commit, state, rootState }) {
