@@ -132,7 +132,7 @@ const actions = {
       commit('API_DATA', { status: STATUS_LOADING_SUCCESS })
       dispatch('filter/updateDimensions', false, { root: true })
       dispatch('apply', false, { root: true })
-      // We need to load the details after appling filters since we need it the run ids from the data
+      // We need to load the details after appling filters since we need it for the run ids from the data
       dispatch('details/initDetails', false, { root: true })
     }
   },
