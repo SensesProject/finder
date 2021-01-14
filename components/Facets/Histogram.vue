@@ -167,7 +167,7 @@
       }),
       status () {
         if (this.type === KEY_FILTER_TYPE_DETAILS) {
-          return get(this.details, [detailPath(this.path, this.year, this.region), KEY_STATUS], STATUS_LOADING_FAILED)
+          return get(this.details, [detailPath(this.path, this.year, this.region), KEY_STATUS])
         } else {
           return false
         }
@@ -449,7 +449,7 @@ $handle-height: 4px;
 
   .vis-wrapper {
     display: flex;
-    width: 100%;
+    width: $facet-width;
 
     .message {
       position: absolute;
