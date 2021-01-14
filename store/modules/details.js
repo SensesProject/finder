@@ -17,7 +17,6 @@ const mutations = {
   },
   API_DETAILS (state, { data, body, message }) {
     const { region, variable, year } = extractDetailsFromBody(body)
-    // console.log('API_DETAILS', message)
 
     if (message === STATUS_LOADING_FAILED || message === STATUS_LOADING) {
       state.data = assign(
@@ -85,7 +84,7 @@ const actions = {
   },
   initDetails ({ state, dispatch, rootState }, isForced = false) {
     const facets = filter(get(rootState, ['facets', KEY_FACETS_ALL]), { type: KEY_FILTER_TYPE_DETAILS, visible: true })
-    console.log('initDetails', facets.length)
+    // console.log('initDetails', facets.length)
     dispatch('loadDetails', { list: facets, isForced })
   },
   // This starts the loading process. It is triggered by the localStorage or on hard reload
@@ -100,13 +99,16 @@ const actions = {
       // const cache = find(state.data, { variable: key, year: year, region: region })
       const lastLoad = get(cache, KEY_DATE, null)
       const hasFailed = get(cache, KEY_STATUS) === STATUS_LOADING_FAILED || get(cache, KEY_STATUS) === STATUS_EMPTY
-      if (!cache) {
-        console.log(`${key} is not in cache`)
-        // console.log(key, year, region, hasFailed)
-      } else if (isTooOld(lastLoad)) {
-        console.log('Is too old')
-      }
-      return !cache || isTooOld(lastLoad)
+      // if (!cache) {
+      //   console.log(`${key} is not in cache`)
+      //   // console.log(key, year, region, hasFailed)
+      // } else if (isTooOld(lastLoad)) {
+      //   console.log('Is too old')
+      // }
+      // if (cache) {
+      //   console.log(`${key} is in cache`)
+      // }
+      return !cache || isTooOld(lastLoad) || hasFailed
     })
     // console.log('result:', requests)
     if (requests.length) {
@@ -128,33 +130,33 @@ const actions = {
       dispatch('filter/setCurrentAsInitFilter', false, { root: true })
       dispatch('filter/resetFilters', false, { root: true })
       // setCurrentAsInitFilter
-      console.log('resetFilters in details’ load')
 
       const runs = getRunIds(basket)
 
-      const { url } = state
-      const config = buildConfigForRequest(rootState)
+      if (runs.length) {
+        const { url } = state
+        const config = buildConfigForRequest(rootState)
 
-      forEach(requests, ({ key, year, region }) => {
-        const body = buildBodyFromDetails(runs, year, region, key)
-        // console.log(year, key, region)
-        commit('API_DETAILS', { body, message: STATUS_LOADING })
-        axios.post(url, body, config)
-          .then(response => {
-            const { data } = response
-            // console.log('Loading successfull')
-            commit('API_DETAILS', { data, body, message: STATUS_LOADING_SUCCESS })
-            // console.log('details -> mergeWithDetails')
-            dispatch('load/mergeWithDetails', { data }, { root: true })
-          })
-          .catch(error => {
-            commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
-            console.log('Loading failed', { error, body, config })
-          })
-          .then(() => {
-            dispatch('filter/initFilter', false, { root: true })
-          })
-      })
+        forEach(requests, ({ key, year, region }) => {
+          const body = buildBodyFromDetails(runs, year, region, key)
+          commit('API_DETAILS', { body, message: STATUS_LOADING })
+          axios.post(url, body, config)
+            .then((response) => {
+              const { data } = response
+              // console.log('Loading successfull', data)
+              commit('API_DETAILS', { data, body, message: STATUS_LOADING_SUCCESS })
+              // console.log('details -> mergeWithDetails')
+              dispatch('load/mergeWithDetails', { data }, { root: true })
+            })
+            .catch((error) => {
+              commit('API_DETAILS', { body, message: STATUS_LOADING_FAILED })
+              console.log('Loading failed', { error, body, config })
+            })
+            .then(() => {
+              dispatch('filter/initFilter', false, { root: true })
+            })
+        })
+      }
     }
   }
 }
