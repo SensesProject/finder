@@ -202,11 +202,16 @@ const actions = {
     // console.log('updateDimension finished')
   },
   addFacet ({ commit, dispatch }, options) {
+    console.log('addFacet')
     // This function is called for each visible facet
     // Options look like this { key: 'category', type: 'list' }
     const uniqID = uniqueId(options.id)
     const params = Object.assign(options, { [KEY_UNIQ_ID]: uniqID })
     // console.log('filter/addFacet', params)
+    // console.log(get(params, 'type'), get(params, 'type') === KEY_FILTER_TYPE_DETAILS)
+    if (get(params, 'type') === KEY_FILTER_TYPE_DETAILS) {
+      dispatch('details/loadDetails', { list: [params]}, { root: true })
+    }
     commit('CREATE_FACET', params)
     dispatch('updateDimension', uniqID)
     dispatch('apply')
@@ -282,7 +287,7 @@ const actions = {
         dispatch('addFacet', facet)
       } else {
         // This should not happen. Could not think of a reason why it would.
-        console.log(`Could not add facet ${facet}. It was note found.`)
+        console.log(`Could not add facet ${facet}. It was not found.`)
       }
     })
     // This could probably be a bit more nicely soved but I just do it twice in revese order
