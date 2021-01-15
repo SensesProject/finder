@@ -23,7 +23,6 @@
 
 <script>
   import Finder from '~/components/Finder.vue'
-  const { getHead } = require('library/src/assets/js/head.js')
 
   export default {
     data () {
