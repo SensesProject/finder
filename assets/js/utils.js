@@ -1,8 +1,8 @@
-import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace, isString } from 'lodash'
+import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace, isString, isArray } from 'lodash'
 import { format } from 'timeago.js'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
-import { NUMBERIC_FACET_TYPES, KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
+import { KEY_ID, NUMBERIC_FACET_TYPES, KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
 
 export const getLabel = function (value, type, precision) {
   // The label can be different. It’s based on the type of the column
@@ -161,4 +161,17 @@ export const niceRound = function (value, max) {
 
 export const isNumericFacet = function (type) {
   return NUMBERIC_FACET_TYPES.includes(type)
+}
+
+export const generateLink = function (filter, urlBase) {
+  let link = []
+  forEach(filter, ({ value, [KEY_ID]: id }) => {
+    if (value) {
+      const values = isArray(value) ? value.join('|') : value
+      link.push(`${id}=${values}`)
+    }
+  })
+  const getUrl = window.location
+  const query = encodeURI(link.join('&'))
+  return `${getUrl.protocol}//${getUrl.host}/${urlBase.replaceAll('/', '')}${$nuxt.$route.fullPath}${query.length ? '?' : ''}${query}`
 }

@@ -31,6 +31,7 @@
   import CSVLink from '~/components/Aside/CSVLink.vue'
   import copy from 'copy-to-clipboard'
   import { KEY_ID, KEY_FILTER, KEY_HAS_ACTIVE_FILTERS } from '~/store/config'
+  import { generateLink } from '~/assets/js/utils'
 
   export default {
     props: {
@@ -70,16 +71,9 @@
         'loadFacets'
       ]),
       copyLink () {
-        let link = []
-        forEach(this.filter, ({ value, [KEY_ID]: id }) => {
-          if (value) {
-            const values = isArray(value) ? value.join('|') : value
-            link.push(`${id}=${values}`)
-          }
-        })
-        const getUrl = window.location
-        const query = encodeURI(link.join('&'))
-        copy(`${getUrl.protocol}//${getUrl.host}/${this.$router.options.base.replaceAll('/', '')}${$nuxt.$route.fullPath}${ query.length ? '?' : ''}${query}`)
+        const link = generateLink(this.filter, this.$router.options.base)
+        console.log(link)
+        copy(link)
       },
       exportToCSV () {
 
