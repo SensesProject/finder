@@ -1,7 +1,8 @@
-import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace, isString, isArray } from 'lodash'
+import { round, isBoolean, get, map, forEach, set, kebabCase, startsWith, keys, replace, isString, isArray, find } from 'lodash'
 import { format } from 'timeago.js'
 import { extent } from 'd3-array'
 import { scaleLinear, scaleThreshold } from 'd3-scale'
+import { csv } from 'csvtojson'
 import { KEY_ID, NUMBERIC_FACET_TYPES, KEY_FILTER_TYPE_DETAILS, KEY_FILTER_TYPE_HISTOGRAM } from '../../store/config'
 
 export const getLabel = function (value, type, precision) {
@@ -72,6 +73,36 @@ export const extractFromGoogleTable = function (keys, data) {
   })
 }
 
+export const extractFacetData = async (keys, data) => {
+  return await csv()
+    .fromString(data)
+    .then((json) => {
+      return map(json, (entry, i) => {
+        const obj = { i }
+        forEach(keys, key => {
+          let value = get(entry, key)
+          // let value = get(entry, [`gsx$${key}`, '$t'])
+          // Some reformatting if value is TRUE or FALSE
+          switch (value) {
+            case 'TRUE':
+              value = true
+              break
+            case 'FALSE':
+              value = false
+              break
+          }
+          if (key === 'regions') {
+            value = isString(value) ? value.split(',') : value
+          }
+          set(obj, key, value)
+        })
+        // Generate a id for each facet. This is used to trigger each filter
+        set(obj, 'id', kebabCase(get(entry, 'label')))
+        return obj
+      })
+    })
+}
+
 export const extractFromGoogleTable2 = function (data) {
   // This function extracts table data from a Google Sheet
   return map(get(data, ['feed', 'entry']), entry => {
@@ -93,6 +124,14 @@ export const extractFromGoogleTable2 = function (data) {
     })
     return obj
   })
+}
+
+export const extractData = async (data) => {
+  return await csv()
+    .fromString(data)
+    .then((json) => {
+      return json
+    })
 }
 
 export const detailPath = function (key, year, region) {

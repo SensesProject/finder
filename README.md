@@ -41,5 +41,5 @@ $ npm run build
 $ npm start
 
 # generate static project
-$ npm run generate
+$ npm run build && npm run generate
 ```

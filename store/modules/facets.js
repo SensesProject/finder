@@ -1,7 +1,7 @@
 // Coordinates the visible/selected facets. Facets are the columns of the table that the user can use for filtering
 import { get, map, forEach, fromPairs, filter } from 'lodash'
 import axios from 'axios'
-import { isTooOld, extractFromGoogleTable } from '../../assets/js/utils'
+import { isTooOld, extractFacetData } from '../../assets/js/utils'
 import { format } from 'timeago.js'
 import { KEY_UNIQ_ID, FACET_KEYS, KEY_PATH, KEY_HAS_ACTIVE_FILTERS, KEY_DIMENSION, KEY_FILTER, KEY_DATE, KEY_URL, KEY_FACETS_FACETS, KEY_FACETS_VISIBLE, KEY_FACETS_ALL, KEY_FILTER_VALID, KEY_FILTER_TYPE_DETAILS, DEFAULT_REGION, DEFAULT_YEAR } from '../config'
 
@@ -120,7 +120,7 @@ const actions = {
     // Try to get the time the data was loaded the last time
     const lastLoad = get(state, KEY_DATE, null)
     // Compare current date and last loaded data
-    const shouldReload = isTooOld(lastLoad)
+    const shouldReload = true // isTooOld(lastLoad)
     // If data should reload or is forced, set to true
     const willReload = shouldReload ? true : isForced
     // Try to get the url for fetching the facets. This is set as Finder prop.
@@ -129,11 +129,12 @@ const actions = {
     if (willReload && url) {
       // console.log('Facets data is too old or reload is forced. Will reload data')
       axios.get(url)
-        .then((response) => {
+        .then(async (response) => {
           // console.log('removing filters')
           dispatch('filter/removeFilters', false, { root: true })
           // Extract the data from the Google Table structure
-          dispatch('setFacets', extractFromGoogleTable(FACET_KEYS, response.data))
+          const data = await extractFacetData(FACET_KEYS, response.data)
+          dispatch('setFacets', data)
           // Set the visible facets
           dispatch('setVisibleFacets')
           // Initiate the filter. This action is in the filter module

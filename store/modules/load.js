@@ -4,7 +4,7 @@ import axios from 'axios'
 import { get, isUndefined, set, forEach, find } from 'lodash'
 import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE } from '../config'
-import { isTooOld, extractFromGoogleTable2, buildConfigForRequest, detailPath } from '../../assets/js/utils'
+import { isTooOld, extractData, buildConfigForRequest, detailPath } from '../../assets/js/utils'
 import { basket } from '../index'
 
 const state = () => ({
@@ -14,15 +14,15 @@ const state = () => ({
   message: false,
   date: false,
   url: false,
-  isGoogleSheet: false
+  isCSV: false
 })
 
 const mutations = {
   SET_URL_DATA (state, url) {
     state.url = url
   },
-  SET_IS_GOOGLE_SHEET (state, value) {
-    state.isGoogleSheet = value
+  SET_IS_CSV (state, value) { // TODO: Fix naming since it’s no longer loading from Google Sheet
+    state.isCSV = value
   },
   API_DATA (state, { status, message, data, details = [] }) {
     // Update the status
@@ -70,8 +70,8 @@ const mutations = {
 }
 
 const actions = {
-  setIsGoogleSheet ({ commit }, value) {
-    commit('SET_IS_GOOGLE_SHEET', value)
+  setIsCSV ({ commit }, value) {
+    commit('SET_IS_CSV', value)
   },
   setUrlData ({ commit }, url) {
     commit('SET_URL_DATA', url)
@@ -109,7 +109,7 @@ const actions = {
         .then(response => {
           const { data } = response
           // Check were data is coming from
-          const datum = state.isGoogleSheet ? extractFromGoogleTable2(data) : data
+          const datum = state.isCSV ? extractData(data) : data
           commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
           dispatch('filter/updateDimensions', false, { root: true })
 

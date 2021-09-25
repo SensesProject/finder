@@ -62,7 +62,7 @@
       facetsURL: {
         type: String
       },
-      isGoogleSheet: {
+      isCSV: {
         type: Boolean,
         default: false
       },
@@ -87,7 +87,7 @@
         'setInitFilter'
       ]),
       ...mapActions('load', [
-        'setIsGoogleSheet',
+        'setIsCSV',
         'setUrlData'
       ]),
       ...mapActions('auth', [
@@ -105,7 +105,8 @@
       Facets
     },
     created: function () {
-      const { $route, facetsURL, isGoogleSheet, id, urlData, urlAuth, urlDetails } = this
+      console.log('Finder version 1.1')
+      const { $route, facetsURL, isCSV, id, urlData, urlAuth, urlDetails } = this
       this.initFinder()
 
       // INIT FILTERS can be passed down by URL
@@ -127,7 +128,7 @@
       this.setID(id)
 
       // Check if the DATA is stored in a Google spreadsheet
-      this.setIsGoogleSheet(isGoogleSheet)
+      this.setIsCSV(isCSV)
 
       // Set the url for the DATA
       this.setUrlData(urlData)
