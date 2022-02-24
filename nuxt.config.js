@@ -12,20 +12,14 @@ module.exports = {
     }
   },
   plugins: [
-    { src: '~/plugins/localStorage.js', ssr: false },
-    { src: '~/plugins/vue-drag-resize', ssr: false }
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {
     base: '/finder/'
   },
   build: {
-    extend (config, ctx) {
-    },
     transpile: [
       'library'
     ]
-  },
-  generate: {
-    crawler: false
   }
 }
