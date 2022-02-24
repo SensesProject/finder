@@ -129,9 +129,6 @@ export const extractFromGoogleTable2 = function (data) {
 export const extractData = async (data) => {
   return await csv()
     .fromString(data)
-    .then((json) => {
-      return json
-    })
 }
 
 export const detailPath = function (key, year, region) {

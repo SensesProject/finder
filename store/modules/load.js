@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import { get, isUndefined, set, forEach, find } from 'lodash'
-import { format } from 'timeago.js'
+// import { format } from 'timeago.js'
 import { STATUS_IDLE, STATUS_LOADING, STATUS_LOADING_FAILED, STATUS_LOADING_SUCCESS, KEY_DATE } from '../config'
 import { isTooOld, extractData, buildConfigForRequest, detailPath } from '../../assets/js/utils'
 import { basket } from '../index'
@@ -64,7 +64,8 @@ const mutations = {
       // console.log('state.data', state.data)
       // Add new data
       basket.add(state.data)
-      // console.log('size', basket.size())
+    } else {
+      console.warn('Data should not be empty.');
     }
   }
 }
@@ -106,20 +107,24 @@ const actions = {
 
       // console.log('Load Request send')
       axios.get(url, config)
-        .then(response => {
+        .then(async (response) => {
           const { data } = response
           // Check were data is coming from
-          const datum = state.isCSV ? extractData(data) : data
-          commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
-          dispatch('filter/updateDimensions', false, { root: true })
-
-          // Apply filtering
-          dispatch('apply', false, { root: true })
-          // We need to load the details after appling filters since we need it the run ids from the data
-          dispatch('details/initDetails', { isForced }, { root: true })
+          const datum = state.isCSV ? await extractData(data) : data
+          if (datum.length) {
+            commit('API_DATA', { status: STATUS_LOADING_SUCCESS, data: datum })
+            dispatch('filter/updateDimensions', false, { root: true })
+            // Apply filtering
+            dispatch('apply', false, { root: true })
+            // We need to load the details after appling filters since we need it the run ids from the data
+            dispatch('details/initDetails', { isForced }, { root: true })
+          } else {
+            console.warn('Results should have a length.')
+          }
+          
         })
         .catch(error => {
-          // console.log('Loading failed', { error, isLoop })
+          console.log('Loading failed', { error, isLoop })
           commit('API_DATA', { status: STATUS_LOADING_FAILED, message: error })
           if (!isLoop) {
             // console.log('Trying to relogin')
